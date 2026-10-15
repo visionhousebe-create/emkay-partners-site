@@ -34,7 +34,7 @@ Node ≥ 20.9 (Vercel : laisser la version par défaut).
 | Variable | Obligatoire | Rôle |
 | --- | --- | --- |
 | `CONTACT_WEBHOOK_URL` | Oui en production | URL qui reçoit chaque message (POST JSON) : Make, n8n, Zapier, Slack Incoming Webhook. Sans elle, le visiteur voit une confirmation mais le message n'est que **journalisé** (logs Vercel : « CONTACT_WEBHOOK_URL n’est pas configurée »). |
-| `NEXT_PUBLIC_SITE_URL` | Oui en production | Domaine canonique, ex. `https://www.exemple.be` (sans `/` final). Utilisé pour canonical, Open Graph, robots.txt, sitemap. |
+| `NEXT_PUBLIC_SITE_URL` | Non | Surcharge du domaine canonique. Par défaut, la Production utilise `https://www.emkaypartners.com` (`CANONICAL_URL` dans `lib/site.ts`) pour canonical, Open Graph, robots.txt et sitemap. |
 
 Voir `.env.example`. Les Previews Vercel sont automatiquement en `noindex`.
 
@@ -74,9 +74,14 @@ Rechercher `À COMPLÉTER` dans `app/mentions-legales/page.tsx` et `app/politiqu
 
 1. **GitHub** — branche `emkay-final-production` → Pull Request vers `main` (ne pas merger avant validation).
 2. **Vercel → Add New… → Project → Import** `visionhousebe-create/emkay-partners-site`. Framework : Next.js · Root Directory : `./` · Install : `npm install` · Build : `npm run build` · Output : automatique.
-3. Variables : ajouter `CONTACT_WEBHOOK_URL` (Preview + Production). `NEXT_PUBLIC_SITE_URL` : Production seulement, une fois le domaine choisi.
+3. Variables : ajouter `CONTACT_WEBHOOK_URL` (Preview + Production).
 4. **Preview** : chaque push sur `emkay-final-production` crée un déploiement Preview ; le lien apparaît dans la Pull Request.
-5. **Domaine** (après validation) : Vercel → Settings → Domains → ajouter le domaine principal et `www.` ; choisir lequel est principal, l'autre redirige (308). Un domaine secondaire (ex. autre extension) s'ajoute de la même façon avec « Redirect to » le domaine principal. Configurer les DNS indiqués par Vercel chez le registrar ; le certificat HTTPS est émis automatiquement. Mettre `NEXT_PUBLIC_SITE_URL` = domaine principal, puis redéployer.
+5. **Domaine** (après validation de la Preview) — domaine canonique : **`www.emkaypartners.com`**.
+   - Vercel → Project → Settings → Domains → ajouter `www.emkaypartners.com` (Production, branche `main`).
+   - Ajouter `emkaypartners.com` → « Redirect to » `www.emkaypartners.com` (308).
+   - Chez le registrar : `CNAME www → cname.vercel-dns.com` et, pour l'apex, l'enregistrement `A` indiqué par Vercel (ou déléguer les nameservers à Vercel). Toujours suivre les valeurs affichées dans Vercel.
+   - Le certificat HTTPS est émis automatiquement ; vérifier le statut « Valid Configuration » dans Vercel.
+   - Un autre domaine (ex. `.be`) peut être ajouté plus tard avec « Redirect to » `www.emkaypartners.com`.
 6. **Production** : merger la Pull Request dans `main` → Vercel déploie en Production.
 
 ---

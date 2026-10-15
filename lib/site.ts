@@ -1,13 +1,17 @@
-// URL publique du site. En production : définir NEXT_PUBLIC_SITE_URL (ex. https://www.domaine.be) = domaine canonique.
-// À défaut : URL de production Vercel, puis URL du déploiement en cours, puis localhost.
-const fromVercel = process.env.VERCEL_PROJECT_PRODUCTION_URL || process.env.VERCEL_URL;
+// Domaine canonique validé : www.emkaypartners.com (emkaypartners.com sans www redirige vers lui, côté Vercel).
+export const CANONICAL_URL = 'https://www.emkaypartners.com';
+
+// NEXT_PUBLIC_SITE_URL permet de surcharger l'URL si besoin.
+// Production Vercel → domaine canonique. Preview → URL du déploiement. Local → localhost.
+const vercelEnv = process.env.VERCEL_ENV;
+const deploymentUrl = process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'http://localhost:3000';
 
 export const SITE_URL = (
-  process.env.NEXT_PUBLIC_SITE_URL || (fromVercel ? `https://${fromVercel}` : 'http://localhost:3000')
+  process.env.NEXT_PUBLIC_SITE_URL || (vercelEnv === 'production' ? CANONICAL_URL : deploymentUrl)
 ).replace(/\/+$/, '');
 
 /** Seule la production est indexable ; les Previews Vercel restent hors des moteurs de recherche. */
-export const INDEXABLE = process.env.VERCEL_ENV ? process.env.VERCEL_ENV === 'production' : process.env.NODE_ENV === 'production';
+export const INDEXABLE = vercelEnv ? vercelEnv === 'production' : process.env.NODE_ENV === 'production';
 
 export const SITE_NAME = 'EMKAY Partners';
 export const SITE_TITLE = 'EMKAY Partners — Marques, événements & expériences';

@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<title>EMKAY Partners | Brands, Events &amp; Experiences — Brussels</title>
+<meta name="description" content="EMKAY Partners est une maison de marques belge réunissant Vision House, Nexplore, Nexplore Connect, Bavard et Viens Manger.">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta property="og:type" content="website">
+<meta property="og:title" content="EMKAY Partners — Une maison. Plusieurs univers.">
+<meta property="og:description" content="Maison de marques belge réunissant Vision House, Nexplore, Nexplore Connect, Bavard et Viens Manger.">
+<meta property="og:locale" content="fr_BE">
+<meta property="og:image" content="/og-image.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="EMKAY Partners — Une maison. Plusieurs univers.">
+<meta name="twitter:description" content="Maison de marques belge réunissant Vision House, Nexplore, Nexplore Connect, Bavard et Viens Manger.">
+<meta name="theme-color" content="#2B143D">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%232B143D'/%3E%3Ctext x='32' y='44' font-family='Georgia,serif' font-size='36' fill='%23F5F2EC' text-anchor='middle'%3EE%3C/text%3E%3C/svg%3E">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"EMKAY Partners","description":"Maison de marques belge réunissant Vision House, Nexplore, Nexplore Connect, Bavard et Viens Manger.","address":{"@type":"PostalAddress","addressLocality":"Bruxelles","addressCountry":"BE"},"brand":[{"@type":"Brand","name":"Vision House"},{"@type":"Brand","name":"Nexplore"},{"@type":"Brand","name":"Nexplore Connect"},{"@type":"Brand","name":"Bavard"},{"@type":"Brand","name":"Viens Manger"}]}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700;800&amp;family=Geist+Mono:wght@400;500&amp;family=Instrument+Serif:ital@0;1&amp;display=swap" rel="stylesheet">
+<script src="./image-slot.js"></script>
+<style>
+html{scroll-behavior:smooth}
+body{margin:0;background:#2B143D;color:#F5F2EC;font-family:'Geist',system-ui,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+*{box-sizing:border-box}
+a{color:inherit;text-decoration:none}
+a:hover{color:inherit;opacity:.75}
+::selection{background:#F5F2EC;color:#2B143D}
+@keyframes emk-marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}}
+</style>
+</helmet>
+
+<header style="position:fixed;top:0;left:0;right:0;z-index:50;display:flex;align-items:center;justify-content:space-between;gap:24px;padding:{{ headerPad }};background:{{ headerBg }};backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);transition:background .4s ease, padding .4s ease;color:#F5F2EC;">
+  <a href="#top" style="font-family:'Geist',sans-serif;font-weight:700;font-size:15px;letter-spacing:.22em;">EMKAY PARTNERS</a>
+  <sc-if value="{{ wide }}" hint-placeholder-val="{{ true }}">
+    <nav style="display:flex;gap:32px;font-size:14px;letter-spacing:.02em;">
+      <a href="#maison">La Maison</a>
+      <a href="#marques">Nos marques</a>
+      <a href="#projets">Projets</a>
+      <a href="#a-propos">À propos</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </sc-if>
+  <a href="#contact" style="font-size:14px;border:1px solid rgba(245,242,236,.4);padding:10px 18px;border-radius:2px;white-space:nowrap;">Nous contacter ↗</a>
+</header>
+
+<main id="top">
+
+<!-- 02 HERO -->
+<section data-screen-label="02 Hero" style="position:relative;min-height:100vh;background:#2B143D;color:#F5F2EC;display:flex;flex-direction:column;justify-content:space-between;padding:clamp(110px,14vh,150px) clamp(20px,4vw,56px) 0;overflow:hidden;">
+  <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:24px;font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:.16em;color:#AAA6AD;">
+    <div data-reveal="" style="line-height:1.7;">EMKAY PARTNERS®<br>BRUSSELS</div>
+    <div data-reveal="" style="text-align:right;line-height:1.7;">UNE MAISON.<br>PLUSIEURS UNIVERS.</div>
+  </div>
+
+  <sc-if value="{{ heroA }}" hint-placeholder-val="{{ true }}">
+    <h1 style="margin:clamp(40px,8vh,96px) 0 0;font-weight:600;font-size:clamp(52px,11.2vw,210px);line-height:.88;letter-spacing:-.045em;text-transform:uppercase;">
+      <span data-reveal="" style="display:block;">Des idées.</span>
+      <span data-reveal="" data-delay="120" style="display:block;font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;text-transform:none;letter-spacing:-.02em;padding-left:clamp(0px,9vw,180px);">des marques.</span>
+      <span data-reveal="" data-delay="240" style="display:block;">Des rencontres.</span>
+    </h1>
+  </sc-if>
+  <sc-if value="{{ heroB }}" hint-placeholder-val="{{ false }}">
+    <h1 style="margin:clamp(40px,8vh,96px) 0 0;font-weight:600;font-size:clamp(52px,10.4vw,196px);line-height:.88;letter-spacing:-.045em;text-transform:uppercase;">
+      <span data-reveal="" style="display:block;">Nous créons</span>
+      <span data-reveal="" data-delay="120" style="display:block;font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;text-transform:none;letter-spacing:-.02em;padding-left:clamp(0px,9vw,180px);">ce que nous</span>
+      <span data-reveal="" data-delay="240" style="display:block;">aimerions vivre.</span>
+    </h1>
+  </sc-if>
+  <sc-if value="{{ heroC }}" hint-placeholder-val="{{ false }}">
+    <h1 style="margin:clamp(40px,8vh,96px) 0 0;font-weight:400;font-family:'Instrument Serif',serif;font-size:clamp(56px,11vw,208px);line-height:.9;letter-spacing:-.025em;">
+      <span data-reveal="" style="display:block;">Plusieurs marques.</span>
+      <span data-reveal="" data-delay="140" style="display:block;font-style:italic;padding-left:clamp(0px,12vw,240px);">Une même impulsion.</span>
+    </h1>
+  </sc-if>
+
+  <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:32px;margin-top:clamp(36px,6vh,72px);">
+    <p data-reveal="" data-delay="360" style="margin:0;max-width:440px;font-size:clamp(17px,1.35vw,20px);line-height:1.5;color:#F5F2EC;text-wrap:pretty;">{{ heroSub }}</p>
+    <div data-reveal="" data-delay="440" style="display:flex;flex-wrap:wrap;gap:12px;">
+      <a href="#marques" style="background:#F5F2EC;color:#2B143D;padding:16px 26px;font-size:15px;font-weight:500;border-radius:2px;">Découvrir nos marques</a>
+      <a href="#contact" style="border:1px solid rgba(245,242,236,.45);padding:16px 26px;font-size:15px;border-radius:2px;">Nous rencontrer ↗</a>
+    </div>
+  </div>
+
+  <div style="margin:clamp(40px,7vh,80px) calc(-1 * clamp(20px,4vw,56px)) 0;border-top:1px solid rgba(245,242,236,.16);padding:22px 0;overflow:hidden;font-family:'Instrument Serif',serif;font-size:clamp(26px,3vw,44px);color:#AAA6AD;white-space:nowrap;">{{ heroMarquee }}</div>
+</section>
+
+<!-- 03 INTRODUCTION -->
+<section id="maison" data-screen-label="03 Introduction" style="background:#F5F2EC;color:#090909;padding:clamp(100px,16vh,200px) clamp(20px,4vw,56px);">
+  <div style="max-width:1440px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:clamp(32px,5vw,80px);">
+    <div data-reveal="" style="font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:.16em;color:#2B143D;">EMKAY PARTNERS / BRUSSELS</div>
+    <div style="grid-column:span 2;min-width:0;">
+      <h2 style="margin:0;font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(40px,5.4vw,92px);line-height:1;letter-spacing:-.02em;text-wrap:pretty;">
+        <span data-reveal="" style="display:block;">Nous lançons des idées.</span>
+        <span data-reveal="" data-delay="120" style="display:block;color:#2B143D;font-style:italic;">Certaines deviennent des événements.</span>
+        <span data-reveal="" data-delay="240" style="display:block;">D'autres deviennent des marques.</span>
+      </h2>
+      <div data-reveal="" style="margin-top:clamp(48px,7vh,88px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:32px;font-size:18px;line-height:1.55;color:#3a3540;">
+        <p style="margin:0;text-wrap:pretty;">Vision House, Nexplore, Nexplore Connect, Bavard et Viens Manger évoluent chacune avec leur propre identité, leur propre public et leur propre ambition.</p>
+        <p style="margin:0;text-wrap:pretty;">Mais elles partagent la même maison.<br><strong style="color:#2B143D;font-weight:600;">EMKAY Partners.</strong></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 04 THE HOUSE / NOS MARQUES -->
+<section id="marques" data-screen-label="04 Nos marques" onMouseLeave="{{ resetActive }}" style="background:{{ listBg }};color:{{ listFg }};transition:background .7s cubic-bezier(.2,.7,.2,1), color .7s ease;padding:clamp(100px,14vh,170px) clamp(20px,4vw,56px);">
+  <div style="max-width:1600px;margin:0 auto;">
+    <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:32px;margin-bottom:clamp(48px,8vh,96px);">
+      <div>
+        <div style="font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:.16em;opacity:.7;margin-bottom:24px;">THE HOUSE</div>
+        <h2 data-reveal="" style="margin:0;font-weight:600;font-size:clamp(40px,6vw,104px);line-height:.92;letter-spacing:-.04em;">Une maison.<br><span style="font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;letter-spacing:-.02em;">Des univers bien à eux.</span></h2>
+      </div>
+      <div style="font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:.16em;opacity:.7;">{{ activeNum }}</div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:{{ listCols }};gap:clamp(24px,4vw,64px);align-items:start;">
+      <div style="min-width:0;border-bottom:1px solid {{ listLine }};">
+        <sc-for list="{{ brands }}" as="b" hint-placeholder-count="5">
+          <a href="#{{ b.id }}" onMouseEnter="{{ b.onEnter }}" onFocus="{{ b.onEnter }}" style="display:block;border-top:1px solid {{ listLine }};padding:clamp(14px,2vh,24px) 0;color:inherit;opacity:{{ b.op }};transition:opacity .4s ease;">
+            <div style="display:flex;align-items:baseline;gap:clamp(14px,2vw,32px);">
+              <span style="font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:.1em;flex:none;width:28px;">{{ b.num }}</span>
+              <span style="font-weight:600;font-size:clamp(34px,5.6vw,104px);line-height:.95;letter-spacing:-.045em;transform:translateX({{ b.shift }});transition:transform .5s cubic-bezier(.2,.7,.2,1);">{{ b.name }}</span>
+            </div>
+            <div style="display:grid;grid-template-rows:{{ b.rows }};transition:grid-template-rows .5s cubic-bezier(.2,.7,.2,1);">
+              <div style="overflow:hidden;min-height:0;">
+                <div style="display:flex;flex-wrap:wrap;gap:12px 40px;align-items:baseline;padding:18px 0 6px 0;padding-left:clamp(42px,calc(2vw + 28px),60px);">
+                  <span style="font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:.14em;">{{ b.tags }}</span>
+                  <span style="font-size:16px;line-height:1.5;max-width:460px;opacity:.85;">{{ b.desc }}</span>
+                  <span style="font-size:14px;font-weight:500;border-bottom:1px solid currentColor;padding-bottom:2px;">{{ b.cta }}</span>
+                </div>
+              </div>
+            </div>
+          </a>
+        </sc-for>
+      </div>
+
+      <sc-if value="{{ wide }}" hint-placeholder-val="{{ true }}">
+        <div style="position:sticky;top:110px;">
+          <div style="position:relative;aspect-ratio:4/5;width:100%;overflow:hidden;">
+            <div style="position:absolute;inset:0;opacity:{{ pv0 }};transition:opacity .6s ease;pointer-events:{{ pe0 }};"><image-slot id="list-vh" shape="rect" placeholder="Image — Vision House"></image-slot></div>
+            <div style="position:absolute;inset:0;opacity:{{ pv1 }};transition:opacity .6s ease;pointer-events:{{ pe1 }};"><image-slot id="list-nx" shape="rect" placeholder="Image — Nexplore"></image-slot></div>
+            <div style="position:absolute;inset:0;opacity:{{ pv2 }};transition:opacity .6s ease;pointer-events:{{ pe2 }};"><image-slot id="list-nc" shape="rect" placeholder="Image — Nexplore Connect"></image-slot></div>
+            <div style="position:absolute;inset:0;opacity:{{ pv3 }};transition:opacity .6s ease;pointer-events:{{ pe3 }};"><image-slot id="list-bv" shape="rect" placeholder="Image — Bavard"></image-slot></div>
+            <div style="position:absolute;inset:0;opacity:{{ pv4 }};transition:opacity .6s ease;pointer-events:{{ pe4 }};"><image-slot id="list-vm" shape="rect" placeholder="Image — Viens Manger"></image-slot></div>
+          </div>
+          <div style="display:flex;justify-content:space-between;gap:16px;margin-top:16px;font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:.14em;">
+            <span>{{ activeCat }}</span><span>{{ activeNum }}</span>
+          </div>
+        </div>
+      </sc-if>
+    </div>
+  </div>
+</section>
+
+<!-- 05 VISION HOUSE -->
+<section id="vision-house" data-screen-label="05 Vision House" style="background:#0E1622;color:#EDE6D8;padding:clamp(100px,14vh,170px) clamp(20px,4vw,56px);">
+  <div style="max-width:1440px;margin:0 auto;">
+    <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:24px;border-bottom:1px solid rgba(237,230,216,.18);padding-bottom:28px;">
+      <div style="width:200px;height:72px;"><image-slot id="logo-vh" shape="rect" fit="contain" placeholder="Logo Vision House"></image-slot></div>
+      <div style="display:flex;gap:28px;font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:.14em;color:#C8A96A;"><span>01 / 05</span><span>MARKETING &amp; COMMUNICATION</span></div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:clamp(40px,6vw,96px);margin-top:clamp(56px,9vh,110px);align-items:end;">
+      <div>
+        <h3 data-reveal="" style="margin:0;font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(44px,5.6vw,96px);line-height:.98;letter-spacing:-.02em;text-wrap:pretty;">Faire de la communication un véritable <em style="color:#C8A96A;">levier de développement.</em></h3>
+        <p data-reveal="" style="margin:40px 0 0;max-width:520px;font-size:18px;line-height:1.6;color:rgba(237,230,216,.82);text-wrap:pretty;">Vision House accompagne les professionnels de l'immobilier et les PME dans leur visibilité, leur positionnement et leur développement — de la stratégie jusqu'à l'image qui la porte.</p>
+        <a href="#" style="display:inline-block;margin-top:40px;font-size:15px;font-weight:500;border-bottom:1px solid #C8A96A;padding-bottom:4px;color:#EDE6D8;">Découvrir Vision House ↗</a>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:32px;">
+        <div style="aspect-ratio:16/10;width:100%;"><image-slot id="vh-visual" shape="rect" placeholder="Visuel Vision House — campagne, tournage, contenu"></image-slot></div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));border-top:1px solid rgba(237,230,216,.18);">
+          <sc-for list="{{ vhSkills }}" as="s" hint-placeholder-count="9">
+            <div style="padding:14px 0;border-bottom:1px solid rgba(237,230,216,.12);font-size:15px;display:flex;gap:12px;"><span style="font-family:'Geist Mono',monospace;font-size:11px;color:#C8A96A;padding-top:3px;">{{ s.n }}</span>{{ s.label }}</div>
+          </sc-for>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 06 NEXPLORE -->
+<section id="nexplore" data-screen-label="06 Nexplore" style="background:#090909;color:#F5F2EC;">
+  <div style="position:relative;height:clamp(520px,92vh,980px);overflow:hidden;">
+    <div style="position:absolute;inset:0;"><image-slot id="nx-hero" shape="rect" placeholder="Photo plein écran — événement Nexplore"></image-slot></div>
+    <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(9,9,9,.25) 0%,rgba(9,9,9,0) 40%,rgba(9,9,9,.75) 100%);pointer-events:none;"></div>
+    <div style="position:absolute;left:clamp(20px,4vw,56px);right:clamp(20px,4vw,56px);top:clamp(32px,6vh,64px);display:flex;justify-content:space-between;gap:24px;font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:.14em;pointer-events:none;"><span>02 / 05</span><span>EVENTS &amp; EXPERIENCES</span></div>
+    <div style="position:absolute;left:clamp(20px,4vw,56px);right:clamp(20px,4vw,56px);bottom:clamp(28px,5vh,56px);pointer-events:none;">
+      <div data-reveal="" style="font-weight:700;font-size:clamp(64px,17vw,320px);line-height:.8;letter-spacing:-.06em;">NEXPLORE</div>
+    </div>
+  </div>
+  <div style="max-width:1440px;margin:0 auto;padding:clamp(80px,12vh,140px) clamp(20px,4vw,56px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:clamp(40px,6vw,96px);">
+    <div>
+      <div style="width:180px;height:60px;margin-bottom:40px;"><image-slot id="logo-nx" shape="rect" fit="contain" placeholder="Logo Nexplore"></image-slot></div>
+      <h3 data-reveal="" style="margin:0;font-weight:500;font-size:clamp(36px,4vw,64px);line-height:1;letter-spacing:-.035em;text-wrap:pretty;">Des événements conçus pour <span style="font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;">provoquer quelque chose.</span></h3>
+      <p style="margin:32px 0 0;max-width:480px;font-size:17px;line-height:1.6;color:#AAA6AD;text-wrap:pretty;">Nexplore ne gère pas seulement une logistique. Elle transforme un événement en expérience — un moment dont on parle encore le lendemain.</p>
+      <a href="#" style="display:inline-block;margin-top:36px;font-size:15px;font-weight:500;border-bottom:1px solid #F5F2EC;padding-bottom:4px;">Découvrir Nexplore ↗</a>
+    </div>
+    <div style="display:flex;flex-direction:column;">
+      <div data-reveal="" style="border-top:1px solid rgba(245,242,236,.2);padding:28px 0;display:grid;grid-template-columns:56px 1fr;gap:16px;">
+        <span style="font-family:'Geist Mono',monospace;font-size:12px;color:#AAA6AD;padding-top:6px;">A</span>
+        <div><div style="font-size:24px;font-weight:500;letter-spacing:-.02em;">Imaginés par Nexplore</div><div style="margin-top:8px;font-size:16px;color:#AAA6AD;line-height:1.5;">Nos propres formats, pensés, produits et portés par la marque.</div></div>
+      </div>
+      <div data-reveal="" data-delay="120" style="border-top:1px solid rgba(245,242,236,.2);border-bottom:1px solid rgba(245,242,236,.2);padding:28px 0;display:grid;grid-template-columns:56px 1fr;gap:16px;">
+        <span style="font-family:'Geist Mono',monospace;font-size:12px;color:#AAA6AD;padding-top:6px;">B</span>
+        <div><div style="font-size:24px;font-weight:500;letter-spacing:-.02em;">Créés pour vous</div><div style="margin-top:8px;font-size:16px;color:#AAA6AD;line-height:1.5;">Des événements sur mesure pour des entreprises, organisations et marques.</div></div>
+      </div>
+      <p style="margin:36px 0 0;font-family:'Instrument Serif',serif;font-size:clamp(24px,2.2vw,34px);line-height:1.3;color:#F5F2EC;text-wrap:pretty;">Inaugurations · Afterworks · Conférences · Networking · Événements corporate · Événements immobiliers · Activations · Expériences sur mesure</p>
+    </div>
+  </div>
+</section>
+
+<!-- 07 NEXPLORE CONNECT -->
+<section id="nexplore-connect" data-screen-label="07 Nexplore Connect" style="background:#E9E6E0;color:#090909;padding:clamp(100px,14vh,170px) clamp(20px,4vw,56px);">
+  <div style="max-width:1440px;margin:0 auto;">
+    <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:24px;">
+      <div style="width:220px;height:64px;"><image-slot id="logo-nc" shape="rect" fit="contain" placeholder="Logo Nexplore Connect"></image-slot></div>
+      <div style="display:flex;gap:28px;font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:.14em;"><span>03 / 05</span><span>BUSINESS CONNECTIONS</span></div>
+    </div>
+    <h3 data-reveal="" style="margin:clamp(56px,10vh,120px) 0 0;max-width:1200px;font-weight:600;font-size:clamp(44px,7vw,128px);line-height:.92;letter-spacing:-.05em;text-wrap:pretty;">Parce qu'une bonne rencontre <span style="font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;letter-spacing:-.02em;">peut tout changer.</span></h3>
+    <div style="margin-top:clamp(56px,9vh,100px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:clamp(40px,6vw,96px);align-items:start;">
+      <div>
+        <div style="font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:.14em;color:#5b5660;margin-bottom:20px;">RAPPROCHER</div>
+        <div style="display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px;font-size:clamp(20px,1.8vw,26px);letter-spacing:-.01em;">
+          <span>Entrepreneurs</span><span style="color:#AAA6AD;">↔</span><span>Dirigeants</span><span style="color:#AAA6AD;">↔</span><span>Investisseurs</span><span style="color:#AAA6AD;">↔</span><span>Indépendants</span><span style="color:#AAA6AD;">↔</span><span>Entreprises</span><span style="color:#AAA6AD;">↔</span><span>Professionnels</span><span style="color:#AAA6AD;">↔</span><span>Partenaires</span>
+        </div>
+      </div>
+      <div>
+        <p style="margin:0;font-size:18px;line-height:1.6;color:#3a3540;text-wrap:pretty;">Pas un club de plus. Nexplore Connect s'intéresse à la qualité des connexions : mises en relation, cercles professionnels, rencontres business et opportunités de collaboration — pour créer les rencontres qui n'auraient peut-être jamais eu lieu.</p>
+        <a href="#" style="display:inline-block;margin-top:32px;font-size:15px;font-weight:500;border-bottom:1px solid #090909;padding-bottom:4px;">Découvrir Nexplore Connect ↗</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 08 BAVARD -->
+<section id="bavard" data-screen-label="08 Bavard" style="position:relative;background:#F8C9D4;color:#E1262D;padding:clamp(100px,14vh,170px) clamp(20px,4vw,56px);overflow:hidden;">
+  <div style="max-width:1440px;margin:0 auto;position:relative;">
+    <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:24px;">
+      <div style="width:200px;height:72px;"><image-slot id="logo-bv" shape="rect" fit="contain" placeholder="Logo Bavard"></image-slot></div>
+      <div style="display:flex;gap:28px;font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:.14em;"><span>04 / 05</span><span>PEOPLE / PLACES / SOCIAL</span></div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:clamp(40px,6vw,80px);margin-top:clamp(48px,8vh,96px);align-items:center;">
+      <div>
+        <h3 data-reveal="" style="margin:0;font-weight:800;font-size:clamp(56px,8vw,148px);line-height:.86;letter-spacing:-.05em;">On devrait se voir plus souvent.</h3>
+        <p style="margin:36px 0 0;max-width:480px;font-size:18px;line-height:1.55;color:#7A0F1A;text-wrap:pretty;">Bavard crée des occasions simples de sortir, de discuter et de rencontrer de nouvelles personnes — dans des lieux qu'on ne connaissait pas encore, à Bruxelles et ailleurs.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:32px;">
+          <span style="border:1.5px solid #E1262D;border-radius:999px;padding:8px 16px;font-size:14px;font-weight:500;">Cafés</span>
+          <span style="border:1.5px solid #E1262D;border-radius:999px;padding:8px 16px;font-size:14px;font-weight:500;">Bars</span>
+          <span style="border:1.5px solid #E1262D;border-radius:999px;padding:8px 16px;font-size:14px;font-weight:500;">Rooftops</span>
+          <span style="border:1.5px solid #E1262D;border-radius:999px;padding:8px 16px;font-size:14px;font-weight:500;">Lieux culturels</span>
+          <span style="border:1.5px solid #E1262D;border-radius:999px;padding:8px 16px;font-size:14px;font-weight:500;">Restaurants</span>
+          <span style="border:1.5px solid #E1262D;border-radius:999px;padding:8px 16px;font-size:14px;font-weight:500;">Lieux cachés</span>
+          <span style="border:1.5px solid #E1262D;border-radius:999px;padding:8px 16px;font-size:14px;font-weight:500;">Lieux éphémères</span>
+        </div>
+        <a href="#" style="display:inline-flex;margin-top:40px;background:#E1262D;color:#F8C9D4;padding:16px 26px;font-size:15px;font-weight:600;border-radius:999px;">Voir le prochain Bavard ↗</a>
+      </div>
+      <div style="position:relative;height:clamp(420px,52vw,640px);">
+        <div style="position:absolute;left:2%;top:0;width:58%;aspect-ratio:4/5;transform:rotate(-4deg);background:#fff;padding:10px 10px 44px;box-shadow:0 20px 50px rgba(122,15,26,.18);">
+          <image-slot id="bv-1" shape="rect" placeholder="Photo — une soirée Bavard"></image-slot>
+          <div style="position:absolute;left:14px;bottom:12px;font-family:'Instrument Serif',serif;font-style:italic;font-size:20px;color:#E1262D;">Sortir.</div>
+        </div>
+        <div style="position:absolute;right:2%;bottom:0;width:54%;aspect-ratio:4/5;transform:rotate(5deg);background:#fff;padding:10px 10px 44px;box-shadow:0 20px 50px rgba(122,15,26,.18);">
+          <image-slot id="bv-2" shape="rect" placeholder="Photo — un lieu découvert"></image-slot>
+          <div style="position:absolute;left:14px;bottom:12px;font-family:'Instrument Serif',serif;font-style:italic;font-size:20px;color:#E1262D;">Découvrir. Bavarder.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 09 VIENS MANGER -->
+<section id="viens-manger" data-screen-label="09 Viens Manger" style="background:#5C1222;color:#F3E7D3;padding:clamp(100px,14vh,170px) clamp(20px,4vw,56px);">
+  <div style="max-width:1440px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,400px),1fr));gap:clamp(48px,7vw,120px);align-items:center;">
+    <div style="aspect-ratio:3/4;width:100%;max-width:560px;justify-self:center;"><image-slot id="vm-visual" shape="rect" mask="inset(0 round 999px 999px 0 0)" placeholder="Photo — une table, une adresse"></image-slot></div>
+    <div>
+      <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:20px;">
+        <div style="width:200px;height:72px;"><image-slot id="logo-vm" shape="rect" fit="contain" placeholder="Logo Viens Manger"></image-slot></div>
+        <div style="display:flex;gap:24px;font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:.14em;"><span>05 / 05</span><span>FOOD &amp; EXPERIENCES</span></div>
+      </div>
+      <h3 data-reveal="" style="margin:clamp(40px,6vh,64px) 0 0;font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(44px,5vw,88px);line-height:1;letter-spacing:-.02em;text-wrap:pretty;">Les meilleures histoires commencent parfois <em>autour d'une table.</em></h3>
+      <div style="margin-top:48px;border-top:1px solid rgba(243,231,211,.3);">
+        <div style="display:flex;justify-content:space-between;gap:16px;padding:16px 0 8px;font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:.14em;opacity:.8;"><span>AU MENU</span><span>BRUXELLES</span></div>
+        <sc-for list="{{ vmMenu }}" as="m" hint-placeholder-count="5">
+          <div style="display:flex;align-items:baseline;gap:12px;padding:12px 0;font-size:18px;">
+            <span style="font-family:'Instrument Serif',serif;font-size:24px;">{{ m.a }}</span>
+            <span style="flex:1;border-bottom:1px dotted rgba(243,231,211,.4);transform:translateY(-4px);"></span>
+            <span style="font-size:15px;opacity:.85;">{{ m.b }}</span>
+          </div>
+        </sc-for>
+      </div>
+      <a href="#" style="display:inline-block;margin-top:40px;font-size:15px;font-weight:500;border-bottom:1px solid #F3E7D3;padding-bottom:4px;">Découvrir Viens Manger ↗</a>
+    </div>
+  </div>
+</section>
+
+<!-- 12bis SIGNATURE THE HOUSE -->
+<section data-screen-label="Signature The House" style="position:relative;background:{{ sigBg }};color:{{ sigFg }};transition:background .7s cubic-bezier(.2,.7,.2,1), color .6s ease;padding:clamp(90px,12vh,140px) clamp(20px,4vw,56px);overflow:hidden;">
+  <div style="max-width:1600px;margin:0 auto;">
+    <div style="display:flex;justify-content:space-between;gap:24px;font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:.16em;opacity:.75;"><span>THE HOUSE</span><span>{{ sigNum }}</span></div>
+    <sc-if value="{{ wide }}" hint-placeholder-val="{{ true }}">
+      <div style="position:relative;height:min(78vh,760px);margin-top:24px;">
+        <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:clamp(120px,22vw,400px);letter-spacing:-.06em;line-height:1;opacity:{{ sigEmkOp }};transition:opacity .5s ease;pointer-events:none;">EMKAY</div>
+        <svg viewBox="0 0 100 100" preserveAspectRatio="none" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;">
+          <line x1="50" y1="50" x2="16" y2="16" stroke="currentColor" stroke-width="0.08" stroke-opacity="{{ ln0 }}"></line>
+          <line x1="50" y1="50" x2="82" y2="14" stroke="currentColor" stroke-width="0.08" stroke-opacity="{{ ln1 }}"></line>
+          <line x1="50" y1="50" x2="86" y2="76" stroke="currentColor" stroke-width="0.08" stroke-opacity="{{ ln2 }}"></line>
+          <line x1="50" y1="50" x2="16" y2="80" stroke="currentColor" stroke-width="0.08" stroke-opacity="{{ ln3 }}"></line>
+          <line x1="50" y1="50" x2="52" y2="94" stroke="currentColor" stroke-width="0.08" stroke-opacity="{{ ln4 }}"></line>
+        </svg>
+        <sc-for list="{{ sigItems }}" as="s" hint-placeholder-count="5">
+          <a href="#{{ s.id }}" data-reveal="" data-delay="{{ s.delay }}" onMouseEnter="{{ s.onEnter }}" onMouseLeave="{{ sigLeave }}" style="position:absolute;left:{{ s.x }};top:{{ s.y }};transform:translate(-50%,-50%);text-align:center;opacity:{{ s.op }};transition:opacity .4s ease;color:inherit;">
+            <div style="font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:.14em;margin-bottom:8px;">{{ s.num }}</div>
+            <div style="font-weight:600;font-size:clamp(20px,2.2vw,36px);letter-spacing:-.03em;white-space:nowrap;">{{ s.name }}</div>
+          </a>
+        </sc-for>
+        <div style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:min(520px,44%);text-align:center;opacity:{{ sigInfoOp }};transition:opacity .4s ease;pointer-events:none;">
+          <div style="font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:.16em;margin-bottom:18px;">{{ sigTags }}</div>
+          <div style="font-family:'Instrument Serif',serif;font-size:clamp(30px,3vw,48px);line-height:1.08;text-wrap:balance;">{{ sigLine }}</div>
+          <div style="margin-top:18px;font-size:14px;">{{ sigCat }}</div>
+        </div>
+      </div>
+    </sc-if>
+    <sc-if value="{{ narrow }}" hint-placeholder-val="{{ false }}">
+      <div style="margin-top:32px;font-weight:700;font-size:26vw;letter-spacing:-.06em;line-height:.9;">EMKAY</div>
+      <div style="margin-top:24px;border-top:1px solid rgba(245,242,236,.2);">
+        <sc-for list="{{ sigItems }}" as="s" hint-placeholder-count="5">
+          <a href="#{{ s.id }}" style="display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding:18px 0;border-bottom:1px solid rgba(245,242,236,.2);">
+            <span style="font-weight:600;font-size:22px;letter-spacing:-.02em;">{{ s.name }}</span>
+            <span style="font-family:'Instrument Serif',serif;font-style:italic;font-size:18px;color:#AAA6AD;">{{ s.role }}</span>
+          </a>
+        </sc-for>
+      </div>
+    </sc-if>
+  </div>
+</section>
+
+<!-- 10 CE QUI NOUS RELIE -->
+<section data-screen-label="10 Ce qui nous relie" style="background:#F5F2EC;color:#090909;padding:clamp(100px,16vh,190px) clamp(20px,4vw,56px);">
+  <div style="max-width:1440px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,400px),1fr));gap:clamp(48px,7vw,120px);">
+    <div>
+      <h2 data-reveal="" style="margin:0;font-weight:600;font-size:clamp(40px,5vw,84px);line-height:.95;letter-spacing:-.045em;">Différentes identités.<br><span style="font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;letter-spacing:-.02em;color:#2B143D;">Une même façon de faire.</span></h2>
+      <div style="margin-top:48px;font-size:18px;line-height:1.7;color:#3a3540;">
+        <p style="margin:0 0 16px;">Chaque marque répond à une envie différente.</p>
+        <p style="margin:0;font-family:'Instrument Serif',serif;font-size:26px;line-height:1.35;color:#090909;">Créer une communication plus forte.<br>Imaginer un événement.<br>Rencontrer les bonnes personnes.<br>Découvrir un lieu.<br>Partager un repas.</p>
+        <p style="margin:16px 0 0;">EMKAY leur donne un cadre commun pour grandir.</p>
+      </div>
+    </div>
+    <div style="border-top:1px solid #090909;">
+      <sc-for list="{{ relie }}" as="r" hint-placeholder-count="6">
+        <div data-reveal="" data-delay="{{ r.delay }}" style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:8px 24px;padding:clamp(16px,2.4vh,26px) 0;border-bottom:1px solid rgba(9,9,9,.15);color:{{ r.color }};">
+          <span style="font-weight:600;font-size:clamp(24px,2.6vw,42px);letter-spacing:-.035em;">{{ r.name }}</span>
+          <span style="font-family:'Instrument Serif',serif;font-style:italic;font-size:clamp(26px,2.6vw,42px);">{{ r.verb }}</span>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<!-- 11 QUAND NOS MARQUES SE RENCONTRENT -->
+<section data-screen-label="11 Quand nos marques se rencontrent" style="background:#090909;color:#F5F2EC;padding:clamp(100px,16vh,190px) clamp(20px,4vw,56px);">
+  <div style="max-width:1440px;margin:0 auto;">
+    <div style="font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:.16em;color:#AAA6AD;">LE GROUPE</div>
+    <h2 data-reveal="" style="margin:24px 0 0;font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(48px,7vw,128px);line-height:.95;letter-spacing:-.025em;">Quand nos marques <em>se rencontrent.</em></h2>
+    <div style="margin-top:clamp(64px,10vh,120px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,460px),1fr));gap:clamp(64px,8vw,140px);">
+      <sc-for list="{{ scenarios }}" as="sc" hint-placeholder-count="2">
+        <div>
+          <div style="display:flex;justify-content:space-between;font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:.14em;color:#AAA6AD;"><span>{{ sc.label }}</span><span>{{ sc.count }}</span></div>
+          <h3 style="margin:20px 0 40px;font-weight:600;font-size:clamp(32px,3.4vw,56px);letter-spacing:-.04em;line-height:1;">{{ sc.title }}</h3>
+          <div style="position:relative;padding-left:32px;">
+            <div style="position:absolute;left:5px;top:10px;bottom:10px;width:1px;background:rgba(245,242,236,.25);"></div>
+            <sc-for list="{{ sc.steps }}" as="st" hint-placeholder-count="4">
+              <div data-reveal="" data-delay="{{ st.delay }}" style="position:relative;padding:14px 0;">
+                <div style="position:absolute;left:-32px;top:22px;width:11px;height:11px;border-radius:50%;background:{{ st.color }};"></div>
+                <div style="font-weight:600;font-size:clamp(20px,1.7vw,26px);letter-spacing:-.02em;">{{ st.brand }}</div>
+                <div style="font-family:'Instrument Serif',serif;font-style:italic;font-size:clamp(20px,1.7vw,26px);color:#AAA6AD;">{{ st.role }}</div>
+              </div>
+            </sc-for>
+          </div>
+          <div data-reveal="" data-delay="500" style="margin-top:36px;padding-top:28px;border-top:1px solid rgba(245,242,236,.25);">
+            <div style="font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:.14em;color:#AAA6AD;margin-bottom:12px;">RÉSULTAT</div>
+            <div style="font-family:'Instrument Serif',serif;font-size:clamp(30px,3vw,48px);line-height:1.05;">{{ sc.result }}</div>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<!-- 12 CHIFFRES -->
+<section data-screen-label="12 Chiffres" ref="{{ countsRef }}" style="background:#F5F2EC;color:#2B143D;padding:clamp(90px,14vh,160px) clamp(20px,4vw,56px);">
+  <div style="max-width:1440px;margin:0 auto;">
+    <div style="font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:.16em;">DEPUIS NOS DÉBUTS</div>
+    <div style="margin-top:clamp(40px,7vh,80px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));border-top:1px solid rgba(43,20,61,.25);">
+      <div style="padding:28px 0;border-bottom:1px solid rgba(43,20,61,.25);">
+        <div style="font-weight:500;font-size:clamp(88px,11vw,200px);line-height:.9;letter-spacing:-.06em;font-variant-numeric:tabular-nums;">{{ c1 }}+</div>
+        <div style="margin-top:16px;display:flex;justify-content:space-between;gap:12px;font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:.14em;"><span>EVENTS</span><span style="color:#6c6472;">événements organisés</span></div>
+      </div>
+      <div style="padding:28px 0;border-bottom:1px solid rgba(43,20,61,.25);">
+        <div style="font-weight:500;font-size:clamp(88px,11vw,200px);line-height:.9;letter-spacing:-.06em;font-variant-numeric:tabular-nums;">{{ c2 }}+</div>
+        <div style="margin-top:16px;display:flex;justify-content:space-between;gap:12px;font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:.14em;"><span>PEOPLE</span><span style="color:#6c6472;">participants rassemblés</span></div>
+      </div>
+      <div style="padding:28px 0;border-bottom:1px solid rgba(43,20,61,.25);">
+        <div style="font-weight:500;font-size:clamp(88px,11vw,200px);line-height:.9;letter-spacing:-.06em;font-variant-numeric:tabular-nums;">{{ c3 }}+</div>
+        <div style="margin-top:16px;display:flex;justify-content:space-between;gap:12px;font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:.14em;"><span>BUSINESSES</span><span style="color:#6c6472;">entreprises accompagnées</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 13 PROJETS -->
+<section id="projets" data-screen-label="13 Projets" style="background:#EFEBE4;color:#090909;padding:clamp(100px,14vh,170px) clamp(20px,4vw,56px);">
+  <div style="max-width:1600px;margin:0 auto;">
+    <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:24px;margin-bottom:clamp(48px,8vh,88px);">
+      <h2 data-reveal="" style="margin:0;font-weight:600;font-size:clamp(44px,6.4vw,112px);line-height:.92;letter-spacing:-.045em;">Ce qu'on construit<br><span style="font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;letter-spacing:-.02em;color:#2B143D;">en ce moment.</span></h2>
+      <div style="font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:.16em;">MADE BY EMKAY</div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat({{ projCols }},minmax(0,1fr));gap:clamp(20px,2.4vw,36px) clamp(16px,2vw,28px);">
+      <sc-for list="{{ projects }}" as="p" hint-placeholder-count="6">
+        <article data-reveal="" style="grid-column:span {{ p.span }};margin-top:{{ p.offset }};">
+          <div style="aspect-ratio:{{ p.ratio }};width:100%;"><image-slot id="{{ p.slot }}" shape="rect" placeholder="Photo / vidéo du projet"></image-slot></div>
+          <div style="display:flex;justify-content:space-between;gap:12px;margin-top:14px;font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:.14em;color:#2B143D;"><span>{{ p.tag }}</span><span>{{ p.n }}</span></div>
+          <h3 style="margin:8px 0 0;font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(24px,2vw,32px);line-height:1.1;">{{ p.title }}</h3>
+        </article>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<!-- 14 MANIFESTE -->
+<section data-screen-label="14 Manifeste" style="background:#2B143D;color:#F5F2EC;padding:clamp(120px,18vh,220px) clamp(20px,4vw,56px);">
+  <div style="max-width:1300px;margin:0 auto;">
+    <h2 data-reveal="" style="margin:0;font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(52px,8vw,148px);line-height:.92;letter-spacing:-.025em;text-wrap:balance;">On croit encore aux <em>vraies rencontres.</em></h2>
+    <div style="margin-top:clamp(56px,9vh,110px);margin-left:auto;max-width:720px;font-size:clamp(20px,1.8vw,28px);line-height:1.45;color:rgba(245,242,236,.88);">
+      <p data-reveal="" style="margin:0 0 6px;">À celles qui commencent autour d'une table.</p>
+      <p data-reveal="" style="margin:0 0 6px;">Dans un événement.</p>
+      <p data-reveal="" style="margin:0 0 6px;">Autour d'une idée.</p>
+      <p data-reveal="" style="margin:0 0 28px;">Dans un lieu qu'on ne connaissait pas hier.</p>
+      <p data-reveal="" style="margin:0;text-wrap:pretty;">À celles qui peuvent devenir une collaboration, une entreprise, une amitié ou simplement un bon souvenir.</p>
+    </div>
+    <p data-reveal="" style="margin:clamp(64px,10vh,120px) 0 0;font-weight:600;font-size:clamp(30px,3.6vw,60px);line-height:1;letter-spacing:-.035em;max-width:1000px;text-wrap:balance;">C'est probablement pour ça qu'on crée autant de choses.</p>
+    <div style="margin-top:48px;font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:.16em;color:#AAA6AD;line-height:1.7;">EMKAY PARTNERS®<br>BRUSSELS.</div>
+  </div>
+</section>
+
+<!-- 15 COLLABORATIONS -->
+<sc-if value="{{ showPartners }}" hint-placeholder-val="{{ false }}">
+  <section data-screen-label="15 Collaborations" style="background:#F5F2EC;color:#090909;padding:clamp(90px,14vh,160px) clamp(20px,4vw,56px);">
+    <div style="max-width:1440px;margin:0 auto;">
+      <h2 data-reveal="" style="margin:0;font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(40px,5vw,84px);line-height:1;letter-spacing:-.02em;">Ils ont déjà croisé <em>notre route.</em></h2>
+      <div style="margin-top:56px;display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));border-top:1px solid rgba(9,9,9,.15);border-left:1px solid rgba(9,9,9,.15);">
+        <sc-for list="{{ partnerSlots }}" as="ps" hint-placeholder-count="8">
+          <div style="aspect-ratio:3/2;border-right:1px solid rgba(9,9,9,.15);border-bottom:1px solid rgba(9,9,9,.15);padding:24px;"><image-slot id="{{ ps.id }}" shape="rect" fit="contain" placeholder="Logo réel"></image-slot></div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+</sc-if>
+
+<!-- 16 À PROPOS -->
+<section id="a-propos" data-screen-label="16 À propos" style="background:#F5F2EC;color:#090909;padding:clamp(100px,14vh,170px) clamp(20px,4vw,56px);">
+  <div style="max-width:1440px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,400px),1fr));gap:clamp(40px,6vw,100px);align-items:end;">
+    <h2 data-reveal="" style="margin:0;font-weight:600;font-size:clamp(44px,6vw,104px);line-height:.92;letter-spacing:-.045em;">Une maison née <span style="font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;letter-spacing:-.02em;color:#2B143D;">à Bruxelles.</span></h2>
+    <div style="font-size:clamp(17px,1.4vw,20px);line-height:1.6;color:#3a3540;max-width:560px;">
+      <p style="margin:0 0 20px;text-wrap:pretty;">EMKAY Partners est une structure entrepreneuriale belge indépendante qui développe plusieurs marques autour d'une conviction simple : <span style="color:#090909;">les meilleurs projets créent quelque chose entre les gens.</span></p>
+      <p style="margin:0;text-wrap:pretty;">Nous lançons nos propres concepts et accompagnons également des entreprises dans leurs projets.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 17 CTA FINAL -->
+<section id="contact" data-screen-label="17 CTA final" style="background:#2B143D;color:#F5F2EC;padding:clamp(120px,18vh,220px) clamp(20px,4vw,56px) clamp(90px,12vh,140px);">
+  <div style="max-width:1600px;margin:0 auto;">
+    <h2 data-reveal="" style="margin:0;font-weight:600;font-size:clamp(48px,9vw,176px);line-height:.88;letter-spacing:-.05em;text-transform:uppercase;">On devrait<br><span style="font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;text-transform:none;letter-spacing:-.02em;">peut-être</span><br>faire quelque<br>chose ensemble.</h2>
+    <div style="margin-top:clamp(56px,9vh,100px);display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:32px;">
+      <div>
+        <p style="margin:0;font-size:clamp(17px,1.4vw,20px);color:#AAA6AD;line-height:1.5;">Projet. Événement. Partenariat. Collaboration. Idée improbable.</p>
+        <p style="margin:10px 0 0;font-family:'Instrument Serif',serif;font-size:clamp(30px,3vw,48px);">Parlons-en.</p>
+      </div>
+      <a href="mailto:hello@emkaypartners.be" style="background:#F5F2EC;color:#2B143D;padding:22px 34px;font-size:17px;font-weight:500;border-radius:2px;">Démarrer une conversation ↗</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- 18 FOOTER -->
+<footer data-screen-label="18 Footer" style="background:#090909;color:#F5F2EC;padding:clamp(72px,10vh,110px) clamp(20px,4vw,56px) 0;overflow:hidden;">
+  <div style="max-width:1600px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:40px;">
+    <div style="font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:.16em;line-height:1.8;">EMKAY PARTNERS®<br><span style="color:#AAA6AD;">BRUSSELS / BELGIUM</span></div>
+    <div style="display:flex;flex-direction:column;gap:10px;font-size:15px;">
+      <span style="font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:.14em;color:#AAA6AD;margin-bottom:6px;">LES MARQUES</span>
+      <a href="#vision-house">Vision House</a><a href="#nexplore">Nexplore</a><a href="#nexplore-connect">Nexplore Connect</a><a href="#bavard">Bavard</a><a href="#viens-manger">Viens Manger</a>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:10px;font-size:15px;">
+      <span style="font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:.14em;color:#AAA6AD;margin-bottom:6px;">SUIVRE</span>
+      <a href="#">Instagram ↗</a><a href="#">LinkedIn ↗</a><a href="#contact">Contact</a>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:10px;font-size:15px;">
+      <span style="font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:.14em;color:#AAA6AD;margin-bottom:6px;">INFORMATIONS</span>
+      <a href="#">Mentions légales</a><a href="#">Confidentialité</a>
+    </div>
+  </div>
+  <div style="max-width:1600px;margin:clamp(56px,9vh,100px) auto 0;display:flex;justify-content:space-between;gap:16px;font-size:13px;color:#AAA6AD;"><span>© EMKAY Partners</span><span>Une maison. Plusieurs univers.</span></div>
+  <div aria-hidden="true" style="font-weight:700;font-size:28.5vw;line-height:.74;letter-spacing:-.065em;text-align:center;margin:20px -2vw 0;color:#2B143D;transform:translateY(8%);">EMKAY</div>
+</footer>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;heroVariant&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;declaration&quot;,&quot;vivre&quot;,&quot;impulsion&quot;],&quot;default&quot;:&quot;declaration&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Hero&quot;},&quot;animations&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Mouvement&quot;},&quot;showPartners&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Sections&quot;}}">
+class Component extends DCLogic {
+  state = { scrolled: false, active: null, sig: null, w: typeof window !== 'undefined' ? window.innerWidth : 1440, c1: 0, c2: 0, c3: 0 };
+  countsRef = React.createRef();
+
+  BRANDS = [
+    { id: 'vision-house', num: '01', name: 'VISION HOUSE', cat: 'Marketing & Communication', tags: 'STRATEGY / CONTENT / GROWTH', desc: "Stratégie, contenu et visibilité pour les professionnels de l'immobilier et les PME.", line: 'Faire de la communication un véritable levier de développement.', cta: 'Découvrir Vision House ↗', role: 'fait connaître', bg: '#0E1622', fg: '#EDE6D8', dot: '#C8A96A', x: '16%', y: '16%' },
+    { id: 'nexplore', num: '02', name: 'NEXPLORE', cat: 'Events & Experiences', tags: 'EVENTS / EXPERIENCES', desc: "Des événements imaginés par Nexplore ou créés sur mesure pour les entreprises et les marques.", line: 'Des événements conçus pour provoquer quelque chose.', cta: 'Découvrir Nexplore ↗', role: 'fait vivre', bg: '#090909', fg: '#F5F2EC', dot: '#F5F2EC', x: '82%', y: '14%' },
+    { id: 'nexplore-connect', num: '03', name: 'NEXPLORE CONNECT', cat: 'Business Connections', tags: 'PEOPLE / BUSINESS / CONNECTIONS', desc: "Rapprocher entrepreneurs, dirigeants, investisseurs et partenaires — la qualité des connexions avant tout.", line: "Parce qu'une bonne rencontre peut tout changer.", cta: 'Découvrir Nexplore Connect ↗', role: 'fait rencontrer', bg: '#E9E6E0', fg: '#090909', dot: '#AAA6AD', x: '86%', y: '76%' },
+    { id: 'bavard', num: '04', name: 'BAVARD', cat: 'Social Events', tags: 'PEOPLE / PLACES / SOCIAL', desc: "Des occasions simples de sortir, discuter et rencontrer — dans des lieux qu'on ne connaissait pas encore.", line: 'On devrait se voir plus souvent.', cta: 'Voir le prochain Bavard ↗', role: 'fait sortir', bg: '#F8C9D4', fg: '#E1262D', dot: '#E1262D', x: '16%', y: '80%' },
+    { id: 'viens-manger', num: '05', name: 'VIENS MANGER', cat: 'Food & Experiences', tags: 'FOOD / PLACES / DISCOVERY', desc: "Bonnes adresses, restaurateurs et expériences culinaires — découvrir Bruxelles une table à la fois.", line: "Les meilleures histoires commencent parfois autour d'une table.", cta: 'Découvrir Viens Manger ↗', role: 'fait découvrir', bg: '#5C1222', fg: '#F3E7D3', dot: '#B23A4E', x: '52%', y: '94%' },
+  ];
+
+  componentDidMount() {
+    this.onScroll = () => { const s = window.scrollY > 40; if (s !== this.state.scrolled) this.setState({ scrolled: s }); };
+    this.onResize = () => this.setState({ w: window.innerWidth });
+    window.addEventListener('scroll', this.onScroll, { passive: true });
+    window.addEventListener('resize', this.onResize);
+    this.onScroll();
+    this.reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    this.t = setTimeout(() => this.initReveal(), 30);
+    this.initCounters();
+  }
+  componentDidUpdate() { if (this.io) this.scanReveal(); }
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this.onScroll);
+    window.removeEventListener('resize', this.onResize);
+    clearTimeout(this.t); this.io && this.io.disconnect(); this.cio && this.cio.disconnect();
+  }
+  motionOn() { return !this.reduced && (this.props.animations ?? true); }
+
+  initReveal() {
+    if (!this.motionOn() || !('IntersectionObserver' in window)) return;
+    this.io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (!e.isIntersecting) return;
+        const el = e.target; const d = parseInt(el.getAttribute('data-delay') || '0', 10);
+        el.style.transitionDelay = d + 'ms';
+        el.style.opacity = '';
+        el.style.translate = '';
+        this.io.unobserve(el);
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -6% 0px' });
+    this.scanReveal();
+  }
+  scanReveal() {
+    document.querySelectorAll('[data-reveal]:not([data-rv])').forEach((el) => {
+      el.setAttribute('data-rv', '1');
+      const r = el.getBoundingClientRect();
+      if (r.top < window.innerHeight * 0.95 && r.bottom > 0 && !el.closest('[data-screen-label="02 Hero"]')) return;
+      el.style.opacity = '0';
+      el.style.translate = '0 48px';
+      el.style.transition = (el.style.transition ? el.style.transition + ', ' : '') + 'opacity 1s cubic-bezier(.2,.7,.2,1), translate 1.1s cubic-bezier(.2,.7,.2,1)';
+      this.io.observe(el);
+    });
+  }
+
+  initCounters() {
+    const targets = { c1: 10, c2: 900, c3: 15 };
+    if (!this.motionOn() || !('IntersectionObserver' in window)) { this.setState(targets); return; }
+    this.cio = new IntersectionObserver((entries) => {
+      if (!entries[0].isIntersecting) return;
+      this.cio.disconnect();
+      const t0 = performance.now(), dur = 1600;
+      const step = (t) => {
+        const k = Math.min(1, (t - t0) / dur), e = 1 - Math.pow(1 - k, 3);
+        this.setState({ c1: Math.round(targets.c1 * e), c2: Math.round(targets.c2 * e), c3: Math.round(targets.c3 * e) });
+        if (k < 1) requestAnimationFrame(step);
+      };
+      requestAnimationFrame(step);
+    }, { threshold: 0.35 });
+    const tryObs = () => { if (this.countsRef.current) this.cio.observe(this.countsRef.current); else setTimeout(tryObs, 100); };
+    tryObs();
+  }
+
+  renderVals() {
+    const B = this.BRANDS;
+    const { active, sig, w, scrolled } = this.state;
+    const wide = w >= 900;
+    const a = active == null ? null : B[active];
+    const variant = this.props.heroVariant ?? 'declaration';
+    const motion = this.motionOn();
+
+    const names = B.map((b) => b.name.charAt(0) + b.name.slice(1).toLowerCase().replace(/ (\w)/g, (m, c) => ' ' + c.toUpperCase()));
+    const run = [];
+    for (let k = 0; k < 2; k++) names.forEach((n, i) => {
+      run.push(React.createElement('span', { key: k + '-' + i, style: { padding: '0 0.6em', fontStyle: i % 2 ? 'italic' : 'normal' } }, n));
+      run.push(React.createElement('span', { key: k + '-s' + i, style: { color: '#F5F2EC', opacity: 0.35, fontFamily: 'Geist Mono, monospace', fontSize: '0.4em', alignSelf: 'center' } }, '✕'));
+    });
+    const heroMarquee = React.createElement('div', { style: { display: 'flex', width: 'max-content', animation: motion ? 'emk-marquee 48s linear infinite' : 'none' } }, run);
+
+    const s = sig == null ? null : B[sig];
+    const pv = (i) => (a ? (active === i ? 1 : 0) : (i === 0 ? 1 : 0));
+
+    const projects = [
+      { tag: 'NEXPLORE / EVENT', title: 'Afterwork & inauguration', span: 7, ratio: '16/10', offset: '0px' },
+      { tag: 'VISION HOUSE / CAMPAIGN', title: 'Campagne de positionnement', span: 5, ratio: '4/5', offset: wide ? '120px' : '0px' },
+      { tag: 'BAVARD / SOCIAL', title: 'Une soirée Bavard', span: 4, ratio: '4/5', offset: '0px' },
+      { tag: 'VIENS MANGER / EXPERIENCE', title: 'Table découverte', span: 4, ratio: '1/1', offset: wide ? '80px' : '0px' },
+      { tag: 'NEXPLORE CONNECT / BUSINESS', title: 'Cercle de rencontres business', span: 4, ratio: '4/5', offset: '0px' },
+    ].map((p, i) => ({ ...p, n: String(i + 1).padStart(2, '0'), slot: 'proj-' + (i + 1), span: wide ? p.span : 12 }));
+
+    const col = (n) => B.find((b) => b.name === n).dot;
+    const scenarios = [
+      { label: 'SCÉNARIO 01', title: 'Une inauguration', result: "Un événement ne reste plus seulement un événement.", steps: [['NEXPLORE', "conçoit l'expérience."], ['VISION HOUSE', 'construit la communication.'], ['NEXPLORE CONNECT', 'rassemble les bonnes personnes.'], ['BAVARD', "peut prolonger l'expérience sociale."]] },
+      { label: 'SCÉNARIO 02', title: 'Un nouveau restaurant', result: 'Un lieu devient une destination.', steps: [['VIENS MANGER', 'crée la découverte.'], ['VISION HOUSE', 'construit la visibilité.'], ['BAVARD', 'crée une expérience sociale dans le lieu.'], ['NEXPLORE', 'peut organiser le lancement.']] },
+    ].map((sc) => ({ ...sc, count: sc.steps.length + ' MARQUES', steps: sc.steps.map(([brand, role], i) => ({ brand, role, color: col(brand), delay: String(i * 140) })) }));
+
+    return {
+      wide, narrow: !wide,
+      headerBg: scrolled ? 'rgba(43,20,61,.78)' : 'rgba(43,20,61,0)',
+      headerPad: scrolled ? '14px clamp(20px,4vw,56px)' : '26px clamp(20px,4vw,56px)',
+      heroA: variant === 'declaration', heroB: variant === 'vivre', heroC: variant === 'impulsion',
+      heroSub: variant === 'vivre' ? 'Des marques, des événements et des concepts nés à Bruxelles.'
+        : variant === 'impulsion' ? 'EMKAY Partners développe des projets à la rencontre du business, de la culture et des expériences humaines.'
+        : 'EMKAY Partners imagine, développe et rassemble des projets faits pour prendre leur place dans la vraie vie.',
+      heroMarquee,
+
+      listBg: a ? a.bg : '#2B143D', listFg: a ? a.fg : '#F5F2EC',
+      listLine: a ? (a.fg + '33') : 'rgba(245,242,236,.2)',
+      listCols: wide ? 'minmax(0,2.1fr) minmax(0,1fr)' : '1fr',
+      activeNum: (a ? a.num : '00') + ' / 05',
+      activeCat: a ? a.cat.toUpperCase() : 'LES MARQUES EMKAY',
+      resetActive: () => this.setState({ active: null }),
+      brands: B.map((b, i) => ({
+        ...b,
+        op: a == null || active === i ? 1 : 0.32,
+        shift: active === i && wide ? '18px' : '0px',
+        rows: active === i || !wide ? '1fr' : '0fr',
+        onEnter: () => this.setState({ active: i }),
+      })),
+      pv0: pv(0), pv1: pv(1), pv2: pv(2), pv3: pv(3), pv4: pv(4),
+      pe0: pv(0) ? 'auto' : 'none', pe1: pv(1) ? 'auto' : 'none', pe2: pv(2) ? 'auto' : 'none', pe3: pv(3) ? 'auto' : 'none', pe4: pv(4) ? 'auto' : 'none',
+
+      vhSkills: ['Stratégie marketing', 'Communication', 'Création de contenu', 'Personal branding', 'Production vidéo', 'Réseaux sociaux', 'Publicité digitale', 'Acquisition', 'Positionnement'].map((label, i) => ({ label, n: String(i + 1).padStart(2, '0') })),
+      vmMenu: [['Restaurants', 'nouvelles adresses'], ['Concepts food', 'à découvrir'], ['Restaurateurs', 'mis en avant'], ['Événements culinaires', 'à vivre'], ['Une communauté', 'qui partage']].map(([a2, b2]) => ({ a: a2, b: b2 })),
+
+      sigBg: s ? s.bg : '#2B143D', sigFg: s ? s.fg : '#F5F2EC',
+      sigNum: s ? s.num + ' / 05' : 'UNE MAISON. PLUSIEURS UNIVERS.',
+      sigEmkOp: s ? 0.06 : 0.14,
+      sigInfoOp: s ? 1 : 0, sigTags: s ? s.tags : '', sigLine: s ? s.line : '', sigCat: s ? s.cat : '',
+      sigLeave: () => this.setState({ sig: null }),
+      sigItems: B.map((b, i) => ({ ...b, delay: String(i * 120), op: s == null || sig === i ? 1 : 0.22, onEnter: () => this.setState({ sig: i }) })),
+      ln0: s == null ? 0.35 : sig === 0 ? 1 : 0.08, ln1: s == null ? 0.35 : sig === 1 ? 1 : 0.08, ln2: s == null ? 0.35 : sig === 2 ? 1 : 0.08, ln3: s == null ? 0.35 : sig === 3 ? 1 : 0.08, ln4: s == null ? 0.35 : sig === 4 ? 1 : 0.08,
+
+      relie: [...B.map((b) => ({ name: b.name, verb: b.role, color: '#090909' })), { name: 'EMKAY', verb: 'les fait grandir.', color: '#2B143D' }].map((r, i) => ({ ...r, verb: i < 5 ? r.verb + '.' : r.verb, delay: String(i * 110) })),
+      scenarios,
+      countsRef: this.countsRef, c1: this.state.c1, c2: this.state.c2, c3: this.state.c3,
+      projCols: 12, projects,
+      showPartners: this.props.showPartners ?? false,
+      partnerSlots: Array.from({ length: 8 }, (_, i) => ({ id: 'partner-' + (i + 1) })),
+    };
+  }
+}
+
+</script>
+</body>
+</html>

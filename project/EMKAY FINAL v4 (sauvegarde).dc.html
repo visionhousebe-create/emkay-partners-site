@@ -1,0 +1,1173 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<title>EMKAY Partners — Une maison. Des univers bien à eux.</title>
+<meta name="description" content="EMKAY Partners, structure entrepreneuriale bruxelloise : Vision House, Nexplore, Nexplore Connect, Bavare et Viens Manger.">
+<meta name="theme-color" content="#2B143D">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,300..900;1,62..125,300..900&amp;family=Instrument+Serif:ital@0;1&amp;display=swap" rel="stylesheet">
+<script src="./image-slot.js"></script>
+<script src="./media-slot.js"></script>
+<style>
+html{scroll-behavior:smooth}
+html,body{margin:0;padding:0;background:#080808;color:#F5F1E9;font-family:'Archivo',sans-serif;-webkit-font-smoothing:antialiased}
+*{box-sizing:border-box}
+a{color:inherit;text-decoration:none}
+a:hover{color:inherit}
+::selection{background:#2B143D;color:#F5F1E9}
+input,textarea{font:inherit;color:inherit}
+@keyframes emk-drop{0%{transform:translateY(-100%)}55%{transform:translateY(0)}100%{transform:translateY(100%)}}
+@media (pointer:fine){body.emk-cursor,body.emk-cursor a,body.emk-cursor button{cursor:none}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</helmet>
+<div ref="{{ rootRef }}" style="position:relative;overflow-x:clip;background:#080808;color:#F5F1E9;font-family:'Archivo',sans-serif">
+
+<header style="position:fixed;top:0;left:0;right:0;z-index:60;display:flex;align-items:center;gap:clamp(14px,2.4vw,36px);padding:24px 4vw;font-size:11px;font-weight:500;letter-spacing:.22em;color:{{ hdColor }};transition:opacity .5s, color .6s ease;opacity:{{ headerOpacity }};pointer-events:{{ headerPE }}">
+  <a href="#top" aria-label="EMKAY Partners — accueil" style="display:flex;align-items:center;flex:none">
+    <sc-if value="{{ wide }}" hint-placeholder-val="{{ true }}"><img src="./assets/logos/emkay.png" alt="EMKAY Partners" style="display:block;height:30px;width:auto;filter:{{ hdLogoFilter }};transition:filter .6s ease"></sc-if>
+    <sc-if value="{{ narrow }}" hint-placeholder-val="{{ false }}"><span style="font-weight:800;font-stretch:125%;font-size:13px;letter-spacing:.16em;white-space:nowrap">EMKAY PARTNERS</span></sc-if>
+  </a>
+  <div style="display:flex;gap:10px;margin-right:auto;transition:opacity .4s;opacity:{{ indicatorOpacity }};white-space:nowrap"><span>{{ brandNum }} / 05</span><span style="opacity:.6">{{ brandName }}</span></div>
+  <sc-if value="{{ wide }}" hint-placeholder-val="{{ true }}">
+    <nav style="display:flex;gap:clamp(14px,2.2vw,32px)">
+      <a href="#groupe">LE GROUPE</a>
+      <a href="#marques">NOS MARQUES</a>
+      <a href="#irl">NOS PROJETS</a>
+      <a href="#apropos">À PROPOS</a>
+      <a href="#contact">CONTACT</a>
+    </nav>
+  </sc-if>
+  <sc-if value="{{ narrow }}" hint-placeholder-val="{{ false }}">
+    <button onClick="{{ toggleMenu }}" style="all:unset;cursor:pointer;font-size:11px;letter-spacing:.22em;font-weight:600;padding:12px 0">MENU</button>
+  </sc-if>
+</header>
+
+<sc-if value="{{ menuOpen }}" hint-placeholder-val="{{ false }}">
+<div style="position:fixed;inset:0;z-index:90;background:#2B143D;color:#F5F1E9;display:flex;flex-direction:column;padding:24px 6vw 6vh">
+  <div style="display:flex;justify-content:space-between;align-items:center;font-size:11px;letter-spacing:.22em"><img src="./assets/logos/emkay.png" alt="EMKAY Partners" style="display:block;height:28px;width:auto"><button onClick="{{ closeMenu }}" style="all:unset;cursor:pointer;padding:12px 0">FERMER ✕</button></div>
+  <nav style="margin-top:auto;display:flex;flex-direction:column;gap:14px;font-weight:800;font-stretch:125%;font-size:clamp(30px,9vw,56px);letter-spacing:-.03em;line-height:1">
+    <a href="#groupe" onClick="{{ closeMenu }}">LE GROUPE</a>
+    <a href="#marques" onClick="{{ closeMenu }}">NOS MARQUES</a>
+    <a href="#irl" onClick="{{ closeMenu }}">NOS PROJETS</a>
+    <a href="#apropos" onClick="{{ closeMenu }}">À PROPOS</a>
+    <a href="#contact" onClick="{{ closeMenu }}">CONTACT</a>
+  </nav>
+  <div style="margin-top:6vh;font-size:11px;letter-spacing:.22em;color:#AAA6AD">BRUXELLES, BELGIQUE.</div>
+</div>
+</sc-if>
+
+<sc-if value="{{ showSideNav }}" hint-placeholder-val="{{ false }}">
+<div onMouseLeave="{{ leaveDot }}" style="position:fixed;right:2.2vw;top:50%;transform:translateY(-50%);z-index:58;display:flex;flex-direction:column;gap:18px;align-items:flex-end;mix-blend-mode:difference;color:#F5F1E9;transition:opacity .5s;opacity:{{ sideOpacity }};pointer-events:{{ sidePE }}">
+  <div style="position:absolute;right:2px;top:-30px;bottom:-30px;width:1px;background:rgba(245,241,233,.35)"></div>
+  <sc-for list="{{ dots }}" as="d" hint-placeholder-count="5">
+    <a href="#{{ d.id }}" onMouseEnter="{{ d.enter }}" style="position:relative;display:flex;align-items:center;gap:12px;font-size:10px;letter-spacing:.22em;font-weight:500;padding:4px 0">
+      <span style="white-space:nowrap;transition:opacity .3s, transform .3s;opacity:{{ d.lo }};transform:translateX({{ d.lx }})">{{ d.name }}</span>
+      <span style="opacity:.7">{{ d.num }}</span>
+      <span style="width:{{ d.size }};height:{{ d.size }};background:#F5F1E9;border-radius:50%;transition:all .3s;margin-right:calc((5px - {{ d.size }}) / 2)"></span>
+    </a>
+  </sc-for>
+</div>
+</sc-if>
+
+<section id="top" data-screen-label="01 Portail" data-sc="sticky" data-hd="#F5F1E9" style="height:340vh;position:relative">
+  <div style="position:sticky;top:0;height:100vh;overflow:hidden;background:#2B143D;color:#F5F1E9">
+    <div style="position:absolute;inset:0;background:#080808;opacity:clamp(0, calc(0.6 - var(--p,0) * 1.4), 0.6);pointer-events:none"></div>
+    <div style="position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;padding:14vh 5vw 10vh;transform:scale(calc(0.9 + min(var(--p,0) * 2, 1) * 0.1))">
+      <div data-r="0.3" style="font-size:12px;font-weight:600;letter-spacing:.3em;color:#AAA6AD">THE HOUSE</div>
+      <h1 style="margin:3vh 0 0;font-weight:800;font-stretch:125%;font-size:clamp(48px,9.4vw,184px);line-height:.88;letter-spacing:-.05em">
+        <span data-r="0.4" style="display:block">Une maison.</span>
+        <span data-r="0.5" style="display:block;font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;font-stretch:100%;letter-spacing:-.02em;padding-left:clamp(0px,9vw,180px)">Des univers bien à eux.</span>
+      </h1>
+      <div data-r="0.62" style="margin-top:7vh;display:flex;flex-wrap:wrap;gap:10px 28px;font-size:11px;font-weight:600;letter-spacing:.22em;color:#D9D3DE">
+        <span>01 VISION HOUSE</span><span>02 NEXPLORE</span><span>03 NEXPLORE CONNECT</span><span>04 BAVARE</span><span>05 VIENS MANGER</span>
+      </div>
+    </div>
+    <div style="position:absolute;inset:0;background:#2B143D;clip-path:inset(0 50% 0 0);transform:translateX(calc(clamp(0, calc((var(--p,0) - 0.07) * 2.6), 1) * -51vw));display:flex;align-items:center;justify-content:center;overflow:hidden;box-shadow:inset -1px 0 0 rgba(245,241,233,.18)">
+      <div style="font-weight:900;font-stretch:125%;font-size:25vw;letter-spacing:-.05em;line-height:.8;white-space:nowrap;color:rgba(245,241,233,.06)">EMKAY</div>
+    </div>
+    <div style="position:absolute;inset:0;background:#2B143D;clip-path:inset(0 0 0 50%);transform:translateX(calc(clamp(0, calc((var(--p,0) - 0.07) * 2.6), 1) * 51vw));display:flex;align-items:center;justify-content:center;overflow:hidden">
+      <div style="font-weight:900;font-stretch:125%;font-size:25vw;letter-spacing:-.05em;line-height:.8;white-space:nowrap;color:rgba(245,241,233,.06)">EMKAY</div>
+    </div>
+    <div style="position:absolute;inset:0;pointer-events:none;color:#F5F1E9;opacity:clamp(0, calc(1 - (var(--p,0) - 0.05) * 9), 1)">
+      <div style="position:absolute;top:28px;left:4vw;right:4vw;display:flex;flex-wrap:wrap;gap:8px 20px;justify-content:space-between;font-size:11px;letter-spacing:.24em;font-weight:500"><span>BRUXELLES / BELGIQUE</span><span>50.85° N — 4.35° E</span></div>
+      <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:0 clamp(16px,5vw,80px) 14vh;transform:scale(calc(1 - min(var(--p,0) * 1.6, 1) * 0.12))">
+        <img src="./assets/logos/emkay.png" alt="EMKAY Partners" style="display:block;width:clamp(240px,30vw,440px);max-width:100%;height:auto;object-fit:contain">
+      </div>
+      <div style="position:absolute;left:0;right:0;bottom:clamp(28px,6vh,64px);display:flex;flex-direction:column;align-items:center;gap:12px;text-align:center;font-size:11px;letter-spacing:.24em;font-weight:500">
+        <span style="font-size:clamp(12px,1vw,14px);font-weight:700;letter-spacing:.3em">FAITES DÉFILER POUR ENTRER</span>
+        <span style="font-size:22px;line-height:1">↓</span>
+        {{ scrollCue }}
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="marques" data-screen-label="03 Sélecteur des marques" data-hd="{{ listFg }}" onMouseLeave="{{ resetActive }}" style="position:relative;background:{{ listBg }};color:{{ listFg }};transition:background-color .8s cubic-bezier(.4,0,.2,1), color .7s ease;padding:clamp(110px,16vh,180px) 5vw clamp(100px,14vh,170px)">
+  <div style="max-width:1600px;margin:0 auto">
+    <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:24px;margin-bottom:clamp(40px,7vh,80px);font-size:11px;font-weight:600;letter-spacing:.22em">
+      <span>NOS MARQUES</span>
+      <span style="opacity:.6">{{ selHint }}</span>
+      <span style="font-variant-numeric:tabular-nums">{{ activeNum }}</span>
+    </div>
+    <div style="display:grid;grid-template-columns:{{ listCols }};gap:clamp(24px,4vw,64px);align-items:start">
+      <div style="min-width:0;border-bottom:1px solid {{ listLine }};transition:border-color .7s">
+        <sc-for list="{{ brands }}" as="b" hint-placeholder-count="5">
+          <a href="#{{ b.id }}" onMouseEnter="{{ b.onEnter }}" onFocus="{{ b.onEnter }}" onClick="{{ b.onTap }}" data-cursor="{{ b.cursor }}" style="display:block;border-top:1px solid {{ listLine }};padding:clamp(14px,2.2vh,26px) 0;color:inherit;opacity:{{ b.op }};transition:opacity .6s ease, border-color .7s">
+            <div style="display:flex;align-items:baseline;gap:clamp(14px,2vw,32px)">
+              <span style="font-size:11px;font-weight:600;letter-spacing:.14em;flex:none;width:28px">{{ b.num }}</span>
+              <span style="font-weight:800;font-stretch:125%;font-size:clamp(30px,5.2vw,98px);line-height:.95;letter-spacing:-.045em;transform:translateX({{ b.shift }});transition:transform .7s cubic-bezier(.2,.7,.2,1)">{{ b.name }}</span>
+            </div>
+            <div style="display:grid;grid-template-rows:{{ b.rows }};transition:grid-template-rows .7s cubic-bezier(.2,.7,.2,1)">
+              <div style="overflow:hidden;min-height:0">
+                <div style="display:flex;flex-wrap:wrap;gap:12px 40px;align-items:baseline;padding:18px 0 6px clamp(42px,calc(2vw + 28px),60px);opacity:{{ b.infoOp }};transition:opacity .5s ease .15s">
+                  <span style="font-size:11px;font-weight:600;letter-spacing:.16em">{{ b.tags }}</span>
+                  <span style="font-size:16px;line-height:1.5;max-width:460px;opacity:.85">{{ b.desc }}</span>
+                  <span style="font-size:13px;font-weight:600;letter-spacing:.12em;border-bottom:1px solid currentColor;padding-bottom:2px">{{ b.cta }}</span>
+                </div>
+              </div>
+            </div>
+          </a>
+        </sc-for>
+      </div>
+      <sc-if value="{{ wide }}" hint-placeholder-val="{{ true }}">
+        <div style="position:sticky;top:110px">
+          <div style="position:relative;aspect-ratio:4/5;width:100%;overflow:hidden;background:#2B143D">
+            <div style="position:absolute;inset:0;display:flex;flex-direction:column;justify-content:space-between;padding:8%;color:#F5F1E9;clip-path:{{ selDefClip }};transition:clip-path .8s cubic-bezier(.7,0,.2,1)">
+              <span style="font-size:11px;font-weight:600;letter-spacing:.22em;color:#AAA6AD">EMKAY PARTNERS</span>
+              <span style="font-family:'Instrument Serif',serif;font-size:clamp(30px,3vw,52px);line-height:1">Cinq marques.<br><em>Une même maison.</em></span>
+            </div>
+            <sc-for list="{{ selLayers }}" as="L" hint-placeholder-count="5">
+              <div style="position:absolute;inset:0;background:{{ L.bg }};z-index:{{ L.z }};clip-path:{{ L.clip }};transition:clip-path .8s cubic-bezier(.7,0,.2,1);display:flex;align-items:center;justify-content:center;padding:11%">
+                <div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;transform:scale({{ L.scale }});transition:transform .9s cubic-bezier(.2,.7,.2,1) .1s">
+                  <sc-if value="{{ L.hasLogo }}" hint-placeholder-val="{{ false }}"><img data-src="{{ L.logo }}" alt="{{ L.alt }}" style="display:block;width:{{ L.lw }};max-width:100%;max-height:100%;height:auto;object-fit:contain;border-radius:{{ L.lr }}"></sc-if>
+                  <sc-if value="{{ L.noLogo }}" hint-placeholder-val="{{ false }}"><div style="width:100%;height:56%"><image-slot id="{{ L.slot }}" shape="rect" fit="contain" placeholder="{{ L.ph }}"></image-slot></div></sc-if>
+                </div>
+              </div>
+            </sc-for>
+          </div>
+          <div style="display:flex;justify-content:space-between;gap:16px;margin-top:16px;font-size:11px;font-weight:600;letter-spacing:.16em">
+            <span style="transition:opacity .4s">{{ activeCat }}</span><span style="font-variant-numeric:tabular-nums">{{ activeNum }}</span>
+          </div>
+        </div>
+      </sc-if>
+    </div>
+  </div>
+</section>
+
+<section id="vision" data-screen-label="04 Vision House" data-sc="sticky" data-vhs="" data-brand="0" data-hd="#F5F1E9" style="position:relative;background:#0C0340">
+  <div style="position:sticky;top:0;height:{{ vhInH }};overflow:hidden;background:#0C0340;color:#F5F1E9">
+    <div data-vhui="" style="position:{{ vhIntroPos }};inset:0;display:flex;flex-direction:column;justify-content:center;gap:clamp(18px,3vh,32px);padding:{{ vhIntroPad }};pointer-events:none">
+      <img src="./assets/logos/visionhouse-white.png" alt="Vision House" style="display:block;height:clamp(18px,1.8vw,26px);width:auto;align-self:flex-start;object-fit:contain">
+      <span style="font-size:11px;font-weight:600;letter-spacing:.24em;color:#A9A3D6">01 / 05 — VISION HOUSE</span>
+      <h2 style="margin:0;font-weight:900;font-stretch:125%;font-size:clamp(48px,8vw,156px);letter-spacing:-.05em;line-height:.86">La stratégie<br><span style="font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;font-stretch:100%;letter-spacing:-.02em;color:#B9C4FF">prend forme.</span></h2>
+      <p style="margin:0;max-width:420px;font-size:17px;line-height:1.5;color:#CFCBEA">Quelques projets accompagnés par Vision House.</p>
+      <span style="font-size:11px;font-weight:600;letter-spacing:.24em;color:#A9A3D6">FAITES DÉFILER ↓</span>
+    </div>
+    <div data-track="" style="position:{{ vhStackPos }};inset:0;display:flex;flex-direction:column;align-items:center;padding:{{ vhStackPad }}">
+      <sc-for list="{{ vhProjects }}" as="pj" hint-placeholder-count="4">
+        <div data-card="{{ pj.i }}" data-rot="{{ pj.rot }}" onMouseEnter="{{ pj.enter }}" onMouseLeave="{{ pj.leave }}" style="position:{{ pj.pos }};left:{{ pj.left }};top:{{ pj.top }};z-index:{{ pj.z }};width:{{ pj.w }};max-width:100%;margin-top:{{ pj.mt }};transform:{{ pj.tf }};opacity:{{ pj.op0 }};will-change:transform,opacity;display:flex;flex-direction:column;gap:14px;background:#0C0340;padding:{{ pj.pad }};box-shadow:0 30px 70px rgba(4,0,26,.45)">
+          <div data-vhmedia="" style="position:relative;width:100%;aspect-ratio:{{ pj.ratio }};overflow:hidden;background:#160B52">
+            <media-slot id="{{ pj.slot }}" src="{{ pj.mediaSrc }}" type="{{ pj.mediaType }}" poster="{{ pj.poster }}" placeholder="{{ pj.ph }}" autoplay="hover" style="position:absolute;inset:0;display:block;width:100%;height:100%"></media-slot>
+          </div>
+          <a href="{{ pj.href }}" style="display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:baseline;gap:6px 20px;color:#F5F1E9">
+            <span style="font-size:10px;font-weight:700;letter-spacing:.22em;color:#A9A3D6">{{ pj.n }} / CLIENT</span>
+            <span style="display:flex;flex-direction:column;gap:4px;min-width:0"><span style="font-weight:800;font-stretch:125%;font-size:clamp(15px,1.3vw,20px);letter-spacing:-.01em">{{ pj.name }}</span><span style="font-size:12px;font-weight:500;letter-spacing:.06em;color:#CFCBEA">{{ pj.servicesLine }}</span></span>
+            <span style="font-size:12px;font-weight:600;letter-spacing:.16em;color:#A9A3D6">{{ pj.year }}</span>
+          </a>
+        </div>
+      </sc-for>
+    </div>
+    <div data-xf="" style="position:{{ vhXfPos }};left:0;top:0;width:100%;height:{{ vhXfH }};z-index:4;overflow:hidden;background:#160B52;opacity:{{ vhXfOp }};pointer-events:none">
+      <div data-xa="" style="position:absolute;inset:0;opacity:{{ vhXaOp }}"><media-slot noempty="" slot-id="{{ vhLast.slot }}" src="{{ vhLast.mediaSrc }}" type="{{ vhLast.mediaType }}" poster="{{ vhLast.poster }}" placeholder="{{ vhLast.ph }}" autoplay="visible" style="position:absolute;inset:0;display:block;width:100%;height:100%"></media-slot></div>
+      <div data-xb="" style="position:absolute;inset:0;opacity:{{ vhXbOp }}"><image-slot id="img-nx" shape="rect" placeholder="Photo plein écran — événement Nexplore"></image-slot></div>
+      <div data-xg="" style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(9,9,9,.35) 0%,rgba(9,9,9,0) 40%,rgba(9,9,9,.8) 100%);opacity:{{ vhXbOp }};pointer-events:none"></div>
+      <div data-xt="" style="position:absolute;inset:0;color:#F5F1E9;opacity:{{ vhXbOp }};pointer-events:none">
+        <div style="position:absolute;left:5vw;right:5vw;top:88px;display:flex;justify-content:space-between;gap:24px;font-size:11px;font-weight:600;letter-spacing:.22em"><span>02 / 05</span><span>ÉVÉNEMENTS &amp; EXPÉRIENCES</span></div>
+        <div style="position:absolute;left:5vw;right:5vw;bottom:clamp(28px,5vh,56px);font-weight:900;font-stretch:125%;font-size:clamp(56px,14vw,280px);line-height:.8;letter-spacing:-.06em">NEXPLORE</div>
+      </div>
+    </div>
+  </div>
+  <span id="nexplore" aria-hidden="true" style="position:absolute;left:0;bottom:100vh;width:1px;height:1px;pointer-events:none"></span>
+</section>
+
+<section id="nexplore-suite" data-screen-label="05 Nexplore" data-sc="enter" data-brand="1" data-cursor="VOIR" data-hd="#F5F1E9" style="position:relative;z-index:1;background:#090909;color:#F5F1E9;scroll-margin-top:0">
+  <div style="max-width:1440px;margin:0 auto;padding:clamp(80px,12vh,140px) 5vw;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:clamp(40px,6vw,96px)">
+    <div>
+      <img src="./assets/logos/nexplore.png" alt="Nexplore" style="display:block;width:200px;max-width:100%;height:auto;margin-bottom:40px">
+      <h3 data-r="0.35" style="margin:0;font-weight:600;font-size:clamp(36px,4vw,66px);line-height:1;letter-spacing:-.035em;text-wrap:pretty">Des événements conçus pour <span style="font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;letter-spacing:-.01em">provoquer quelque chose.</span></h3>
+      <p style="margin:32px 0 0;max-width:480px;font-size:17px;line-height:1.6;color:#AAA6AD;text-wrap:pretty">Nexplore ne gère pas seulement une logistique. Elle transforme un événement en expérience — un moment dont on parle encore le lendemain.</p>
+      <a href="#" style="display:inline-flex;gap:12px;margin-top:36px;font-size:13px;font-weight:600;letter-spacing:.2em;padding-bottom:8px;border-bottom:1px solid #F5F1E9;transition:letter-spacing .4s" style-hover="letter-spacing:.3em">DÉCOUVRIR NEXPLORE ↗</a>
+    </div>
+    <div style="display:flex;flex-direction:column">
+      <div data-r="0.45" style="border-top:1px solid rgba(245,241,233,.2);padding:28px 0;display:grid;grid-template-columns:56px 1fr;gap:16px">
+        <span style="font-size:11px;font-weight:600;letter-spacing:.2em;color:#AAA6AD;padding-top:8px">A</span>
+        <div><div style="font-size:24px;font-weight:600;letter-spacing:-.02em">Imaginés par Nexplore</div><div style="margin-top:8px;font-size:16px;color:#AAA6AD;line-height:1.5">Nos propres formats, pensés, produits et portés par la marque.</div></div>
+      </div>
+      <div data-r="0.5" style="border-top:1px solid rgba(245,241,233,.2);border-bottom:1px solid rgba(245,241,233,.2);padding:28px 0;display:grid;grid-template-columns:56px 1fr;gap:16px">
+        <span style="font-size:11px;font-weight:600;letter-spacing:.2em;color:#AAA6AD;padding-top:8px">B</span>
+        <div><div style="font-size:24px;font-weight:600;letter-spacing:-.02em">Créés pour vous</div><div style="margin-top:8px;font-size:16px;color:#AAA6AD;line-height:1.5">Des événements sur mesure pour des entreprises, organisations et marques.</div></div>
+      </div>
+      <p style="margin:36px 0 0;font-family:'Instrument Serif',serif;font-size:clamp(24px,2.2vw,34px);line-height:1.3;text-wrap:pretty">Inaugurations · Événements corporate · Networking · Activations · Expériences professionnelles · Événements sur mesure</p>
+    </div>
+  </div>
+  <div style="height:1px;background:rgba(245,241,233,.6);transform-origin:0 50%;transform:scaleX(clamp(0, calc(var(--p,0) * 1.2 - 0.2), 1))"></div>
+</section>
+
+<section id="connect" data-screen-label="06 Nexplore Connect" data-sc="sticky" data-canvas="net" data-brand="2" data-cursor="CONNECTER" data-hd="#090909" data-hd-end="#E3122B" style="height:260vh;position:relative">
+  <div style="position:sticky;top:0;min-height:100vh;overflow:hidden;background:#E9E6E0;color:#090909;display:flex;flex-direction:column;padding:88px 5vw 6vh">
+    <div style="position:absolute;inset:0;background:#FF9EC4;opacity:clamp(0, calc((var(--p,0) - 0.76) * 5), 1);pointer-events:none"></div>
+    <canvas ref="{{ netRef }}" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none"></canvas>
+    <div style="position:relative;flex:1;display:flex;flex-direction:column;opacity:clamp(0, calc((0.96 - var(--p,0)) * 6), 1)">
+      <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:24px">
+        <div style="width:220px;height:64px"><image-slot id="logo-nxc" shape="rect" fit="contain" placeholder="Logo Nexplore Connect"></image-slot></div>
+        <div style="display:flex;gap:24px;font-size:11px;font-weight:600;letter-spacing:.22em"><span>03 / 05</span><span>RENCONTRES PROFESSIONNELLES</span></div>
+      </div>
+      <h3 data-r="0.06" style="margin:clamp(40px,9vh,110px) 0 0;max-width:1200px;font-weight:700;font-size:clamp(42px,6.6vw,124px);line-height:.92;letter-spacing:-.05em;text-wrap:pretty">Les bonnes rencontres <span style="font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;letter-spacing:-.02em">changent parfois la suite.</span></h3>
+      <div style="margin-top:auto;padding-top:6vh;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:clamp(32px,6vw,96px);align-items:end">
+        <div data-r="0.2">
+          <div style="font-size:11px;font-weight:600;letter-spacing:.22em;color:#5b5660;margin-bottom:18px">RAPPROCHER</div>
+          <div style="display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px;font-size:clamp(19px,1.7vw,26px);letter-spacing:-.01em">
+            <span>Entrepreneurs</span><span style="color:#8E8893">↔</span><span>Dirigeants</span><span style="color:#8E8893">↔</span><span>Entreprises</span><span style="color:#8E8893">↔</span><span>Professionnels</span><span style="color:#8E8893">↔</span><span>Partenaires</span><span style="color:#8E8893">↔</span><span>Opportunités</span>
+          </div>
+        </div>
+        <div data-r="0.3">
+          <p style="margin:0;font-size:17px;line-height:1.6;color:#3a3540;text-wrap:pretty">Pas un club de plus. Nexplore Connect s'intéresse à la qualité des connexions : mises en relation, cercles professionnels et opportunités de collaboration.</p>
+          <a href="#" style="display:inline-flex;gap:12px;margin-top:28px;font-size:13px;font-weight:600;letter-spacing:.2em;padding-bottom:8px;border-bottom:1px solid #090909;transition:letter-spacing .4s" style-hover="letter-spacing:.3em">DÉCOUVRIR NEXPLORE CONNECT ↗</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="bavard" data-screen-label="07 Bavare" data-sc="sticky" data-brand="3" data-cursor="SORTIR" data-hd="#E3122B" data-hd-end="#F2E7D3" style="height:260vh;position:relative">
+  <div style="position:sticky;top:0;min-height:100vh;overflow:hidden;background:#FF9EC4;color:#E3122B;display:flex;flex-direction:column;padding:88px 5vw 6vh">
+    <div style="position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;pointer-events:none;font-weight:900;font-stretch:62%;font-size:19vw;line-height:.82;letter-spacing:-.02em;color:#FF86B6;white-space:nowrap">
+      <div style="transform:translateX(calc(-10vw - var(--p,0) * 40vw))">BAVARE BAVARE BAVARE BAVARE</div>
+      <div style="transform:translateX(calc(-60vw + var(--p,0) * 40vw))">ON SORT ? ON SORT ? ON SORT ?</div>
+      <div style="transform:translateX(calc(-20vw - var(--p,0) * 30vw))">BAVARE BAVARE BAVARE BAVARE</div>
+    </div>
+    <div style="position:relative;display:flex;flex-wrap:wrap;gap:8px 20px;justify-content:space-between;font-size:11px;letter-spacing:.22em;font-weight:700;color:#B00D22"><span>04 / 05 — BAVARE</span><span>ÉVÉNEMENTS SOCIAUX — BRUXELLES</span></div>
+    <div style="position:relative;flex:1;display:flex;flex-wrap:wrap;align-items:center;gap:5vw;padding:5vh 0">
+      <div style="flex:1 1 440px;display:flex;flex-direction:column;gap:clamp(20px,3vh,36px);align-items:flex-start">
+        <h2 data-r="0.06" style="margin:0;font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;font-size:clamp(64px,10.5vw,210px);line-height:.84;letter-spacing:-.03em;color:#E3122B">Et si on<br>sortait ?</h2>
+        <p data-r="0.22" style="margin:0;max-width:460px;font-size:clamp(16px,1.3vw,20px);line-height:1.5;color:#7A0616">Bavare crée des moments pour sortir, se rencontrer, découvrir des lieux et vivre Bruxelles autrement.</p>
+      </div>
+      <div style="flex:1 1 320px;position:relative;min-height:clamp(260px,52vh,520px);align-self:stretch">
+        <div data-r="0.04" data-fx="pop" style="position:absolute;left:50%;top:50%;width:min(100%,58vh,520px);aspect-ratio:1/1;translate:-50% -50%;rotate:-3deg;background:#E3122B;box-shadow:0 30px 60px rgba(120,0,20,.25);pointer-events:none"></div>
+        <div data-r="0.3" data-fx="pop" style="position:absolute;right:2%;bottom:0;width:min(34%,22vh,190px);aspect-ratio:4/5;background:#F5F1E9;padding:8px 8px 26px;rotate:7deg;box-shadow:0 18px 40px rgba(120,0,20,.25)"><image-slot id="img-bavard" shape="rect" placeholder="Photo soirée Bavare"></image-slot></div>
+        <div style="position:absolute;top:6%;left:4%;transform:rotate(-8deg);pointer-events:none"><div data-r="0.18" data-fx="pop" style="background:#E3122B;color:#FF9EC4;font-weight:900;font-stretch:62%;font-size:clamp(20px,2.6vw,44px);padding:.15em .45em;box-shadow:0 6px 0 rgba(120,0,20,.18)">PARLER</div></div>
+        <div style="position:absolute;top:0%;left:52%;transform:rotate(6deg);pointer-events:none"><div data-r="0.25" data-fx="pop" style="background:#F5F1E9;color:#E3122B;font-weight:900;font-stretch:62%;font-size:clamp(20px,2.6vw,44px);padding:.15em .45em;box-shadow:0 6px 0 rgba(120,0,20,.18)">SORTIR</div></div>
+        <div style="position:absolute;top:36%;left:22%;transform:rotate(-4deg);pointer-events:none"><div data-r="0.32" data-fx="pop" style="background:#F5F1E9;color:#E3122B;font-weight:900;font-stretch:62%;font-size:clamp(20px,2.6vw,44px);padding:.15em .45em;box-shadow:0 6px 0 rgba(120,0,20,.18)">RENCONTRER</div></div>
+        <div style="position:absolute;top:30%;left:70%;transform:rotate(9deg);pointer-events:none"><div data-r="0.39" data-fx="pop" style="background:#E3122B;color:#FF9EC4;font-weight:900;font-stretch:62%;font-size:clamp(20px,2.6vw,44px);padding:.15em .45em;box-shadow:0 6px 0 rgba(120,0,20,.18)">DÉCOUVRIR</div></div>
+        <div style="position:absolute;top:68%;left:6%;transform:rotate(12deg);pointer-events:none"><div data-r="0.46" data-fx="pop" style="background:#080808;color:#FF9EC4;font-weight:900;font-stretch:62%;font-size:clamp(20px,2.6vw,44px);padding:.15em .45em">RIRE</div></div>
+        <div style="position:absolute;top:66%;left:50%;transform:rotate(-10deg);pointer-events:none"><div data-r="0.53" data-fx="pop" style="background:#E3122B;color:#F5F1E9;font-weight:900;font-stretch:62%;font-size:clamp(20px,2.6vw,44px);padding:.15em .45em;box-shadow:0 6px 0 rgba(120,0,20,.18)">PARTAGER</div></div>
+      </div>
+
+    </div>
+    <div style="position:relative;display:flex;flex-wrap:wrap;gap:20px;justify-content:space-between;align-items:flex-end">
+      <span style="display:flex;align-items:center;gap:14px;font-size:11px;letter-spacing:.22em;font-weight:700;color:#B00D22"><img src="./assets/logos/bavard.png" alt="Bavare" style="display:block;height:22px;width:auto;object-fit:contain">DES SORTIES QUI CRÉENT DES RENCONTRES.</span>
+      <a href="#" data-r="0.4" style="display:inline-flex;gap:12px;font-size:13px;font-weight:800;letter-spacing:.2em;padding:12px 18px;background:#E3122B;color:#FF9EC4;transition:transform .3s" style-hover="transform:rotate(-2deg) scale(1.04)">VOIR LE PROCHAIN BAVARE ↗</a>
+    </div>
+    <div style="position:absolute;inset:0;z-index:5;background:#4A0B16;clip-path:inset(calc((1 - clamp(0, calc((var(--p,0) - 0.76) * 4.4), 1)) * 100%) 0 0 0);pointer-events:none"></div>
+  </div>
+</section>
+
+<section id="vm" data-screen-label="08 Viens Manger" data-sc="sticky" data-brand="4" data-cursor="GOÛTER" data-hd="#F2E7D3" data-hd-end="#4A0B16" data-hd-at="0.2" style="height:260vh;position:relative">
+  <div style="position:sticky;top:0;min-height:100vh;overflow:hidden;background:#4A0B16;color:#F2E7D3">
+    <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;font-size:11px;letter-spacing:.3em;opacity:clamp(0, calc(1 - var(--p,0) * 4), 1)">
+      <span>05 / 05</span><span style="font-family:'Instrument Serif',serif;font-style:italic;font-size:clamp(40px,5vw,80px);letter-spacing:0">À table.</span>
+    </div>
+    <div style="position:relative;min-height:100vh;background:#F2E7D3;color:#4A0B16;clip-path:inset(calc((1 - min(var(--p,0) * 2.6, 1)) * 46%) calc((1 - min(var(--p,0) * 2.6, 1)) * 40%));display:flex;flex-direction:column;padding:88px 5vw 5vh;gap:2vh">
+      <div data-r="0.32" style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:14px 20px;padding-bottom:14px;border-bottom:2px solid #4A0B16;font-size:11px;letter-spacing:.22em;font-weight:700">
+        <span>05 / 05 — VIENS MANGER</span>
+        <img src="./assets/logos/viensmanger.png" alt="Viens Manger" style="display:block;width:72px;height:72px;border-radius:50%;object-fit:contain">
+        <span>BRUXELLES — FOOD &amp; DÉCOUVERTES</span>
+      </div>
+      <div style="flex:1;display:flex;flex-wrap:wrap;gap:4vw;align-items:stretch">
+        <div style="flex:1 1 440px;display:flex;flex-direction:column;justify-content:space-between;gap:3vh">
+          <h2 data-r="0.38" style="margin:0;font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(72px,12.5vw,230px);line-height:.84;letter-spacing:-.03em;color:#A3161F">On mange <em>où ?</em></h2>
+          <p data-r="0.46" style="margin:0;max-width:480px;font-family:'Instrument Serif',serif;font-style:italic;font-size:clamp(22px,2vw,30px);line-height:1.2">Viens Manger fait découvrir des restaurants, des lieux, des concepts culinaires et des expériences qui valent le détour.</p>
+          <div data-r="0.52" style="display:flex;flex-direction:column;gap:10px;max-width:460px;font-size:12px;letter-spacing:.22em;font-weight:700">
+            <div style="display:flex;gap:10px;align-items:baseline"><span>RESTAURANTS</span><span style="flex:1;border-bottom:1px dotted #4A0B16"></span><span>01</span></div>
+            <div style="display:flex;gap:10px;align-items:baseline"><span>LIEUX</span><span style="flex:1;border-bottom:1px dotted #4A0B16"></span><span>02</span></div>
+            <div style="display:flex;gap:10px;align-items:baseline"><span>CONCEPTS CULINAIRES</span><span style="flex:1;border-bottom:1px dotted #4A0B16"></span><span>03</span></div>
+            <div style="display:flex;gap:10px;align-items:baseline"><span>EXPÉRIENCES</span><span style="flex:1;border-bottom:1px dotted #4A0B16"></span><span>04</span></div>
+          </div>
+        </div>
+        <div data-r="0.42" data-fx="mask" style="flex:0 1 auto;width:min(84vw,34vw,440px);min-width:240px;aspect-ratio:4/5;position:relative;margin:0 auto">
+          <image-slot id="img-vm" shape="rect" placeholder="Photo couverture — plat / lieu"></image-slot>
+          <div style="position:absolute;left:-14px;top:24px;background:#A3161F;color:#F2E7D3;font-size:11px;letter-spacing:.22em;font-weight:700;padding:8px 12px;transform:rotate(-4deg)">L'ADRESSE DU MOIS</div>
+        </div>
+      </div>
+      <div data-r="0.56" style="display:flex;justify-content:flex-end;padding-top:12px;border-top:1px solid #4A0B16">
+        <a href="#" style="display:inline-flex;gap:12px;font-size:13px;font-weight:700;letter-spacing:.2em;padding-bottom:6px;border-bottom:2px solid #A3161F;color:#A3161F;transition:letter-spacing .4s" style-hover="letter-spacing:.3em">PASSER À TABLE ↗</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="room" data-screen-label="09 EMKAY Room" data-sc="sticky" data-hd="#F5F1E9" style="height:220vh;position:relative">
+  <div style="position:sticky;top:0;height:100vh;overflow:hidden;background:#2B143D;color:#F5F1E9;display:flex;flex-direction:column;gap:2vh;padding:88px 5vw 5vh">
+    <div style="flex:none;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:16px 40px">
+      <div data-r="0.04" style="font-family:'Instrument Serif',serif;font-size:clamp(26px,2.8vw,48px);line-height:1">Différentes identités.<br><em style="color:#C9C2CF">Un même point de départ.</em></div>
+      <span style="font-size:11px;letter-spacing:.22em;color:#AAA6AD">EMKAY ROOM</span>
+    </div>
+    <div data-orbit="" onMouseLeave="{{ roomLeave }}" style="position:relative;flex:1;min-height:0">
+      <img data-core="" src="./assets/logos/emkay.png" alt="EMKAY Partners" style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);display:block;width:clamp(150px,24vw,380px);height:auto;object-fit:contain">
+      <sc-for list="{{ roomItems }}" as="ri" hint-placeholder-count="5">
+        <div data-oi="{{ ri.i }}" onMouseEnter="{{ ri.enter }}" style="position:absolute;left:50%;top:50%;will-change:transform;display:flex;flex-direction:column;align-items:center">
+          <div style="display:flex;align-items:center;justify-content:center;width:{{ ri.w }};height:{{ ri.h }};padding:{{ ri.pad }};background:{{ ri.plate }};border-radius:{{ ri.r }};box-shadow:{{ ri.shadow }};transform:scale({{ ri.scale }});transition:transform .6s cubic-bezier(.2,.7,.2,1)">
+            <sc-if value="{{ ri.hasLogo }}" hint-placeholder-val="{{ false }}"><img data-src="{{ ri.logo }}" alt="{{ ri.name }}" style="display:block;max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain;border-radius:{{ ri.ir }}"></sc-if>
+            <sc-if value="{{ ri.noLogo }}" hint-placeholder-val="{{ true }}"><image-slot id="{{ ri.slot }}" shape="rect" fit="contain" placeholder="{{ ri.name }}"></image-slot></sc-if>
+          </div>
+          <div style="position:absolute;top:calc(100% + 14px);left:50%;transform:translate(-50%,{{ ri.ly }});display:flex;flex-direction:column;align-items:center;gap:4px;text-align:center;white-space:nowrap;opacity:{{ ri.lop }};transition:opacity .4s ease, transform .5s cubic-bezier(.2,.7,.2,1);pointer-events:none">
+            <span style="font-size:10px;font-weight:700;letter-spacing:.22em">{{ ri.name }}</span>
+            <span style="font-family:'Instrument Serif',serif;font-style:italic;font-size:17px;color:#D9D3DE">{{ ri.role }}</span>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+    <p data-r="0.2" style="flex:none;align-self:flex-end;margin:0;max-width:min(100%,380px);font-size:15px;line-height:1.55;color:#D9D3DE">EMKAY Partners développe, structure et accompagne la croissance de ses différentes marques.</p>
+  </div>
+</section>
+
+
+<section id="identites" data-screen-label="10 Différentes identités" data-sc="sticky" data-steps="6" data-stack="" data-hd="#2B143D" style="height:560vh;position:relative">
+  <div style="position:sticky;top:0;height:100vh;overflow:hidden;background:#F5F1E9;color:#080808;display:flex;flex-direction:column;justify-content:center;padding:96px 5vw 9vh">
+    <h2 style="margin:0 0 5vh;font-weight:800;font-stretch:125%;font-size:clamp(28px,3.6vw,64px);line-height:.95;letter-spacing:-.045em">Différentes identités.<br><span style="font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;font-stretch:100%;letter-spacing:-.02em;color:#2B143D">Une même façon de faire.</span></h2>
+    <div style="display:flex;flex-direction:column;border-top:1px solid rgba(8,8,8,.18)">
+      <div data-i="0" style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:4px 24px;padding:clamp(8px,1.6vh,18px) 0;border-bottom:1px solid rgba(8,8,8,.12)"><span style="font-weight:800;font-stretch:125%;font-size:clamp(22px,min(3.6vw,5.4vh),64px);letter-spacing:-.035em">VISION HOUSE</span><span style="font-family:'Instrument Serif',serif;font-style:italic;font-size:clamp(26px,min(4vw,6vh),72px);line-height:1">fait connaître.</span></div>
+      <div data-i="1" style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:4px 24px;padding:clamp(8px,1.6vh,18px) 0;border-bottom:1px solid rgba(8,8,8,.12)"><span style="font-weight:800;font-stretch:125%;font-size:clamp(22px,min(3.6vw,5.4vh),64px);letter-spacing:-.035em">NEXPLORE</span><span style="font-family:'Instrument Serif',serif;font-style:italic;font-size:clamp(26px,min(4vw,6vh),72px);line-height:1">fait vivre.</span></div>
+      <div data-i="2" style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:4px 24px;padding:clamp(8px,1.6vh,18px) 0;border-bottom:1px solid rgba(8,8,8,.12)"><span style="font-weight:800;font-stretch:125%;font-size:clamp(22px,min(3.6vw,5.4vh),64px);letter-spacing:-.035em">NEXPLORE CONNECT</span><span style="font-family:'Instrument Serif',serif;font-style:italic;font-size:clamp(26px,min(4vw,6vh),72px);line-height:1">fait rencontrer.</span></div>
+      <div data-i="3" style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:4px 24px;padding:clamp(8px,1.6vh,18px) 0;border-bottom:1px solid rgba(8,8,8,.12)"><span style="font-weight:800;font-stretch:125%;font-size:clamp(22px,min(3.6vw,5.4vh),64px);letter-spacing:-.035em">BAVARE</span><span style="font-family:'Instrument Serif',serif;font-style:italic;font-size:clamp(26px,min(4vw,6vh),72px);line-height:1">fait sortir.</span></div>
+      <div data-i="4" style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:4px 24px;padding:clamp(8px,1.6vh,18px) 0;border-bottom:1px solid rgba(8,8,8,.12)"><span style="font-weight:800;font-stretch:125%;font-size:clamp(22px,min(3.6vw,5.4vh),64px);letter-spacing:-.035em">VIENS MANGER</span><span style="font-family:'Instrument Serif',serif;font-style:italic;font-size:clamp(26px,min(4vw,6vh),72px);line-height:1">fait découvrir.</span></div>
+      <div data-i="5" style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:4px 24px;padding:clamp(10px,2vh,22px) 0;color:#2B143D"><span style="font-weight:900;font-stretch:125%;font-size:clamp(28px,min(5vw,7vh),92px);letter-spacing:-.045em">EMKAY</span><span style="font-family:'Instrument Serif',serif;font-style:italic;font-size:clamp(32px,min(5.4vw,7.6vh),100px);line-height:1">fait grandir.</span></div>
+    </div>
+    <div style="position:absolute;left:5vw;right:5vw;bottom:5vh;height:1px;background:#080808;opacity:.15"></div>
+    <div style="position:absolute;left:5vw;right:5vw;bottom:5vh;height:1px;background:#2B143D;transform-origin:0 50%;transform:scaleX(var(--p,0))"></div>
+  </div>
+</section>
+
+<section id="groupe" data-screen-label="11 Le Groupe" data-sc="sticky" data-group="" data-hd="#F5F1E9" style="height:380vh;position:relative">
+  <div style="position:sticky;top:0;height:100vh;overflow:hidden;background:#080808;color:#F5F1E9;display:flex;flex-direction:column;padding:92px 5vw 5vh">
+    <div style="flex:none;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:16px 48px;padding-bottom:clamp(18px,3vh,32px);border-bottom:1px solid rgba(245,241,233,.14)">
+      <div>
+        <div style="font-size:11px;font-weight:600;letter-spacing:.24em;color:#AAA6AD">LE GROUPE</div>
+        <h2 style="margin:14px 0 0;font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(34px,4.4vw,80px);line-height:.95;letter-spacing:-.02em">Quand nos marques<br><em>se rencontrent.</em></h2>
+      </div>
+      <span data-gstep="" style="font-size:11px;font-weight:600;letter-spacing:.22em;color:#AAA6AD;font-variant-numeric:tabular-nums">01 — INTRODUCTION</span>
+    </div>
+    <div data-stage="" style="position:relative;flex:1;min-height:0;overflow:hidden;display:flex;align-items:center;justify-content:center;padding:clamp(20px,3vh,36px) 0">
+      <svg data-links="" style="position:absolute;inset:0;width:100%;height:100%;overflow:visible;pointer-events:none">
+        <path data-link="0" d="" fill="none" stroke="#F5F1E9" stroke-width="1" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1" opacity="0"></path>
+        <path data-link="1" d="" fill="none" stroke="#F5F1E9" stroke-width="1" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1" opacity="0"></path>
+        <path data-link="2" d="" fill="none" stroke="#F5F1E9" stroke-width="1" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1" opacity="0"></path>
+        <path data-link="3" d="" fill="none" stroke="#F5F1E9" stroke-width="1" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1" opacity="0"></path>
+      </svg>
+      <div data-show="-1,0.17" style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;text-align:center;padding:0 6vw;pointer-events:none">
+        <p style="margin:0;max-width:900px;font-family:'Instrument Serif',serif;font-size:clamp(24px,2.8vw,48px);line-height:1.12;text-wrap:balance">Nos marques peuvent agir indépendamment.<br><em style="color:#C9C2CF">Sur certains projets, leurs expertises se complètent.</em></p>
+      </div>
+      <div style="position:relative;width:100%;display:grid;grid-template-columns:{{ gCols }};grid-template-areas:{{ gAreas }};align-items:center;gap:clamp(20px,3vh,36px) clamp(24px,4vw,72px)">
+        <div data-center="" style="grid-area:c;display:grid;justify-items:center;align-items:center;text-align:center;min-width:0">
+          <div data-show="0.19,0.445" style="grid-area:1/1;display:flex;flex-direction:column;align-items:center;gap:14px">
+            <span style="font-size:11px;font-weight:600;letter-spacing:.24em;color:#AAA6AD">SCÉNARIO 01</span>
+            <span style="font-weight:900;font-stretch:125%;font-size:clamp(26px,3.8vw,68px);letter-spacing:-.045em;line-height:.9">INAUGURATION</span>
+            <p data-show="0.3,0.445" style="margin:6px 0 0;max-width:420px;font-family:'Instrument Serif',serif;font-style:italic;font-size:clamp(17px,1.5vw,24px);line-height:1.2;color:#D9D3DE;text-wrap:balance">Une inauguration pensée comme un outil de visibilité, de rencontre et d’expérience.</p>
+          </div>
+          <div data-show="0.47,0.69" style="grid-area:1/1;display:flex;flex-direction:column;align-items:center;gap:14px">
+            <span style="font-size:11px;font-weight:600;letter-spacing:.24em;color:#AAA6AD">SCÉNARIO 02</span>
+            <span style="font-weight:900;font-stretch:125%;font-size:clamp(26px,3.8vw,68px);letter-spacing:-.045em;line-height:.9">ÉVÉNEMENT<br>D’ENTREPRISE</span>
+            <span style="font-size:10px;font-weight:600;letter-spacing:.2em;color:#AAA6AD;line-height:1.7;max-width:380px">SOIRÉE · ANNIVERSAIRE · CONFÉRENCE · RÉCEPTION · NETWORKING · ÉVÉNEMENT CLIENT</span>
+          </div>
+        </div>
+        <sc-for list="{{ groupCaps }}" as="c" hint-placeholder-count="4">
+          <div data-cap="{{ c.i }}" style="grid-area:{{ c.area }};justify-self:{{ c.js }};width:{{ c.w }};opacity:0;will-change:transform,opacity;border:1px solid rgba(245,241,233,.18);background:#100E13;padding:clamp(14px,1.6vw,22px);display:flex;flex-direction:column;gap:12px">
+            <div style="display:flex;align-items:center;gap:10px"><span style="flex:none;width:12px;height:12px;background:{{ c.color }};box-shadow:0 0 0 1px rgba(245,241,233,.35)"></span><span style="font-weight:800;font-stretch:125%;font-size:clamp(12px,1.15vw,17px);letter-spacing:.04em;white-space:nowrap">{{ c.name }}</span></div>
+            <div style="display:grid"><span data-role="1" style="grid-area:1/1;font-family:'Instrument Serif',serif;font-style:italic;font-size:clamp(16px,1.45vw,23px);line-height:1.15;color:#D9D3DE">{{ c.r1 }}</span><span data-role="2" style="grid-area:1/1;opacity:0;font-family:'Instrument Serif',serif;font-style:italic;font-size:clamp(16px,1.45vw,23px);line-height:1.15;color:#D9D3DE">{{ c.r2 }}</span></div>
+          </div>
+        </sc-for>
+      </div>
+      <div data-show="0.715,0.8" style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;text-align:center;padding:0 5vw;pointer-events:none">
+        <h3 style="margin:0;font-weight:800;font-stretch:125%;font-size:clamp(32px,5vw,96px);letter-spacing:-.045em;line-height:.92">Un projet.<br><span style="font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;font-stretch:100%;letter-spacing:-.02em;color:#C9A8E8">Les bonnes expertises autour.</span></h3>
+      </div>
+      <div style="position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:clamp(24px,4vh,44px);text-align:center;padding:0 6vw;pointer-events:none">
+        <p data-show="0.805,0.885" style="margin:0;max-width:880px;font-family:'Instrument Serif',serif;font-size:clamp(24px,2.8vw,48px);line-height:1.12;text-wrap:balance">Selon le besoin, une marque peut intervenir seule ou plusieurs marques peuvent unir leurs forces.</p>
+        <p data-show="0.835,0.885" style="margin:0;max-width:720px;font-size:clamp(15px,1.3vw,20px);line-height:1.55;color:#D9D3DE;text-wrap:balance">EMKAY Partners permet simplement de réunir ces compétences sous un même groupe.</p>
+      </div>
+      <div data-show="0.895,9" style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;text-align:center;padding:0 5vw;pointer-events:none">
+        <div style="font-weight:900;font-stretch:125%;font-size:clamp(34px,5.6vw,108px);letter-spacing:-.05em;line-height:.9">LE BON PROJET.<br>LES BONNES MARQUES.<br><span style="color:#C9A8E8">AU BON MOMENT.</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="chiffres" data-screen-label="12 Les chiffres EMKAY" data-sc="enter" data-count-once="" data-hd="#2B143D" style="position:relative;z-index:3;background:#F5F1E9;color:#2B143D;padding:clamp(96px,16vh,180px) 5vw">
+  <div style="max-width:1440px;margin:0 auto">
+    <div data-r="0.05" style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:24px 48px;margin-bottom:clamp(48px,8vh,96px)">
+      <div>
+        <div style="font-size:11px;font-weight:600;letter-spacing:.24em">EMKAY EN QUELQUES CHIFFRES</div>
+        <h2 style="margin:18px 0 0;font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(36px,4.6vw,84px);line-height:.95;letter-spacing:-.02em">Ce que cela<br><em>représente déjà.</em></h2>
+      </div>
+      <span style="font-size:11px;font-weight:600;letter-spacing:.22em;color:#6c6472">DEPUIS NOS DÉBUTS — BRUXELLES</span>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));border-top:1px solid rgba(43,20,61,.3)">
+      <div data-r="0.2" style="display:flex;flex-direction:column;gap:16px;padding:clamp(24px,4vh,44px) clamp(16px,2vw,32px);border-left:1px solid rgba(43,20,61,.3);border-bottom:1px solid rgba(43,20,61,.3)"><span data-count="10" style="font-weight:800;font-stretch:125%;font-size:clamp(48px,6.6vw,100px);line-height:.9;letter-spacing:-.05em;font-variant-numeric:tabular-nums">10+</span><span style="font-size:12px;font-weight:600;letter-spacing:.2em;color:#080808">ÉVÉNEMENTS ORGANISÉS</span></div>
+      <div data-r="0.28" style="display:flex;flex-direction:column;gap:16px;padding:clamp(24px,4vh,44px) clamp(16px,2vw,32px);border-left:1px solid rgba(43,20,61,.3);border-bottom:1px solid rgba(43,20,61,.3)"><span data-count="900" style="font-weight:800;font-stretch:125%;font-size:clamp(48px,6.6vw,100px);line-height:.9;letter-spacing:-.05em;font-variant-numeric:tabular-nums">900+</span><span style="font-size:12px;font-weight:600;letter-spacing:.2em;color:#080808">PARTICIPANTS RASSEMBLÉS</span></div>
+      <div data-r="0.36" style="display:flex;flex-direction:column;gap:16px;padding:clamp(24px,4vh,44px) clamp(16px,2vw,32px);border-left:1px solid rgba(43,20,61,.3);border-bottom:1px solid rgba(43,20,61,.3)"><span data-count="15" style="font-weight:800;font-stretch:125%;font-size:clamp(48px,6.6vw,100px);line-height:.9;letter-spacing:-.05em;font-variant-numeric:tabular-nums">15+</span><span style="font-size:12px;font-weight:600;letter-spacing:.2em;color:#080808">ENTREPRISES ACCOMPAGNÉES</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="irl" data-screen-label="13 In Real Life" data-hd="#F5F1E9" style="position:relative;z-index:3;background:#080808;color:#F5F1E9;padding:18vh 5vw 16vh">
+  <div data-sc="enter" style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:30px;margin-bottom:12vh">
+    <h2 data-r="0.1" style="margin:0;font-weight:900;font-stretch:125%;font-size:clamp(52px,12vw,230px);letter-spacing:-.05em;line-height:.82">IN REAL<br>LIFE</h2>
+    <p data-r="0.3" style="margin:0;max-width:360px;font-family:'Instrument Serif',serif;font-style:italic;font-size:clamp(22px,2.2vw,34px);line-height:1.15;color:#C9C2CF">Parce que nos projets ne restent pas dans des présentations.</p>
+  </div>
+  <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-start;gap:9vh 4vw">
+    <sc-for list="{{ irlItems }}" as="m" hint-placeholder-count="9">
+      <figure data-sc="enter" data-cursor="OUVRIR" onMouseEnter="{{ m.enter }}" onMouseLeave="{{ m.leave }}" style="margin:{{ m.m }};flex:{{ m.basis }};min-width:min(100%,{{ m.min }});display:flex;flex-direction:column;gap:12px">
+        <div style="position:relative;aspect-ratio:{{ m.ratio }};overflow:hidden;transform:translateX(calc(var(--y,0) * {{ m.px }}px))">
+          <sc-if value="{{ m.isVideo }}" hint-placeholder-val="{{ false }}"><video data-src="{{ m.src }}" data-poster="{{ m.poster }}" data-auto="" muted="{{ true }}" loop="{{ true }}" playsInline="{{ true }}" preload="metadata" style="display:block;width:100%;height:100%;object-fit:cover"></video></sc-if>
+          <sc-if value="{{ m.isImage }}" hint-placeholder-val="{{ false }}"><img data-src="{{ m.src }}" alt="{{ m.brand }} — {{ m.project }}" loading="lazy" style="display:block;width:100%;height:100%;object-fit:cover"></sc-if>
+          <sc-if value="{{ m.isSlot }}" hint-placeholder-val="{{ true }}"><image-slot id="{{ m.slot }}" shape="rect" placeholder="{{ m.ph }}"></image-slot></sc-if>
+          <div style="position:absolute;inset:auto 0 0 0;padding:18px;background:linear-gradient(0deg,rgba(8,8,8,.85),rgba(8,8,8,0));display:flex;flex-wrap:wrap;gap:6px 22px;font-size:11px;font-weight:600;letter-spacing:.22em;opacity:{{ m.ov }};transform:translateY({{ m.ovY }});transition:opacity .45s ease, transform .6s cubic-bezier(.2,.7,.2,1);pointer-events:none">
+            <span><span style="color:#AAA6AD">MARQUE </span>{{ m.brand }}</span><span><span style="color:#AAA6AD">PROJET </span>{{ m.project }}</span><span><span style="color:#AAA6AD">ANNÉE </span>{{ m.year }}</span>
+          </div>
+        </div>
+        <figcaption style="font-size:11px;letter-spacing:.22em;line-height:1.6"><b>{{ m.n }} — {{ m.brand }}</b><br><span style="color:#AAA6AD">{{ m.project }}</span></figcaption>
+      </figure>
+    </sc-for>
+  </div>
+</section>
+
+<section id="orientation" data-screen-label="14 Votre besoin, notre marque" data-sc="enter" data-hd="#080808" style="position:relative;z-index:3;background:#F5F1E9;color:#080808;padding:18vh 5vw 14vh">
+  <div data-r="0.04" style="font-size:11px;font-weight:600;letter-spacing:.24em;color:#2B143D">TROUVEZ VOTRE POINT D’ENTRÉE</div>
+  <h2 data-r="0.08" style="margin:3vh 0 0;font-weight:800;font-stretch:125%;font-size:clamp(44px,7.6vw,144px);letter-spacing:-.05em;line-height:.86">Votre besoin.<br><span style="font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;font-stretch:100%;letter-spacing:-.02em;color:#2B143D">Notre marque.</span></h2>
+  <p data-r="0.16" style="margin:4vh 0 0;max-width:560px;font-size:18px;line-height:1.5;color:#3a3540">Chaque marque d’EMKAY répond à un besoin précis. Commencez par le vôtre.</p>
+  <div style="margin-top:7vh;display:grid;grid-template-columns:{{ orCols }};gap:clamp(24px,4vw,64px);align-items:stretch">
+    <div style="display:flex;flex-direction:column;border-top:1px solid #080808">
+      <sc-for list="{{ orient }}" as="o" hint-placeholder-count="5">
+        <div style="border-bottom:1px solid rgba(8,8,8,.25)">
+          <button onMouseEnter="{{ o.hover }}" onFocus="{{ o.hover }}" onClick="{{ o.tap }}" data-cursor="{{ o.cursor }}" aria-expanded="{{ o.on }}" style="all:unset;cursor:pointer;box-sizing:border-box;width:100%;display:flex;align-items:baseline;gap:clamp(14px,2vw,28px);padding:clamp(18px,3vh,30px) 0;opacity:{{ o.op }};transition:opacity .5s ease">
+            <span style="flex:none;width:28px;font-size:11px;font-weight:600;letter-spacing:.2em;color:#2B143D">{{ o.num }}</span>
+            <span style="flex:1;font-weight:800;font-stretch:125%;font-size:clamp(22px,2.8vw,48px);letter-spacing:-.035em;line-height:1;transform:translateX({{ o.shift }});transition:transform .6s cubic-bezier(.2,.7,.2,1)">{{ o.need }}</span>
+            <span style="flex:none;font-size:18px;transform:rotate({{ o.rot }});transition:transform .5s ease">→</span>
+          </button>
+          <sc-if value="{{ o.mOpen }}" hint-placeholder-val="{{ false }}">
+            <div style="margin:0 0 20px;padding:24px;background:{{ o.bg }};color:{{ o.fg }};display:flex;flex-direction:column;gap:18px">
+              <span style="font-size:11px;font-weight:700;letter-spacing:.22em">→ {{ o.brand }}</span>
+              <div style="height:56px;display:flex;align-items:center"><span style="display:flex;align-items:center;justify-content:flex-start;height:100%;padding:0;background:transparent">
+                <sc-if value="{{ o.hasLogo }}" hint-placeholder-val="{{ false }}"><img data-src="{{ o.logo }}" alt="{{ o.brand }}" style="display:block;max-height:40px;width:auto;height:auto;object-fit:contain;border-radius:{{ o.lr }}"></sc-if>
+                <sc-if value="{{ o.noLogo }}" hint-placeholder-val="{{ true }}"><span style="width:120px;height:40px;display:block"><image-slot id="{{ o.slot }}" shape="rect" fit="contain" placeholder="{{ o.brand }}"></image-slot></span></sc-if>
+              </span></div>
+              <span style="font-size:15px;line-height:1.7">{{ o.servicesLine }}</span>
+              <a href="#{{ o.id }}" style="align-self:flex-start;font-size:13px;font-weight:700;letter-spacing:.16em;padding-bottom:6px;border-bottom:1px solid currentColor">{{ o.cta }}</a>
+            </div>
+          </sc-if>
+        </div>
+      </sc-for>
+    </div>
+    <sc-if value="{{ wide }}" hint-placeholder-val="{{ true }}">
+      <div style="position:relative;min-height:clamp(320px,44vh,440px);background:{{ orA.bg }};color:{{ orA.fg }};transition:background-color .8s cubic-bezier(.4,0,.2,1), color .6s ease;padding:clamp(28px,3.4vw,56px);display:flex;flex-direction:column;justify-content:space-between;gap:32px;overflow:hidden">
+        <div style="display:flex;justify-content:space-between;gap:20px;font-size:11px;font-weight:700;letter-spacing:.22em"><span>{{ orA.needUp }}</span><span>{{ orA.num }} / 05</span></div>
+        <div data-orpanel="" style="display:flex;flex-direction:column;gap:clamp(20px,3vh,32px)">
+          <span style="font-size:12px;font-weight:700;letter-spacing:.22em">→ {{ orA.brand }}</span>
+          <div style="height:clamp(36px,3.4vw,52px);display:flex;align-items:center"><span style="display:flex;align-items:center;justify-content:flex-start;height:100%;max-width:100%;padding:0;background:transparent">
+            <sc-if value="{{ orA.hasLogo }}" hint-placeholder-val="{{ false }}"><img data-src="{{ orA.logo }}" alt="{{ orA.brand }}" style="display:block;max-height:100%;max-width:100%;width:auto;height:auto;object-fit:contain;border-radius:{{ orA.lr }}"></sc-if>
+            <sc-if value="{{ orA.noLogo }}" hint-placeholder-val="{{ true }}"><span style="width:180px;height:100%;display:block"><image-slot id="{{ orA.slot }}" shape="rect" fit="contain" placeholder="{{ orA.brand }}"></image-slot></span></sc-if>
+          </span></div>
+          <p style="margin:0;font-family:'Instrument Serif',serif;font-size:clamp(20px,1.9vw,32px);line-height:1.2;text-wrap:balance">{{ orA.servicesLine }}</p>
+        </div>
+        <a href="#{{ orA.id }}" style="align-self:flex-start;font-size:13px;font-weight:700;letter-spacing:.18em;padding-bottom:8px;border-bottom:1px solid currentColor;transition:letter-spacing .4s" style-hover="letter-spacing:.28em">{{ orA.cta }}</a>
+      </div>
+    </sc-if>
+  </div>
+</section>
+
+<section id="portes" data-screen-label="14b Cinq portes d'entrée" data-sc="enter" data-hd="#F5F1E9" style="position:relative;z-index:3;background:#2B143D;color:#F5F1E9;padding:22vh 5vw;display:flex;flex-direction:column;align-items:center;gap:8vh;text-align:center;overflow:hidden">
+  <p data-r="0.12" style="margin:0;font-family:'Instrument Serif',serif;font-size:clamp(32px,4.4vw,80px);line-height:1.02">Cinq portes d’entrée.<br><em style="color:#C9C2CF">Un seul groupe derrière.</em></p>
+  <img data-r="0.45" data-fx="mask" src="./assets/logos/emkay.png" alt="EMKAY Partners" style="display:block;width:min(80vw,760px);height:auto">
+</section>
+
+<section id="apropos" data-screen-label="15 À propos" data-sc="enter" data-hd="#080808" style="position:relative;z-index:3;background:#F5F1E9;color:#080808;padding:14vh 5vw 20vh;overflow:hidden">
+  <div style="height:1px;background:#2B143D;margin:0 -5vw 10vh;transform-origin:0 50%;transform:scaleX(var(--p,0))"></div>
+  <div style="max-width:1440px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:clamp(40px,6vw,100px);align-items:end">
+    <div data-r="0.3" style="display:flex;flex-direction:column;gap:3vh">
+      <span style="font-size:11px;font-weight:600;letter-spacing:.24em;color:#2B143D">EMKAY PARTNERS</span>
+      <h2 style="margin:0;font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(40px,5.4vw,96px);line-height:.95;letter-spacing:-.02em;color:#2B143D">Le point commun<br><em>entre toutes ces histoires.</em></h2>
+    </div>
+    <div data-r="0.42" style="max-width:520px;display:flex;flex-direction:column;gap:22px;font-size:18px;line-height:1.55">
+      <p style="margin:0">EMKAY Partners est un groupe entrepreneurial indépendant basé à Bruxelles. Nous créons, développons et faisons grandir des marques dans la communication, les événements, les rencontres et les expériences.</p>
+      <p style="margin:0;color:#4A4450">Chaque projet possède sa propre identité. EMKAY lui donne le cadre et les ressources nécessaires pour grandir.</p>
+    </div>
+  </div>
+</section>
+
+<section id="manifeste" data-screen-label="16 Manifeste" data-sc="sticky" data-steps="5" data-seq="" data-bgs="#080808,#0D0A11,#140C1C,#1D0F2A,#2B143D" data-hd="#F5F1E9" style="height:520vh;position:relative;z-index:3">
+  <div style="position:sticky;top:0;height:100vh;overflow:hidden;background:#080808;color:#F5F1E9;transition:background-color 1s ease">
+    <div data-i="0" style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:0 6vw;text-align:center;font-family:'Instrument Serif',serif;font-size:clamp(40px,7vw,132px);line-height:1.02;text-wrap:balance">Une idée est facile.</div>
+    <div data-i="1" style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:0 6vw;text-align:center;font-family:'Instrument Serif',serif;font-size:clamp(40px,7vw,132px);line-height:1.02;text-wrap:balance">La lancer est plus difficile.</div>
+    <div data-i="2" style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:0 6vw;text-align:center;font-family:'Instrument Serif',serif;font-size:clamp(40px,7vw,132px);line-height:1.02;text-wrap:balance"><span>La faire exister<br><em>encore plus.</em></span></div>
+    <div data-i="3" style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:0 6vw;text-align:center;font-family:'Instrument Serif',serif;font-style:italic;font-size:clamp(40px,7vw,132px);line-height:1.02;text-wrap:balance">Nous préférons la suite.</div>
+    <div data-i="4" data-fx="pop" style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:0 4vw;text-align:center;font-weight:900;font-stretch:125%;font-size:clamp(40px,9vw,170px);letter-spacing:-.05em;line-height:.85">EMKAY<br>PARTNERS.</div>
+  </div>
+</section>
+
+<section id="contact" data-screen-label="17 On commence ?" data-sc="enter" data-hd="#F5F1E9" style="position:relative;z-index:3;background:#2B143D;color:#F5F1E9;padding:18vh 5vw 16vh">
+  <h2 data-r="0.08" style="margin:0;font-weight:900;font-stretch:125%;font-size:clamp(26px,7.8vw,190px);letter-spacing:-.055em;line-height:.86;white-space:nowrap">ON COMMENCE<span style="color:#C9A8E8"> ?</span></h2>
+  <p data-r="0.14" style="margin:4vh 0 10vh;max-width:640px;font-family:'Instrument Serif',serif;font-style:italic;font-size:clamp(22px,2.2vw,36px);line-height:1.15;color:#D9D3DE">Un projet, une collaboration ou simplement une idée à explorer ?</p>
+  <div onMouseLeave="{{ doorLeave }}" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:clamp(12px,1.4vw,20px)">
+    <sc-for list="{{ doors }}" as="d" hint-placeholder-count="3">
+      <button onClick="{{ d.open }}" onMouseEnter="{{ d.enter }}" onFocus="{{ d.enter }}" data-r="{{ d.r }}" data-cursor="OUVRIR" style="all:unset;box-sizing:border-box;cursor:pointer;position:relative;overflow:hidden;display:flex;flex-direction:column;min-height:clamp(340px,52vh,520px);padding:clamp(24px,2.6vw,40px);background:{{ d.bg }};color:{{ d.fg }};border:1px solid {{ d.border }};opacity:{{ d.op }};transform:scale({{ d.scale }}) translateY({{ d.ty }});transition:background-color .6s ease, border-color .5s ease, opacity .5s ease, transform .6s cubic-bezier(.2,.7,.2,1)">
+        <span style="position:absolute;left:clamp(24px,2.6vw,40px);right:clamp(24px,2.6vw,40px);top:0;height:1px;background:currentColor;transform-origin:0 50%;transform:scaleX({{ d.lineX }});transition:transform .8s cubic-bezier(.2,.7,.2,1)"></span>
+        <span style="display:flex;justify-content:space-between;align-items:flex-start;gap:16px">
+          <span style="font-weight:800;font-stretch:125%;font-size:clamp(14px,1.1vw,18px);letter-spacing:.08em;transform-origin:0 0;transform:scale({{ d.numScale }});transition:transform .6s cubic-bezier(.2,.7,.2,1)">{{ d.num }}</span>
+          <span style="position:relative;width:44px;height:12px;opacity:{{ d.joinOp }};transition:opacity .4s ease" aria-hidden="true">
+            <span style="position:absolute;left:0;top:5px;width:18px;height:1px;background:currentColor;transform:translateX({{ d.joinL }});transition:transform .7s cubic-bezier(.2,.7,.2,1)"></span>
+            <span style="position:absolute;right:0;top:5px;width:18px;height:1px;background:currentColor;transform:translateX({{ d.joinR }});transition:transform .7s cubic-bezier(.2,.7,.2,1)"></span>
+          </span>
+        </span>
+        <span style="margin-top:clamp(28px,5vh,56px);font-family:'Instrument Serif',serif;font-size:clamp(34px,3.4vw,60px);line-height:1;letter-spacing:-.01em;text-wrap:balance">{{ d.title }}</span>
+        <span style="margin-top:clamp(16px,2.4vh,24px);max-width:420px;font-size:clamp(15px,1.1vw,17px);line-height:1.5;opacity:.86;text-wrap:pretty">{{ d.desc }}</span>
+        <span style="margin-top:12px;max-width:420px;font-size:14px;line-height:1.5;opacity:{{ d.subOp }};transition:opacity .5s ease;font-style:{{ d.subStyle }};font-family:{{ d.subFont }}">{{ d.sub }}</span>
+        <span style="margin-top:auto;padding-top:clamp(28px,5vh,48px);display:flex;align-items:center;gap:12px;font-size:12px;font-weight:700;letter-spacing:.18em">
+          <span style="transform:translateX({{ d.ctaX }});transition:transform .6s cubic-bezier(.2,.7,.2,1)">{{ d.cta }}</span>
+          <span style="transform:translateX({{ d.arrowX }});transition:transform .6s cubic-bezier(.2,.7,.2,1)">↗</span>
+        </span>
+      </button>
+    </sc-for>
+  </div>
+  <div data-r="0.45" style="margin-top:8vh;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:24px">
+    <span style="font-size:11px;letter-spacing:.24em;color:#C9C2CF">BRUXELLES, BELGIQUE.</span>
+    <button onClick="{{ openWrite }}" data-cursor="OUVRIR" style="all:unset;cursor:pointer;font-size:13px;font-weight:700;letter-spacing:.22em;padding:18px 32px;background:#F5F1E9;color:#2B143D;transition:letter-spacing .4s" style-hover="letter-spacing:.32em">NOUS ÉCRIRE ↗</button>
+  </div>
+</section>
+
+<footer data-screen-label="18 Footer" data-hd="#F5F1E9" style="position:relative;z-index:3;background:#2B143D;border-top:1px solid rgba(245,241,233,.14);color:#F5F1E9;padding:14vh 5vw 4vh;overflow:hidden;display:flex;flex-direction:column;gap:9vh">
+  <div style="display:flex;flex-direction:column;gap:18px"><img src="./assets/logos/emkay.png" alt="EMKAY Partners" style="display:block;width:min(70vw,520px);height:auto;object-fit:contain"><span style="font-size:12px;font-weight:600;letter-spacing:.22em;color:#D9D3DE">BRUXELLES — BELGIQUE</span></div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,190px),1fr));gap:40px;font-size:15px">
+    <div style="display:flex;flex-direction:column;gap:10px"><span style="font-size:11px;font-weight:600;letter-spacing:.22em;color:#C9C2CF;margin-bottom:6px">NOS MARQUES</span><a href="#vision">Vision House</a><a href="#nexplore">Nexplore</a><a href="#connect">Nexplore Connect</a><a href="#bavard">Bavare</a><a href="#vm">Viens Manger</a></div>
+    <div style="display:flex;flex-direction:column;gap:10px"><span style="font-size:11px;font-weight:600;letter-spacing:.22em;color:#C9C2CF;margin-bottom:6px">SUIVRE</span><a href="#">LinkedIn ↗</a><a href="#">Instagram ↗</a><a href="#contact">Contact</a></div>
+    <div style="display:flex;flex-direction:column;gap:10px"><span style="font-size:11px;font-weight:600;letter-spacing:.22em;color:#C9C2CF;margin-bottom:6px">INFORMATIONS</span><a href="#">Mentions légales</a><a href="#">Confidentialité</a></div>
+  </div>
+  <div style="padding-top:20px;border-top:1px solid rgba(245,241,233,.2);font-size:11px;letter-spacing:.2em;color:#C9C2CF">© 2026 EMKAY PARTNERS</div>
+</footer>
+
+<sc-if value="{{ formOpen }}" hint-placeholder-val="{{ false }}">
+<div style="position:fixed;inset:0;z-index:100;background:#2B143D;color:#F5F1E9;overflow:auto;padding:28px 5vw 8vh">
+  <div style="display:flex;justify-content:space-between;align-items:center;font-size:11px;letter-spacing:.22em">
+    <span>CONTACT</span>
+    <button onClick="{{ closeForm }}" style="all:unset;cursor:pointer;font-size:11px;letter-spacing:.22em;padding:10px 0;border-bottom:1px solid #F5F1E9">FERMER ✕</button>
+  </div>
+  <div style="max-width:900px;margin:12vh auto 0">
+    <h3 style="margin:0 0 7vh;font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(44px,6.5vw,110px);line-height:.95">{{ formTitle }}</h3>
+    <sc-if value="{{ notSent }}" hint-placeholder-val="{{ true }}">
+    <p style="margin:-4vh 0 6vh;max-width:620px;font-size:17px;line-height:1.55;color:#D9D3DE">{{ formIntro }}</p>
+    <form onSubmit="{{ submit }}" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:5vh 4vw">
+      <sc-for list="{{ formFields }}" as="f" hint-placeholder-count="3">
+        <label style="grid-column:{{ f.col }};display:flex;flex-direction:column;gap:12px;font-size:11px;letter-spacing:.22em">
+          <span>{{ f.label }}</span>
+          <sc-if value="{{ f.isText }}" hint-placeholder-val="{{ true }}"><input name="{{ f.name }}" type="{{ f.type }}" required="{{ f.req }}" style="all:unset;font-size:20px;padding:10px 0;border-bottom:1px solid rgba(245,241,233,.5)"></sc-if>
+          <sc-if value="{{ f.isSelect }}" hint-placeholder-val="{{ false }}"><select name="{{ f.name }}" required="{{ f.req }}" style="all:unset;cursor:pointer;font-size:20px;padding:10px 0;border-bottom:1px solid rgba(245,241,233,.5);color:#F5F1E9"><sc-for list="{{ f.options }}" as="op" hint-placeholder-count="3"><option value="{{ op.v }}" style="color:#080808">{{ op.t }}</option></sc-for></select></sc-if>
+          <sc-if value="{{ f.isArea }}" hint-placeholder-val="{{ false }}"><textarea name="{{ f.name }}" rows="4" required="{{ f.req }}" style="all:unset;font-size:20px;line-height:1.4;padding:10px 0;border-bottom:1px solid rgba(245,241,233,.5);white-space:pre-wrap"></textarea></sc-if>
+        </label>
+      </sc-for>
+      <div style="grid-column:1/-1;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:20px">
+        <span style="font-size:11px;letter-spacing:.22em;color:#C9C2CF">BRUXELLES, BELGIQUE.</span>
+        <button type="submit" style="all:unset;cursor:pointer;font-size:13px;font-weight:700;letter-spacing:.22em;padding:18px 34px;background:#F5F1E9;color:#2B143D;transition:letter-spacing .4s" style-hover="letter-spacing:.32em">ENVOYER ↗</button>
+      </div>
+    </form>
+    </sc-if>
+    <sc-if value="{{ sent }}" hint-placeholder-val="{{ false }}">
+      <p style="margin:0;font-size:20px;line-height:1.5;color:#D9D3DE">Merci. Votre message est bien arrivé — on revient vers vous très vite.</p>
+    </sc-if>
+  </div>
+</div>
+</sc-if>
+
+<sc-if value="{{ showCursor }}" hint-placeholder-val="{{ false }}">
+<div ref="{{ curRef }}" style="position:fixed;left:0;top:0;z-index:9999;pointer-events:none;will-change:transform">
+  <div style="position:absolute;left:-4px;top:-4px;width:8px;height:8px;border-radius:50%;background:#F5F1E9;mix-blend-mode:difference;transition:opacity .2s;opacity:{{ dotOpacity }}"></div>
+  <sc-if value="{{ hasLabel }}" hint-placeholder-val="{{ false }}">
+    <div style="position:absolute;left:14px;top:10px;background:#F5F1E9;color:#080808;font-size:10px;font-weight:700;letter-spacing:.22em;padding:7px 10px;white-space:nowrap">{{ cursorLabel }}</div>
+  </sc-if>
+</div>
+</sc-if>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;customCursor&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;},&quot;sideNav&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;},&quot;orbitSpeed&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:5,&quot;min&quot;:0,&quot;max&quot;:20,&quot;step&quot;:1,&quot;tsType&quot;:&quot;number&quot;,&quot;unit&quot;:&quot;°/s&quot;}}">
+class Component extends DCLogic {
+  state = { brand: -1, header: false, hd: '#F5F1E9', cursor: '', hoverDot: -1, choice: null, sent: false, fine: false, wide: true, active: null, vhHover: -1, irlHover: -1, orHover: -1, orActive: 0, roomHover: -1, doorHover: -1, menu: false };
+  rootRef = React.createRef();
+  netRef = React.createRef();
+  curRef = React.createRef();
+
+  // ——— Données centralisées ———
+  BRANDS = [
+    { id: 'vision', num: '01', name: 'VISION HOUSE', cat: 'Marketing & communication', tags: 'STRATÉGIE / CONTENU / POSITIONNEMENT', desc: "Stratégie, contenu et visibilité pour faire de la communication un véritable levier de développement.", cta: 'DÉCOUVRIR VISION HOUSE ↗', bg: '#0C0340', fg: '#F5F1E9', dot: '#0C0340', cursor: 'VOIR', slot: 'sel-vh', logo: './assets/logos/visionhouse.png', logoT: './assets/logos/visionhouse-white.png', lw: '100%', lr: '0', plate: '#0C0340' },
+    { id: 'nexplore', num: '02', name: 'NEXPLORE', cat: 'Événements & expériences', tags: 'ÉVÉNEMENTS / EXPÉRIENCES', desc: "Des événements imaginés par Nexplore ou créés sur mesure pour les entreprises et les marques.", cta: 'DÉCOUVRIR NEXPLORE ↗', bg: '#43746A', fg: '#F5F1E9', dot: '#43746A', cursor: 'VOIR', slot: 'sel-nx', logo: './assets/logos/nexplore.png', logoT: './assets/logos/nexplore.png', lw: '90%', lr: '0', plate: '#090909' },
+    { id: 'connect', num: '03', name: 'NEXPLORE CONNECT', cat: 'Rencontres professionnelles', tags: 'RENCONTRES / BUSINESS / CONNEXIONS', desc: "Rapprocher entrepreneurs, dirigeants, entreprises et partenaires — la qualité des connexions avant tout.", cta: 'DÉCOUVRIR NEXPLORE CONNECT ↗', bg: '#E9E6E0', fg: '#090909', dot: '#9B6BFF', cursor: 'CONNECTER', slot: 'sel-nxc', logo: '', plate: '#E9E6E0' },
+    { id: 'bavard', num: '04', name: 'BAVARE', cat: 'Événements sociaux', tags: 'SORTIR / LIEUX / RENCONTRES', desc: "Des occasions simples de sortir, discuter et rencontrer — dans des lieux qu'on ne connaissait pas encore.", cta: 'VOIR LE PROCHAIN BAVARE ↗', bg: '#FF9EC4', fg: '#E3122B', dot: '#FF9EC4', cursor: 'SORTIR', slot: 'sel-bv', logo: './assets/logos/bavard.png', logoT: './assets/logos/bavard.png', lw: '80%', lr: '0', plate: '#FF9EC4' },
+    { id: 'vm', num: '05', name: 'VIENS MANGER', cat: 'Food & découvertes', tags: 'RESTAURANTS / LIEUX / DÉCOUVERTE', desc: "Restaurants, lieux, concepts culinaires et expériences qui valent le détour.", cta: 'DÉCOUVRIR VIENS MANGER ↗', bg: '#4A0B16', fg: '#F2E7D3', dot: '#C23A4E', cursor: 'GOÛTER', slot: 'sel-vm', logo: './assets/logos/viensmanger.png', logoT: './assets/logos/viensmanger.png', lw: '74%', lr: '50%', plate: 'transparent' },
+  ];
+
+  // Le Groupe — scénarios (s1 = Inauguration, s2 = Événement d'entreprise). Viens Manger volontairement absent.
+  GROUP = [
+    { brand: 1, area: 'a', side: -1, row: -1, r1: "Conception et production de l’événement", r2: 'Imagine et produit l’expérience' },
+    { brand: 0, area: 'b', side: 1, row: -1, r1: 'Communication et visibilité', r2: 'Construit la communication autour du rendez-vous' },
+    { brand: 2, area: 'd', side: -1, row: 1, r1: 'Invités et connexions professionnelles', r2: 'Facilite les rencontres et les connexions professionnelles' },
+    { brand: 3, area: 'e', side: 1, row: 1, r1: 'Dimension sociale et expérience', r2: 'Apporte une dimension plus sociale lorsque le format s’y prête' },
+  ];
+
+  // Galerie Vision House — 3 à 30 projets. Composant média universel <media-slot> (image OU vidéo).
+  // ▸ Glisser-déposer un MP4/WebM/JPG/PNG/WebP directement sur la case, ou cliquer pour choisir un fichier.
+  // ▸ Ou renseigner ici : mediaType: 'video' | 'image', mediaSrc: './media/client01.mp4', poster: './media/client01-poster.jpg'
+  VH_PROJECTS = [
+    { name: 'CLIENT 01', year: '2026', services: ['STRATÉGIE', 'CONTENU', 'VIDÉO'], ratio: '16/9', rot: -1, slot: 'vh-m1', mediaType: 'video', mediaSrc: '', poster: '', url: '#' },
+    { name: 'CLIENT 02', year: '2026', services: ['BRANDING', 'POSITIONNEMENT'], ratio: '4/5', rot: 1, slot: 'vh-m2', mediaType: 'image', mediaSrc: '', poster: '', url: '#' },
+    { name: 'CLIENT 03', year: '2025', services: ['RÉSEAUX SOCIAUX', 'CONTENU'], ratio: '9/16', rot: -0.5, slot: 'vh-m3', mediaType: 'video', mediaSrc: '', poster: '', url: '#' },
+    { name: 'CLIENT 04', year: '2025', services: ['VIDÉO', 'PRODUCTION'], ratio: '16/9', rot: 0.8, slot: 'vh-m4', mediaType: 'video', mediaSrc: '', poster: '', url: '#' },
+  ];
+
+  // In Real Life — orientation : vertical (9:16) · portrait (4:5) · square (1:1) · landscape (16:9) · wide (21:9).
+  IRL = [
+    { brand: 'NEXPLORE', project: 'INAUGURATION', year: '2026', orientation: 'landscape', type: '', src: '', slot: 'irl-1', basis: '0 1 56%', min: '300px', m: '0', px: -40, ph: 'Nexplore — inauguration (photo ou MP4)' },
+    { brand: 'BAVARE', project: 'SOIRÉE SOCIALE', year: '2026', orientation: 'portrait', type: '', src: '', slot: 'irl-2', basis: '0 1 30%', min: '260px', m: '14vh 0 0', px: 50, ph: 'Bavare — soirée' },
+    { brand: 'VISION HOUSE', project: 'TOURNAGE', year: '2026', orientation: 'square', type: '', src: '', slot: 'irl-3', basis: '0 1 20%', min: '220px', m: '0 0 0 8vw', px: 30, ph: 'Coulisses — tournage' },
+    { brand: 'VIENS MANGER', project: 'EXPÉRIENCE FOOD', year: '2025', orientation: 'portrait', type: '', src: '', slot: 'irl-4', basis: '0 1 32%', min: '260px', m: '-6vh 0 0', px: -60, ph: 'Viens Manger — restaurant' },
+    { brand: 'NEXPLORE CONNECT', project: 'RENCONTRES', year: '2025', orientation: 'landscape', type: '', src: '', slot: 'irl-5', basis: '0 1 34%', min: '260px', m: '20vh 0 0', px: 40, ph: 'Rencontres — participants' },
+    { brand: 'BAVARE', project: 'ON SORT', year: '2025', orientation: 'wide', type: '', src: '', slot: 'irl-6', basis: '1 1 100%', min: '100%', m: '0 -5vw', px: -30, ph: 'Plein écran — photo ou vidéo' },
+    { brand: 'VISION HOUSE', project: 'PRODUCTION', year: '2025', orientation: 'vertical', type: '', src: '', slot: 'irl-7', basis: '0 1 22%', min: '220px', m: '0', px: -30, ph: 'Vidéo verticale 9:16 — production' },
+    { brand: 'VIENS MANGER', project: "L'ADRESSE", year: '2025', orientation: 'landscape', type: '', src: '', slot: 'irl-8', basis: '0 1 44%', min: '280px', m: '12vh 0 0', px: 50, ph: 'Lieu — restaurant' },
+    { brand: 'NEXPLORE', project: 'ACTIVATION', year: '2024', orientation: 'square', type: '', src: '', slot: 'irl-9', basis: '0 1 18%', min: '200px', m: '-4vh 0 0', px: -50, ph: 'Équipes — activation' },
+  ];
+
+  ORIENT = [
+    { id: 'vision', b: 0, need: 'Gagner en visibilité', services: ['Stratégie', 'Communication', 'Contenu', 'Positionnement'] },
+    { id: 'nexplore', b: 1, need: 'Créer un événement', services: ['Événements', 'Inaugurations', 'Expériences', 'Corporate'] },
+    { id: 'connect', b: 2, need: 'Développer mon réseau', services: ['Connexions', 'Networking', 'Rencontres professionnelles', 'Opportunités'] },
+    { id: 'bavard', b: 3, need: 'Sortir et rencontrer', services: ['Événements sociaux', 'Rencontres', 'Découverte de lieux', 'Expériences'] },
+    { id: 'vm', b: 4, need: 'Découvrir où manger', services: ['Restaurants', 'Concepts food', 'Adresses', 'Expériences culinaires'] },
+  ];
+
+  // EMKAY Room — orbites elliptiques distinctes (fractions du rayon dispo), décalage vertical, phase.
+  ROOM = [
+    { b: 0, role: 'Communication & stratégie', f: 0.62, fy: 0.55, oy: -0.02, ph: 200, w: 'clamp(130px,15vw,230px)', h: 'clamp(30px,3.2vw,48px)', pad: '0', r: '0' },
+    { b: 1, role: 'Événements & expériences', f: 0.82, fy: 0.78, oy: -0.1, ph: 280, w: 'clamp(120px,13vw,200px)', h: 'clamp(36px,3.6vw,56px)', pad: '0', r: '0' },
+    { b: 2, role: 'Rencontres professionnelles', f: 0.96, fy: 0.7, oy: 0.04, ph: 350, w: 'clamp(110px,12vw,190px)', h: 'clamp(46px,4.6vw,72px)', pad: '6px', r: '0' },
+    { b: 3, role: 'Événements sociaux', f: 1, fy: 0.92, oy: 0, ph: 60, w: 'clamp(120px,13vw,200px)', h: 'clamp(44px,4.4vw,68px)', pad: 'clamp(6px,.7vw,10px) clamp(12px,1.2vw,18px)', r: '999px' },
+    { b: 4, role: 'Food & découvertes', f: 0.78, fy: 0.86, oy: 0.08, ph: 130, w: 'clamp(76px,7.6vw,124px)', h: 'clamp(76px,7.6vw,124px)', pad: '0', r: '50%' },
+  ];
+
+  mediaKind(m) {
+    if (!m.src) return 'slot';
+    if (m.type === 'video' || /\.(mp4|webm|mov)(\?|#|$)/i.test(m.src)) return 'video';
+    return 'image';
+  }
+
+  componentDidMount() {
+    this.reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const fine = window.matchMedia('(pointer: fine)').matches;
+    this.setState({ fine, wide: innerWidth > 900 });
+    if (fine && this.props.customCursor !== false) document.body.classList.add('emk-cursor');
+    let s = 11; const rnd = () => (s = (s * 16807) % 2147483647) / 2147483647;
+    this.pts = Array.from({ length: 150 }, () => [rnd(), rnd()]);
+    this.onScroll = () => { if (!this.raf) this.raf = requestAnimationFrame(() => { this.raf = 0; this.update(); }); };
+    this.onResize = () => { this.setState({ wide: innerWidth > 900 }); this.onScroll(); };
+    this.onMove = (e) => {
+      this.mx = e.clientX / innerWidth - 0.5; this.my = e.clientY / innerHeight - 0.5;
+      const c = this.curRef.current;
+      if (c) c.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
+      const t = e.target && e.target.closest ? e.target.closest('[data-cursor]') : null;
+      const l = t ? t.dataset.cursor : '';
+      if (l !== this.state.cursor) this.setState({ cursor: l });
+    };
+    document.addEventListener('scroll', this.onScroll, { capture: true, passive: true });
+    addEventListener('resize', this.onResize);
+    addEventListener('mousemove', this.onMove, { passive: true });
+    this.update();
+    this.t1 = setTimeout(() => this.update(), 400);
+    const loop = (ts) => {
+      if (this.orbit && this.orbitVisible) this.orbitFrame(ts);
+      if (this.gEl && this.gVis) {
+        const d = this.gT - (this.gP ?? this.gT);
+        if (Math.abs(d) > 0.0004 || this.gP == null) { this.gP = (this.gP ?? this.gT) + d * 0.085; this.groupFrame(this.gEl, this.gP); }
+      }
+      this.loopId = requestAnimationFrame(loop);
+    };
+    if (!this.reduced) this.loopId = requestAnimationFrame(loop);
+    if ('IntersectionObserver' in window) {
+      this.vio = new IntersectionObserver((es) => es.forEach((e) => {
+        const v = e.target;
+        if (e.isIntersecting && e.intersectionRatio >= 0.5 && !this.reduced) { v.muted = true; const p = v.play(); if (p && p.catch) p.catch(() => {}); }
+        else v.pause();
+      }), { threshold: [0, 0.5] });
+    }
+    this.syncSrc();
+    this.scanVideos();
+  }
+
+  syncSrc() {
+    const root = this.rootRef.current; if (!root) return;
+    root.querySelectorAll('[data-src]').forEach((el) => {
+      const v = el.getAttribute('data-src');
+      if (v && !v.includes('{{') && el.getAttribute('src') !== v) el.setAttribute('src', v);
+      const p = el.getAttribute('data-poster');
+      if (p && !p.includes('{{') && p !== 'undefined' && el.getAttribute('poster') !== p) el.setAttribute('poster', p);
+    });
+  }
+
+  scanVideos() {
+    const root = this.rootRef.current; if (!root || !this.vio) return;
+    root.querySelectorAll('video[data-auto]:not([data-io])').forEach((v) => { v.setAttribute('data-io', '1'); v.muted = true; this.vio.observe(v); });
+  }
+
+  componentDidUpdate() { this.syncSrc(); this.onScroll && this.onScroll(); this.scanVideos(); }
+
+  componentWillUnmount() {
+    document.removeEventListener('scroll', this.onScroll, { capture: true });
+    removeEventListener('resize', this.onResize);
+    removeEventListener('mousemove', this.onMove);
+    cancelAnimationFrame(this.loopId); clearTimeout(this.t1); this.vio && this.vio.disconnect();
+    document.body.classList.remove('emk-cursor');
+  }
+
+  reveal(c, on) {
+    if (c._on === on) return;
+    c._on = on;
+    const fx = c.dataset.fx || 'up';
+    c.style.transition = this.reduced ? 'opacity .3s ease' : 'opacity .9s cubic-bezier(.2,.7,.1,1), transform 1s cubic-bezier(.2,.7,.1,1), filter 1.1s ease, clip-path 1.2s cubic-bezier(.7,0,.2,1)';
+    if (fx === 'mask') { c.style.clipPath = on ? 'inset(0 0 0 0)' : 'inset(100% 0 0 0)'; return; }
+    c.style.opacity = on ? 1 : 0;
+    c.style.pointerEvents = on ? '' : 'none';
+    if (this.reduced) return;
+    if (fx === 'pop') c.style.transform = on ? 'none' : 'scale(.3)';
+    else c.style.transform = on ? 'none' : 'translateY(40px)';
+  }
+
+  show(c, on) {
+    if (c._sh === on) return;
+    c._sh = on;
+    c.style.transition = on ? 'opacity .55s ease .32s, transform .8s cubic-bezier(.2,.7,.1,1) .32s' : 'opacity .28s ease, transform .3s ease';
+    c.style.opacity = on ? 1 : 0;
+    c.style.transform = on || this.reduced ? 'none' : 'translateY(16px)';
+  }
+
+  stack(c, d) {
+    if (c._d === d) return;
+    c._d = d;
+    c.style.transition = this.reduced ? 'opacity .3s' : 'opacity .8s cubic-bezier(.2,.7,.1,1), transform .9s cubic-bezier(.2,.7,.1,1)';
+    c.style.opacity = d < 0 ? 0.24 : d === 0 ? 1 : 0;
+    c.style.transform = d > 0 && !this.reduced ? 'translateY(36px)' : 'none';
+  }
+
+  countUp(c) {
+    const n = +c.dataset.count;
+    cancelAnimationFrame(c._raf);
+    if (this.reduced) { c.textContent = n + '+'; return; }
+    const t0 = performance.now();
+    const f = (t) => { const k = Math.min(1, (t - t0) / 1400), e = 1 - Math.pow(1 - k, 3); c.textContent = Math.round(n * e) + '+'; if (k < 1) c._raf = requestAnimationFrame(f); };
+    c._raf = requestAnimationFrame(f);
+  }
+
+  update() {
+    const root = this.rootRef.current; if (!root) return;
+    const vh = innerHeight, cl = (v) => Math.max(0, Math.min(1, v));
+    const wide = this.state.wide;
+    root.querySelectorAll('[data-sc]').forEach((el) => {
+      if (el.hasAttribute('data-vhs')) {
+        const n = el.querySelectorAll('[data-card]').length || 1;
+        el.style.height = wide ? (vh * (1 + 0.2 + n * 0.5 + 0.6)) + 'px' : '';
+      }
+      const r = el.getBoundingClientRect();
+      let v;
+      if (el.dataset.sc === 'sticky') v = cl(-r.top / Math.max(1, r.height - vh));
+      else {
+        v = cl((vh - r.top) / (vh * 0.75));
+        el.style.setProperty('--y', this.reduced || !wide ? '0' : ((r.top + r.height / 2 - vh / 2) / vh).toFixed(3));
+      }
+      el._p = v;
+      el.style.setProperty('--p', v.toFixed(4));
+      if (el.hasAttribute('data-vhs')) {
+        if (wide) { const k = this.vhStack(el, v); el._k = k; this.vhMorph(el, k); }
+        else { el._k = 0; this.vhStackReset(el); this.vhMorph(el, null); }
+      }
+      el.querySelectorAll('[data-r]').forEach((c) => { if (!c.closest('[data-sc]') || c.closest('[data-sc]') === el) this.reveal(c, v >= parseFloat(c.dataset.r)); });
+      if (el.dataset.steps) {
+        const n = +el.dataset.steps, a = Math.min(n - 1, Math.floor(v * n));
+        if (el.hasAttribute('data-stack')) el.querySelectorAll('[data-i]').forEach((c) => this.stack(c, +c.dataset.i - a));
+        else if (el.hasAttribute('data-seq')) el.querySelectorAll('[data-i]').forEach((c) => this.show(c, +c.dataset.i === a));
+        else el.querySelectorAll('[data-i]').forEach((c) => this.reveal(c, +c.dataset.i === a));
+        if (el._a !== a) {
+          el._a = a;
+          if (el.dataset.bgs) {
+            const inner = el.firstElementChild, b = el.dataset.bgs.split(','), f = (el.dataset.fgs || '').split(',');
+            inner.style.backgroundColor = b[a]; if (f[a]) inner.style.color = f[a];
+          }
+          const cc = el.querySelector(`[data-i="${a}"] [data-count]`); if (cc) this.countUp(cc);
+        }
+      }
+      if (!el.hasAttribute('data-group')) el.querySelectorAll('[data-show]').forEach((c) => { const [a, b] = c.dataset.show.split(',').map(Number); this.show(c, v >= a && v < b); });
+      if (el.hasAttribute('data-count-once') && v > 0.35 && !el._counted) { el._counted = true; el.querySelectorAll('[data-count]').forEach((c) => this.countUp(c)); }
+      const vis = r.bottom > 0 && r.top < vh;
+      if (vis && el.dataset.sc === 'sticky') {
+        el.querySelectorAll('[data-win]').forEach((c) => {
+          const [a, b] = c.dataset.win.split(',').map(Number), f = 0.018;
+          const i = cl((v - a) / f), o = cl((b - v) / f);
+          c.style.opacity = Math.min(i, o).toFixed(3);
+          if (!this.reduced) c.style.transform = `translateY(${((1 - i) * 24).toFixed(1)}px) scale(${(c.hasAttribute('data-shrink') ? 0.78 + 0.22 * o : 1).toFixed(3)})`;
+        });
+      }
+      if (el.dataset.canvas && vis) this.drawNet(v);
+      if (el.hasAttribute('data-group')) { this.gEl = el; this.gVis = vis; this.gT = v; if (vis && (this.reduced || !this.loopId)) { this.gP = v; this.groupFrame(el, v); } }
+      if (el.id === 'room') { this.orbit = el.querySelector('[data-orbit]'); this.orbitVisible = vis; this._roomP = v; if (vis && (this.reduced || !this.loopId)) this.orbitFrame(0); }
+    });
+    let brand = -1, hd = this.state.hd;
+    root.querySelectorAll('[data-brand]').forEach((el) => {
+      const r = el.getBoundingClientRect();
+      if (r.top <= vh * 0.5 && r.bottom >= vh * 0.5) brand = el.hasAttribute('data-vhs') && (el._k || 0) > 0.5 ? 1 : +el.dataset.brand;
+    });
+    root.querySelectorAll('[data-hd]').forEach((el) => {
+      const r = el.getBoundingClientRect();
+      if (r.top <= 40 && r.bottom > 40) {
+        const at = parseFloat(el.dataset.hdAt || '0.85');
+        hd = el.dataset.hdEnd && (el._p || 0) >= at ? el.dataset.hdEnd : el.dataset.hd;
+      }
+    });
+    const header = -root.getBoundingClientRect().top > vh * 0.25;
+    if (brand !== this.state.brand || header !== this.state.header || hd !== this.state.hd) this.setState({ brand, header, hd });
+  }
+
+  vhStack(el, p) {
+    const cl = (v) => Math.max(0, Math.min(1, v)), E = (t) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
+    const cards = [...el.querySelectorAll('[data-card]')], n = cards.length || 1;
+    const T = 0.2 + n * 0.5 + 0.6, pi = 0.2 / T, u = 0.5 / T, pE = pi + n * u;
+    const ui = el.querySelector('[data-vhui]');
+    const io = cl((p - pi * 0.4) / (u * 0.7));
+    if (ui) { ui.style.opacity = (1 - io).toFixed(3); ui.style.transform = this.reduced ? '' : `translateY(${(-io * 6).toFixed(2)}vh)`; }
+    const e = cards.map((c, i) => E(cl((p - (pi * 0.5 + i * u)) / (u * 0.8))));
+    cards.forEach((c, i) => {
+      let d = 0; for (let j = i + 1; j < n; j++) d += e[j];
+      const rot = +c.dataset.rot || 0;
+      const rr = i === n - 1 ? rot * (1 - cl((p - (pE - u * 0.25)) / (u * 0.25))) : rot;
+      const y = (1 - e[i]) * 92 - d * 2.6;
+      c.style.transform = `translate(-50%, ${y.toFixed(2)}vh) scale(${(1 - Math.min(d, 3) * 0.045).toFixed(4)}) rotate(${rr.toFixed(2)}deg)`;
+      c.style.opacity = (e[i] <= 0 ? 0 : Math.max(0, Math.min(1, e[i] * 3)) * (d > 2 ? Math.max(0, 1 - (d - 2) * 1.2) : 1)).toFixed(3);
+      c.style.filter = d > 0.05 ? `brightness(${(1 - Math.min(d, 3) * 0.14).toFixed(3)})` : '';
+    });
+    return cl((p - pE) / (1 - pE));
+  }
+
+  vhStackReset(el) {
+    el.querySelectorAll('[data-card]').forEach((c) => { c.style.transform = `rotate(${+c.dataset.rot || 0}deg)`; c.style.opacity = 1; c.style.filter = ''; });
+    const ui = el.querySelector('[data-vhui]'); if (ui) { ui.style.opacity = 1; ui.style.transform = ''; }
+  }
+
+  vhMorph(el, k) {
+    const xf = el.querySelector('[data-xf]'); if (!xf) return;
+    const cl = (v) => Math.max(0, Math.min(1, v)), E = (t) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
+    const xa = xf.querySelector('[data-xa]'), xb = xf.querySelector('[data-xb]'), xg = xf.querySelector('[data-xg]'), xt = xf.querySelector('[data-xt]');
+    const tr = el.querySelector('[data-track]'), ui = el.querySelector('[data-vhui]');
+    if (k == null) {
+      xf.style.left = '0px'; xf.style.top = '0px'; xf.style.width = '100%'; xf.style.height = '100svh'; xf.style.opacity = 1; xf.style.pointerEvents = 'auto'; xf.style.clipPath = '';
+      xa.style.opacity = 0; [xb, xg, xt].forEach((n) => (n.style.opacity = 1)); xt.style.transform = ''; return;
+    }
+    if (k <= 0) { xf.style.opacity = 0; xf.style.pointerEvents = 'none'; if (tr) tr.style.opacity = 1; return; }
+    const box = el.firstElementChild, br = box.getBoundingClientRect();
+    const meds = el.querySelectorAll('[data-vhmedia]'), last = meds[meds.length - 1];
+    const r = last ? last.getBoundingClientRect() : br;
+    const g = E(cl(k / 0.6)), L = (a, b) => a + (b - a) * g;
+    xf.style.left = L(r.left - br.left, 0).toFixed(1) + 'px'; xf.style.top = L(r.top - br.top, 0).toFixed(1) + 'px';
+    xf.style.width = L(r.width, br.width).toFixed(1) + 'px'; xf.style.height = L(r.height, br.height).toFixed(1) + 'px';
+    xf.style.opacity = 1; xf.style.pointerEvents = k > 0.97 ? 'auto' : 'none';
+    const sh = cl((k - 0.2) / 0.5);
+    const ms = xa.querySelector('media-slot'), empty = !ms || ms.mediaType === 'empty';
+    xa.style.opacity = empty ? 0 : 1; xa.style.filter = `saturate(${(1 - 0.6 * sh).toFixed(2)}) brightness(${(1 - 0.35 * sh).toFixed(2)}) contrast(${(1 + 0.15 * sh).toFixed(2)})`;
+    xb.style.opacity = (empty ? cl(k / 0.15) : cl((k - 0.35) / 0.35)).toFixed(3);
+    xg.style.opacity = cl((k - 0.5) / 0.3).toFixed(3);
+    const t = cl((k - 0.72) / 0.22); xt.style.opacity = t.toFixed(3); xt.style.transform = this.reduced ? '' : `translateY(${((1 - t) * 24).toFixed(1)}px)`;
+    const f = (1 - cl(k * 2.5)).toFixed(3); if (tr) tr.style.opacity = f;
+  }
+
+  orbitFrame(ts) {
+    const o = this.orbit; if (!o) return;
+    const W = o.clientWidth, H = o.clientHeight, P = this._roomP || 0;
+    const items = o._it && o._it.length === 5 ? o._it : (o._it = [...o.querySelectorAll('[data-oi]')]);
+    const core = o.querySelector('[data-core]');
+    let mw = 0, mh = 0; items.forEach((n) => { mw = Math.max(mw, n.offsetWidth); mh = Math.max(mh, n.offsetHeight); });
+    const cw = core ? core.offsetWidth : 200, ch = core ? core.offsetHeight : 60;
+    const rxMax = Math.max(60, W / 2 - mw / 2 - 6), ryMax = Math.max(40, H / 2 - mh / 2 - 30);
+    const rxMin = Math.min(rxMax, cw / 2 + mw / 2 + 24), ryMin = Math.min(ryMax, ch / 2 + mh / 2 + 24);
+    const now = ts || 0, dt = this._ot ? Math.min(64, now - this._ot) : 0; this._ot = now;
+    const slow = this.state.roomHover >= 0 ? 0.35 : 1;
+    this._oa = (this._oa || 0) + (this.reduced ? 0 : dt / 1000 * (this.props.orbitSpeed ?? 5) * 0.6 * slow);
+    const base = this._oa + P * 40;
+    const mx = this.mx || 0, my = this.my || 0;
+    items.forEach((n, i) => {
+      const c = this.ROOM[i] || { f: 1, fy: 1, oy: 0, ph: i * 72 };
+      const rx = rxMin + (rxMax - rxMin) * c.f, ry = ryMin + (ryMax - ryMin) * c.fy;
+      const ang = (base + c.ph) * Math.PI / 180;
+      const depth = 0.4 + c.f * 0.6;
+      const x = Math.cos(ang) * rx - mx * 18 * depth, y = Math.sin(ang) * ry + c.oy * H - my * 12 * depth;
+      n.style.transform = `translate(${x.toFixed(1)}px,${y.toFixed(1)}px) translate(-50%,-50%)`;
+      n.style.zIndex = this.state.roomHover === i ? 3 : 2;
+    });
+    if (core) core.style.transform = `translate(calc(-50% + ${(-mx * 6).toFixed(1)}px), calc(-50% + ${(-my * 4).toFixed(1)}px))`;
+  }
+
+  groupFrame(el, p) {
+    const cl = (v) => Math.max(0, Math.min(1, v));
+    const S = (a, b) => cl((p - a) / (b - a));
+    const E = (k) => (k < 0.5 ? 4 * k * k * k : 1 - Math.pow(-2 * k + 2, 3) / 2);
+    const stg = (k, o) => E(cl(k * 1.3 - o * 0.1));
+    const stage = el.querySelector('[data-stage]'); if (!stage) return;
+    const W = stage.clientWidth, H = stage.clientHeight, wide = this.state.wide;
+    const caps = el._caps && el._caps.length === 4 ? el._caps : (el._caps = [...el.querySelectorAll('[data-cap]')]);
+    const links = el._links || (el._links = [...el.querySelectorAll('[data-link]')]);
+    const X = wide ? W * 0.3 : W * 0.6, Y = H * 0.45;
+    const step = el.querySelector('[data-gstep]');
+    if (step) step.textContent = p < 0.18 ? '01 — INTRODUCTION' : p < 0.455 ? '02 — INAUGURATION' : p < 0.7 ? '03 — ÉVÉNEMENT D’ENTREPRISE' : '04 — CONCLUSION';
+    el.querySelectorAll('[data-show]').forEach((c) => { const [a, b] = c.dataset.show.split(',').map(Number); this.show(c, p >= a && p < b); });
+    const sr = stage.getBoundingClientRect();
+    const center = el.querySelector('[data-center]');
+    const cr = center ? center.getBoundingClientRect() : sr;
+    caps.forEach((c) => {
+      const i = +c.dataset.cap, g = this.GROUP[i] || { side: 1, row: 1 };
+      let dx = 0, dy = 0, op = 0, draw = 0;
+      if (p < 0.42) { const k = stg(S(0.19, 0.3), i); dx = g.side * (1 - k) * X; dy = -g.row * Math.sin(Math.PI * k) * 18; op = k; draw = E(S(0.28, 0.32)); }
+      else if (p < 0.465) { const r = E(S(0.42, 0.465)); dx = g.side * r * X * 0.7; dy = g.row * r * 20; op = 1 - r; draw = 1 - E(S(0.42, 0.44)); }
+      else if (p < 0.665) { const k = stg(S(0.47, 0.58), 3 - i); dx = g.side * (1 - k) * X * 0.25; dy = g.row * (1 - k) * Y; op = k; draw = E(S(0.57, 0.61)); }
+      else { const f = E(S(0.665, 0.7)); dy = g.row * f * Y * 0.6; op = 1 - f; draw = 1 - E(S(0.665, 0.68)); }
+      if (this.reduced) { dx = 0; dy = 0; }
+      c.style.transform = `translate(${dx.toFixed(1)}px,${dy.toFixed(1)}px)`;
+      c.style.opacity = op.toFixed(3);
+      c.style.pointerEvents = op > 0.5 ? '' : 'none';
+      const r1 = c.querySelector('[data-role="1"]'), r2 = c.querySelector('[data-role="2"]');
+      const second = p >= 0.455;
+      if (r1) r1.style.opacity = second ? 0 : 1;
+      if (r2) r2.style.opacity = second ? 1 : 0;
+      const ln = links[i];
+      if (ln) {
+        const b = c.getBoundingClientRect();
+        let x1, y1, x2, y2, d;
+        if (wide) {
+          x1 = (g.side < 0 ? b.right : b.left) - sr.left; y1 = b.top + b.height / 2 - sr.top;
+          x2 = (g.side < 0 ? cr.left - 16 : cr.right + 16) - sr.left; y2 = cr.top + cr.height / 2 - sr.top;
+          const m = (x2 - x1) * 0.55;
+          d = `M${x1.toFixed(1)} ${y1.toFixed(1)} C${(x1 + m).toFixed(1)} ${y1.toFixed(1)} ${(x2 - m).toFixed(1)} ${y2.toFixed(1)} ${x2.toFixed(1)} ${y2.toFixed(1)}`;
+        } else {
+          x1 = b.left + b.width / 2 - sr.left; y1 = b.top - sr.top;
+          x2 = cr.left + cr.width / 2 - sr.left + g.side * 20; y2 = cr.bottom - sr.top + 10;
+          const m = (y1 - y2) * 0.5;
+          d = `M${x1.toFixed(1)} ${y1.toFixed(1)} C${x1.toFixed(1)} ${(y1 - m).toFixed(1)} ${x2.toFixed(1)} ${(y2 + m).toFixed(1)} ${x2.toFixed(1)} ${y2.toFixed(1)}`;
+        }
+        ln.setAttribute('d', d);
+        ln.setAttribute('stroke-dashoffset', (1 - draw).toFixed(3));
+        ln.setAttribute('opacity', (draw * 0.5).toFixed(3));
+      }
+    });
+  }
+
+  drawNet(p) {
+    const c = this.netRef.current; if (!c) return;
+    const dpr = Math.min(2, devicePixelRatio || 1), w = c.clientWidth, h = c.clientHeight;
+    if (c.width !== Math.round(w * dpr) || c.height !== Math.round(h * dpr)) { c.width = Math.round(w * dpr); c.height = Math.round(h * dpr); }
+    const x = c.getContext('2d'); x.setTransform(dpr, 0, 0, dpr, 0, 0); x.clearRect(0, 0, w, h);
+    const t = Math.max(0, Math.min(1, (p - 0.76) / 0.2));
+    const th = (0.04 + Math.min(p, 0.76) * 0.14) * Math.max(w, h);
+    const P = this.pts.map(([a, b]) => [a * w, b * h]);
+    x.lineWidth = 1;
+    for (let i = 0; i < P.length; i++) for (let j = i + 1; j < P.length; j++) {
+      const dx = P[i][0] - P[j][0], dy = P[i][1] - P[j][1], d = Math.sqrt(dx * dx + dy * dy);
+      if (d < th) { x.strokeStyle = `rgba(43,20,61,${((1 - d / th) * 0.32 * (1 - t)).toFixed(3)})`; x.beginPath(); x.moveTo(P[i][0], P[i][1]); x.lineTo(P[j][0], P[j][1]); x.stroke(); }
+    }
+    const L1 = (a, b) => Math.round(a + (b - a) * t);
+    x.fillStyle = `rgba(${L1(9, 227)},${L1(9, 18)},${L1(9, 43)},${(0.4 + 0.55 * t).toFixed(2)})`;
+    const rad = 1.4 + t * 5;
+    P.forEach(([a, b]) => { x.beginPath(); x.arc(a, b, rad, 0, 6.283); x.fill(); });
+    const k = Math.min(1, p / 0.7), e = k < .5 ? 2 * k * k : 1 - Math.pow(-2 * k + 2, 2) / 2;
+    const L = (a, b) => a + (b - a) * e;
+    const A = [L(0.04, 0.68) * w, L(0.06, 0.5) * h], B = [L(0.96, 0.82) * w, L(0.9, 0.5) * h];
+    x.globalAlpha = 1 - t;
+    x.setLineDash([4, 6]); x.strokeStyle = `rgba(43,20,61,${(0.25 + e * 0.6).toFixed(2)})`;
+    x.beginPath(); x.moveTo(A[0], A[1]); x.lineTo(B[0], B[1]); x.stroke(); x.setLineDash([]);
+    if (e > 0.97) { x.strokeStyle = 'rgba(155,107,255,.7)'; x.beginPath(); x.arc((A[0] + B[0]) / 2, h * 0.5, 34 + Math.sin(p * 40) * 4, 0, 6.283); x.stroke(); }
+    [[A, '#9B6BFF'], [B, '#2B143D']].forEach(([q, col]) => {
+      x.fillStyle = col; x.shadowColor = col; x.shadowBlur = 16;
+      x.beginPath(); x.arc(q[0], q[1], 6, 0, 6.283); x.fill(); x.shadowBlur = 0;
+    });
+    x.globalAlpha = 1;
+  }
+
+  renderVals() {
+    const B = this.BRANDS, h = React.createElement;
+    const { brand, header, hoverDot, choice, sent, cursor, fine, wide, active, vhHover, irlHover, orHover, menu, hd } = this.state;
+    const RATIO = { vertical: '9/16', portrait: '4/5', square: '1/1', landscape: '16/9', wide: '21/9' };
+    const a = active == null ? null : B[active];
+    const T = (name, label, req, type) => ({ name, label, req, type: type || 'text', isText: true, isSelect: false, isArea: false, col: 'auto', options: [] });
+    const A = (name, label, req) => ({ name, label, req, type: '', isText: false, isSelect: false, isArea: true, col: '1/-1', options: [] });
+    const SEL = (name, label, req, opts) => ({ name, label, req, type: '', isText: false, isSelect: true, isArea: false, col: 'auto', options: opts.map((t, i) => ({ t, v: i === 0 ? '' : t })) });
+    const FIELDS = {
+      project: { intro: 'Parlons du projet et identifions la marque EMKAY la plus pertinente.', fields: [T('nom', 'NOM *', true), T('entreprise', 'ENTREPRISE', false), T('email', 'EMAIL *', true, 'email'), SEL('type', 'TYPE DE PROJET', false, ['Choisir…', 'Communication & visibilité', 'Événement', 'Rencontres professionnelles', 'Expérience sociale', 'Food & hospitality', 'Je ne sais pas encore']), SEL('budget', 'BUDGET INDICATIF (FACULTATIF)', false, ['Non précisé', '< 5 000 €', '5 000 – 15 000 €', '15 000 – 50 000 €', '> 50 000 €']), A('message', 'MESSAGE *', true)] },
+      collab: { intro: 'Imaginons une collaboration, une activation ou un projet commun.', fields: [T('nom', 'NOM *', true), T('organisation', 'ENTREPRISE / ORGANISATION *', true), SEL('type', 'TYPE DE COLLABORATION', false, ['Choisir…', 'Lieu', 'Partenariat de marque', 'Prestation', 'Sponsoring', 'Organisation / institution', 'Autre']), T('coordonnees', 'COORDONNÉES (EMAIL OU TÉLÉPHONE) *', true), A('proposition', 'VOTRE PROPOSITION *', true)] },
+      talk: { intro: 'Un café, un appel, une idée.', fields: [T('nom', 'NOM *', true), T('email', 'EMAIL *', true, 'email'), A('message', 'MESSAGE', false)] },
+      write: { intro: 'Bruxelles, Belgique.', fields: [T('nom', 'NOM *', true), T('email', 'EMAIL *', true, 'email'), A('message', 'MESSAGE *', true)] },
+    };
+    const forms = {
+      project: ["J'ai un projet.", 'PARLEZ-NOUS DU PROJET'],
+      collab: ['Je veux collaborer.', 'VOTRE STRUCTURE (LIEU, MARQUE, ENTREPRISE, SPONSOR…) ET VOTRE IDÉE'],
+      talk: ["J'ai envie d'échanger.", "DE QUOI AIMERIEZ-VOUS PARLER ?"],
+      write: ['Nous écrire.', 'VOTRE MESSAGE'],
+    };
+    const open = (k) => () => this.setState({ choice: k, sent: false });
+    const sizes = { p: ['min(30vw,52vh)', 'flex-start', '140px 0 0'], l: ['min(46vw,88vh)', 'flex-end', '0 0 9vh'], v: ['min(19vw,34vh)', 'center', '60px 0 0'], s: ['min(26vw,46vh)', 'flex-start', '120px 0 0'] };
+    const scrollCue = h('span', { style: { position: 'relative', display: 'block', width: 1, height: 56, overflow: 'hidden', background: 'rgba(245,241,233,.22)' } },
+      h('span', { style: { position: 'absolute', left: 0, top: 0, width: 1, height: '100%', background: '#F5F1E9', animation: this.reduced ? 'none' : 'emk-drop 1.8s cubic-bezier(.6,0,.2,1) infinite' } }));
+    return {
+      rootRef: this.rootRef, netRef: this.netRef, curRef: this.curRef,
+      wide, narrow: !wide, scrollCue,
+      hdColor: hd, hdLogoFilter: ['#F5F1E9', '#E6EBF2', '#F2E7D3'].includes(hd) ? 'none' : 'brightness(0)',
+      headerOpacity: header ? 1 : 0, headerPE: header ? 'auto' : 'none',
+      indicatorOpacity: brand >= 0 && wide ? 1 : 0,
+      brandNum: brand >= 0 ? '0' + (brand + 1) : '00', brandName: brand >= 0 ? B[brand].name : '',
+      menuOpen: menu, toggleMenu: () => this.setState({ menu: !menu }), closeMenu: () => this.setState({ menu: false }),
+      showSideNav: wide && (this.props.sideNav ?? true),
+      sideOpacity: brand >= 0 ? 1 : 0, sidePE: brand >= 0 ? 'auto' : 'none',
+      dots: B.map((b, i) => ({
+        id: b.id, num: b.num, name: b.name,
+        size: brand === i ? '11px' : '5px',
+        lo: hoverDot === i ? 1 : 0, lx: hoverDot === i ? '0px' : '8px',
+        enter: () => this.setState({ hoverDot: i }),
+      })),
+      leaveDot: () => this.setState({ hoverDot: -1 }),
+
+      listBg: a ? a.bg : '#2B143D', listFg: a ? a.fg : '#F5F1E9',
+      listLine: a ? (a.fg + '38') : 'rgba(245,241,233,.2)',
+      listCols: wide ? 'minmax(0,2.1fr) minmax(0,1fr)' : '1fr',
+      activeNum: (a ? a.num : '00') + ' / 05',
+      activeCat: a ? a.cat.toUpperCase() : 'LES MARQUES EMKAY',
+      selHint: wide ? 'SURVOLEZ UNE MARQUE' : 'TOUCHEZ UNE MARQUE',
+      resetActive: () => { if (this.state.wide) this.setState({ active: null }); },
+      brands: B.map((b, i) => ({
+        ...b,
+        op: a == null || active === i ? 1 : 0.28,
+        shift: active === i ? (wide ? '24px' : '10px') : '0px',
+        rows: active === i ? '1fr' : '0fr',
+        infoOp: active === i ? 1 : 0,
+        onEnter: () => { if (this.state.wide) this.setState({ active: i }); },
+        onTap: (e) => { if (!this.state.wide && this.state.active !== i) { e.preventDefault(); this.setState({ active: i }); } },
+      })),
+      selDefClip: a ? 'inset(0 0 100% 0)' : 'inset(0 0 0 0)',
+      selLayers: B.map((b, i) => ({
+        bg: b.logo ? b.plate === 'transparent' ? b.bg : b.plate : b.bg, slot: b.slot, ph: 'Logo ' + b.name.charAt(0) + b.name.slice(1).toLowerCase(),
+        hasLogo: !!b.logo, noLogo: !b.logo, logo: b.logo, alt: b.name, lw: b.lw || '100%', lr: b.lr || '0',
+        clip: active === i ? 'inset(0 0 0 0)' : 'inset(0 0 100% 0)',
+        z: active === i ? 3 : 2, scale: active === i ? 1 : 0.92,
+      })),
+
+      vhInH: wide ? '100vh' : 'auto',
+      vhIntroPos: wide ? 'absolute' : 'relative', vhIntroPad: wide ? '0 8vw' : '14vh 6vw 8vh',
+      vhStackPos: wide ? 'absolute' : 'relative', vhStackPad: wide ? '0' : '0 6vw 10vh',
+      vhXfPos: wide ? 'absolute' : 'relative', vhXfH: wide ? '0px' : '100svh', vhXfOp: wide ? 0 : 1, vhXaOp: wide ? 1 : 0, vhXbOp: wide ? 0 : 1,
+      vhLast: (() => { const pj = this.VH_PROJECTS[this.VH_PROJECTS.length - 1]; return { slot: pj.slot, mediaSrc: pj.mediaSrc, mediaType: pj.mediaType, poster: pj.poster, ph: pj.name }; })(),
+      vhProjects: this.VH_PROJECTS.map((pj, i) => {
+        const [a, b] = pj.ratio.split('/').map(Number), R = a / b;
+        return {
+          ...pj, i: String(i), n: String(i + 1).padStart(2, '0'), z: String(10 + i), href: pj.url || '#',
+          ph: pj.name + ' — ' + (pj.mediaType === 'video' ? 'vidéo MP4' : 'image'),
+          servicesLine: pj.services.map((x) => x.charAt(0) + x.slice(1).toLowerCase()).join(' · '),
+          pos: wide ? 'absolute' : 'relative', left: wide ? '50%' : 'auto', top: wide ? '12vh' : 'auto',
+          w: wide ? `min(72vw, calc((70vh - 70px) * ${R.toFixed(4)}))` : (R < 1 ? '78%' : '100%'),
+          mt: wide || i === 0 ? '0px' : '-30px', pad: wide ? '0px' : '0px',
+          tf: wide ? 'translate(-50%, 100vh)' : `rotate(${pj.rot}deg)`, op0: wide ? 0 : 1,
+          enter: () => {}, leave: () => {},
+        };
+      }),
+
+      gCols: wide ? 'minmax(0,1fr) minmax(0,min(34vw,520px)) minmax(0,1fr)' : 'minmax(0,1fr) minmax(0,1fr)',
+      gAreas: wide ? "'a c b' 'd c e'" : "'c c' 'a b' 'd e'",
+      groupCaps: this.GROUP.map((g, i) => ({ i: String(i), area: g.area, js: wide ? (g.side < 0 ? 'end' : 'start') : 'stretch', w: wide ? 'clamp(190px,22vw,320px)' : 'auto', name: B[g.brand].name, color: B[g.brand].dot, r1: g.r1, r2: g.r2 })),
+
+      irlItems: this.IRL.map((m, i) => ({
+        ...m, n: String(i + 1).padStart(2, '0'), ratio: RATIO[m.orientation] || '4/5', poster: m.poster || '',
+        isVideo: this.mediaKind(m) === 'video', isImage: this.mediaKind(m) === 'image', isSlot: this.mediaKind(m) === 'slot',
+        basis: wide ? m.basis : (m.orientation === 'vertical' ? '0 1 72%' : '1 1 100%'), m: wide ? m.m : (m.orientation === 'vertical' ? '0 auto' : '0'), min: wide ? m.min : '100%',
+        ov: irlHover === i || !fine ? 1 : 0, ovY: irlHover === i || !fine ? '0px' : '12px',
+        enter: () => this.setState({ irlHover: i }), leave: () => this.setState({ irlHover: -1 }),
+      })),
+
+      orCols: wide ? 'minmax(0,1.1fr) minmax(0,1fr)' : '1fr',
+      orient: this.ORIENT.map((o, i) => {
+        const b = B[o.b], on = this.state.orActive === i;
+        return {
+          ...o, num: '0' + (i + 1), brand: b.name, cursor: b.cursor, on: on ? 'true' : 'false',
+          op: on ? 1 : 0.42, shift: on && wide ? '14px' : '0px', rot: on ? (wide ? '0deg' : '90deg') : '0deg',
+          mOpen: !wide && on, bg: b.id === 'nexplore' ? '#16302B' : b.bg, fg: b.fg, plate: 'transparent', lr: b.lr || '0',
+          hasLogo: !!b.logoT, noLogo: !b.logoT, logo: b.logoT, slot: 'or-' + b.slot.slice(4),
+          servicesLine: o.services.join(' · '), cta: 'DÉCOUVRIR ' + b.name + ' →',
+          hover: () => { if (this.state.wide) this.setState({ orActive: i }); },
+          tap: () => this.setState({ orActive: !this.state.wide && this.state.orActive === i ? -1 : i }),
+        };
+      }),
+      orA: (() => {
+        const k = Math.max(0, this.state.orActive), o = this.ORIENT[k], b = B[o.b];
+        return { id: o.id, num: '0' + (k + 1), needUp: o.need.toUpperCase(), brand: b.name, bg: b.id === 'nexplore' ? '#16302B' : b.bg, fg: b.fg, plate: 'transparent', lr: b.lr || '0', hasLogo: !!b.logoT, noLogo: !b.logoT, logo: b.logoT, slot: 'or-' + b.slot.slice(4), services: o.services, servicesLine: o.services.join(' · '), cta: 'DÉCOUVRIR ' + b.name + ' →' };
+      })(),
+
+      roomLeave: () => this.setState({ roomHover: -1 }),
+      roomItems: this.ROOM.map((r, i) => {
+        const b = B[r.b], on = this.state.roomHover === i;
+        return {
+          i: String(i), name: b.name, role: r.role, w: r.w, h: r.h, pad: r.pad, r: r.r,
+          plate: b.id === 'bavard' ? '#FF9EC4' : 'transparent', shadow: b.id === 'bavard' || b.id === 'vm' ? '0 18px 44px rgba(10,4,18,.32)' : 'none',
+          hasLogo: !!b.logoT, noLogo: !b.logoT, logo: b.logoT, slot: 'room-' + b.slot.slice(4),
+          ir: r.r === '50%' ? '50%' : '0', scale: on ? 1.08 : 1, lop: on ? 1 : 0, ly: on ? '0px' : '-6px',
+          enter: () => this.setState({ roomHover: i }),
+        };
+      }),
+
+      openProject: open('project'), openCollab: open('collab'), openTalk: open('talk'), openWrite: open('write'),
+      closeForm: () => this.setState({ choice: null }),
+      formOpen: !!choice, formTitle: choice ? forms[choice][0] : '', formField: choice ? forms[choice][1] : '',
+      formIntro: choice ? FIELDS[choice].intro : '', formFields: choice ? FIELDS[choice].fields : [],
+      doorLeave: () => this.setState({ doorHover: -1 }),
+      doors: [
+        { k: 'project', num: '01', title: 'J’ai un projet.', desc: 'Vous avez une idée, un événement, une marque ou un besoin de communication à développer ?', sub: 'Parlons du projet et identifions la marque EMKAY la plus pertinente.', cta: 'PRÉSENTER MON PROJET', bg: '#3A1E52', bgH: '#45255F', fg: '#F5F1E9', fx: 'line' },
+        { k: 'collab', num: '02', title: 'Je veux collaborer.', desc: 'Vous êtes une marque, un lieu, un partenaire, un prestataire ou une organisation ?', sub: 'Imaginons une collaboration, une activation ou un projet commun.', cta: 'PROPOSER UNE COLLABORATION', bg: '#1F0E2D', bgH: '#170A22', fg: '#F5F1E9', fx: 'join' },
+        { k: 'talk', num: '03', title: 'J’ai envie d’échanger.', desc: 'Pas encore de projet précis ? Une conversation suffit parfois à faire émerger la suite.', sub: 'Un café, un appel, une idée.', cta: 'ÉCHANGER AVEC NOUS', bg: '#EEE6EC', bgH: '#F6F0F3', fg: '#2B143D', fx: 'soft' },
+      ].map((d, i) => {
+        const hv = this.state.doorHover, on = hv === i, dim = hv >= 0 && !on, touch = !fine;
+        return {
+          ...d, r: (0.22 + i * 0.07).toFixed(2),
+          bg: on ? d.bgH : d.bg, border: on ? (d.fg === '#F5F1E9' ? 'rgba(245,241,233,.55)' : 'rgba(43,20,61,.45)') : (d.fg === '#F5F1E9' ? 'rgba(245,241,233,.14)' : 'rgba(43,20,61,.12)'),
+          op: dim ? 0.62 : 1, scale: on && d.fx !== 'soft' ? 1.01 : 1, ty: on ? (d.fx === 'soft' ? '-2px' : '-4px') : '0px',
+          lineX: (on || touch) && d.fx === 'line' ? 1 : 0,
+          numScale: on && d.fx === 'line' ? 1.25 : 1,
+          joinOp: d.fx === 'join' ? 1 : 0, joinL: on && d.fx === 'join' ? '13px' : '0px', joinR: on && d.fx === 'join' ? '-13px' : '0px',
+          subOp: d.fx === 'soft' ? (on || touch ? 1 : 0) : 0.72,
+          subStyle: d.fx === 'soft' ? 'italic' : 'normal', subFont: d.fx === 'soft' ? "'Instrument Serif',serif" : 'inherit',
+          ctaX: on ? '4px' : '0px', arrowX: on ? '10px' : '0px',
+          enter: () => { if (this.state.fine) this.setState({ doorHover: i }); },
+          open: () => this.setState({ choice: d.k, sent: false, doorHover: -1 }),
+        };
+      }),
+      notSent: !sent, sent,
+      submit: (e) => { e.preventDefault(); this.setState({ sent: true }); },
+      showCursor: fine && (this.props.customCursor ?? true),
+      hasLabel: !!cursor, cursorLabel: cursor, dotOpacity: cursor ? 0 : 1,
+    };
+  }
+}
+</script>
+</body>
+</html>

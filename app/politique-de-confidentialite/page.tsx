@@ -9,15 +9,15 @@ export const metadata: Metadata = {
 
 export default function Confidentialite() {
   return (
-    <LegalPage label="DONNÉES PERSONNELLES" title={<>Politique de <em>confidentialité.</em></>} updated={<Todo>date</Todo>}>
+    <LegalPage label="DONNÉES PERSONNELLES" title={<>Politique de <em>confidentialité.</em></>} updated="15 OCTOBRE 2026">
       <p>EMKAY Partners attache de l’importance à la protection de vos données personnelles. Cette politique explique quelles données sont collectées via ce site, pourquoi, et quels sont vos droits, conformément au Règlement général sur la protection des données (RGPD — règlement (UE) 2016/679) et à la législation belge.</p>
 
       <h2>Responsable du traitement</h2>
       <dl className="lg-dl">
-        <dt>Responsable</dt><dd><Todo>dénomination sociale exacte et forme juridique</Todo></dd>
-        <dt>Adresse</dt><dd><Todo>adresse du siège</Todo></dd>
-        <dt>Numéro d’entreprise (BCE)</dt><dd><Todo>numéro BCE</Todo></dd>
-        <dt>Contact vie privée</dt><dd><Todo>adresse e-mail dédiée aux demandes RGPD</Todo></dd>
+        <dt>Responsable</dt><dd>EMKAY PARTNERS SRL</dd>
+        <dt>Adresse</dt><dd>Avenue des Gerfauts 10, boîte 34<br />1170 Watermael-Boitsfort, Belgique</dd>
+        <dt>Numéro d’entreprise (BCE)</dt><dd>1024.829.348</dd>
+        <dt>Contact vie privée</dt><dd><a href="mailto:hello@visionhouse.be">hello@visionhouse.be</a></dd>
       </dl>
       <p>Le traitement couvre EMKAY Partners et les marques développées et exploitées par EMKAY Partners présentées sur ce site.</p>
 
@@ -41,7 +41,7 @@ export default function Confidentialite() {
       <h2>Destinataires</h2>
       <p>Les données sont destinées aux personnes d’EMKAY Partners et des marques développées et exploitées par EMKAY Partners chargées de traiter votre demande. Elles transitent par des prestataires techniques agissant pour notre compte :</p>
       <ul>
-        <li>hébergement du site : <Todo>nom de l’hébergeur et pays</Todo> ;</li>
+        <li>hébergement du site : Vercel Inc. (États-Unis) ;</li>
         <li>réception des messages : <Todo>outil utilisé (ex. messagerie, Make, n8n, Zapier, Slack) et pays</Todo>.</li>
       </ul>
       <p>Lorsque certains prestataires sont établis hors de l’Union européenne, les transferts sont encadrés par les garanties prévues par le RGPD (décision d’adéquation ou clauses contractuelles types). <Todo>à confirmer selon les prestataires retenus</Todo></p>
@@ -53,7 +53,7 @@ export default function Confidentialite() {
       <p>À ce jour, ce site ne dépose aucun cookie publicitaire ni de mesure d’audience. Les polices de caractères sont servies directement par le site, sans appel à un service tiers. Si un outil de mesure d’audience est ajouté, cette politique sera mise à jour et votre consentement sera demandé lorsque la loi l’exige.</p>
 
       <h2>Vos droits</h2>
-      <p>Vous disposez d’un droit d’accès, de rectification, d’effacement, de limitation, d’opposition et de portabilité de vos données. Pour les exercer, écrivez à <Todo>adresse e-mail de contact vie privée</Todo> en précisant votre demande. Une réponse vous sera apportée dans un délai d’un mois.</p>
+      <p>Vous disposez d’un droit d’accès, de rectification, d’effacement, de limitation, d’opposition et de portabilité de vos données. Pour les exercer, écrivez à <a href="mailto:hello@visionhouse.be">hello@visionhouse.be</a> en précisant votre demande. Une réponse vous sera apportée dans un délai d’un mois.</p>
       <p>Vous pouvez également introduire une réclamation auprès de l’Autorité de protection des données (APD), rue de la Presse 35, 1000 Bruxelles — <a href="https://www.autoriteprotectiondonnees.be" target="_blank" rel="noopener noreferrer">www.autoriteprotectiondonnees.be</a>.</p>
 
       <h2>Modifications</h2>

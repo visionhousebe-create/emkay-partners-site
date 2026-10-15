@@ -1,11 +1,23 @@
 'use client';
 
 import Image from 'next/image';
+import Link from 'next/link';
 import { useState, type RefObject } from 'react';
-import { BRANDS, DOORS, GROUP, IRL, LINKS, ORIENT, RATIO, ROOM, SECTION_MEDIA, VH_PROJECTS, type FormKind } from '@/lib/data';
+import { BRANDS, DOORS, GROUP, IRL, LINKS, hasMedia, ORIENT, RATIO, ROOM, SECTION_MEDIA, VH_PROJECTS, type FormKind } from '@/lib/data';
 import { Logo, Media } from './media';
 
 const B = BRANDS;
+
+/** Lien si une URL est renseignée, sinon simple bloc. */
+function MetaTag({ href, ...rest }: React.ComponentProps<'a'>) {
+  return href ? <a href={href} {...rest} /> : <div {...(rest as React.ComponentProps<'div'>)} />;
+}
+
+/** Lien externe ; tant que l'URL n'est pas renseignée dans LINKS, rendu à l'identique mais non cliquable. */
+function Ext({ href, children, ...rest }: React.ComponentProps<'a'>) {
+  if (!href) return <span {...(rest as React.ComponentProps<'span'>)} aria-disabled="true" title="Bientôt disponible">{children}</span>;
+  return <a href={href} target="_blank" rel="noopener noreferrer" {...rest}>{children}</a>;
+}
 
 export type UI = {
   wide: boolean;
@@ -178,21 +190,21 @@ function VisionHouse({ ui }: { ui: UI }) {
                 <div data-vhmedia="" style={{ position: 'relative', width: '100%', aspectRatio: pj.ratio, overflow: 'hidden', background: '#160B52' }}>
                   <Media src={pj.mediaSrc} type={pj.mediaType} poster={pj.poster} autoplay="hover" placeholder={pj.name + ' — ' + (pj.mediaType === 'video' ? 'vidéo MP4' : 'image')} sizes="72vw" />
                 </div>
-                <a href={pj.url || '#'} className="vh-meta">
+                <MetaTag href={pj.url || undefined} className="vh-meta">
                   <span style={{ fontSize: 10, fontWeight: 700, letterSpacing: '.22em', color: '#A9A3D6' }}>{String(i + 1).padStart(2, '0')} / CLIENT</span>
                   <span style={{ display: 'flex', flexDirection: 'column', gap: 4, minWidth: 0 }}>
                     <span className="xw" style={{ fontWeight: 800, fontSize: 'clamp(15px,1.3vw,20px)', letterSpacing: '-.01em' }}>{pj.name}</span>
                     <span style={{ fontSize: 12, fontWeight: 500, letterSpacing: '.06em', color: '#CFCBEA' }}>{pj.services.map((x) => x.charAt(0) + x.slice(1).toLowerCase()).join(' · ')}</span>
                   </span>
                   <span style={{ fontSize: 12, fontWeight: 600, letterSpacing: '.16em', color: '#A9A3D6' }}>{pj.year}</span>
-                </a>
+                </MetaTag>
               </div>
             );
           })}
         </div>
-        <div data-xf="" className="vh-xf" style={{ position: wide ? 'absolute' : 'relative', height: wide ? 0 : '100svh', opacity: wide ? 0 : 1 }}>
-          <div data-xa="" data-empty={last.mediaSrc ? undefined : ''} style={{ position: 'absolute', inset: 0, opacity: wide && last.mediaSrc ? 1 : 0 }}>
-            {last.mediaSrc && <Media src={last.mediaSrc} type={last.mediaType} poster={last.poster} placeholder={last.name} autoplay="visible" />}
+        <div data-xf="" className="vh-xf" style={{ position: wide ? 'absolute' : 'relative', height: wide ? '100%' : '100svh', opacity: wide ? 0 : 1 }}>
+          <div data-xa="" data-empty={hasMedia(last.mediaSrc) ? undefined : ''} style={{ position: 'absolute', inset: 0, opacity: wide && hasMedia(last.mediaSrc) ? 1 : 0 }}>
+            {hasMedia(last.mediaSrc) && <Media src={last.mediaSrc} type={last.mediaType} poster={last.poster} placeholder={last.name} autoplay="visible" />}
           </div>
           <div data-xb="" style={{ position: 'absolute', inset: 0, opacity: wide ? 0 : 1 }}>
             <Image src={SECTION_MEDIA.nexplore} alt="Événement Nexplore" fill sizes="100vw" style={{ objectFit: 'cover' }} />
@@ -311,7 +323,7 @@ function Bavare() {
         </div>
         <div className="bv-bottom">
           <span className="bv-sign"><Logo src="/logos/bavard.png" alt="Bavare" style={{ display: 'block', height: 22, width: 'auto', objectFit: 'contain' }} />DES SORTIES QUI CRÉENT DES RENCONTRES.</span>
-          <a href={LINKS.nextBavare} data-cursor="VOIR" data-r="0.4" className="bv-cta">VOIR LE PROCHAIN BAVARE ↗</a>
+          <Ext href={LINKS.nextBavare} data-cursor="VOIR" data-r="0.4" className="bv-cta">VOIR LE PROCHAIN BAVARE ↗</Ext>
         </div>
         <div className="bv-wipe" />
       </div>
@@ -349,7 +361,7 @@ function ViensManger() {
             </div>
           </div>
           <div data-r="0.56" style={{ display: 'flex', justifyContent: 'flex-end', paddingTop: 12, borderTop: '1px solid #4A0B16' }}>
-            <a href={LINKS.vmAddresses} className="cta-line" style={{ fontWeight: 700, paddingBottom: 6, borderBottom: '2px solid #A3161F', color: '#A3161F' }}>DÉCOUVRIR LES ADRESSES ↗</a>
+            <Ext href={LINKS.vmAddresses} className="cta-line" style={{ fontWeight: 700, paddingBottom: 6, borderBottom: '2px solid #A3161F', color: '#A3161F' }}>DÉCOUVRIR LES ADRESSES ↗</Ext>
           </div>
         </div>
       </div>
@@ -522,7 +534,7 @@ function InRealLife({ ui }: { ui: UI }) {
           const on = hover === i || !fine;
           const vertical = m.orientation === 'vertical';
           return (
-            <figure key={m.src || m.ph} data-sc="enter" data-cursor="OUVRIR" onMouseEnter={() => setHover(i)} onMouseLeave={() => setHover(-1)} className="irl-fig"
+            <figure key={m.ph} data-sc="enter" data-cursor="OUVRIR" onMouseEnter={() => setHover(i)} onMouseLeave={() => setHover(-1)} className="irl-fig"
               style={{ margin: wide ? m.m : vertical ? '0 auto' : 0, flex: wide ? m.basis : vertical ? '0 1 72%' : '1 1 100%', minWidth: `min(100%,${wide ? m.min : '100%'})` }}>
               <div style={{ position: 'relative', aspectRatio: RATIO[m.orientation] || '4/5', overflow: 'hidden', transform: `translateX(calc(var(--y,0) * ${m.px}px))` }}>
                 <Media src={m.src} type={m.type} poster={m.poster} placeholder={m.ph} alt={`${m.brand} — ${m.project}`} sizes={m.orientation === 'wide' ? '100vw' : '(max-width: 900px) 100vw, 56vw'} autoplay="visible" />
@@ -550,13 +562,13 @@ function Orientation({ ui }: { ui: UI }) {
       <div data-r="0.04" className="lbl" style={{ letterSpacing: '.24em', color: '#2B143D' }}>TROUVEZ VOTRE POINT D’ENTRÉE</div>
       <h2 data-r="0.08" className="or-h2">Votre besoin.<br /><span className="serif-i" style={{ letterSpacing: '-.02em', color: '#2B143D' }}>Notre marque.</span></h2>
       <p data-r="0.16" style={{ margin: '4vh 0 0', maxWidth: 560, fontSize: 18, lineHeight: 1.5, color: '#3a3540' }}>Chaque marque d’EMKAY répond à un besoin précis. Commencez par le vôtre.</p>
-      <div style={{ marginTop: '7vh', display: 'grid', gridTemplateColumns: wide ? 'minmax(0,1.1fr) minmax(0,1fr)' : '1fr', gap: 'clamp(24px,4vw,64px)', alignItems: 'stretch' }}>
+      <div style={{ marginTop: '7vh', display: 'grid', gridTemplateColumns: wide ? 'minmax(0,1.1fr) minmax(0,1fr)' : 'minmax(0,1fr)', gap: 'clamp(24px,4vw,64px)', alignItems: 'stretch' }}>
         <div style={{ display: 'flex', flexDirection: 'column', borderTop: '1px solid #080808' }}>
           {ORIENT.map((o, i) => {
             const b = B[o.b], on = act === i;
             return (
               <div key={o.id} style={{ borderBottom: '1px solid rgba(8,8,8,.25)' }}>
-                <button type="button" onMouseEnter={() => { if (wide) setAct(i); }} onFocus={() => { if (wide) setAct(i); }} onClick={() => setAct(!wide && act === i ? -1 : i)} data-cursor={b.cursor} aria-expanded={on} className="btn-reset or-btn" style={{ opacity: on ? 1 : 0.42 }}>
+                <button type="button" onMouseEnter={() => { if (wide) setAct(i); }} onFocus={() => { if (wide) setAct(i); }} onClick={() => setAct(!wide && act === i ? -1 : i)} data-cursor={b.cursor} aria-expanded={on} className="btn-reset or-btn" style={{ opacity: on ? 1 : 0.62 }}>
                   <span className="lbl" style={{ flex: 'none', width: 28, letterSpacing: '.2em', color: '#2B143D' }}>0{i + 1}</span>
                   <span className="or-need" style={{ transform: `translateX(${on && wide ? '14px' : '0px'})` }}>{o.need}</span>
                   <span style={{ flex: 'none', fontSize: 18, transform: `rotate(${on ? (wide ? '0deg' : '90deg') : '0deg'})`, transition: 'transform .5s ease' }}>→</span>
@@ -565,7 +577,7 @@ function Orientation({ ui }: { ui: UI }) {
                   <div style={{ margin: '0 0 20px', padding: 24, background: panelBg(b.id, b.bg), color: b.fg, display: 'flex', flexDirection: 'column', gap: 18 }}>
                     <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: '.22em' }}>→ {b.name}</span>
                     <div style={{ height: 56, display: 'flex', alignItems: 'center' }}>
-                      <Logo src={b.logoT} alt={b.name} style={{ display: 'block', maxHeight: 40, width: 'auto', height: 'auto', objectFit: 'contain', borderRadius: b.lr }} />
+                      <Logo src={b.logoT} alt={b.name} style={{ display: 'block', maxHeight: 40, maxWidth: '100%', width: 'auto', height: 'auto', objectFit: 'contain', borderRadius: b.lr }} />
                     </div>
                     <span style={{ fontSize: 15, lineHeight: 1.7 }}>{o.services.join(' · ')}</span>
                     <a href={'#' + o.id} style={{ alignSelf: 'flex-start', fontSize: 13, fontWeight: 700, letterSpacing: '.16em', paddingBottom: 6, borderBottom: '1px solid currentColor' }}>DÉCOUVRIR {b.name} →</a>
@@ -700,14 +712,14 @@ function Footer() {
         </div>
         <div className="ft-col">
           <span className="ft-h">SUIVRE</span>
-          <a href={LINKS.linkedin}>LinkedIn ↗</a>
-          <a href={LINKS.instagram}>Instagram ↗</a>
+          <Ext href={LINKS.linkedin} className="ft-a">LinkedIn ↗</Ext>
+          <Ext href={LINKS.instagram} className="ft-a">Instagram ↗</Ext>
           <a href="#contact" data-cursor="ALLER" className="ft-a">Contact →</a>
         </div>
         <div className="ft-col">
           <span className="ft-h">INFORMATIONS</span>
-          <a href={LINKS.mentions}>Mentions légales</a>
-          <a href={LINKS.privacy}>Confidentialité</a>
+          <Link href={LINKS.mentions} className="ft-a">Mentions légales</Link>
+          <Link href={LINKS.privacy} className="ft-a">Politique de confidentialité</Link>
         </div>
       </div>
       <div style={{ paddingTop: 20, borderTop: '1px solid rgba(245,241,233,.2)', fontSize: 11, letterSpacing: '.2em', color: '#C9C2CF' }}>© 2026 EMKAY PARTNERS</div>

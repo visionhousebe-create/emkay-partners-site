@@ -1,7 +1,24 @@
-node_modules
-.next
-out
+# dépendances
+node_modules/
+# build Next.js / Vercel
+.next/
+out/
+build/
+.vercel/
 next-env.d.ts
 *.tsbuildinfo
-.vercel
-.env*.local
+# variables d'environnement et secrets (seul .env.example est versionné)
+.env
+.env.*
+!.env.example
+# système / éditeurs / logs
+.DS_Store
+Thumbs.db
+*.log
+npm-debug.log*
+.idea/
+.vscode/
+# caches
+.cache/
+.turbo/
+.eslintcache

@@ -1,13 +1,20 @@
 import type { Metadata, Viewport } from 'next';
 import { Archivo, Instrument_Serif } from 'next/font/google';
+import { INDEXABLE, SITE_DESCRIPTION, SITE_NAME, SITE_TITLE, SITE_URL } from '@/lib/site';
 import './globals.css';
 
-const archivo = Archivo({ subsets: ['latin'], axes: ['wdth'], style: ['normal', 'italic'], variable: '--font-archivo', display: 'swap' });
+const archivo = Archivo({ subsets: ['latin'], axes: ['wdth'], variable: '--font-archivo', display: 'swap' });
 const serif = Instrument_Serif({ subsets: ['latin'], weight: '400', style: ['normal', 'italic'], variable: '--font-serif', display: 'swap' });
 
 export const metadata: Metadata = {
-  title: 'EMKAY Partners — Une maison. Des univers bien à eux.',
-  description: 'EMKAY Partners, structure entrepreneuriale bruxelloise : Vision House, Nexplore, Nexplore Connect, Bavare et Viens Manger.',
+  metadataBase: new URL(SITE_URL),
+  title: { default: SITE_TITLE, template: `%s — ${SITE_NAME}` },
+  description: SITE_DESCRIPTION,
+  applicationName: SITE_NAME,
+  alternates: { canonical: '/' },
+  robots: INDEXABLE ? { index: true, follow: true } : { index: false, follow: false },
+  openGraph: { type: 'website', locale: 'fr_BE', url: '/', siteName: SITE_NAME, title: SITE_TITLE, description: SITE_DESCRIPTION },
+  twitter: { card: 'summary_large_image', title: SITE_TITLE, description: SITE_DESCRIPTION },
 };
 
 export const viewport: Viewport = { themeColor: '#2B143D', width: 'device-width', initialScale: 1 };

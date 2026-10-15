@@ -7,6 +7,7 @@ import { Logo } from './media';
 import { Sections, type UI } from './sections';
 
 const B = BRANDS;
+const AUTO: Record<string, string> = { nom: 'name', email: 'email', telephone: 'tel', entreprise: 'organization', organisation: 'organization' };
 
 export default function EmkaySite() {
   const rootRef = useRef<HTMLDivElement>(null);
@@ -26,7 +27,8 @@ export default function EmkaySite() {
   const [choice, setChoice] = useState<FormKind | null>(null);
   const [sent, setSent] = useState(false);
   const [sending, setSending] = useState(false);
-  const [sendError, setSendError] = useState(false);
+  const [sendError, setSendError] = useState('');
+  const formAt = useRef(0);
   const [qa, setQa] = useState(false);
   const [qaIn, setQaIn] = useState(false);
   const [qaHover, setQaHover] = useState(-1);
@@ -87,7 +89,7 @@ export default function EmkaySite() {
   const openMega = () => { clearTimeout(timers.current.tm); setMega(true); setMegaIn(false); setMegaHover(-1); timers.current.tm = window.setTimeout(() => setMegaIn(true), 20); };
   const closeMega = () => { clearTimeout(timers.current.tm); setMegaIn(false); timers.current.tm = window.setTimeout(() => setMega(false), 320); };
 
-  const openForm = useCallback((k: FormKind) => { setChoice(k); setSent(false); setSendError(false); }, []);
+  const openForm = useCallback((k: FormKind) => { formAt.current = Date.now(); setChoice(k); setSent(false); setSendError(''); }, []);
 
   // ——— Montage : moteur, écouteurs ———
   useEffect(() => {
@@ -132,7 +134,7 @@ export default function EmkaySite() {
       }
       if (e.key !== 'Tab') return;
       const traps = document.querySelectorAll('[data-trap]'), t = traps[traps.length - 1]; if (!t) return;
-      const f = [...t.querySelectorAll<HTMLElement>('a[href],button,input,select,textarea,[tabindex]:not([tabindex="-1"])')].filter((x) => x.offsetParent !== null || x === document.activeElement);
+      const f = [...t.querySelectorAll<HTMLElement>('a[href],button,input,select,textarea,[tabindex]:not([tabindex="-1"])')].filter((x) => x.tabIndex !== -1 && (x.offsetParent !== null || x === document.activeElement));
       if (!f.length) return;
       const first = f[0], last = f[f.length - 1], cur = document.activeElement;
       if (!t.contains(cur)) { e.preventDefault(); first.focus(); }
@@ -175,7 +177,7 @@ export default function EmkaySite() {
   }, [goTo, closeQa]);
 
   // Après chaque rendu (changement de mise en page wide/narrow, menus…), recalcule les positions.
-  useEffect(() => { engine.current?.schedule(); });
+  useEffect(() => { engine.current?.invalidate(); engine.current?.schedule(); });
 
   const { brand, header, hd } = es;
   const ui: UI = { wide, fine, reduced, netRef, openQa, openForm, roomHover, setRoomHover };
@@ -183,14 +185,14 @@ export default function EmkaySite() {
   const submit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!choice || sending) return;
-    setSending(true); setSendError(false);
+    setSending(true); setSendError('');
     try {
       const data = Object.fromEntries(new FormData(e.currentTarget).entries());
-      const res = await fetch('/api/contact', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ kind: choice, ...data }) });
-      if (!res.ok) throw new Error(String(res.status));
-      setSent(true);
+      const res = await fetch('/api/contact', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ ...data, kind: choice, _t: Date.now() - formAt.current }) });
+      if (res.ok) setSent(true);
+      else setSendError(res.status === 422 || res.status === 400 ? 'MERCI DE VÉRIFIER VOTRE NOM, VOTRE E-MAIL ET VOTRE MESSAGE.' : 'VOTRE MESSAGE N’A PAS PU PARTIR. MERCI DE RÉESSAYER DANS UN INSTANT.');
     } catch {
-      setSendError(true);
+      setSendError('VOTRE MESSAGE N’A PAS PU PARTIR. MERCI DE RÉESSAYER DANS UN INSTANT.');
     } finally {
       setSending(false);
     }
@@ -211,7 +213,7 @@ export default function EmkaySite() {
             <span className="hd-logo-txt">EMKAY PARTNERS</span>
           )}
         </a>
-        <a href={'#' + (brand >= 0 ? B[brand].id : 'top')} aria-label="Section en cours" className="hd-ind" style={{ opacity: indicatorOn ? 1 : 0, pointerEvents: indicatorOn ? 'auto' : 'none' }}>
+        <a href={'#' + (brand >= 0 ? B[brand].id : 'top')} aria-label="Section en cours" aria-hidden={!indicatorOn} tabIndex={indicatorOn ? undefined : -1} className="hd-ind" style={{ opacity: indicatorOn ? 1 : 0, pointerEvents: indicatorOn ? 'auto' : 'none', visibility: wide ? 'visible' : 'hidden', minWidth: 0, overflow: 'hidden' }}>
           <span style={{ opacity: 0.5 }}>/</span><span style={{ fontWeight: 700 }}>{brand >= 0 ? B[brand].name : ''}</span><span style={{ opacity: 0.6 }}>{brand >= 0 ? '0' + (brand + 1) : '00'} / 05</span>
         </a>
         {wide ? (
@@ -328,10 +330,12 @@ export default function EmkaySite() {
               <>
                 <p className="form-intro">{form.intro}</p>
                 <form onSubmit={submit} className="form-grid">
+                  {/* Champ piège anti-spam : invisible pour les visiteurs, rempli par les robots. */}
+                  <label className="hp" aria-hidden="true">Site web<input name="site_web" type="text" tabIndex={-1} autoComplete="off" /></label>
                   {form.fields.map((f) => (
                     <label key={choice + f.name} className="form-field" style={{ gridColumn: f.kind === 'area' ? '1/-1' : 'auto' }}>
                       <span>{f.label}</span>
-                      {f.kind === 'text' && <input name={f.name} type={f.type} required={f.req} className="input" />}
+                      {f.kind === 'text' && <input name={f.name} type={f.type} required={f.req} autoComplete={AUTO[f.name]} className="input" />}
                       {f.kind === 'select' && (
                         <select name={f.name} required={f.req} className="input" style={{ cursor: 'pointer', color: '#F5F1E9' }}>
                           {f.options!.map((t, i) => <option key={t} value={i === 0 ? '' : t} style={{ color: '#080808' }}>{t}</option>)}
@@ -341,13 +345,13 @@ export default function EmkaySite() {
                     </label>
                   ))}
                   <div className="form-actions">
-                    <span>{sendError ? 'L’ENVOI A ÉCHOUÉ — RÉESSAYEZ.' : 'BRUXELLES, BELGIQUE.'}</span>
+                    <span role="status" aria-live="polite">{sendError || 'BRUXELLES, BELGIQUE.'}</span>
                     <button type="submit" disabled={sending} className="btn-reset btn-light">{sending ? 'ENVOI…' : 'ENVOYER ↗'}</button>
                   </div>
                 </form>
               </>
             ) : (
-              <p className="form-thanks">Merci. Votre message est bien arrivé — on revient vers vous très vite.</p>
+              <p className="form-thanks">Merci, votre message a bien été pris en compte. On revient vers vous très vite.</p>
             )}
           </div>
         </div>

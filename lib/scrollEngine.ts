@@ -123,16 +123,49 @@ export class ScrollEngine {
     c._raf = requestAnimationFrame(f);
   }
 
+  /** Listes d'éléments mises en cache ; invalidées après chaque rendu React (le DOM peut avoir changé). */
+  private cache: {
+    secs: { el: El; reveals: El[]; steps: El[]; shows: El[]; counts: El[]; pq: HTMLElement | null }[];
+    brands: El[]; hds: El[];
+  } | null = null;
+
+  invalidate() { this.cache = null; }
+
+  private collect() {
+    const root = this.root;
+    const secs = [...root.querySelectorAll<El>('[data-sc]')].map((el) => ({
+      el,
+      reveals: [...el.querySelectorAll<El>('[data-r]')].filter((c) => c.closest('[data-sc]') === el || !c.closest('[data-sc]')),
+      steps: el.dataset.steps ? [...el.querySelectorAll<El>('[data-i]')] : [],
+      shows: el.hasAttribute('data-group') ? [] : [...el.querySelectorAll<El>('[data-show]')],
+      counts: el.hasAttribute('data-count-once') ? [...el.querySelectorAll<El>('[data-count]')] : [],
+      pq: el.id === 'top' ? el.querySelector<HTMLElement>('[data-portal-qa]') : null,
+    }));
+    return (this.cache = { secs, brands: [...root.querySelectorAll<El>('[data-brand]')], hds: [...root.querySelectorAll<El>('[data-hd]')] });
+  }
+
   update() {
     const root = this.root;
     const vh = innerHeight;
     const wide = this.o.getWide();
-    root.querySelectorAll<El>('[data-sc]').forEach((el) => {
-      if (el.hasAttribute('data-vhs')) {
-        const n = el.querySelectorAll('[data-card]').length || 1;
-        el.style.height = wide ? vh * (1 + 0.2 + n * 0.5 + 0.6) + 'px' : '';
-      }
-      const r = el.getBoundingClientRect();
+    const C = this.cache || this.collect();
+
+    // 1) Écriture qui change la mise en page (hauteur de Vision House), avant toute lecture.
+    for (const { el } of C.secs) {
+      if (!el.hasAttribute('data-vhs')) continue;
+      const n = el.querySelectorAll('[data-card]').length || 1;
+      const h = wide ? vh * (1 + 0.2 + n * 0.5 + 0.6) + 'px' : '';
+      if (el.style.height !== h) el.style.height = h;
+    }
+    // 2) Toutes les lectures de position en une passe (évite les recalculs de layout en cascade).
+    const rects = C.secs.map((s) => s.el.getBoundingClientRect());
+    const brandRects = C.brands.map((el) => el.getBoundingClientRect());
+    const hdRects = C.hds.map((el) => el.getBoundingClientRect());
+    const rootTop = root.getBoundingClientRect().top;
+
+    // 3) Écritures.
+    C.secs.forEach(({ el, reveals, steps, shows, counts, pq }, i) => {
+      const r = rects[i];
       let v: number;
       if (el.dataset.sc === 'sticky') v = cl(-r.top / Math.max(1, r.height - vh));
       else {
@@ -141,23 +174,18 @@ export class ScrollEngine {
       }
       el._p = v;
       el.style.setProperty('--p', v.toFixed(4));
-      if (el.id === 'top') {
-        const pq = el.querySelector<HTMLElement>('[data-portal-qa]');
-        if (pq) { const on = v < 0.1; pq.style.pointerEvents = on ? 'auto' : 'none'; pq.tabIndex = on ? 0 : -1; }
-      }
+      const vis = r.bottom > 0 && r.top < vh;
+      if (pq) { const on = v < 0.1; pq.style.pointerEvents = on ? 'auto' : 'none'; pq.tabIndex = on ? 0 : -1; }
       if (el.hasAttribute('data-vhs')) {
-        if (wide) { const k = this.vhStack(el, v); el._k = k; this.vhMorph(el, k); }
+        if (wide) { const first = el._k === undefined, k = this.vhStack(el, v); el._k = k; if (vis || first) this.vhMorph(el, k); }
         else { el._k = 0; this.vhStackReset(el); this.vhMorph(el, null); }
       }
-      el.querySelectorAll<El>('[data-r]').forEach((c) => {
-        const owner = c.closest('[data-sc]');
-        if (!owner || owner === el) this.reveal(c, v >= parseFloat(c.dataset.r || '0'));
-      });
+      for (const c of reveals) this.reveal(c, v >= parseFloat(c.dataset.r || '0'));
       if (el.dataset.steps) {
         const n = +el.dataset.steps, a = Math.min(n - 1, Math.floor(v * n));
-        if (el.hasAttribute('data-stack')) el.querySelectorAll<El>('[data-i]').forEach((c) => this.stack(c, +(c.dataset.i || 0) - a));
-        else if (el.hasAttribute('data-seq')) el.querySelectorAll<El>('[data-i]').forEach((c) => this.show(c, +(c.dataset.i || 0) === a));
-        else el.querySelectorAll<El>('[data-i]').forEach((c) => this.reveal(c, +(c.dataset.i || 0) === a));
+        if (el.hasAttribute('data-stack')) steps.forEach((c) => this.stack(c, +(c.dataset.i || 0) - a));
+        else if (el.hasAttribute('data-seq')) steps.forEach((c) => this.show(c, +(c.dataset.i || 0) === a));
+        else steps.forEach((c) => this.reveal(c, +(c.dataset.i || 0) === a));
         if (el._a !== a) {
           el._a = a;
           if (el.dataset.bgs) {
@@ -169,15 +197,11 @@ export class ScrollEngine {
           if (cc) this.countUp(cc);
         }
       }
-      if (!el.hasAttribute('data-group')) el.querySelectorAll<El>('[data-show]').forEach((c) => {
+      for (const c of shows) {
         const [a, b] = (c.dataset.show || '').split(',').map(Number);
         this.show(c, v >= a && v < b);
-      });
-      if (el.hasAttribute('data-count-once') && v > 0.35 && !el._counted) {
-        el._counted = true;
-        el.querySelectorAll<El>('[data-count]').forEach((c) => this.countUp(c));
       }
-      const vis = r.bottom > 0 && r.top < vh;
+      if (counts.length && v > 0.35 && !el._counted) { el._counted = true; counts.forEach((c) => this.countUp(c)); }
       if (el.dataset.canvas && vis) this.drawNet(v);
       if (el.hasAttribute('data-group')) {
         this.gEl = el; this.gVis = vis; this.gT = v;
@@ -190,18 +214,18 @@ export class ScrollEngine {
     });
 
     let brand = -1, hd = this.last.hd;
-    root.querySelectorAll<El>('[data-brand]').forEach((el) => {
-      const r = el.getBoundingClientRect();
+    C.brands.forEach((el, i) => {
+      const r = brandRects[i];
       if (r.top <= vh * 0.5 && r.bottom >= vh * 0.5) brand = el.hasAttribute('data-vhs') && (el._k || 0) > 0.5 ? 1 : +(el.dataset.brand || 0);
     });
-    root.querySelectorAll<El>('[data-hd]').forEach((el) => {
-      const r = el.getBoundingClientRect();
+    C.hds.forEach((el, i) => {
+      const r = hdRects[i];
       if (r.top <= 40 && r.bottom > 40) {
         const at = parseFloat(el.dataset.hdAt || '0.85');
         hd = (el.dataset.hdEnd && (el._p || 0) >= at ? el.dataset.hdEnd : el.dataset.hd) || hd;
       }
     });
-    const header = -root.getBoundingClientRect().top > vh * 0.25;
+    const header = -rootTop > vh * 0.25;
     const L = this.last;
     if (brand !== L.brand || header !== L.header || hd !== L.hd) {
       this.last = { brand, header, hd };

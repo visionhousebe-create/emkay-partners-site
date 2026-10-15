@@ -66,13 +66,22 @@ export const GROUP = [
 
 export type MediaType = 'image' | 'video';
 
-// Galerie Vision House — 3 à 30 projets.
-// mediaSrc : '/media/client01.mp4' ou '/media/client01.jpg' (dans /public). poster : image d'attente d'une vidéo.
-export const VH_PROJECTS: { name: string; year: string; services: string[]; ratio: string; rot: number; mediaType: MediaType; mediaSrc: string; poster: string; url: string }[] = [
-  { name: 'CLIENT 01', year: '2026', services: ['STRATÉGIE', 'CONTENU', 'VIDÉO'], ratio: '16/9', rot: -1, mediaType: 'video', mediaSrc: '', poster: '', url: '#' },
-  { name: 'CLIENT 02', year: '2026', services: ['BRANDING', 'POSITIONNEMENT'], ratio: '4/5', rot: 1, mediaType: 'image', mediaSrc: '', poster: '', url: '#' },
-  { name: 'CLIENT 03', year: '2025', services: ['RÉSEAUX SOCIAUX', 'CONTENU'], ratio: '9/16', rot: -0.5, mediaType: 'video', mediaSrc: '', poster: '', url: '#' },
-  { name: 'CLIENT 04', year: '2025', services: ['VIDÉO', 'PRODUCTION'], ratio: '16/9', rot: 0.8, mediaType: 'video', mediaSrc: '', poster: '', url: '#' },
+/** Un fichier, ou plusieurs formats du même média (ex. ['/media/vision-house/client-01.webm', '/media/vision-house/client-01.mp4']). */
+export type MediaSrc = string | string[];
+export const hasMedia = (m: MediaSrc) => (Array.isArray(m) ? m.some(Boolean) : !!m);
+
+// Galerie Vision House — 3 à 30 projets (ajouter / retirer des lignes suffit).
+// Déposer les fichiers dans public/media/vision-house/ puis renseigner :
+//   mediaSrc : '/media/vision-house/client-01.mp4'  (ou ['…/client-01.webm', '…/client-01.mp4'], ou une image .jpg/.webp)
+//   poster   : '/media/vision-house/client-01-poster.jpg'  (image affichée avant la lecture — recommandé pour les vidéos)
+//   ratio    : '16/9' | '4/5' | '9/16' | '1/1' — proportion de la carte
+//   url      : lien vers l'étude de cas (laisser '' s'il n'y en a pas)
+// Les vidéos ne se chargent qu'à l'approche de l'écran (preload="metadata", muettes, en boucle).
+export const VH_PROJECTS: { name: string; year: string; services: string[]; ratio: string; rot: number; mediaType: MediaType; mediaSrc: MediaSrc; poster: string; url: string }[] = [
+  { name: 'CLIENT 01', year: '2026', services: ['STRATÉGIE', 'CONTENU', 'VIDÉO'], ratio: '16/9', rot: -1, mediaType: 'video', mediaSrc: '', poster: '', url: '' },
+  { name: 'CLIENT 02', year: '2026', services: ['BRANDING', 'POSITIONNEMENT'], ratio: '4/5', rot: 1, mediaType: 'image', mediaSrc: '', poster: '', url: '' },
+  { name: 'CLIENT 03', year: '2025', services: ['RÉSEAUX SOCIAUX', 'CONTENU'], ratio: '9/16', rot: -0.5, mediaType: 'video', mediaSrc: '', poster: '', url: '' },
+  { name: 'CLIENT 04', year: '2025', services: ['VIDÉO', 'PRODUCTION'], ratio: '16/9', rot: 0.8, mediaType: 'video', mediaSrc: '', poster: '', url: '' },
 ];
 
 export type Orientation = 'vertical' | 'portrait' | 'square' | 'landscape' | 'wide';
@@ -80,7 +89,7 @@ export const RATIO: Record<Orientation, string> = { vertical: '9/16', portrait: 
 
 // In Real Life — photo ou vidéo (type: 'video' ou extension .mp4/.webm/.mov).
 // basis / min / m / px : placement libre dans la galerie (desktop) et parallaxe horizontale.
-export const IRL: { brand: string; project: string; year: string; orientation: Orientation; type?: MediaType; src: string; poster?: string; basis: string; min: string; m: string; px: number; ph: string }[] = [
+export const IRL: { brand: string; project: string; year: string; orientation: Orientation; type?: MediaType; src: MediaSrc; poster?: string; basis: string; min: string; m: string; px: number; ph: string }[] = [
   { brand: 'NEXPLORE', project: 'INAUGURATION', year: '2026', orientation: 'landscape', src: '/media/irl-1.webp', basis: '0 1 56%', min: '300px', m: '0', px: -40, ph: 'Nexplore — inauguration (photo ou MP4)' },
   { brand: 'BAVARE', project: 'SOIRÉE SOCIALE', year: '2026', orientation: 'portrait', src: '/media/irl-2.webp', basis: '0 1 30%', min: '260px', m: '14vh 0 0', px: 50, ph: 'Bavare — soirée' },
   { brand: 'VISION HOUSE', project: 'TOURNAGE', year: '2026', orientation: 'square', src: '/media/irl-3.webp', basis: '0 1 20%', min: '220px', m: '0 0 0 8vw', px: 30, ph: 'Coulisses — tournage' },
@@ -126,10 +135,13 @@ const SEL = (name: string, label: string, req: boolean, options: string[]): Fiel
 
 export const FORMS: Record<FormKind, { title: string; intro: string; fields: Field[] }> = {
   project: { title: "J'ai un projet.", intro: 'Parlons du projet et identifions la marque EMKAY la plus pertinente.', fields: [T('nom', 'NOM *', true), T('entreprise', 'ENTREPRISE', false), T('email', 'EMAIL *', true, 'email'), SEL('type', 'TYPE DE PROJET', false, ['Choisir…', 'Communication & visibilité', 'Événement', 'Rencontres professionnelles', 'Expérience sociale', 'Food & hospitality', 'Je ne sais pas encore']), SEL('budget', 'BUDGET INDICATIF (FACULTATIF)', false, ['Non précisé', '< 5 000 €', '5 000 – 15 000 €', '15 000 – 50 000 €', '> 50 000 €']), A('message', 'MESSAGE *', true)] },
-  collab: { title: 'Je veux collaborer.', intro: 'Imaginons une collaboration, une activation ou un projet commun.', fields: [T('nom', 'NOM *', true), T('organisation', 'ENTREPRISE / ORGANISATION *', true), SEL('type', 'TYPE DE COLLABORATION', false, ['Choisir…', 'Lieu', 'Partenariat de marque', 'Prestation', 'Sponsoring', 'Organisation / institution', 'Autre']), T('coordonnees', 'COORDONNÉES (EMAIL OU TÉLÉPHONE) *', true), A('proposition', 'VOTRE PROPOSITION *', true)] },
-  talk: { title: "J'ai envie d'échanger.", intro: 'Un café, un appel, une idée.', fields: [T('nom', 'NOM *', true), T('email', 'EMAIL *', true, 'email'), A('message', 'MESSAGE', false)] },
+  collab: { title: 'Je veux collaborer.', intro: 'Imaginons une collaboration, une activation ou un projet commun.', fields: [T('nom', 'NOM *', true), T('organisation', 'ENTREPRISE / ORGANISATION *', true), T('email', 'EMAIL *', true, 'email'), T('telephone', 'TÉLÉPHONE', false, 'tel'), SEL('type', 'TYPE DE COLLABORATION', false, ['Choisir…', 'Lieu', 'Partenariat de marque', 'Prestation', 'Sponsoring', 'Organisation / institution', 'Autre']), A('message', 'VOTRE PROPOSITION *', true)] },
+  talk: { title: "J'ai envie d'échanger.", intro: 'Un café, un appel, une idée.', fields: [T('nom', 'NOM *', true), T('email', 'EMAIL *', true, 'email'), A('message', 'MESSAGE *', true)] },
   write: { title: 'Nous écrire.', intro: 'Bruxelles, Belgique.', fields: [T('nom', 'NOM *', true), T('email', 'EMAIL *', true, 'email'), A('message', 'MESSAGE *', true)] },
 };
+
+/** Libellé du type de demande transmis avec chaque message. */
+export const FORM_LABEL: Record<FormKind, string> = { project: 'Projet', collab: 'Collaboration', talk: 'Échange', write: 'Message' };
 
 export const DOORS: { k: FormKind; num: string; title: string; desc: string; sub: string; cta: string; bg: string; bgH: string; fg: string; fx: 'line' | 'join' | 'soft' }[] = [
   { k: 'project', num: '01', title: 'J’ai un projet.', desc: 'Vous avez une idée, un événement, une marque ou un besoin de communication à développer ?', sub: 'Parlons du projet et identifions la marque EMKAY la plus pertinente.', cta: 'PRÉSENTER MON PROJET', bg: '#3A1E52', bgH: '#45255F', fg: '#F5F1E9', fx: 'line' },
@@ -137,8 +149,8 @@ export const DOORS: { k: FormKind; num: string; title: string; desc: string; sub
   { k: 'talk', num: '03', title: 'J’ai envie d’échanger.', desc: 'Pas encore de projet précis ? Une conversation suffit parfois à faire émerger la suite.', sub: 'Un café, un appel, une idée.', cta: 'ÉCHANGER AVEC NOUS', bg: '#EEE6EC', bgH: '#F6F0F3', fg: '#2B143D', fx: 'soft' },
 ];
 
-// Liens externes (à compléter).
-export const LINKS = { linkedin: '#', instagram: '#', mentions: '#', privacy: '#', nextBavare: '#', vmAddresses: '#' };
+// Liens à compléter : laisser '' tant que l'URL réelle n'est pas connue (le lien est alors masqué ou désactivé).
+export const LINKS = { linkedin: '', instagram: '', nextBavare: '', vmAddresses: '', mentions: '/mentions-legales', privacy: '/politique-de-confidentialite' };
 
 // Hash aliases (anciennes adresses) + positions d'arrivée dans les sections sticky.
 export const ALIAS: Record<string, string> = { vision: 'vision-house', connect: 'nexplore-connect', bavard: 'bavare', vm: 'viens-manger', irl: 'projets', apropos: 'a-propos', room: 'groupe', top: 'top' };

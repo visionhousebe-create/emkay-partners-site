@@ -376,7 +376,7 @@ export class ScrollEngine {
     });
   }
 
-  // ——— Horizon : réseau ———
+  // ——— Horizon Connect : réseau ———
   drawNet(p: number) {
     const c = this.net; if (!c) return;
     const dpr = Math.min(2, devicePixelRatio || 1), w = c.clientWidth, h = c.clientHeight;

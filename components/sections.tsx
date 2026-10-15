@@ -37,7 +37,7 @@ export function Sections({ ui }: { ui: UI }) {
       <BrandSelector ui={ui} />
       <VisionHouse ui={ui} />
       <Overton ui={ui} />
-      <Horizon ui={ui} />
+      <HorizonConnect ui={ui} />
       <Bavare />
       <ViensManger />
       <EmkayRoom ui={ui} />
@@ -68,7 +68,7 @@ function Portal({ ui }: { ui: UI }) {
             <span data-r="0.5" className="serif-i portal-h1-2">Des univers bien à eux.</span>
           </h1>
           <div data-r="0.62" className="portal-list">
-            <span>01 VISION HOUSE</span><span>02 OVERTON</span><span>03 HORIZON</span><span>04 BAVARE</span><span>05 VIENS MANGER</span>
+            <span>01 VISION HOUSE</span><span>02 OVERTON</span><span>03 HORIZON CONNECT</span><span>04 BAVARE</span><span>05 VIENS MANGER</span>
           </div>
         </div>
         <div className="door door-l"><div className="door-word">EMKAY</div></div>
@@ -249,10 +249,10 @@ function Overton({ ui }: { ui: UI }) {
   );
 }
 
-// ——— 06 Horizon ———
-function Horizon({ ui }: { ui: UI }) {
+// ——— 06 Horizon Connect ———
+function HorizonConnect({ ui }: { ui: UI }) {
   return (
-    <section id="horizon" data-screen-label="06 Horizon" data-sc="sticky" data-canvas="net" data-brand="2" data-cursor="CONNECTER" data-hd="#090909" data-hd-end="#E3122B" style={{ height: '260vh', position: 'relative' }}>
+    <section id="horizon-connect" data-screen-label="06 Horizon Connect" data-sc="sticky" data-canvas="net" data-brand="2" data-cursor="CONNECTER" data-hd="#090909" data-hd-end="#E3122B" style={{ height: '260vh', position: 'relative' }}>
       <div className="nxc-in">
         <div className="nxc-pink" />
         <canvas ref={ui.netRef} style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', pointerEvents: 'none' }} />
@@ -272,7 +272,7 @@ function Horizon({ ui }: { ui: UI }) {
               </div>
             </div>
             <div data-r="0.3">
-              <p style={{ margin: 0, fontSize: 17, lineHeight: 1.6, color: '#3a3540', textWrap: 'pretty' }}>Pas un club de plus. Horizon s&apos;intéresse à la qualité des connexions : mises en relation, cercles professionnels et opportunités de collaboration.</p>
+              <p style={{ margin: 0, fontSize: 17, lineHeight: 1.6, color: '#3a3540', textWrap: 'pretty' }}>Pas un club de plus. Horizon Connect s&apos;intéresse à la qualité des connexions : mises en relation, cercles professionnels et opportunités de collaboration.</p>
               <button type="button" onClick={() => ui.openForm('talk')} data-cursor="OUVRIR" className="btn-reset cta-line" style={{ marginTop: 28, borderBottom: '1px solid #090909' }}>DÉCOUVRIR LES CONNEXIONS ↗</button>
             </div>
           </div>
@@ -407,7 +407,7 @@ function EmkayRoom({ ui }: { ui: UI }) {
 }
 
 // ——— 10 Différentes identités ———
-const IDS = [['VISION HOUSE', 'fait connaître.'], ['OVERTON', 'fait vivre.'], ['HORIZON', 'fait rencontrer.'], ['BAVARE', 'fait sortir.'], ['VIENS MANGER', 'fait découvrir.']];
+const IDS = [['VISION HOUSE', 'fait connaître.'], ['OVERTON', 'fait vivre.'], ['HORIZON CONNECT', 'fait rencontrer.'], ['BAVARE', 'fait sortir.'], ['VIENS MANGER', 'fait découvrir.']];
 
 function Identites() {
   return (
@@ -706,7 +706,7 @@ function Footer() {
           <span className="ft-h">NOS MARQUES</span>
           <a href="#vision-house" data-cursor="ALLER" className="ft-a">Vision House →</a>
           <a href="#overton" data-cursor="ALLER" className="ft-a">Overton →</a>
-          <a href="#horizon" data-cursor="ALLER" className="ft-a">Horizon →</a>
+          <a href="#horizon-connect" data-cursor="ALLER" className="ft-a">Horizon Connect →</a>
           <a href="#bavare" data-cursor="ALLER" className="ft-a">Bavare →</a>
           <a href="#viens-manger" data-cursor="ALLER" className="ft-a">Viens Manger →</a>
         </div>

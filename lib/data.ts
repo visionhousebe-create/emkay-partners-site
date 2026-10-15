@@ -29,9 +29,9 @@ export type Brand = {
 
 export const BRANDS: Brand[] = [
   { id: 'vision-house', num: '01', name: 'VISION HOUSE', cat: 'Marketing & communication', tags: 'STRATÉGIE / CONTENU / POSITIONNEMENT', desc: 'Stratégie, contenu et visibilité pour faire de la communication un véritable levier de développement.', cta: 'DÉCOUVRIR VISION HOUSE ↗', bg: '#0C0340', fg: '#F5F1E9', dot: '#0C0340', cursor: 'VOIR', logo: '/logos/visionhouse.png', logoT: '/logos/visionhouse-white.png', lw: '100%', lr: '0', plate: '#0C0340' },
-  // Overton et Horizon : logos officiels à fournir → déposer les fichiers dans public/logos/, renseigner logo / logoT (et logoRoom pour fond violet) et LOGO_SIZE.
+  // Overton et Horizon Connect : logos officiels à fournir → déposer les fichiers dans public/logos/, renseigner logo / logoT (et logoRoom pour fond violet) et LOGO_SIZE.
   { id: 'overton', num: '02', name: 'OVERTON', cat: 'Événements & expériences', tags: 'ÉVÉNEMENTS / EXPÉRIENCES', desc: 'Des événements imaginés par Overton ou créés sur mesure pour les entreprises et les marques.', cta: 'DÉCOUVRIR OVERTON ↗', bg: '#43746A', fg: '#F5F1E9', dot: '#43746A', cursor: 'VOIR', logo: '', logoT: '', lw: '90%', lr: '0', plate: '#090909' },
-  { id: 'horizon', num: '03', name: 'HORIZON', cat: 'Rencontres professionnelles', tags: 'RENCONTRES / BUSINESS / CONNEXIONS', desc: 'Rapprocher entrepreneurs, dirigeants, entreprises et partenaires — la qualité des connexions avant tout.', cta: 'DÉCOUVRIR HORIZON ↗', bg: '#E9E6E0', fg: '#090909', dot: '#9B6BFF', cursor: 'CONNECTER', logo: '', logoT: '', lw: '86%', lr: '0', plate: '#E9E6E0' },
+  { id: 'horizon-connect', num: '03', name: 'HORIZON CONNECT', cat: 'Rencontres professionnelles', tags: 'RENCONTRES / BUSINESS / CONNEXIONS', desc: 'Rapprocher entrepreneurs, dirigeants, entreprises et partenaires — la qualité des connexions avant tout.', cta: 'DÉCOUVRIR HORIZON CONNECT ↗', bg: '#E9E6E0', fg: '#090909', dot: '#9B6BFF', cursor: 'CONNECTER', logo: '', logoT: '', lw: '86%', lr: '0', plate: '#E9E6E0' },
   { id: 'bavare', num: '04', name: 'BAVARE', cat: 'Événements sociaux', tags: 'SORTIR / LIEUX / RENCONTRES', desc: "Des occasions simples de sortir, discuter et rencontrer — dans des lieux qu'on ne connaissait pas encore.", cta: 'VOIR LE PROCHAIN BAVARE ↗', bg: '#FF9EC4', fg: '#E3122B', dot: '#FF9EC4', cursor: 'SORTIR', logo: '/logos/bavard.png', logoT: '/logos/bavard.png', lw: '80%', lr: '0', plate: '#FF9EC4' },
   { id: 'viens-manger', num: '05', name: 'VIENS MANGER', cat: 'Food & découvertes', tags: 'RESTAURANTS / LIEUX / DÉCOUVERTE', desc: 'Restaurants, lieux, concepts culinaires et expériences qui valent le détour.', cta: 'DÉCOUVRIR VIENS MANGER ↗', bg: '#4A0B16', fg: '#F2E7D3', dot: '#C23A4E', cursor: 'GOÛTER', logo: '/logos/viensmanger.png', logoT: '/logos/viensmanger.png', lw: '74%', lr: '50%', plate: 'transparent' },
 ];
@@ -92,7 +92,7 @@ export const IRL: { brand: string; project: string; year: string; orientation: O
   { brand: 'BAVARE', project: 'SOIRÉE SOCIALE', year: '2026', orientation: 'portrait', src: '/media/irl-2.webp', basis: '0 1 30%', min: '260px', m: '14vh 0 0', px: 50, ph: 'Bavare — soirée' },
   { brand: 'VISION HOUSE', project: 'TOURNAGE', year: '2026', orientation: 'square', src: '/media/irl-3.webp', basis: '0 1 20%', min: '220px', m: '0 0 0 8vw', px: 30, ph: 'Coulisses — tournage' },
   { brand: 'VIENS MANGER', project: 'EXPÉRIENCE FOOD', year: '2025', orientation: 'portrait', src: '/media/irl-4.webp', basis: '0 1 32%', min: '260px', m: '-6vh 0 0', px: -60, ph: 'Viens Manger — restaurant' },
-  { brand: 'HORIZON', project: 'RENCONTRES', year: '2025', orientation: 'landscape', src: '/media/irl-5.webp', basis: '0 1 34%', min: '260px', m: '20vh 0 0', px: 40, ph: 'Rencontres — participants' },
+  { brand: 'HORIZON CONNECT', project: 'RENCONTRES', year: '2025', orientation: 'landscape', src: '/media/irl-5.webp', basis: '0 1 34%', min: '260px', m: '20vh 0 0', px: 40, ph: 'Rencontres — participants' },
   { brand: 'BAVARE', project: 'ON SORT', year: '2025', orientation: 'wide', src: '/media/irl-6.webp', basis: '1 1 100%', min: '100%', m: '0 -5vw', px: -30, ph: 'Plein écran — photo ou vidéo' },
   { brand: 'VISION HOUSE', project: 'PRODUCTION', year: '2025', orientation: 'vertical', src: '/media/irl-7.webp', basis: '0 1 22%', min: '220px', m: '0', px: -30, ph: 'Vidéo verticale 9:16 — production' },
   { brand: 'VIENS MANGER', project: "L'ADRESSE", year: '2025', orientation: 'landscape', src: '/media/irl-8.webp', basis: '0 1 44%', min: '280px', m: '12vh 0 0', px: 50, ph: 'Lieu — restaurant' },
@@ -109,7 +109,7 @@ export const SECTION_MEDIA = {
 export const ORIENT = [
   { id: 'vision-house', b: 0, need: 'Gagner en visibilité', services: ['Stratégie', 'Communication', 'Contenu', 'Positionnement'] },
   { id: 'overton', b: 1, need: 'Créer un événement', services: ['Événements', 'Inaugurations', 'Expériences', 'Corporate'] },
-  { id: 'horizon', b: 2, need: 'Développer mon réseau', services: ['Connexions', 'Networking', 'Rencontres professionnelles', 'Opportunités'] },
+  { id: 'horizon-connect', b: 2, need: 'Développer mon réseau', services: ['Connexions', 'Networking', 'Rencontres professionnelles', 'Opportunités'] },
   { id: 'bavare', b: 3, need: 'Sortir et rencontrer', services: ['Événements sociaux', 'Rencontres', 'Découverte de lieux', 'Expériences'] },
   { id: 'viens-manger', b: 4, need: 'Découvrir où manger', services: ['Restaurants', 'Concepts food', 'Adresses', 'Expériences culinaires'] },
 ];
@@ -152,8 +152,8 @@ export const LINKS = { linkedin: '', instagram: '', nextBavare: '', vmAddresses:
 
 // Hash aliases (anciennes adresses) + positions d'arrivée dans les sections sticky.
 // Anciennes adresses (dont #nexplore et #nexplore-connect avant le changement de nom) → nouvelles sections.
-export const ALIAS: Record<string, string> = { vision: 'vision-house', nexplore: 'overton', 'nexplore-connect': 'horizon', connect: 'horizon', bavard: 'bavare', vm: 'viens-manger', irl: 'projets', apropos: 'a-propos', room: 'groupe', top: 'top' };
-export const ARRIVE: Record<string, number> = { horizon: 0.35, bavare: 0.6, 'viens-manger': 0.6, groupe: 0.3 };
+export const ALIAS: Record<string, string> = { vision: 'vision-house', nexplore: 'overton', 'nexplore-connect': 'horizon-connect', horizon: 'horizon-connect', connect: 'horizon-connect', bavard: 'bavare', vm: 'viens-manger', irl: 'projets', apropos: 'a-propos', room: 'groupe', top: 'top' };
+export const ARRIVE: Record<string, number> = { 'horizon-connect': 0.35, bavare: 0.6, 'viens-manger': 0.6, groupe: 0.3 };
 
 /** Réglages (anciennement le panneau du prototype). */
 export const SETTINGS = { customCursor: true, sideNav: true, orbitSpeed: 5 };

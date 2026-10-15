@@ -4,7 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useState, type RefObject } from 'react';
 import { BRANDS, DOORS, GROUP, IRL, LINKS, hasMedia, ORIENT, RATIO, ROOM, SECTION_MEDIA, VH_PROJECTS, type FormKind } from '@/lib/data';
-import { Logo, Media } from './media';
+import { BrandMark, Logo, Media } from './media';
 
 const B = BRANDS;
 
@@ -36,8 +36,8 @@ export function Sections({ ui }: { ui: UI }) {
       <Portal ui={ui} />
       <BrandSelector ui={ui} />
       <VisionHouse ui={ui} />
-      <Nexplore ui={ui} />
-      <NexploreConnect ui={ui} />
+      <Overton ui={ui} />
+      <Horizon ui={ui} />
       <Bavare />
       <ViensManger />
       <EmkayRoom ui={ui} />
@@ -68,7 +68,7 @@ function Portal({ ui }: { ui: UI }) {
             <span data-r="0.5" className="serif-i portal-h1-2">Des univers bien à eux.</span>
           </h1>
           <div data-r="0.62" className="portal-list">
-            <span>01 VISION HOUSE</span><span>02 NEXPLORE</span><span>03 NEXPLORE CONNECT</span><span>04 BAVARE</span><span>05 VIENS MANGER</span>
+            <span>01 VISION HOUSE</span><span>02 OVERTON</span><span>03 HORIZON</span><span>04 BAVARE</span><span>05 VIENS MANGER</span>
           </div>
         </div>
         <div className="door door-l"><div className="door-word">EMKAY</div></div>
@@ -144,7 +144,7 @@ function BrandSelector({ ui }: { ui: UI }) {
                   return (
                     <div key={b.id} className="sel-layer" style={{ background: b.plate === 'transparent' ? b.bg : b.plate, zIndex: on ? 3 : 2, clipPath: on ? 'inset(0 0 0 0)' : 'inset(0 0 100% 0)' }}>
                       <div className="sel-layer-in" style={{ transform: `scale(${on ? 1 : 0.92})` }}>
-                        <Logo src={b.logo} alt={b.name} style={{ display: 'block', width: b.lw, maxWidth: '100%', maxHeight: '100%', height: 'auto', objectFit: 'contain', borderRadius: b.lr }} />
+                        <BrandMark brand={b} src={b.logo} size="clamp(30px,3.4vw,60px)" style={{ display: 'block', width: b.lw, maxWidth: '100%', maxHeight: '100%', height: 'auto', objectFit: 'contain', borderRadius: b.lr }} />
                       </div>
                     </div>
                   );
@@ -161,7 +161,7 @@ function BrandSelector({ ui }: { ui: UI }) {
   );
 }
 
-// ——— 04 Vision House (pile de projets → morph vers Nexplore) ———
+// ——— 04 Vision House (pile de projets → morph vers Overton) ———
 function VisionHouse({ ui }: { ui: UI }) {
   const { wide } = ui;
   const last = VH_PROJECTS[VH_PROJECTS.length - 1];
@@ -207,35 +207,35 @@ function VisionHouse({ ui }: { ui: UI }) {
             {hasMedia(last.mediaSrc) && <Media src={last.mediaSrc} type={last.mediaType} poster={last.poster} placeholder={last.name} autoplay="visible" />}
           </div>
           <div data-xb="" style={{ position: 'absolute', inset: 0, opacity: wide ? 0 : 1 }}>
-            <Image src={SECTION_MEDIA.nexplore} alt="Événement Nexplore" fill sizes="100vw" style={{ objectFit: 'cover' }} />
+            <Image src={SECTION_MEDIA.overton} alt="Événement Overton" fill sizes="100vw" style={{ objectFit: 'cover' }} />
           </div>
           <div data-xg="" className="vh-xg" style={{ opacity: wide ? 0 : 1 }} />
           <div data-xt="" style={{ position: 'absolute', inset: 0, color: '#F5F1E9', opacity: wide ? 0 : 1, pointerEvents: 'none' }}>
             <div className="lbl" style={{ position: 'absolute', left: '5vw', right: '5vw', top: 88, display: 'flex', justifyContent: 'space-between', gap: 24 }}><span>02 / 05</span><span>ÉVÉNEMENTS &amp; EXPÉRIENCES</span></div>
-            <div className="xw" style={{ position: 'absolute', left: '5vw', right: '5vw', bottom: 'clamp(28px,5vh,56px)', fontWeight: 900, fontSize: 'clamp(56px,14vw,280px)', lineHeight: 0.8, letterSpacing: '-.06em' }}>NEXPLORE</div>
+            <div className="xw" style={{ position: 'absolute', left: '5vw', right: '5vw', bottom: 'clamp(28px,5vh,56px)', fontWeight: 900, fontSize: 'clamp(56px,14vw,280px)', lineHeight: 0.8, letterSpacing: '-.06em' }}>OVERTON</div>
           </div>
         </div>
       </div>
-      <span id="nexplore" aria-hidden="true" style={{ position: 'absolute', left: 0, bottom: '100vh', width: 1, height: 1, pointerEvents: 'none' }} />
+      <span id="overton" aria-hidden="true" style={{ position: 'absolute', left: 0, bottom: '100vh', width: 1, height: 1, pointerEvents: 'none' }} />
     </section>
   );
 }
 
-// ——— 05 Nexplore ———
-function Nexplore({ ui }: { ui: UI }) {
+// ——— 05 Overton ———
+function Overton({ ui }: { ui: UI }) {
   return (
-    <section id="nexplore-suite" data-screen-label="05 Nexplore" data-sc="enter" data-brand="1" data-cursor="VOIR" data-hd="#F5F1E9" style={{ position: 'relative', zIndex: 1, background: '#090909', color: '#F5F1E9', scrollMarginTop: 0 }}>
+    <section id="overton-suite" data-screen-label="05 Overton" data-sc="enter" data-brand="1" data-cursor="VOIR" data-hd="#F5F1E9" style={{ position: 'relative', zIndex: 1, background: '#090909', color: '#F5F1E9', scrollMarginTop: 0 }}>
       <div className="nx-grid">
         <div>
-          <Logo src="/logos/nexplore.png" alt="Nexplore" style={{ display: 'block', width: 200, maxWidth: '100%', height: 'auto', marginBottom: 40 }} />
+          <BrandMark brand={B[1]} src={B[1].logoT} size="clamp(32px,3vw,44px)" style={{ display: 'block', width: 200, maxWidth: '100%', height: 'auto', marginBottom: 40 }} />
           <h3 data-r="0.35" className="nx-h3">Des événements conçus pour <span className="serif-i" style={{ letterSpacing: '-.01em' }}>provoquer quelque chose.</span></h3>
-          <p className="nx-p">Nexplore ne gère pas seulement une logistique. Elle transforme un événement en expérience — un moment dont on parle encore le lendemain.</p>
+          <p className="nx-p">Overton ne gère pas seulement une logistique. Elle transforme un événement en expérience — un moment dont on parle encore le lendemain.</p>
           <button type="button" onClick={() => ui.openForm('project')} data-cursor="OUVRIR" className="btn-reset cta-line" style={{ marginTop: 36, borderBottom: '1px solid #F5F1E9' }}>PARLER DE MON ÉVÉNEMENT ↗</button>
         </div>
         <div style={{ display: 'flex', flexDirection: 'column' }}>
           <div data-r="0.45" className="nx-row">
             <span className="nx-row-k">A</span>
-            <div><div className="nx-row-t">Imaginés par Nexplore</div><div className="nx-row-d">Nos propres formats, pensés, produits et portés par la marque.</div></div>
+            <div><div className="nx-row-t">Imaginés par Overton</div><div className="nx-row-d">Nos propres formats, pensés, produits et portés par la marque.</div></div>
           </div>
           <div data-r="0.5" className="nx-row" style={{ borderBottom: '1px solid rgba(245,241,233,.2)' }}>
             <span className="nx-row-k">B</span>
@@ -249,16 +249,16 @@ function Nexplore({ ui }: { ui: UI }) {
   );
 }
 
-// ——— 06 Nexplore Connect ———
-function NexploreConnect({ ui }: { ui: UI }) {
+// ——— 06 Horizon ———
+function Horizon({ ui }: { ui: UI }) {
   return (
-    <section id="nexplore-connect" data-screen-label="06 Nexplore Connect" data-sc="sticky" data-canvas="net" data-brand="2" data-cursor="CONNECTER" data-hd="#090909" data-hd-end="#E3122B" style={{ height: '260vh', position: 'relative' }}>
+    <section id="horizon" data-screen-label="06 Horizon" data-sc="sticky" data-canvas="net" data-brand="2" data-cursor="CONNECTER" data-hd="#090909" data-hd-end="#E3122B" style={{ height: '260vh', position: 'relative' }}>
       <div className="nxc-in">
         <div className="nxc-pink" />
         <canvas ref={ui.netRef} style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', pointerEvents: 'none' }} />
         <div className="nxc-content">
           <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', alignItems: 'center', gap: 24 }}>
-            <Logo src="/logos/nexplore-connect.png" alt="Nexplore Connect" style={{ display: 'block', width: 'clamp(170px,15vw,230px)', height: 'auto', objectFit: 'contain' }} />
+            <BrandMark brand={B[2]} src={B[2].logoT} size="clamp(32px,3vw,44px)" style={{ display: 'block', width: 'clamp(170px,15vw,230px)', height: 'auto', objectFit: 'contain' }} />
             <div className="lbl" style={{ display: 'flex', gap: 24 }}><span>03 / 05</span><span>RENCONTRES PROFESSIONNELLES</span></div>
           </div>
           <h3 data-r="0.06" className="nxc-h3">Les bonnes rencontres <span className="serif-i" style={{ letterSpacing: '-.02em' }}>changent parfois la suite.</span></h3>
@@ -272,7 +272,7 @@ function NexploreConnect({ ui }: { ui: UI }) {
               </div>
             </div>
             <div data-r="0.3">
-              <p style={{ margin: 0, fontSize: 17, lineHeight: 1.6, color: '#3a3540', textWrap: 'pretty' }}>Pas un club de plus. Nexplore Connect s&apos;intéresse à la qualité des connexions : mises en relation, cercles professionnels et opportunités de collaboration.</p>
+              <p style={{ margin: 0, fontSize: 17, lineHeight: 1.6, color: '#3a3540', textWrap: 'pretty' }}>Pas un club de plus. Horizon s&apos;intéresse à la qualité des connexions : mises en relation, cercles professionnels et opportunités de collaboration.</p>
               <button type="button" onClick={() => ui.openForm('talk')} data-cursor="OUVRIR" className="btn-reset cta-line" style={{ marginTop: 28, borderBottom: '1px solid #090909' }}>DÉCOUVRIR LES CONNEXIONS ↗</button>
             </div>
           </div>
@@ -389,7 +389,7 @@ function EmkayRoom({ ui }: { ui: UI }) {
             return (
               <a key={b.id} href={'#' + b.id} data-oi={i} data-cursor="VOIR" aria-label={'Découvrir ' + b.name} onMouseEnter={() => ui.setRoomHover(i)} onFocus={() => ui.setRoomHover(i)} className="room-item">
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: r.w, height: r.h, padding: r.pad, background: plateBg, borderRadius: r.r, boxShadow: shadow, transform: `scale(${on ? 1.08 : 1})`, transition: 'transform .6s cubic-bezier(.2,.7,.2,1)' }}>
-                  <Logo src={b.logoRoom || b.logoT} alt={b.name} style={{ display: 'block', maxWidth: '100%', maxHeight: '100%', width: 'auto', height: 'auto', objectFit: 'contain', borderRadius: r.r === '50%' ? '50%' : 0 }} />
+                  <BrandMark brand={b} src={b.logoRoom || b.logoT} size="clamp(17px,1.9vw,28px)" style={{ display: 'block', maxWidth: '100%', maxHeight: '100%', width: 'auto', height: 'auto', objectFit: 'contain', borderRadius: r.r === '50%' ? '50%' : 0 }} />
                 </div>
                 <div className="room-label" style={{ transform: `translate(-50%,${on ? '0px' : '-6px'})`, opacity: on ? 1 : 0 }}>
                   <span style={{ fontSize: 10, fontWeight: 700, letterSpacing: '.22em' }}>{b.name}</span>
@@ -407,7 +407,7 @@ function EmkayRoom({ ui }: { ui: UI }) {
 }
 
 // ——— 10 Différentes identités ———
-const IDS = [['VISION HOUSE', 'fait connaître.'], ['NEXPLORE', 'fait vivre.'], ['NEXPLORE CONNECT', 'fait rencontrer.'], ['BAVARE', 'fait sortir.'], ['VIENS MANGER', 'fait découvrir.']];
+const IDS = [['VISION HOUSE', 'fait connaître.'], ['OVERTON', 'fait vivre.'], ['HORIZON', 'fait rencontrer.'], ['BAVARE', 'fait sortir.'], ['VIENS MANGER', 'fait découvrir.']];
 
 function Identites() {
   return (
@@ -555,7 +555,7 @@ function InRealLife({ ui }: { ui: UI }) {
 function Orientation({ ui }: { ui: UI }) {
   const { wide } = ui;
   const [act, setAct] = useState(0);
-  const panelBg = (id: string, bg: string) => (id === 'nexplore' ? '#16302B' : bg);
+  const panelBg = (id: string, bg: string) => (id === 'overton' ? '#16302B' : bg);
   const k = Math.max(0, act), ao = ORIENT[k], ab = B[ao.b];
   return (
     <section id="orientation" data-screen-label="14 Votre besoin, notre marque" data-sc="enter" data-hd="#080808" className="or">
@@ -577,7 +577,7 @@ function Orientation({ ui }: { ui: UI }) {
                   <div style={{ margin: '0 0 20px', padding: 24, background: panelBg(b.id, b.bg), color: b.fg, display: 'flex', flexDirection: 'column', gap: 18 }}>
                     <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: '.22em' }}>→ {b.name}</span>
                     <div style={{ height: 56, display: 'flex', alignItems: 'center' }}>
-                      <Logo src={b.logoT} alt={b.name} style={{ display: 'block', maxHeight: 40, maxWidth: '100%', width: 'auto', height: 'auto', objectFit: 'contain', borderRadius: b.lr }} />
+                      <BrandMark brand={b} src={b.logoT} size="28px" style={{ display: 'block', maxHeight: 40, maxWidth: '100%', width: 'auto', height: 'auto', objectFit: 'contain', borderRadius: b.lr }} />
                     </div>
                     <span style={{ fontSize: 15, lineHeight: 1.7 }}>{o.services.join(' · ')}</span>
                     <a href={'#' + o.id} style={{ alignSelf: 'flex-start', fontSize: 13, fontWeight: 700, letterSpacing: '.16em', paddingBottom: 6, borderBottom: '1px solid currentColor' }}>DÉCOUVRIR {b.name} →</a>
@@ -593,7 +593,7 @@ function Orientation({ ui }: { ui: UI }) {
             <div data-orpanel="" style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(20px,3vh,32px)' }}>
               <span style={{ fontSize: 12, fontWeight: 700, letterSpacing: '.22em' }}>→ {ab.name}</span>
               <div style={{ height: 'clamp(36px,3.4vw,52px)', display: 'flex', alignItems: 'center' }}>
-                <Logo src={ab.logoT} alt={ab.name} style={{ display: 'block', maxHeight: '100%', maxWidth: '100%', width: 'auto', height: 'auto', objectFit: 'contain', borderRadius: ab.lr }} />
+                <BrandMark brand={ab} src={ab.logoT} size="clamp(26px,2.6vw,40px)" style={{ display: 'block', maxHeight: '100%', maxWidth: '100%', width: 'auto', height: 'auto', objectFit: 'contain', borderRadius: ab.lr }} />
               </div>
               <p className="serif" style={{ margin: 0, fontSize: 'clamp(20px,1.9vw,32px)', lineHeight: 1.2, textWrap: 'balance' }}>{ao.services.join(' · ')}</p>
             </div>
@@ -705,8 +705,8 @@ function Footer() {
         <div className="ft-col">
           <span className="ft-h">NOS MARQUES</span>
           <a href="#vision-house" data-cursor="ALLER" className="ft-a">Vision House →</a>
-          <a href="#nexplore" data-cursor="ALLER" className="ft-a">Nexplore →</a>
-          <a href="#nexplore-connect" data-cursor="ALLER" className="ft-a">Nexplore Connect →</a>
+          <a href="#overton" data-cursor="ALLER" className="ft-a">Overton →</a>
+          <a href="#horizon" data-cursor="ALLER" className="ft-a">Horizon →</a>
           <a href="#bavare" data-cursor="ALLER" className="ft-a">Bavare →</a>
           <a href="#viens-manger" data-cursor="ALLER" className="ft-a">Viens Manger →</a>
         </div>

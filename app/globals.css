@@ -133,7 +133,7 @@ input, textarea { font: inherit; color: inherit }
 .vh-xf { left: 0; top: 0; width: 100%; z-index: 4; overflow: hidden; background: #160B52; pointer-events: none }
 .vh-xg { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(9,9,9,.35) 0%, rgba(9,9,9,0) 40%, rgba(9,9,9,.8) 100%); pointer-events: none }
 
-/* ——— 05 Nexplore ——— */
+/* ——— 05 Overton ——— */
 .nx-grid { max-width: 1440px; margin: 0 auto; padding: clamp(80px,12vh,140px) 5vw; display: grid; grid-template-columns: repeat(auto-fit,minmax(min(100%,340px),1fr)); gap: clamp(40px,6vw,96px) }
 .nx-h3 { margin: 0; font-weight: 600; font-size: clamp(36px,4vw,66px); line-height: 1; letter-spacing: -.035em; text-wrap: pretty }
 .nx-p { margin: 32px 0 0; max-width: 480px; font-size: 17px; line-height: 1.6; color: var(--grey); text-wrap: pretty }
@@ -143,7 +143,7 @@ input, textarea { font: inherit; color: inherit }
 .nx-row-d { margin-top: 8px; font-size: 16px; color: var(--grey); line-height: 1.5 }
 .nx-line { height: 1px; background: rgba(245,241,233,.6); transform-origin: 0 50%; transform: scaleX(clamp(0, calc(var(--p,0) * 1.2 - 0.2), 1)) }
 
-/* ——— 06 Nexplore Connect ——— */
+/* ——— 06 Horizon ——— */
 .nxc-in { position: sticky; top: 0; min-height: 100vh; overflow: hidden; background: #E9E6E0; color: #090909; display: flex; flex-direction: column; padding: 88px 5vw 6vh }
 .nxc-pink { position: absolute; inset: 0; background: #FF9EC4; opacity: clamp(0, calc((var(--p,0) - 0.76) * 5), 1); pointer-events: none }
 .nxc-content { position: relative; flex: 1; display: flex; flex-direction: column; opacity: clamp(0, calc((0.96 - var(--p,0)) * 6), 1) }
@@ -299,3 +299,4 @@ input, textarea { font: inherit; color: inherit }
 .lg-ft { background: var(--purple); color: var(--cream); padding: 10vh 5vw 5vh; display: flex; flex-direction: column; align-items: flex-start; gap: 5vh }
 .lg-ft-nav { display: flex; flex-wrap: wrap; gap: 14px 32px; font-size: 15px }
 .lg-ft-nav a:hover { color: #C9A8E8 }
+.brand-word { display: block; font-weight: 800; font-stretch: 125%; letter-spacing: -.03em; line-height: .95; white-space: nowrap; color: inherit }

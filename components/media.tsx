@@ -2,12 +2,21 @@
 
 import Image from 'next/image';
 import { useEffect, useRef, useState, type CSSProperties } from 'react';
-import { LOGO_SIZE, type MediaType } from '@/lib/data';
+import { LOGO_SIZE, type Brand, type MediaType } from '@/lib/data';
 
 /** Logo officiel — fichier fourni, proportions d'origine (jamais redessiné). */
 export function Logo({ src, alt, style, className, priority }: { src: string; alt: string; style?: CSSProperties; className?: string; priority?: boolean }) {
   const [w, h] = LOGO_SIZE[src] || [400, 120];
   return <Image src={src} alt={alt} width={w} height={h} style={style} className={className} priority={priority} />;
+}
+
+/**
+ * Logo d'une marque ; tant que son fichier officiel n'est pas fourni (src vide), affiche son nom
+ * dans la typographie du site (provisoire, pas une recréation de logo).
+ */
+export function BrandMark({ brand, src, size, style }: { brand: Brand; src: string; size: string; style?: CSSProperties }) {
+  if (src) return <Logo src={src} alt={brand.name} style={style} />;
+  return <span className="brand-word" role="img" aria-label={brand.name} style={{ fontSize: size, marginBottom: style?.marginBottom }}>{brand.name}</span>;
 }
 
 const VIDEO_RE = /\.(mp4|webm|mov)(\?|#|$)/i;

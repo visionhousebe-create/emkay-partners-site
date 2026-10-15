@@ -233,7 +233,7 @@ export class ScrollEngine {
     }
   }
 
-  // ——— Vision House : pile de projets puis morph vers Nexplore ———
+  // ——— Vision House : pile de projets puis morph vers Overton ———
   vhStack(el: El, p: number) {
     const cards = [...el.querySelectorAll<HTMLElement>('[data-card]')], n = cards.length || 1;
     const T = 0.2 + n * 0.5 + 0.6, pi = 0.2 / T, u = 0.5 / T, pE = pi + n * u;
@@ -376,7 +376,7 @@ export class ScrollEngine {
     });
   }
 
-  // ——— Nexplore Connect : réseau ———
+  // ——— Horizon : réseau ———
   drawNet(p: number) {
     const c = this.net; if (!c) return;
     const dpr = Math.min(2, devicePixelRatio || 1), w = c.clientWidth, h = c.clientHeight;

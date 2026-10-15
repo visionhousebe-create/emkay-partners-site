@@ -17,7 +17,7 @@ export default function MentionsLegales() {
         <dt>Forme juridique</dt><dd>Société à responsabilité limitée (SRL)</dd>
         <dt>Siège social</dt><dd>Avenue des Gerfauts 10, boîte 34<br />1170 Watermael-Boitsfort, Belgique</dd>
         <dt>Numéro d’entreprise (BCE)</dt><dd>1024.829.348</dd>
-        <dt>Numéro de TVA</dt><dd><Todo>numéro de TVA</Todo></dd>
+        <dt>Numéro de TVA</dt><dd>BE 1024.829.348</dd>
         <dt>E-mail</dt><dd><a href="mailto:hello@visionhouse.be">hello@visionhouse.be</a></dd>
         <dt>Téléphone</dt><dd><a href="tel:+32451095650">+32 451 09 56 50</a></dd>
         <dt>Responsable de la publication</dt><dd>Joseph Khan, administrateur</dd>

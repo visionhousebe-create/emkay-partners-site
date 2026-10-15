@@ -2,9 +2,10 @@ import { NextResponse } from 'next/server';
 
 // Formulaires de contact (projet / collaboration / échange / écrire).
 //
-// CONTACT_WEBHOOK_URL (variable Vercel) : URL qui reçoit chaque message en POST JSON.
-// Compatible Make, n8n, Zapier (« Catch Hook ») et Slack (« Incoming Webhook », qui lit le champ `text`).
-// Sans cette variable, le visiteur voit quand même une confirmation et le message est écrit dans les logs Vercel.
+// Les messages sont envoyés en POST JSON à Formspree (formulaire EMKAY Partners), qui les transfère par e-mail.
+// CONTACT_WEBHOOK_URL (variable Vercel, facultative) remplace cette destination : autre formulaire Formspree,
+// Make, n8n, Zapier (« Catch Hook ») ou Slack (« Incoming Webhook », qui lit le champ `text`).
+const DEFAULT_ENDPOINT = 'https://formspree.io/f/xdarzqyq';
 
 export const runtime = 'nodejs';
 
@@ -53,6 +54,7 @@ export async function POST(req: Request) {
 
   const label = KINDS[kind];
   const payload = {
+    _subject: `EMKAY Partners — ${label} — ${f.nom}`, // objet de l'e-mail Formspree
     source: 'emkaypartners-site',
     kind,
     type_demande: label,
@@ -68,14 +70,10 @@ export async function POST(req: Request) {
     ].filter(Boolean).join('\n') + '\n\n' + f.message,
   };
 
-  const hook = process.env.CONTACT_WEBHOOK_URL;
-  if (!hook) {
-    console.warn('[contact] CONTACT_WEBHOOK_URL n’est pas configurée — message NON transmis, uniquement journalisé :', JSON.stringify(payload));
-    return ok();
-  }
+  const hook = process.env.CONTACT_WEBHOOK_URL || DEFAULT_ENDPOINT;
 
   try {
-    const res = await fetch(hook, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload), signal: AbortSignal.timeout(8000) });
+    const res = await fetch(hook, { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' }, body: JSON.stringify(payload), signal: AbortSignal.timeout(8000) });
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
   } catch (e) {
     console.error('[contact] échec de transmission au webhook :', (e as Error).message, JSON.stringify(payload));

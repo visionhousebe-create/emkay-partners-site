@@ -33,7 +33,7 @@ Node ≥ 20.9 (Vercel : laisser la version par défaut).
 
 | Variable | Obligatoire | Rôle |
 | --- | --- | --- |
-| `CONTACT_WEBHOOK_URL` | Oui en production | URL qui reçoit chaque message (POST JSON) : Make, n8n, Zapier, Slack Incoming Webhook. Sans elle, le visiteur voit une confirmation mais le message n'est que **journalisé** (logs Vercel : « CONTACT_WEBHOOK_URL n’est pas configurée »). |
+| `CONTACT_WEBHOOK_URL` | Non | Remplace la destination des messages. Par défaut : Formspree `https://formspree.io/f/xdarzqyq` (messages reçus par e-mail). Accepte aussi Make, n8n, Zapier, Slack. |
 | `NEXT_PUBLIC_SITE_URL` | Non | Surcharge du domaine canonique. Par défaut, la Production utilise `https://www.emkaypartners.com` (`CANONICAL_URL` dans `lib/site.ts`) pour canonical, Open Graph, robots.txt et sitemap. |
 
 Voir `.env.example`. Les Previews Vercel sont automatiquement en `noindex`.
@@ -41,7 +41,7 @@ Voir `.env.example`. Les Previews Vercel sont automatiquement en `noindex`.
 ### Formulaire de contact
 - Validation serveur : nom (≥ 2 caractères), e-mail valide, message (≥ 5 caractères), type de demande ; organisation pour « Je veux collaborer ».
 - Anti-spam invisible : champ piège + délai minimum de 2,5 s. Les envois suspects sont acceptés en apparence mais jamais transmis.
-- Données envoyées au webhook : `kind`, `type_demande`, `nom`, `email`, `message`, champs optionnels, `receivedAt`, et `text` (résumé lisible, utilisé par Slack).
+- Données envoyées (POST JSON, `Accept: application/json`) : `_subject` (objet de l'e-mail Formspree), `kind`, `type_demande`, `nom`, `email`, `message`, champs optionnels, `receivedAt`, et `text` (résumé lisible, utilisé par Slack).
 - En cas d'échec du webhook, le visiteur voit « Votre message n’a pas pu partir. Merci de réessayer… » — jamais d'erreur technique.
 
 ## Médias Vision House et vidéos
@@ -74,7 +74,7 @@ Rechercher `À COMPLÉTER` dans `app/mentions-legales/page.tsx` et `app/politiqu
 
 1. **GitHub** — branche `emkay-final-production` → Pull Request vers `main` (ne pas merger avant validation).
 2. **Vercel → Add New… → Project → Import** `visionhousebe-create/emkay-partners-site`. Framework : Next.js · Root Directory : `./` · Install : `npm install` · Build : `npm run build` · Output : automatique.
-3. Variables : ajouter `CONTACT_WEBHOOK_URL` (Preview + Production).
+3. Variables : aucune obligatoire (le formulaire envoie vers Formspree par défaut). `CONTACT_WEBHOOK_URL` seulement pour changer de destination.
 4. **Preview** : chaque push sur `emkay-final-production` crée un déploiement Preview ; le lien apparaît dans la Pull Request.
 5. **Domaine** (après validation de la Preview) — domaine canonique : **`www.emkaypartners.com`**.
    - Vercel → Project → Settings → Domains → ajouter `www.emkaypartners.com` (Production, branche `main`).

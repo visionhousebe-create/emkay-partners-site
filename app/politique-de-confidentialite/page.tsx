@@ -42,9 +42,9 @@ export default function Confidentialite() {
       <p>Les données sont destinées aux personnes d’EMKAY Partners et des marques développées et exploitées par EMKAY Partners chargées de traiter votre demande. Elles transitent par des prestataires techniques agissant pour notre compte :</p>
       <ul>
         <li>hébergement du site : Vercel Inc. (États-Unis) ;</li>
-        <li>réception des messages : <Todo>outil utilisé (ex. messagerie, Make, n8n, Zapier, Slack) et pays</Todo>.</li>
+        <li>réception des messages du formulaire : Formspree, Inc. (États-Unis), qui transmet les messages par e-mail.</li>
       </ul>
-      <p>Lorsque certains prestataires sont établis hors de l’Union européenne, les transferts sont encadrés par les garanties prévues par le RGPD (décision d’adéquation ou clauses contractuelles types). <Todo>à confirmer selon les prestataires retenus</Todo></p>
+      <p>Ces prestataires étant établis aux États-Unis, les transferts de données sont encadrés par les garanties prévues par le RGPD : décision d’adéquation (EU-U.S. Data Privacy Framework) ou clauses contractuelles types, selon le prestataire.</p>
 
       <h2>Durée de conservation</h2>
       <p>Les messages reçus via le formulaire sont conservés <Todo>durée (ex. 3 ans après le dernier échange)</Todo>, puis supprimés, sauf relation contractuelle en cours. Les journaux techniques sont conservés selon la politique de l’hébergeur.</p>

@@ -1,3 +1,93 @@
+# EMKAY Partners — site
+
+Site Next.js 16 (App Router) issu du prototype Claude Design `project/EMKAY FINAL.dc.html`. Déployable tel quel sur Vercel.
+
+```bash
+npm install
+npm run dev       # http://localhost:3000
+npm run build     # build de production (doit passer sans erreur)
+npm run typecheck
+```
+
+Node ≥ 20.9 (Vercel : laisser la version par défaut).
+
+## Structure
+
+| Chemin | Rôle |
+| --- | --- |
+| `app/page.tsx`, `app/layout.tsx` | Page d'accueil, polices (Archivo + Instrument Serif via `next/font`), métadonnées SEO |
+| `app/mentions-legales`, `app/politique-de-confidentialite` | Pages légales (champs `[À COMPLÉTER : …]` surlignés) |
+| `app/api/contact/route.ts` | Réception des formulaires → `CONTACT_WEBHOOK_URL` |
+| `app/robots.ts`, `app/sitemap.ts`, `app/icon.png`, `app/opengraph-image.png` | SEO, favicon, image de partage |
+| `components/EmkaySite.tsx` | Header, accès rapide, navigation latérale, formulaire, curseur |
+| `components/sections.tsx` | Les 18 sections, dans l'ordre de la page |
+| `components/media.tsx` | Logos, photos et vidéos (chargement différé) |
+| `lib/data.ts` | **Tout le contenu modifiable** : marques, projets, galerie, liens, formulaires |
+| `lib/scrollEngine.ts` | Animations au défilement |
+| `lib/site.ts` | URL du site, titre, description, indexation |
+| `public/logos`, `public/media` | Logos officiels et photos |
+
+`project/` et `chats/` = bundle Claude Design d'origine, conservé pour référence et exclu du build.
+
+## Variables d'environnement (Vercel → Settings → Environment Variables)
+
+| Variable | Obligatoire | Rôle |
+| --- | --- | --- |
+| `CONTACT_WEBHOOK_URL` | Oui en production | URL qui reçoit chaque message (POST JSON) : Make, n8n, Zapier, Slack Incoming Webhook. Sans elle, le visiteur voit une confirmation mais le message n'est que **journalisé** (logs Vercel : « CONTACT_WEBHOOK_URL n’est pas configurée »). |
+| `NEXT_PUBLIC_SITE_URL` | Non | Surcharge du domaine canonique. Par défaut, la Production utilise `https://www.emkaypartners.com` (`CANONICAL_URL` dans `lib/site.ts`) pour canonical, Open Graph, robots.txt et sitemap. |
+
+Voir `.env.example`. Les Previews Vercel sont automatiquement en `noindex`.
+
+### Formulaire de contact
+- Validation serveur : nom (≥ 2 caractères), e-mail valide, message (≥ 5 caractères), type de demande ; organisation pour « Je veux collaborer ».
+- Anti-spam invisible : champ piège + délai minimum de 2,5 s. Les envois suspects sont acceptés en apparence mais jamais transmis.
+- Données envoyées au webhook : `kind`, `type_demande`, `nom`, `email`, `message`, champs optionnels, `receivedAt`, et `text` (résumé lisible, utilisé par Slack).
+- En cas d'échec du webhook, le visiteur voit « Votre message n’a pas pu partir. Merci de réessayer… » — jamais d'erreur technique.
+
+## Médias Vision House et vidéos
+
+Déposer les fichiers dans `public/media/vision-house/` (voir le README du dossier), puis renseigner `VH_PROJECTS` dans `lib/data.ts` :
+
+```ts
+{ name: 'CLIENT 01', …, mediaType: 'video', mediaSrc: ['/media/vision-house/client-01.webm', '/media/vision-house/client-01.mp4'], poster: '/media/vision-house/client-01.jpg' }
+```
+
+Les vidéos (`.mp4`, `.webm`) ne se chargent qu'à l'approche de l'écran, puis en `preload="metadata"`, muettes, en boucle, `playsInline` ; aucune lecture automatique avec `prefers-reduced-motion`. Pour des fichiers de plusieurs dizaines de Mo, préférer un hébergement vidéo (Vercel Blob, Mux, Cloudflare Stream) et mettre l'URL complète dans `mediaSrc`.
+
+## Liens à compléter (`LINKS` dans `lib/data.ts`)
+
+Tant qu'une URL vaut `''`, le lien s'affiche à l'identique mais n'est pas cliquable.
+
+| Clé | Emplacement |
+| --- | --- |
+| `linkedin` | Footer — LinkedIn |
+| `instagram` | Footer — Instagram |
+| `nextBavare` | Section Bavare — « Voir le prochain Bavare » |
+| `vmAddresses` | Section Viens Manger — « Découvrir les adresses » |
+| `VH_PROJECTS[].url` | Cartes Vision House (études de cas, facultatif) |
+
+## Informations légales à compléter
+
+Rechercher `À COMPLÉTER` dans `app/mentions-legales/page.tsx` et `app/politique-de-confidentialite/page.tsx` : dénomination sociale, forme juridique, adresse, BCE, TVA, e-mail, téléphone, responsable de publication, hébergeur, outil de réception des messages, durée de conservation, juridiction, date de mise à jour. Les textes légaux parlent volontairement des « marques développées et exploitées par EMKAY Partners » : un changement de nom de marque ne les impacte pas.
+
+## Mise en ligne
+
+1. **GitHub** — branche `emkay-final-production` → Pull Request vers `main` (ne pas merger avant validation).
+2. **Vercel → Add New… → Project → Import** `visionhousebe-create/emkay-partners-site`. Framework : Next.js · Root Directory : `./` · Install : `npm install` · Build : `npm run build` · Output : automatique.
+3. Variables : ajouter `CONTACT_WEBHOOK_URL` (Preview + Production).
+4. **Preview** : chaque push sur `emkay-final-production` crée un déploiement Preview ; le lien apparaît dans la Pull Request.
+5. **Domaine** (après validation de la Preview) — domaine canonique : **`www.emkaypartners.com`**.
+   - Vercel → Project → Settings → Domains → ajouter `www.emkaypartners.com` (Production, branche `main`).
+   - Ajouter `emkaypartners.com` → « Redirect to » `www.emkaypartners.com` (308).
+   - Chez le registrar : `CNAME www → cname.vercel-dns.com` et, pour l'apex, l'enregistrement `A` indiqué par Vercel (ou déléguer les nameservers à Vercel). Toujours suivre les valeurs affichées dans Vercel.
+   - Le certificat HTTPS est émis automatiquement ; vérifier le statut « Valid Configuration » dans Vercel.
+   - Un autre domaine (ex. `.be`) peut être ajouté plus tard avec « Redirect to » `www.emkaypartners.com`.
+6. **Production** : merger la Pull Request dans `main` → Vercel déploie en Production.
+
+---
+
+<details><summary>Original handoff README</summary>
+
 # CODING AGENTS: READ THIS FIRST
 
 This is a **handoff bundle** from Claude Design (claude.ai/design).
@@ -23,3 +113,5 @@ The design medium is **HTML/CSS/JS** — these are prototypes, not production co
 - `README.md` — this file
 - `chats/` — conversation transcripts (read these!)
 - `project/` — the `EMKAY Portal V2 prototype` project files (HTML prototypes, assets, components)
+
+</details>

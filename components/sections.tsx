@@ -1,0 +1,717 @@
+'use client';
+
+import Image from 'next/image';
+import { useState, type RefObject } from 'react';
+import { BRANDS, DOORS, GROUP, IRL, LINKS, ORIENT, RATIO, ROOM, SECTION_MEDIA, VH_PROJECTS, type FormKind } from '@/lib/data';
+import { Logo, Media } from './media';
+
+const B = BRANDS;
+
+export type UI = {
+  wide: boolean;
+  fine: boolean;
+  reduced: boolean;
+  netRef: RefObject<HTMLCanvasElement | null>;
+  openQa: () => void;
+  openForm: (k: FormKind) => void;
+  roomHover: number;
+  setRoomHover: (i: number) => void;
+};
+
+export function Sections({ ui }: { ui: UI }) {
+  return (
+    <>
+      <Portal ui={ui} />
+      <BrandSelector ui={ui} />
+      <VisionHouse ui={ui} />
+      <Nexplore ui={ui} />
+      <NexploreConnect ui={ui} />
+      <Bavare />
+      <ViensManger />
+      <EmkayRoom ui={ui} />
+      <Identites />
+      <Collaborations ui={ui} />
+      <Chiffres />
+      <InRealLife ui={ui} />
+      <Orientation ui={ui} />
+      <Portes />
+      <APropos />
+      <Manifeste />
+      <Contact ui={ui} />
+      <Footer />
+    </>
+  );
+}
+
+// ——— 01 Portail ———
+function Portal({ ui }: { ui: UI }) {
+  return (
+    <section id="top" data-screen-label="01 Portail" data-sc="sticky" data-hd="#F5F1E9" className="portal">
+      <div className="portal-in">
+        <div className="portal-dim" />
+        <div className="portal-house">
+          <div data-r="0.3" className="lbl" style={{ fontSize: 12, letterSpacing: '.3em', color: '#AAA6AD' }}>THE HOUSE</div>
+          <h1 className="portal-h1">
+            <span data-r="0.4" style={{ display: 'block' }}>Une maison.</span>
+            <span data-r="0.5" className="serif-i portal-h1-2">Des univers bien à eux.</span>
+          </h1>
+          <div data-r="0.62" className="portal-list">
+            <span>01 VISION HOUSE</span><span>02 NEXPLORE</span><span>03 NEXPLORE CONNECT</span><span>04 BAVARE</span><span>05 VIENS MANGER</span>
+          </div>
+        </div>
+        <div className="door door-l"><div className="door-word">EMKAY</div></div>
+        <div className="door door-r"><div className="door-word">EMKAY</div></div>
+        <div className="portal-front">
+          <div className="portal-top"><span>BRUXELLES / BELGIQUE</span><span>50.85° N — 4.35° E</span></div>
+          <div className="portal-logo">
+            <Logo src="/logos/emkay.png" alt="EMKAY Partners" priority style={{ display: 'block', width: 'clamp(240px,30vw,440px)', maxWidth: '100%', height: 'auto', objectFit: 'contain' }} />
+          </div>
+          <div className="portal-cue">
+            <span style={{ fontSize: 'clamp(12px,1vw,14px)', fontWeight: 700, letterSpacing: '.3em' }}>FAITES DÉFILER POUR DÉCOUVRIR</span>
+            <span style={{ fontSize: 22, lineHeight: 1 }}>↓</span>
+            <span className="cue-line"><span style={{ animation: ui.reduced ? 'none' : undefined }} /></span>
+            <button type="button" data-portal-qa="" onClick={ui.openQa} data-cursor="OUVRIR" className="btn-reset portal-qa">JE SAIS CE QUE JE CHERCHE ↗</button>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// ——— 03 Sélecteur des marques ———
+function BrandSelector({ ui }: { ui: UI }) {
+  const { wide } = ui;
+  const [active, setActive] = useState<number | null>(null);
+  const a = active == null ? null : B[active];
+  const fg = a ? a.fg : '#F5F1E9';
+  const line = a ? a.fg + '38' : 'rgba(245,241,233,.2)';
+  const num = (a ? a.num : '00') + ' / 05';
+  return (
+    <section id="marques" data-screen-label="03 Sélecteur des marques" data-hd={fg} onMouseLeave={() => { if (wide) setActive(null); }} className="sel" style={{ background: a ? a.bg : '#2B143D', color: fg }}>
+      <div style={{ maxWidth: 1600, margin: '0 auto' }}>
+        <div className="sel-head">
+          <span>NOS MARQUES</span>
+          <span style={{ opacity: 0.6 }}>{wide ? 'SURVOLEZ UNE MARQUE' : 'TOUCHEZ UNE MARQUE'}</span>
+          <span className="tnum">{num}</span>
+        </div>
+        <div className="sel-grid" style={{ gridTemplateColumns: wide ? 'minmax(0,2.1fr) minmax(0,1fr)' : '1fr' }}>
+          <div style={{ minWidth: 0, borderBottom: `1px solid ${line}`, transition: 'border-color .7s' }}>
+            {B.map((b, i) => {
+              const on = active === i;
+              return (
+                <a key={b.id} href={'#' + b.id} data-cursor={b.cursor} className="sel-item"
+                  onMouseEnter={() => { if (wide) setActive(i); }} onFocus={() => { if (wide) setActive(i); }}
+                  onClick={(e) => { if (!wide && active !== i) { e.preventDefault(); setActive(i); } }}
+                  style={{ borderTop: `1px solid ${line}`, opacity: a == null || on ? 1 : 0.28 }}>
+                  <div className="sel-row">
+                    <span className="sel-num">{b.num}</span>
+                    <span className="sel-name" style={{ transform: `translateX(${on ? (wide ? '24px' : '10px') : '0px'})` }}>{b.name}</span>
+                  </div>
+                  <div style={{ display: 'grid', gridTemplateRows: on ? '1fr' : '0fr', transition: 'grid-template-rows .7s cubic-bezier(.2,.7,.2,1)' }}>
+                    <div style={{ overflow: 'hidden', minHeight: 0 }}>
+                      <div className="sel-info" style={{ opacity: on ? 1 : 0 }}>
+                        <span style={{ fontSize: 11, fontWeight: 600, letterSpacing: '.16em' }}>{b.tags}</span>
+                        <span style={{ fontSize: 16, lineHeight: 1.5, maxWidth: 460, opacity: 0.85 }}>{b.desc}</span>
+                        <span style={{ fontSize: 13, fontWeight: 600, letterSpacing: '.12em', borderBottom: '1px solid currentColor', paddingBottom: 2 }}>{b.cta}</span>
+                      </div>
+                    </div>
+                  </div>
+                </a>
+              );
+            })}
+          </div>
+          {wide && (
+            <div style={{ position: 'sticky', top: 110 }}>
+              <div className="sel-panel">
+                <div className="sel-default" style={{ clipPath: a ? 'inset(0 0 100% 0)' : 'inset(0 0 0 0)' }}>
+                  <span className="lbl" style={{ color: '#AAA6AD' }}>EMKAY PARTNERS</span>
+                  <span className="serif" style={{ fontSize: 'clamp(30px,3vw,52px)', lineHeight: 1 }}>Cinq marques.<br /><em>Une même maison.</em></span>
+                </div>
+                {B.map((b, i) => {
+                  const on = active === i;
+                  return (
+                    <div key={b.id} className="sel-layer" style={{ background: b.plate === 'transparent' ? b.bg : b.plate, zIndex: on ? 3 : 2, clipPath: on ? 'inset(0 0 0 0)' : 'inset(0 0 100% 0)' }}>
+                      <div className="sel-layer-in" style={{ transform: `scale(${on ? 1 : 0.92})` }}>
+                        <Logo src={b.logo} alt={b.name} style={{ display: 'block', width: b.lw, maxWidth: '100%', maxHeight: '100%', height: 'auto', objectFit: 'contain', borderRadius: b.lr }} />
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+              <div className="sel-foot">
+                <span style={{ transition: 'opacity .4s' }}>{a ? a.cat.toUpperCase() : 'LES MARQUES EMKAY'}</span><span className="tnum">{num}</span>
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// ——— 04 Vision House (pile de projets → morph vers Nexplore) ———
+function VisionHouse({ ui }: { ui: UI }) {
+  const { wide } = ui;
+  const last = VH_PROJECTS[VH_PROJECTS.length - 1];
+  return (
+    <section id="vision-house" data-screen-label="04 Vision House" data-sc="sticky" data-vhs="" data-brand="0" data-hd="#F5F1E9" style={{ position: 'relative', background: '#0C0340' }}>
+      <div className="vh-in" style={{ height: wide ? '100vh' : 'auto' }}>
+        <div data-vhui="" className="vh-intro" style={{ position: wide ? 'absolute' : 'relative', padding: wide ? '0 8vw' : '14vh 6vw 8vh' }}>
+          <Logo src="/logos/visionhouse-white.png" alt="Vision House" style={{ display: 'block', height: 'clamp(18px,1.8vw,26px)', width: 'auto', alignSelf: 'flex-start', objectFit: 'contain' }} />
+          <span className="lbl" style={{ letterSpacing: '.24em', color: '#A9A3D6' }}>01 / 05 — VISION HOUSE</span>
+          <h2 className="vh-h2">La stratégie<br /><span className="serif-i" style={{ color: '#B9C4FF' }}>prend forme.</span></h2>
+          <p style={{ margin: 0, maxWidth: 420, fontSize: 17, lineHeight: 1.5, color: '#CFCBEA' }}>Quelques projets accompagnés par Vision House.</p>
+          <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '14px 32px' }}>
+            <button type="button" onClick={() => ui.openForm('project')} data-cursor="OUVRIR" className="btn-reset cta-line" style={{ pointerEvents: 'auto', fontSize: 12, paddingBottom: 7, borderBottom: '1px solid #B9C4FF' }}>PARLER DE MA COMMUNICATION ↗</button>
+            <span className="lbl" style={{ letterSpacing: '.24em', color: '#A9A3D6' }}>FAITES DÉFILER ↓</span>
+          </div>
+        </div>
+        <div data-track="" className="vh-track" style={{ position: wide ? 'absolute' : 'relative', padding: wide ? 0 : '0 6vw 10vh' }}>
+          {VH_PROJECTS.map((pj, i) => {
+            const [rw, rh] = pj.ratio.split('/').map(Number), R = rw / rh;
+            return (
+              <div key={pj.name + i} data-card={i} data-rot={pj.rot} className="vh-card" style={{
+                position: wide ? 'absolute' : 'relative', left: wide ? '50%' : 'auto', top: wide ? '12vh' : 'auto', zIndex: 10 + i,
+                width: wide ? `min(72vw, calc((70vh - 70px) * ${R.toFixed(4)}))` : R < 1 ? '78%' : '100%',
+                marginTop: wide || i === 0 ? 0 : -30, transform: wide ? 'translate(-50%, 100vh)' : `rotate(${pj.rot}deg)`, opacity: wide ? 0 : 1,
+              }}>
+                <div data-vhmedia="" style={{ position: 'relative', width: '100%', aspectRatio: pj.ratio, overflow: 'hidden', background: '#160B52' }}>
+                  <Media src={pj.mediaSrc} type={pj.mediaType} poster={pj.poster} autoplay="hover" placeholder={pj.name + ' — ' + (pj.mediaType === 'video' ? 'vidéo MP4' : 'image')} sizes="72vw" />
+                </div>
+                <a href={pj.url || '#'} className="vh-meta">
+                  <span style={{ fontSize: 10, fontWeight: 700, letterSpacing: '.22em', color: '#A9A3D6' }}>{String(i + 1).padStart(2, '0')} / CLIENT</span>
+                  <span style={{ display: 'flex', flexDirection: 'column', gap: 4, minWidth: 0 }}>
+                    <span className="xw" style={{ fontWeight: 800, fontSize: 'clamp(15px,1.3vw,20px)', letterSpacing: '-.01em' }}>{pj.name}</span>
+                    <span style={{ fontSize: 12, fontWeight: 500, letterSpacing: '.06em', color: '#CFCBEA' }}>{pj.services.map((x) => x.charAt(0) + x.slice(1).toLowerCase()).join(' · ')}</span>
+                  </span>
+                  <span style={{ fontSize: 12, fontWeight: 600, letterSpacing: '.16em', color: '#A9A3D6' }}>{pj.year}</span>
+                </a>
+              </div>
+            );
+          })}
+        </div>
+        <div data-xf="" className="vh-xf" style={{ position: wide ? 'absolute' : 'relative', height: wide ? 0 : '100svh', opacity: wide ? 0 : 1 }}>
+          <div data-xa="" data-empty={last.mediaSrc ? undefined : ''} style={{ position: 'absolute', inset: 0, opacity: wide && last.mediaSrc ? 1 : 0 }}>
+            {last.mediaSrc && <Media src={last.mediaSrc} type={last.mediaType} poster={last.poster} placeholder={last.name} autoplay="visible" />}
+          </div>
+          <div data-xb="" style={{ position: 'absolute', inset: 0, opacity: wide ? 0 : 1 }}>
+            <Image src={SECTION_MEDIA.nexplore} alt="Événement Nexplore" fill sizes="100vw" style={{ objectFit: 'cover' }} />
+          </div>
+          <div data-xg="" className="vh-xg" style={{ opacity: wide ? 0 : 1 }} />
+          <div data-xt="" style={{ position: 'absolute', inset: 0, color: '#F5F1E9', opacity: wide ? 0 : 1, pointerEvents: 'none' }}>
+            <div className="lbl" style={{ position: 'absolute', left: '5vw', right: '5vw', top: 88, display: 'flex', justifyContent: 'space-between', gap: 24 }}><span>02 / 05</span><span>ÉVÉNEMENTS &amp; EXPÉRIENCES</span></div>
+            <div className="xw" style={{ position: 'absolute', left: '5vw', right: '5vw', bottom: 'clamp(28px,5vh,56px)', fontWeight: 900, fontSize: 'clamp(56px,14vw,280px)', lineHeight: 0.8, letterSpacing: '-.06em' }}>NEXPLORE</div>
+          </div>
+        </div>
+      </div>
+      <span id="nexplore" aria-hidden="true" style={{ position: 'absolute', left: 0, bottom: '100vh', width: 1, height: 1, pointerEvents: 'none' }} />
+    </section>
+  );
+}
+
+// ——— 05 Nexplore ———
+function Nexplore({ ui }: { ui: UI }) {
+  return (
+    <section id="nexplore-suite" data-screen-label="05 Nexplore" data-sc="enter" data-brand="1" data-cursor="VOIR" data-hd="#F5F1E9" style={{ position: 'relative', zIndex: 1, background: '#090909', color: '#F5F1E9', scrollMarginTop: 0 }}>
+      <div className="nx-grid">
+        <div>
+          <Logo src="/logos/nexplore.png" alt="Nexplore" style={{ display: 'block', width: 200, maxWidth: '100%', height: 'auto', marginBottom: 40 }} />
+          <h3 data-r="0.35" className="nx-h3">Des événements conçus pour <span className="serif-i" style={{ letterSpacing: '-.01em' }}>provoquer quelque chose.</span></h3>
+          <p className="nx-p">Nexplore ne gère pas seulement une logistique. Elle transforme un événement en expérience — un moment dont on parle encore le lendemain.</p>
+          <button type="button" onClick={() => ui.openForm('project')} data-cursor="OUVRIR" className="btn-reset cta-line" style={{ marginTop: 36, borderBottom: '1px solid #F5F1E9' }}>PARLER DE MON ÉVÉNEMENT ↗</button>
+        </div>
+        <div style={{ display: 'flex', flexDirection: 'column' }}>
+          <div data-r="0.45" className="nx-row">
+            <span className="nx-row-k">A</span>
+            <div><div className="nx-row-t">Imaginés par Nexplore</div><div className="nx-row-d">Nos propres formats, pensés, produits et portés par la marque.</div></div>
+          </div>
+          <div data-r="0.5" className="nx-row" style={{ borderBottom: '1px solid rgba(245,241,233,.2)' }}>
+            <span className="nx-row-k">B</span>
+            <div><div className="nx-row-t">Créés pour vous</div><div className="nx-row-d">Des événements sur mesure pour des entreprises, organisations et marques.</div></div>
+          </div>
+          <p className="serif" style={{ margin: '36px 0 0', fontSize: 'clamp(24px,2.2vw,34px)', lineHeight: 1.3, textWrap: 'pretty' }}>Inaugurations · Événements corporate · Networking · Activations · Expériences professionnelles · Événements sur mesure</p>
+        </div>
+      </div>
+      <div className="nx-line" />
+    </section>
+  );
+}
+
+// ——— 06 Nexplore Connect ———
+function NexploreConnect({ ui }: { ui: UI }) {
+  return (
+    <section id="nexplore-connect" data-screen-label="06 Nexplore Connect" data-sc="sticky" data-canvas="net" data-brand="2" data-cursor="CONNECTER" data-hd="#090909" data-hd-end="#E3122B" style={{ height: '260vh', position: 'relative' }}>
+      <div className="nxc-in">
+        <div className="nxc-pink" />
+        <canvas ref={ui.netRef} style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', pointerEvents: 'none' }} />
+        <div className="nxc-content">
+          <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', alignItems: 'center', gap: 24 }}>
+            <Logo src="/logos/nexplore-connect.png" alt="Nexplore Connect" style={{ display: 'block', width: 'clamp(170px,15vw,230px)', height: 'auto', objectFit: 'contain' }} />
+            <div className="lbl" style={{ display: 'flex', gap: 24 }}><span>03 / 05</span><span>RENCONTRES PROFESSIONNELLES</span></div>
+          </div>
+          <h3 data-r="0.06" className="nxc-h3">Les bonnes rencontres <span className="serif-i" style={{ letterSpacing: '-.02em' }}>changent parfois la suite.</span></h3>
+          <div className="nxc-bottom">
+            <div data-r="0.2">
+              <div className="lbl" style={{ color: '#5b5660', marginBottom: 18 }}>RAPPROCHER</div>
+              <div className="nxc-chain">
+                {['Entrepreneurs', 'Dirigeants', 'Entreprises', 'Professionnels', 'Partenaires', 'Opportunités'].map((w, i) => (
+                  <span key={w} style={{ display: 'contents' }}>{i > 0 && <span style={{ color: '#8E8893' }}>↔</span>}<span>{w}</span></span>
+                ))}
+              </div>
+            </div>
+            <div data-r="0.3">
+              <p style={{ margin: 0, fontSize: 17, lineHeight: 1.6, color: '#3a3540', textWrap: 'pretty' }}>Pas un club de plus. Nexplore Connect s&apos;intéresse à la qualité des connexions : mises en relation, cercles professionnels et opportunités de collaboration.</p>
+              <button type="button" onClick={() => ui.openForm('talk')} data-cursor="OUVRIR" className="btn-reset cta-line" style={{ marginTop: 28, borderBottom: '1px solid #090909' }}>DÉCOUVRIR LES CONNEXIONS ↗</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// ——— 07 Bavare ———
+const STICKERS: { w: string; r: string; top: string; left: string; rot: number; bg: string; fg: string; shadow: boolean }[] = [
+  { w: 'PARLER', r: '0.18', top: '6%', left: '4%', rot: -8, bg: '#E3122B', fg: '#FF9EC4', shadow: true },
+  { w: 'SORTIR', r: '0.25', top: '0%', left: '52%', rot: 6, bg: '#F5F1E9', fg: '#E3122B', shadow: true },
+  { w: 'RENCONTRER', r: '0.32', top: '36%', left: '22%', rot: -4, bg: '#F5F1E9', fg: '#E3122B', shadow: true },
+  { w: 'DÉCOUVRIR', r: '0.39', top: '30%', left: '70%', rot: 9, bg: '#E3122B', fg: '#FF9EC4', shadow: true },
+  { w: 'RIRE', r: '0.46', top: '68%', left: '6%', rot: 12, bg: '#080808', fg: '#FF9EC4', shadow: false },
+  { w: 'PARTAGER', r: '0.53', top: '66%', left: '50%', rot: -10, bg: '#E3122B', fg: '#F5F1E9', shadow: true },
+];
+
+function Bavare() {
+  return (
+    <section id="bavare" data-screen-label="07 Bavare" data-sc="sticky" data-brand="3" data-cursor="SORTIR" data-hd="#E3122B" data-hd-end="#F2E7D3" style={{ height: '260vh', position: 'relative' }}>
+      <div className="bv-in">
+        <div className="bv-marquee">
+          <div style={{ transform: 'translateX(calc(-10vw - var(--p,0) * 40vw))' }}>BAVARE BAVARE BAVARE BAVARE</div>
+          <div style={{ transform: 'translateX(calc(-60vw + var(--p,0) * 40vw))' }}>ON SORT ? ON SORT ? ON SORT ?</div>
+          <div style={{ transform: 'translateX(calc(-20vw - var(--p,0) * 30vw))' }}>BAVARE BAVARE BAVARE BAVARE</div>
+        </div>
+        <div className="bv-top"><span>04 / 05 — BAVARE</span><span>ÉVÉNEMENTS SOCIAUX — BRUXELLES</span></div>
+        <div className="bv-main">
+          <div className="bv-left">
+            <h2 data-r="0.06" className="bv-h2 serif-i">Et si on<br />sortait ?</h2>
+            <p data-r="0.22" className="bv-p">Bavare crée des moments pour sortir, se rencontrer, découvrir des lieux et vivre Bruxelles autrement.</p>
+          </div>
+          <div className="bv-stage">
+            <div data-r="0.04" data-fx="pop" className="bv-square" />
+            <div data-r="0.3" data-fx="pop" className="bv-polaroid">
+              <div style={{ position: 'relative', width: '100%', height: '100%' }}>
+                <Image src={SECTION_MEDIA.bavare} alt="Soirée Bavare" fill sizes="190px" style={{ objectFit: 'cover' }} />
+              </div>
+            </div>
+            {STICKERS.map((s) => (
+              <div key={s.w} style={{ position: 'absolute', top: s.top, left: s.left, transform: `rotate(${s.rot}deg)`, pointerEvents: 'none' }}>
+                <div data-r={s.r} data-fx="pop" className="bv-sticker" style={{ background: s.bg, color: s.fg, boxShadow: s.shadow ? '0 6px 0 rgba(120,0,20,.18)' : undefined }}>{s.w}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+        <div className="bv-bottom">
+          <span className="bv-sign"><Logo src="/logos/bavard.png" alt="Bavare" style={{ display: 'block', height: 22, width: 'auto', objectFit: 'contain' }} />DES SORTIES QUI CRÉENT DES RENCONTRES.</span>
+          <a href={LINKS.nextBavare} data-cursor="VOIR" data-r="0.4" className="bv-cta">VOIR LE PROCHAIN BAVARE ↗</a>
+        </div>
+        <div className="bv-wipe" />
+      </div>
+    </section>
+  );
+}
+
+// ——— 08 Viens Manger ———
+function ViensManger() {
+  return (
+    <section id="viens-manger" data-screen-label="08 Viens Manger" data-sc="sticky" data-brand="4" data-cursor="GOÛTER" data-hd="#F2E7D3" data-hd-end="#4A0B16" data-hd-at="0.2" style={{ height: '260vh', position: 'relative' }}>
+      <div className="vm-in">
+        <div className="vm-intro">
+          <span>05 / 05</span><span className="serif-i" style={{ fontSize: 'clamp(40px,5vw,80px)', letterSpacing: 0 }}>À table.</span>
+        </div>
+        <div className="vm-card">
+          <div data-r="0.32" className="vm-head">
+            <span>05 / 05 — VIENS MANGER</span>
+            <Logo src="/logos/viensmanger.png" alt="Viens Manger" style={{ display: 'block', width: 72, height: 72, borderRadius: '50%', objectFit: 'contain' }} />
+            <span>BRUXELLES — FOOD &amp; DÉCOUVERTES</span>
+          </div>
+          <div style={{ flex: 1, display: 'flex', flexWrap: 'wrap', gap: '4vw', alignItems: 'stretch' }}>
+            <div style={{ flex: '1 1 440px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', gap: '3vh' }}>
+              <h2 data-r="0.38" className="vm-h2 serif">On mange <em>où ?</em></h2>
+              <p data-r="0.46" className="serif-i" style={{ margin: 0, maxWidth: 480, fontSize: 'clamp(22px,2vw,30px)', lineHeight: 1.2 }}>Viens Manger fait découvrir des restaurants, des lieux, des concepts culinaires et des expériences qui valent le détour.</p>
+              <div data-r="0.52" className="vm-menu">
+                {['RESTAURANTS', 'LIEUX', 'CONCEPTS CULINAIRES', 'EXPÉRIENCES'].map((w, i) => (
+                  <div key={w} style={{ display: 'flex', gap: 10, alignItems: 'baseline' }}><span>{w}</span><span style={{ flex: 1, borderBottom: '1px dotted #4A0B16' }} /><span>0{i + 1}</span></div>
+                ))}
+              </div>
+            </div>
+            <div data-r="0.42" data-fx="mask" className="vm-photo">
+              <Image src={SECTION_MEDIA.viensManger} alt="Viens Manger — plat / lieu" fill sizes="440px" style={{ objectFit: 'cover' }} />
+              <div className="vm-tag">L&apos;ADRESSE DU MOIS</div>
+            </div>
+          </div>
+          <div data-r="0.56" style={{ display: 'flex', justifyContent: 'flex-end', paddingTop: 12, borderTop: '1px solid #4A0B16' }}>
+            <a href={LINKS.vmAddresses} className="cta-line" style={{ fontWeight: 700, paddingBottom: 6, borderBottom: '2px solid #A3161F', color: '#A3161F' }}>DÉCOUVRIR LES ADRESSES ↗</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// ——— 09 EMKAY Room ———
+function EmkayRoom({ ui }: { ui: UI }) {
+  return (
+    <section id="groupe" data-screen-label="09 EMKAY Room" data-sc="sticky" data-hd="#F5F1E9" style={{ height: '220vh', position: 'relative' }}>
+      <div className="room-in">
+        <div style={{ flex: 'none', display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', alignItems: 'flex-end', gap: '16px 40px' }}>
+          <div data-r="0.04" className="serif" style={{ fontSize: 'clamp(26px,2.8vw,48px)', lineHeight: 1 }}>Différentes identités.<br /><em style={{ color: '#C9C2CF' }}>Un même point de départ.</em></div>
+          <span style={{ fontSize: 11, letterSpacing: '.22em', color: '#AAA6AD' }}>EMKAY ROOM</span>
+        </div>
+        <div data-orbit="" onMouseLeave={() => ui.setRoomHover(-1)} style={{ position: 'relative', flex: 1, minHeight: 0 }}>
+          <div data-core="" style={{ position: 'absolute', left: '50%', top: '50%', transform: 'translate(-50%,-50%)', width: 'clamp(150px,24vw,380px)' }}>
+            <Logo src="/logos/emkay.png" alt="EMKAY Partners" style={{ display: 'block', width: '100%', height: 'auto', objectFit: 'contain' }} />
+          </div>
+          {ROOM.map((r, i) => {
+            const b = B[r.b], on = ui.roomHover === i;
+            const plateBg = b.id === 'bavare' ? '#FF9EC4' : 'transparent';
+            const shadow = b.id === 'bavare' || b.id === 'viens-manger' ? '0 18px 44px rgba(10,4,18,.32)' : 'none';
+            return (
+              <a key={b.id} href={'#' + b.id} data-oi={i} data-cursor="VOIR" aria-label={'Découvrir ' + b.name} onMouseEnter={() => ui.setRoomHover(i)} onFocus={() => ui.setRoomHover(i)} className="room-item">
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: r.w, height: r.h, padding: r.pad, background: plateBg, borderRadius: r.r, boxShadow: shadow, transform: `scale(${on ? 1.08 : 1})`, transition: 'transform .6s cubic-bezier(.2,.7,.2,1)' }}>
+                  <Logo src={b.logoRoom || b.logoT} alt={b.name} style={{ display: 'block', maxWidth: '100%', maxHeight: '100%', width: 'auto', height: 'auto', objectFit: 'contain', borderRadius: r.r === '50%' ? '50%' : 0 }} />
+                </div>
+                <div className="room-label" style={{ transform: `translate(-50%,${on ? '0px' : '-6px'})`, opacity: on ? 1 : 0 }}>
+                  <span style={{ fontSize: 10, fontWeight: 700, letterSpacing: '.22em' }}>{b.name}</span>
+                  <span className="serif-i" style={{ fontSize: 17, color: '#D9D3DE' }}>{r.role}</span>
+                  <span style={{ marginTop: 4, fontSize: 10, fontWeight: 700, letterSpacing: '.22em', color: '#C9A8E8' }}>DÉCOUVRIR →</span>
+                </div>
+              </a>
+            );
+          })}
+        </div>
+        <p data-r="0.2" style={{ flex: 'none', alignSelf: 'flex-end', margin: 0, maxWidth: 'min(100%,380px)', fontSize: 15, lineHeight: 1.55, color: '#D9D3DE' }}>EMKAY Partners développe, structure et accompagne la croissance de ses différentes marques.</p>
+      </div>
+    </section>
+  );
+}
+
+// ——— 10 Différentes identités ———
+const IDS = [['VISION HOUSE', 'fait connaître.'], ['NEXPLORE', 'fait vivre.'], ['NEXPLORE CONNECT', 'fait rencontrer.'], ['BAVARE', 'fait sortir.'], ['VIENS MANGER', 'fait découvrir.']];
+
+function Identites() {
+  return (
+    <section id="identites" data-screen-label="10 Différentes identités" data-sc="sticky" data-steps="6" data-stack="" data-hd="#2B143D" style={{ height: '560vh', position: 'relative' }}>
+      <div className="ids-in">
+        <h2 className="ids-h2">Différentes identités.<br /><span className="serif-i" style={{ letterSpacing: '-.02em', color: '#2B143D' }}>Une même façon de faire.</span></h2>
+        <div style={{ display: 'flex', flexDirection: 'column', borderTop: '1px solid rgba(8,8,8,.18)' }}>
+          {IDS.map(([n, v], i) => (
+            <div key={n} data-i={i} className="ids-row"><span className="ids-name">{n}</span><span className="serif-i ids-verb">{v}</span></div>
+          ))}
+          <div data-i="5" className="ids-row ids-last"><span className="ids-name">EMKAY</span><span className="serif-i ids-verb">fait grandir.</span></div>
+        </div>
+        <div style={{ position: 'absolute', left: '5vw', right: '5vw', bottom: '5vh', height: 1, background: '#080808', opacity: 0.15 }} />
+        <div style={{ position: 'absolute', left: '5vw', right: '5vw', bottom: '5vh', height: 1, background: '#2B143D', transformOrigin: '0 50%', transform: 'scaleX(var(--p,0))' }} />
+      </div>
+    </section>
+  );
+}
+
+// ——— 11 Le Groupe — quand nos marques se rencontrent ———
+function Collaborations({ ui }: { ui: UI }) {
+  const { wide } = ui;
+  return (
+    <section id="collaborations" data-screen-label="11 Le Groupe" data-sc="sticky" data-group="" data-hd="#F5F1E9" style={{ height: '380vh', position: 'relative' }}>
+      <div className="grp-in">
+        <div className="grp-head">
+          <div>
+            <div className="lbl" style={{ letterSpacing: '.24em', color: '#AAA6AD' }}>LE GROUPE</div>
+            <h2 className="serif" style={{ margin: '14px 0 0', fontWeight: 400, fontSize: 'clamp(34px,4.4vw,80px)', lineHeight: 0.95, letterSpacing: '-.02em' }}>Quand nos marques<br /><em>se rencontrent.</em></h2>
+          </div>
+          <span data-gstep="" className="lbl tnum" style={{ color: '#AAA6AD' }}>01 — INTRODUCTION</span>
+        </div>
+        <div data-stage="" className="grp-stage">
+          <svg data-links="" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', overflow: 'visible', pointerEvents: 'none' }}>
+            {[0, 1, 2, 3].map((i) => <path key={i} data-link={i} d="" fill="none" stroke="#F5F1E9" strokeWidth={1} pathLength={1} strokeDasharray="1" strokeDashoffset="1" opacity={0} />)}
+          </svg>
+          <div data-show="-1,0.17" className="grp-layer" style={{ padding: '0 6vw' }}>
+            <p className="serif" style={{ margin: 0, maxWidth: 900, fontSize: 'clamp(24px,2.8vw,48px)', lineHeight: 1.12, textWrap: 'balance' }}>Nos marques peuvent agir indépendamment.<br /><em style={{ color: '#C9C2CF' }}>Sur certains projets, leurs expertises se complètent.</em></p>
+          </div>
+          <div style={{ position: 'relative', width: '100%', display: 'grid', gridTemplateColumns: wide ? 'minmax(0,1fr) minmax(0,min(34vw,520px)) minmax(0,1fr)' : 'minmax(0,1fr) minmax(0,1fr)', gridTemplateAreas: wide ? "'a c b' 'd c e'" : "'c c' 'a b' 'd e'", alignItems: 'center', gap: 'clamp(20px,3vh,36px) clamp(24px,4vw,72px)' }}>
+            <div data-center="" style={{ gridArea: 'c', display: 'grid', justifyItems: 'center', alignItems: 'center', textAlign: 'center', minWidth: 0 }}>
+              <div data-show="0.19,0.445" className="grp-scn">
+                <span className="lbl" style={{ letterSpacing: '.24em', color: '#AAA6AD' }}>SCÉNARIO 01</span>
+                <span className="grp-scn-t">INAUGURATION</span>
+                <p data-show="0.3,0.445" className="serif-i" style={{ margin: '6px 0 0', maxWidth: 420, fontSize: 'clamp(17px,1.5vw,24px)', lineHeight: 1.2, color: '#D9D3DE', textWrap: 'balance' }}>Une inauguration pensée comme un outil de visibilité, de rencontre et d’expérience.</p>
+              </div>
+              <div data-show="0.47,0.69" className="grp-scn">
+                <span className="lbl" style={{ letterSpacing: '.24em', color: '#AAA6AD' }}>SCÉNARIO 02</span>
+                <span className="grp-scn-t">ÉVÉNEMENT<br />D’ENTREPRISE</span>
+                <span style={{ fontSize: 10, fontWeight: 600, letterSpacing: '.2em', color: '#AAA6AD', lineHeight: 1.7, maxWidth: 380 }}>SOIRÉE · ANNIVERSAIRE · CONFÉRENCE · RÉCEPTION · NETWORKING · ÉVÉNEMENT CLIENT</span>
+              </div>
+            </div>
+            {GROUP.map((g, i) => {
+              const b = B[g.brand];
+              return (
+                <div key={b.id} data-cap={i} className="grp-cap" style={{ gridArea: g.area, justifySelf: wide ? (g.side < 0 ? 'end' : 'start') : 'stretch', width: wide ? 'clamp(190px,22vw,320px)' : 'auto' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+                    <span style={{ flex: 'none', width: 12, height: 12, background: b.dot, boxShadow: '0 0 0 1px rgba(245,241,233,.35)' }} />
+                    <span className="xw" style={{ fontWeight: 800, fontSize: 'clamp(12px,1.15vw,17px)', letterSpacing: '.04em', whiteSpace: 'nowrap' }}>{b.name}</span>
+                  </div>
+                  <div style={{ display: 'grid' }}>
+                    <span data-role="1" className="serif-i grp-role">{g.r1}</span>
+                    <span data-role="2" className="serif-i grp-role" style={{ opacity: 0 }}>{g.r2}</span>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+          <div data-show="0.715,0.8" className="grp-layer" style={{ padding: '0 5vw' }}>
+            <h3 className="grp-big" style={{ fontWeight: 800, fontSize: 'clamp(32px,5vw,96px)', letterSpacing: '-.045em', lineHeight: 0.92 }}>Un projet.<br /><span className="serif-i" style={{ letterSpacing: '-.02em', color: '#C9A8E8' }}>Les bonnes expertises autour.</span></h3>
+          </div>
+          <div style={{ position: 'absolute', inset: 0, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', gap: 'clamp(24px,4vh,44px)', textAlign: 'center', padding: '0 6vw', pointerEvents: 'none' }}>
+            <p data-show="0.805,0.885" className="serif" style={{ margin: 0, maxWidth: 880, fontSize: 'clamp(24px,2.8vw,48px)', lineHeight: 1.12, textWrap: 'balance' }}>Selon le besoin, une marque peut intervenir seule ou plusieurs marques peuvent unir leurs forces.</p>
+            <p data-show="0.835,0.885" style={{ margin: 0, maxWidth: 720, fontSize: 'clamp(15px,1.3vw,20px)', lineHeight: 1.55, color: '#D9D3DE', textWrap: 'balance' }}>EMKAY Partners permet simplement de réunir ces compétences sous un même groupe.</p>
+          </div>
+          <div data-show="0.895,9" className="grp-layer" style={{ padding: '0 5vw' }}>
+            <div className="grp-big" style={{ fontWeight: 900, fontSize: 'clamp(34px,5.6vw,108px)', letterSpacing: '-.05em', lineHeight: 0.9 }}>LE BON PROJET.<br />LES BONNES MARQUES.<br /><span style={{ color: '#C9A8E8' }}>AU BON MOMENT.</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// ——— 12 Chiffres ———
+const STATS = [{ n: 3000, l: 'PARTICIPANTS', r: '0.2' }, { n: 20, l: 'ÉVÉNEMENTS', r: '0.28' }, { n: 25, l: 'SOCIÉTÉS ACCOMPAGNÉES', r: '0.36' }];
+
+function Chiffres() {
+  return (
+    <section id="chiffres" data-screen-label="12 Les chiffres EMKAY" data-sc="enter" data-count-once="" data-hd="#2B143D" className="num">
+      <div style={{ maxWidth: 1440, margin: '0 auto' }}>
+        <div data-r="0.05" className="num-head">
+          <div>
+            <div className="lbl" style={{ letterSpacing: '.24em' }}>EMKAY EN QUELQUES CHIFFRES</div>
+            <h2 className="serif" style={{ margin: '18px 0 0', fontWeight: 400, fontSize: 'clamp(36px,4.6vw,84px)', lineHeight: 0.95, letterSpacing: '-.02em' }}>Ce que cela<br /><em>représente déjà.</em></h2>
+          </div>
+          <span className="lbl" style={{ color: '#6c6472' }}>DEPUIS NOS DÉBUTS — BRUXELLES</span>
+        </div>
+        <div className="num-grid">
+          {STATS.map((s) => (
+            <div key={s.l} data-r={s.r} className="num-cell">
+              <span data-count={s.n} className="num-n">+{s.n}</span>
+              <span style={{ fontSize: 12, fontWeight: 600, letterSpacing: '.2em', color: '#080808' }}>{s.l}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// ——— 13 In Real Life ———
+function InRealLife({ ui }: { ui: UI }) {
+  const { wide, fine } = ui;
+  const [hover, setHover] = useState(-1);
+  return (
+    <section id="projets" data-screen-label="13 In Real Life" data-hd="#F5F1E9" className="irl">
+      <div data-sc="enter" className="irl-head">
+        <h2 data-r="0.1" className="irl-h2">IN REAL<br />LIFE</h2>
+        <p data-r="0.3" className="serif-i" style={{ margin: 0, maxWidth: 360, fontSize: 'clamp(22px,2.2vw,34px)', lineHeight: 1.15, color: '#C9C2CF' }}>Parce que nos projets ne restent pas dans des présentations.</p>
+      </div>
+      <div className="irl-grid">
+        {IRL.map((m, i) => {
+          const on = hover === i || !fine;
+          const vertical = m.orientation === 'vertical';
+          return (
+            <figure key={m.src || m.ph} data-sc="enter" data-cursor="OUVRIR" onMouseEnter={() => setHover(i)} onMouseLeave={() => setHover(-1)} className="irl-fig"
+              style={{ margin: wide ? m.m : vertical ? '0 auto' : 0, flex: wide ? m.basis : vertical ? '0 1 72%' : '1 1 100%', minWidth: `min(100%,${wide ? m.min : '100%'})` }}>
+              <div style={{ position: 'relative', aspectRatio: RATIO[m.orientation] || '4/5', overflow: 'hidden', transform: `translateX(calc(var(--y,0) * ${m.px}px))` }}>
+                <Media src={m.src} type={m.type} poster={m.poster} placeholder={m.ph} alt={`${m.brand} — ${m.project}`} sizes={m.orientation === 'wide' ? '100vw' : '(max-width: 900px) 100vw, 56vw'} autoplay="visible" />
+                <div className="irl-ov" style={{ opacity: on ? 1 : 0, transform: `translateY(${on ? '0px' : '12px'})` }}>
+                  <span><span style={{ color: '#AAA6AD' }}>MARQUE </span>{m.brand}</span><span><span style={{ color: '#AAA6AD' }}>PROJET </span>{m.project}</span><span><span style={{ color: '#AAA6AD' }}>ANNÉE </span>{m.year}</span>
+                </div>
+              </div>
+              <figcaption style={{ fontSize: 11, letterSpacing: '.22em', lineHeight: 1.6 }}><b>{String(i + 1).padStart(2, '0')} — {m.brand}</b><br /><span style={{ color: '#AAA6AD' }}>{m.project}</span></figcaption>
+            </figure>
+          );
+        })}
+      </div>
+    </section>
+  );
+}
+
+// ——— 14 Votre besoin, notre marque ———
+function Orientation({ ui }: { ui: UI }) {
+  const { wide } = ui;
+  const [act, setAct] = useState(0);
+  const panelBg = (id: string, bg: string) => (id === 'nexplore' ? '#16302B' : bg);
+  const k = Math.max(0, act), ao = ORIENT[k], ab = B[ao.b];
+  return (
+    <section id="orientation" data-screen-label="14 Votre besoin, notre marque" data-sc="enter" data-hd="#080808" className="or">
+      <div data-r="0.04" className="lbl" style={{ letterSpacing: '.24em', color: '#2B143D' }}>TROUVEZ VOTRE POINT D’ENTRÉE</div>
+      <h2 data-r="0.08" className="or-h2">Votre besoin.<br /><span className="serif-i" style={{ letterSpacing: '-.02em', color: '#2B143D' }}>Notre marque.</span></h2>
+      <p data-r="0.16" style={{ margin: '4vh 0 0', maxWidth: 560, fontSize: 18, lineHeight: 1.5, color: '#3a3540' }}>Chaque marque d’EMKAY répond à un besoin précis. Commencez par le vôtre.</p>
+      <div style={{ marginTop: '7vh', display: 'grid', gridTemplateColumns: wide ? 'minmax(0,1.1fr) minmax(0,1fr)' : '1fr', gap: 'clamp(24px,4vw,64px)', alignItems: 'stretch' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', borderTop: '1px solid #080808' }}>
+          {ORIENT.map((o, i) => {
+            const b = B[o.b], on = act === i;
+            return (
+              <div key={o.id} style={{ borderBottom: '1px solid rgba(8,8,8,.25)' }}>
+                <button type="button" onMouseEnter={() => { if (wide) setAct(i); }} onFocus={() => { if (wide) setAct(i); }} onClick={() => setAct(!wide && act === i ? -1 : i)} data-cursor={b.cursor} aria-expanded={on} className="btn-reset or-btn" style={{ opacity: on ? 1 : 0.42 }}>
+                  <span className="lbl" style={{ flex: 'none', width: 28, letterSpacing: '.2em', color: '#2B143D' }}>0{i + 1}</span>
+                  <span className="or-need" style={{ transform: `translateX(${on && wide ? '14px' : '0px'})` }}>{o.need}</span>
+                  <span style={{ flex: 'none', fontSize: 18, transform: `rotate(${on ? (wide ? '0deg' : '90deg') : '0deg'})`, transition: 'transform .5s ease' }}>→</span>
+                </button>
+                {!wide && on && (
+                  <div style={{ margin: '0 0 20px', padding: 24, background: panelBg(b.id, b.bg), color: b.fg, display: 'flex', flexDirection: 'column', gap: 18 }}>
+                    <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: '.22em' }}>→ {b.name}</span>
+                    <div style={{ height: 56, display: 'flex', alignItems: 'center' }}>
+                      <Logo src={b.logoT} alt={b.name} style={{ display: 'block', maxHeight: 40, width: 'auto', height: 'auto', objectFit: 'contain', borderRadius: b.lr }} />
+                    </div>
+                    <span style={{ fontSize: 15, lineHeight: 1.7 }}>{o.services.join(' · ')}</span>
+                    <a href={'#' + o.id} style={{ alignSelf: 'flex-start', fontSize: 13, fontWeight: 700, letterSpacing: '.16em', paddingBottom: 6, borderBottom: '1px solid currentColor' }}>DÉCOUVRIR {b.name} →</a>
+                  </div>
+                )}
+              </div>
+            );
+          })}
+        </div>
+        {wide && (
+          <div className="or-panel" style={{ background: panelBg(ab.id, ab.bg), color: ab.fg }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', gap: 20, fontSize: 11, fontWeight: 700, letterSpacing: '.22em' }}><span>{ao.need.toUpperCase()}</span><span>0{k + 1} / 05</span></div>
+            <div data-orpanel="" style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(20px,3vh,32px)' }}>
+              <span style={{ fontSize: 12, fontWeight: 700, letterSpacing: '.22em' }}>→ {ab.name}</span>
+              <div style={{ height: 'clamp(36px,3.4vw,52px)', display: 'flex', alignItems: 'center' }}>
+                <Logo src={ab.logoT} alt={ab.name} style={{ display: 'block', maxHeight: '100%', maxWidth: '100%', width: 'auto', height: 'auto', objectFit: 'contain', borderRadius: ab.lr }} />
+              </div>
+              <p className="serif" style={{ margin: 0, fontSize: 'clamp(20px,1.9vw,32px)', lineHeight: 1.2, textWrap: 'balance' }}>{ao.services.join(' · ')}</p>
+            </div>
+            <a href={'#' + ao.id} className="cta-line" style={{ alignSelf: 'flex-start', fontWeight: 700, letterSpacing: '.18em', paddingBottom: 8, borderBottom: '1px solid currentColor' }}>DÉCOUVRIR {ab.name} →</a>
+          </div>
+        )}
+      </div>
+    </section>
+  );
+}
+
+// ——— 14b Cinq portes d'entrée ———
+function Portes() {
+  return (
+    <section id="portes" data-screen-label="14b Cinq portes d'entrée" data-sc="enter" data-hd="#F5F1E9" className="portes">
+      <p data-r="0.12" className="serif" style={{ margin: 0, fontSize: 'clamp(32px,4.4vw,80px)', lineHeight: 1.02 }}>Cinq portes d’entrée.<br /><em style={{ color: '#C9C2CF' }}>Un seul groupe derrière.</em></p>
+      <div data-r="0.45" data-fx="mask" style={{ width: 'min(80vw,760px)' }}>
+        <Logo src="/logos/emkay.png" alt="EMKAY Partners" style={{ display: 'block', width: '100%', height: 'auto' }} />
+      </div>
+    </section>
+  );
+}
+
+// ——— 15 À propos ———
+function APropos() {
+  return (
+    <section id="a-propos" data-screen-label="15 À propos" data-sc="enter" data-hd="#080808" className="about">
+      <div style={{ height: 1, background: '#2B143D', margin: '0 -5vw 10vh', transformOrigin: '0 50%', transform: 'scaleX(var(--p,0))' }} />
+      <div className="about-grid">
+        <div data-r="0.3" style={{ display: 'flex', flexDirection: 'column', gap: '3vh' }}>
+          <span className="lbl" style={{ letterSpacing: '.24em', color: '#2B143D' }}>EMKAY PARTNERS</span>
+          <h2 className="serif" style={{ margin: 0, fontWeight: 400, fontSize: 'clamp(40px,5.4vw,96px)', lineHeight: 0.95, letterSpacing: '-.02em', color: '#2B143D' }}>Le point commun<br /><em>entre toutes ces histoires.</em></h2>
+        </div>
+        <div data-r="0.42" style={{ maxWidth: 520, display: 'flex', flexDirection: 'column', gap: 22, fontSize: 18, lineHeight: 1.55 }}>
+          <p style={{ margin: 0 }}>EMKAY Partners est un groupe entrepreneurial indépendant basé à Bruxelles. Nous créons, développons et faisons grandir des marques dans la communication, les événements, les rencontres et les expériences.</p>
+          <p style={{ margin: 0, color: '#4A4450' }}>Chaque projet possède sa propre identité. EMKAY lui donne le cadre et les ressources nécessaires pour grandir.</p>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// ——— 16 Manifeste ———
+function Manifeste() {
+  return (
+    <section id="manifeste" data-screen-label="16 Manifeste" data-sc="sticky" data-steps="5" data-seq="" data-bgs="#080808,#0D0A11,#140C1C,#1D0F2A,#2B143D" data-hd="#F5F1E9" style={{ height: '520vh', position: 'relative', zIndex: 3 }}>
+      <div className="mf-in">
+        <div data-i="0" className="mf-line serif">Une idée est facile.</div>
+        <div data-i="1" className="mf-line serif">La lancer est plus difficile.</div>
+        <div data-i="2" className="mf-line serif"><span>La faire exister<br /><em>encore plus.</em></span></div>
+        <div data-i="3" className="mf-line serif-i">Nous préférons la suite.</div>
+        <div data-i="4" data-fx="pop" className="mf-line mf-final">EMKAY<br />PARTNERS.</div>
+      </div>
+    </section>
+  );
+}
+
+// ——— 17 On commence ? ———
+function Contact({ ui }: { ui: UI }) {
+  const { fine } = ui;
+  const [hv, setHv] = useState(-1);
+  return (
+    <section id="contact" data-screen-label="17 On commence ?" data-sc="enter" data-hd="#F5F1E9" className="ct">
+      <h2 data-r="0.08" className="ct-h2">ON COMMENCE<span style={{ color: '#C9A8E8' }}> ?</span></h2>
+      <p data-r="0.14" className="serif-i" style={{ margin: '4vh 0 10vh', maxWidth: 640, fontSize: 'clamp(22px,2.2vw,36px)', lineHeight: 1.15, color: '#D9D3DE' }}>Un projet, une collaboration ou simplement une idée à explorer ?</p>
+      <div onMouseLeave={() => setHv(-1)} className="ct-doors">
+        {DOORS.map((d, i) => {
+          const on = hv === i, dim = hv >= 0 && !on, touch = !fine, light = d.fg === '#F5F1E9';
+          return (
+            <button key={d.k} type="button" onClick={() => { setHv(-1); ui.openForm(d.k); }} onMouseEnter={() => { if (fine) setHv(i); }} onFocus={() => { if (fine) setHv(i); }}
+              data-r={(0.22 + i * 0.07).toFixed(2)} data-cursor="OUVRIR" className="btn-reset ct-door"
+              style={{ background: on ? d.bgH : d.bg, color: d.fg, border: `1px solid ${on ? (light ? 'rgba(245,241,233,.55)' : 'rgba(43,20,61,.45)') : light ? 'rgba(245,241,233,.14)' : 'rgba(43,20,61,.12)'}`, opacity: dim ? 0.62 : 1, transform: `scale(${on && d.fx !== 'soft' ? 1.01 : 1}) translateY(${on ? (d.fx === 'soft' ? '-2px' : '-4px') : '0px'})` }}>
+              <span className="ct-topline" style={{ transform: `scaleX(${(on || touch) && d.fx === 'line' ? 1 : 0})` }} />
+              <span style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: 16 }}>
+                <span className="xw" style={{ fontWeight: 800, fontSize: 'clamp(14px,1.1vw,18px)', letterSpacing: '.08em', transformOrigin: '0 0', transform: `scale(${on && d.fx === 'line' ? 1.25 : 1})`, transition: 'transform .6s cubic-bezier(.2,.7,.2,1)' }}>{d.num}</span>
+                <span aria-hidden="true" style={{ position: 'relative', width: 44, height: 12, opacity: d.fx === 'join' ? 1 : 0, transition: 'opacity .4s ease' }}>
+                  <span className="ct-join" style={{ left: 0, transform: `translateX(${on && d.fx === 'join' ? '13px' : '0px'})` }} />
+                  <span className="ct-join" style={{ right: 0, transform: `translateX(${on && d.fx === 'join' ? '-13px' : '0px'})` }} />
+                </span>
+              </span>
+              <span className="serif ct-door-t">{d.title}</span>
+              <span style={{ marginTop: 'clamp(16px,2.4vh,24px)', maxWidth: 420, fontSize: 'clamp(15px,1.1vw,17px)', lineHeight: 1.5, opacity: 0.86, textWrap: 'pretty' }}>{d.desc}</span>
+              <span className={d.fx === 'soft' ? 'serif-i' : undefined} style={{ marginTop: 12, maxWidth: 420, fontSize: 14, lineHeight: 1.5, opacity: d.fx === 'soft' ? (on || touch ? 1 : 0) : 0.72, transition: 'opacity .5s ease' }}>{d.sub}</span>
+              <span className="ct-cta">
+                <span style={{ transform: `translateX(${on ? '4px' : '0px'})`, transition: 'transform .6s cubic-bezier(.2,.7,.2,1)' }}>{d.cta}</span>
+                <span style={{ transform: `translateX(${on ? '10px' : '0px'})`, transition: 'transform .6s cubic-bezier(.2,.7,.2,1)' }}>↗</span>
+              </span>
+            </button>
+          );
+        })}
+      </div>
+      <div data-r="0.45" style={{ marginTop: '8vh', display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', alignItems: 'center', gap: 24 }}>
+        <span style={{ fontSize: 11, letterSpacing: '.24em', color: '#C9C2CF' }}>BRUXELLES, BELGIQUE.</span>
+        <button type="button" onClick={() => ui.openForm('write')} data-cursor="OUVRIR" className="btn-reset btn-light">NOUS ÉCRIRE ↗</button>
+      </div>
+    </section>
+  );
+}
+
+// ——— 18 Footer ———
+function Footer() {
+  return (
+    <footer data-screen-label="18 Footer" data-hd="#F5F1E9" className="ft">
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 18 }}>
+        <Logo src="/logos/emkay.png" alt="EMKAY Partners" style={{ display: 'block', width: 'min(70vw,520px)', height: 'auto', objectFit: 'contain' }} />
+        <span className="lbl" style={{ fontSize: 12, color: '#D9D3DE' }}>BRUXELLES — BELGIQUE</span>
+      </div>
+      <div className="ft-cols">
+        <div className="ft-col">
+          <span className="ft-h">NOS MARQUES</span>
+          <a href="#vision-house" data-cursor="ALLER" className="ft-a">Vision House →</a>
+          <a href="#nexplore" data-cursor="ALLER" className="ft-a">Nexplore →</a>
+          <a href="#nexplore-connect" data-cursor="ALLER" className="ft-a">Nexplore Connect →</a>
+          <a href="#bavare" data-cursor="ALLER" className="ft-a">Bavare →</a>
+          <a href="#viens-manger" data-cursor="ALLER" className="ft-a">Viens Manger →</a>
+        </div>
+        <div className="ft-col">
+          <span className="ft-h">SUIVRE</span>
+          <a href={LINKS.linkedin}>LinkedIn ↗</a>
+          <a href={LINKS.instagram}>Instagram ↗</a>
+          <a href="#contact" data-cursor="ALLER" className="ft-a">Contact →</a>
+        </div>
+        <div className="ft-col">
+          <span className="ft-h">INFORMATIONS</span>
+          <a href={LINKS.mentions}>Mentions légales</a>
+          <a href={LINKS.privacy}>Confidentialité</a>
+        </div>
+      </div>
+      <div style={{ paddingTop: 20, borderTop: '1px solid rgba(245,241,233,.2)', fontSize: 11, letterSpacing: '.2em', color: '#C9C2CF' }}>© 2026 EMKAY PARTNERS</div>
+    </footer>
+  );
+}
+

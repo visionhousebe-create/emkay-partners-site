@@ -1,3 +1,33 @@
+# EMKAY Partners — site
+
+Next.js implementation of `project/EMKAY FINAL.dc.html` (Claude Design prototype). Deployable as-is on Vercel.
+
+```bash
+npm install
+npm run dev     # http://localhost:3000
+npm run build
+```
+
+## Structure
+- `app/` — layout (Archivo + Instrument Serif via `next/font`), page, `globals.css`, `api/contact` route
+- `components/EmkaySite.tsx` — header, quick-access menu, brand side nav, contact form, custom cursor
+- `components/sections.tsx` — the 18 sections, in page order
+- `lib/scrollEngine.ts` — scroll-driven animation engine ported from the prototype
+- `lib/data.ts` — **all editable content**: brands, Vision House projects, In Real Life gallery, orientation, forms, links, settings
+- `public/logos`, `public/media` — official logos and the photos placed in the prototype
+
+## Content to add
+- Vision House projects: `mediaSrc` (image or MP4 in `public/media`) and real client names in `VH_PROJECTS`.
+- External links (LinkedIn, Instagram, legal pages, next Bavare, Viens Manger addresses): `LINKS` in `lib/data.ts`.
+- Contact form: set `CONTACT_WEBHOOK_URL` on Vercel. Without it, submissions are only logged server-side.
+
+## Reference
+`project/` and `chats/` are the original Claude Design handoff bundle, kept for reference and excluded from the build.
+
+---
+
+<details><summary>Original handoff README</summary>
+
 # CODING AGENTS: READ THIS FIRST
 
 This is a **handoff bundle** from Claude Design (claude.ai/design).
@@ -23,3 +53,5 @@ The design medium is **HTML/CSS/JS** — these are prototypes, not production co
 - `README.md` — this file
 - `chats/` — conversation transcripts (read these!)
 - `project/` — the `EMKAY Portal V2 prototype` project files (HTML prototypes, assets, components)
+
+</details>

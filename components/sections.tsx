@@ -389,7 +389,7 @@ function EmkayRoom({ ui }: { ui: UI }) {
             return (
               <a key={b.id} href={'#' + b.id} data-oi={i} data-cursor="VOIR" aria-label={'Découvrir ' + b.name} onMouseEnter={() => ui.setRoomHover(i)} onFocus={() => ui.setRoomHover(i)} className="room-item">
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: r.w, height: r.h, padding: r.pad, background: plateBg, borderRadius: r.r, boxShadow: shadow, transform: `scale(${on ? 1.08 : 1})`, transition: 'transform .6s cubic-bezier(.2,.7,.2,1)' }}>
-                  <BrandMark brand={b} src={b.logoRoom || b.logoT} size="clamp(17px,1.9vw,28px)" style={{ display: 'block', maxWidth: '100%', maxHeight: '100%', width: 'auto', height: 'auto', objectFit: 'contain', borderRadius: r.r === '50%' ? '50%' : 0 }} />
+                  <BrandMark brand={b} src={b.logoRoom || b.logoT} onDark size="clamp(17px,1.9vw,28px)" style={{ display: 'block', maxWidth: '100%', maxHeight: '100%', width: 'auto', height: 'auto', objectFit: 'contain', borderRadius: r.r === '50%' ? '50%' : 0 }} />
                 </div>
                 <div className="room-label" style={{ transform: `translate(-50%,${on ? '0px' : '-6px'})`, opacity: on ? 1 : 0 }}>
                   <span style={{ fontSize: 10, fontWeight: 700, letterSpacing: '.22em' }}>{b.name}</span>

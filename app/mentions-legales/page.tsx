@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { LegalPage, Todo } from '@/components/LegalPage';
+import { LegalPage } from '@/components/LegalPage';
 
 export const metadata: Metadata = {
   title: 'Mentions légales',

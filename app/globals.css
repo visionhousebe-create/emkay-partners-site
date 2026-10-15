@@ -301,3 +301,28 @@ input, textarea { font: inherit; color: inherit }
 .lg-ft-nav a:hover { color: #C9A8E8 }
 .brand-word { display: block; font-weight: 800; font-stretch: 125%; letter-spacing: -.03em; line-height: .95; text-wrap: balance; text-align: inherit; color: inherit }
 .room-item .brand-word, .sel-layer .brand-word { text-align: center }
+
+/* ——— Logotypes provisoires (en attendant les logos officiels) ——— */
+.brand-word.bw-overton, .brand-word.bw-horizon-connect { display: inline-flex; flex-direction: column; line-height: 1 }
+.room-item .brand-word.bw-overton, .room-item .brand-word.bw-horizon-connect, .sel-layer .brand-word.bw-overton, .sel-layer .brand-word.bw-horizon-connect { align-items: center }
+
+/* Overton — luxe : capitales serif très espacées, or champagne */
+.bw-ov-name {
+  font-family: var(--serif); font-weight: 400; font-stretch: 100%; font-size: 1.12em; letter-spacing: .34em; margin-right: -.34em;
+  background: linear-gradient(100deg, #9C7637 0%, #E9D29C 38%, #FFF3D1 50%, #D2AE68 64%, #8A6326 100%);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+.bw-ov-rule { display: block; align-self: stretch; height: 1px; margin-top: .3em; background: linear-gradient(90deg, rgba(210,174,104,0), #D2AE68 20%, #F3DFAE 50%, #D2AE68 80%, rgba(210,174,104,0)) }
+
+/* Horizon Connect — coucher de soleil */
+.bw-horizon-connect { --sunset: linear-gradient(90deg, #4A1A6B 0%, #A1286A 32%, #E2463A 64%, #F59A33 100%) }
+.bw-horizon-connect.on-dark { --sunset: linear-gradient(90deg, #FF5C8A 0%, #FF7448 50%, #FFC85C 100%) }
+.bw-hz-top { display: inline-flex; align-items: flex-end; gap: .22em }
+.bw-hz-name, .bw-hz-sub { background: var(--sunset); -webkit-background-clip: text; background-clip: text; color: transparent }
+.bw-hz-name { font-weight: 800; font-stretch: 125%; letter-spacing: -.02em; line-height: .9 }
+.bw-hz-sub { margin-top: .32em; font-size: .34em; font-weight: 700; font-stretch: 125%; letter-spacing: .62em; margin-right: -.62em; padding-left: 1.9em }
+.room-item .bw-hz-sub, .sel-layer .bw-hz-sub { padding-left: 0 }
+.bw-hz-sun { position: relative; flex: none; width: .74em; height: .37em; margin-bottom: .08em; border-radius: .37em .37em 0 0; background: linear-gradient(180deg, #F7B044 0%, #EE5A36 60%, #B0276A 100%) }
+.bw-hz-sun::after { content: ''; position: absolute; left: -.12em; right: -.12em; bottom: -.08em; height: .06em; min-height: 1px; background: currentColor; opacity: .5 }
+.bw-horizon-connect.on-dark .bw-hz-sun { background: linear-gradient(180deg, #FFD36B 0%, #FF7448 60%, #FF4F86 100%) }
+.bw-overton.on-dark .bw-ov-name { background-image: linear-gradient(100deg, #C9A35E 0%, #F3DFAE 38%, #FFF6DC 50%, #E2C07A 64%, #B8893F 100%) }

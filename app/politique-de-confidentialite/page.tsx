@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { LegalPage, Todo } from '@/components/LegalPage';
+import { LegalPage } from '@/components/LegalPage';
 
 export const metadata: Metadata = {
   title: 'Politique de confidentialité',
@@ -47,7 +47,7 @@ export default function Confidentialite() {
       <p>Ces prestataires étant établis aux États-Unis, les transferts de données sont encadrés par les garanties prévues par le RGPD : décision d’adéquation (EU-U.S. Data Privacy Framework) ou clauses contractuelles types, selon le prestataire.</p>
 
       <h2>Durée de conservation</h2>
-      <p>Les messages reçus via le formulaire sont conservés <Todo>durée (ex. 3 ans après le dernier échange)</Todo>, puis supprimés, sauf relation contractuelle en cours. Les journaux techniques sont conservés selon la politique de l’hébergeur.</p>
+      <p>Les messages reçus via le formulaire sont conservés 30 jours, puis supprimés, sauf si un échange ou une relation contractuelle en cours nécessite de les garder plus longtemps. Les journaux techniques sont conservés selon la politique de l’hébergeur.</p>
 
       <h2>Cookies et mesure d’audience</h2>
       <p>À ce jour, ce site ne dépose aucun cookie publicitaire ni de mesure d’audience. Les polices de caractères sont servies directement par le site, sans appel à un service tiers. Si un outil de mesure d’audience est ajouté, cette politique sera mise à jour et votre consentement sera demandé lorsque la loi l’exige.</p>

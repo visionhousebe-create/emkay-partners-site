@@ -11,12 +11,32 @@ export function Logo({ src, alt, style, className, priority }: { src: string; al
 }
 
 /**
- * Logo d'une marque ; tant que son fichier officiel n'est pas fourni (src vide), affiche son nom
- * dans la typographie du site (provisoire, pas une recréation de logo).
+ * Logo d'une marque ; tant que son fichier officiel n'est pas fourni (src vide), affiche un logotype
+ * provisoire composé avec les polices du site (styles .bw-* dans globals.css) :
+ * Overton → capitales serif espacées, dégradé or champagne ; Horizon Connect → dégradé coucher de soleil.
+ * `onDark` : variante pour fond sombre (EMKAY Room).
  */
-export function BrandMark({ brand, src, size, style }: { brand: Brand; src: string; size: string; style?: CSSProperties }) {
+export function BrandMark({ brand, src, size, style, onDark }: { brand: Brand; src: string; size: string; style?: CSSProperties; onDark?: boolean }) {
   if (src) return <Logo src={src} alt={brand.name} style={style} />;
-  return <span className="brand-word" role="img" aria-label={brand.name} style={{ fontSize: size, marginBottom: style?.marginBottom }}>{brand.name}</span>;
+  const cls = `brand-word bw-${brand.id}${onDark ? ' on-dark' : ''}`;
+  const box: CSSProperties = { fontSize: size, marginBottom: style?.marginBottom };
+  if (brand.id === 'overton') {
+    return (
+      <span className={cls} role="img" aria-label={brand.name} style={box}>
+        <span className="bw-ov-name" aria-hidden="true">OVERTON</span>
+        <span className="bw-ov-rule" aria-hidden="true" />
+      </span>
+    );
+  }
+  if (brand.id === 'horizon-connect') {
+    return (
+      <span className={cls} role="img" aria-label={brand.name} style={box}>
+        <span className="bw-hz-top" aria-hidden="true"><span className="bw-hz-sun" /><span className="bw-hz-name">HORIZON</span></span>
+        <span className="bw-hz-sub" aria-hidden="true">CONNECT</span>
+      </span>
+    );
+  }
+  return <span className={cls} role="img" aria-label={brand.name} style={box}>{brand.name}</span>;
 }
 
 const VIDEO_RE = /\.(mp4|webm|mov)(\?|#|$)/i;

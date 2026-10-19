@@ -326,3 +326,108 @@ input, textarea { font: inherit; color: inherit }
 .bw-hz-sun::after { content: ''; position: absolute; left: -.12em; right: -.12em; bottom: -.08em; height: .06em; min-height: 1px; background: currentColor; opacity: .5 }
 .bw-horizon-connect.on-dark .bw-hz-sun { background: linear-gradient(180deg, #FFD36B 0%, #FF7448 60%, #FF4F86 100%) }
 .bw-overton.on-dark .bw-ov-name { background-image: linear-gradient(100deg, #C9A35E 0%, #F3DFAE 38%, #FFF6DC 50%, #E2C07A 64%, #B8893F 100%) }
+
+/* ——— Vision House : cartes projets ——— */
+.vh-meta { width: 100%; text-align: left; cursor: pointer }
+.vh-meta:hover .xw { text-decoration: underline; text-underline-offset: 4px; text-decoration-thickness: 1px }
+.vh-badge { position: absolute; left: 12px; top: 12px; z-index: 2; padding: 6px 9px; background: rgba(12,3,64,.82); color: var(--cream); font-size: 10px; font-weight: 700; letter-spacing: .2em; pointer-events: none }
+
+/* ——— Fiche projet ——— */
+.pm { position: fixed; inset: 0; z-index: 96; background: #0C0340; color: var(--cream); display: flex; flex-direction: column; overflow: auto; animation: pm-in .45s cubic-bezier(.2,.7,.2,1) }
+@keyframes pm-in { from { opacity: 0; transform: translateY(18px) } to { opacity: 1; transform: none } }
+@media (prefers-reduced-motion: reduce) { .pm { animation: none } }
+.pm-top { flex: none; display: flex; justify-content: space-between; align-items: center; gap: 20px; padding: 20px 4vw; font-size: 11px; font-weight: 600; letter-spacing: .22em; color: #A9A3D6; border-bottom: 1px solid rgba(245,241,233,.12) }
+.pm-close { padding: 10px 0; color: var(--cream); font-size: 11px; font-weight: 700; letter-spacing: .22em; border-bottom: 1px solid currentColor }
+.pm-body { flex: 1; min-height: 0; display: grid; grid-template-columns: minmax(0,2fr) minmax(280px,1fr); gap: clamp(20px,3vw,48px); padding: clamp(16px,3vh,32px) 4vw }
+.pm-stage { position: relative; min-height: 50vh; background: #080131; display: flex; align-items: center; justify-content: center; overflow: hidden }
+.pm-media { width: 100%; height: 100%; max-height: 78vh; object-fit: contain; display: block; background: #000 }
+.pm-empty { font-size: 11px; font-weight: 700; letter-spacing: .24em; color: #A9A3D6 }
+.pm-nav { position: absolute; top: 50%; transform: translateY(-50%); width: 46px; height: 46px; display: flex; align-items: center; justify-content: center; background: rgba(12,3,64,.75); color: var(--cream); font-size: 18px; transition: background .3s }
+.pm-nav:hover { background: rgba(12,3,64,.95) }
+.pm-prev { left: 12px } .pm-next { right: 12px }
+.pm-count { position: absolute; right: 14px; bottom: 12px; padding: 5px 8px; background: rgba(12,3,64,.8); font-size: 10px; font-weight: 700; letter-spacing: .2em }
+.pm-info { display: flex; flex-direction: column; gap: 14px; align-self: start }
+.pm-client { margin: 0; font-weight: 900; font-stretch: 125%; font-size: clamp(30px,3.4vw,56px); line-height: .92; letter-spacing: -.045em }
+.pm-meta { margin: 0; font-size: 12px; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: #CFCBEA }
+.pm-title { margin: 6px 0 0; font-size: clamp(22px,2vw,32px); line-height: 1.15; color: #B9C4FF }
+.pm-desc { margin: 4px 0 0; font-size: 16px; line-height: 1.6; color: #CFCBEA; white-space: pre-line }
+.pm-tags { list-style: none; margin: 6px 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px }
+.pm-tags li { padding: 6px 10px; border: 1px solid rgba(185,196,255,.35); font-size: 10px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase }
+.pm-cta { margin-top: 18px; display: flex; flex-direction: column; align-items: flex-start; gap: 18px }
+.pm-nextp { font-size: 11px; font-weight: 700; letter-spacing: .18em; color: #A9A3D6; transition: color .3s }
+.pm-nextp:hover { color: var(--cream) }
+.pm-thumbs { flex: none; display: flex; gap: 8px; padding: 0 4vw 24px; overflow-x: auto }
+.pm-thumb { position: relative; flex: none; width: 96px; aspect-ratio: 1; background: #160B52; opacity: .55; outline-offset: 2px; transition: opacity .3s }
+.pm-thumb.on, .pm-thumb:hover { opacity: 1 }
+.pm-thumb.on { box-shadow: 0 0 0 2px #B9C4FF }
+.pm-vid { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: 20px; color: #B9C4FF }
+@media (max-width: 900px) {
+  .pm-body { grid-template-columns: 1fr }
+  .pm-stage { min-height: 0; aspect-ratio: 4/5; max-height: 70vh }
+}
+
+/* ——— Administration ——— */
+.adm-gate { min-height: 100vh; background: var(--purple); color: var(--cream); display: flex; flex-direction: column; align-items: flex-start; justify-content: center; gap: 24px; padding: 8vh 6vw; max-width: 720px }
+.adm-gate h1 { margin: 0; font-size: clamp(44px,6vw,88px); line-height: .95 }
+.adm-gate p { margin: 0; font-size: 16px; line-height: 1.6; color: #D9D3DE }
+.adm-gate code { background: rgba(245,241,233,.12); padding: 2px 6px }
+.adm-login { display: flex; flex-direction: column; gap: 18px; width: min(100%,420px) }
+.adm-login label { display: flex; flex-direction: column; gap: 10px; font-size: 11px; letter-spacing: .22em }
+.adm-login input { all: unset; box-sizing: border-box; font-size: 20px; padding: 10px 0; border-bottom: 1px solid rgba(245,241,233,.5) }
+.adm-err { min-height: 1.2em; color: #FFB4A9 }
+.adm { min-height: 100vh; background: var(--cream); color: var(--black); font-size: 14px }
+.adm-hd { position: sticky; top: 0; z-index: 5; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px 24px; padding: 14px 3vw; background: var(--purple); color: var(--cream) }
+.adm-brand { display: flex; align-items: center; gap: 16px; font-size: 11px; font-weight: 700; letter-spacing: .22em }
+.adm-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 20px }
+.adm-dirty { font-size: 12px; color: #FFD58A }
+.adm-btn { padding: 9px 14px; border: 1px solid currentColor; font-size: 11px; font-weight: 700; letter-spacing: .14em; white-space: nowrap }
+.adm-btn:disabled, .adm-link:disabled { opacity: .35; cursor: not-allowed }
+.adm-primary { background: var(--purple); color: var(--cream); border-color: var(--purple) }
+.adm-hd .adm-primary { background: var(--cream); color: var(--purple); border-color: var(--cream) }
+.adm-danger { color: #B3261E }
+.adm-link { text-decoration: underline; text-underline-offset: 3px; font-size: 13px }
+.adm-banner { margin: 0; padding: 12px 3vw; background: #EDE6F3; color: var(--purple); line-height: 1.5 }
+.adm-ok-b { background: #DDF2E3; color: #1D5A32 }
+.adm-err-b { background: #FBE2DE; color: #8A1C12 }
+.adm-body { display: grid; grid-template-columns: minmax(220px,300px) minmax(0,1fr); align-items: start }
+.adm-list { position: sticky; top: 60px; max-height: calc(100vh - 60px); overflow: auto; border-right: 1px solid rgba(43,20,61,.15); padding: 20px 0 }
+.adm-list-h { display: flex; justify-content: space-between; align-items: center; padding: 0 20px 12px; font-size: 11px; font-weight: 700; letter-spacing: .2em }
+.adm-list ol { list-style: none; margin: 0; padding: 0 }
+.adm-item { width: 100%; display: flex; gap: 12px; align-items: baseline; padding: 12px 20px; border-left: 3px solid transparent }
+.adm-item:hover { background: rgba(43,20,61,.05) }
+.adm-item.on { background: rgba(43,20,61,.08); border-left-color: var(--purple) }
+.adm-num { font-size: 11px; font-weight: 700; color: #6c6472 }
+.adm-item-t { display: flex; flex-direction: column; gap: 3px; min-width: 0 }
+.adm-item-t b { font-size: 15px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap }
+.adm-item-t small { color: #6c6472 }
+.adm-edit { padding: 24px 3vw 80px; display: flex; flex-direction: column; gap: 22px; min-width: 0 }
+.adm-row { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 14px }
+.adm-check { display: flex; align-items: center; gap: 8px; margin-left: auto; font-weight: 600 }
+.adm-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(min(100%,240px),1fr)); gap: 16px 24px }
+.adm-field { display: flex; flex-direction: column; gap: 6px; font-size: 11px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--purple) }
+.adm-field.wide { grid-column: 1/-1 }
+.adm-field input, .adm-field textarea, .adm-field select { font: 400 16px/1.45 var(--sans); letter-spacing: normal; text-transform: none; color: var(--black); background: #fff; border: 1px solid rgba(43,20,61,.25); padding: 10px 12px }
+.adm-field textarea { resize: vertical }
+.adm-media-h { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px; font-size: 11px; font-weight: 700; letter-spacing: .16em; color: var(--purple) }
+.adm-drop { min-height: 120px; padding: 14px; border: 1px dashed rgba(43,20,61,.35); background: #fff; transition: background .2s }
+.adm-drop.over { background: #EDE6F3 }
+.adm-drop > p { margin: 30px 0; text-align: center; color: #6c6472 }
+.adm-media { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill,minmax(170px,1fr)); gap: 14px }
+.adm-thumb { position: relative; aspect-ratio: 4/3; background: #160B52; overflow: hidden }
+.adm-thumb img, .adm-thumb video { width: 100%; height: 100%; object-fit: cover; display: block }
+.adm-cover, .adm-kind { position: absolute; top: 6px; padding: 4px 6px; font-size: 9px; font-weight: 700; letter-spacing: .16em; background: rgba(12,3,64,.85); color: var(--cream) }
+.adm-cover { left: 6px; background: #E9C46A; color: #2B143D } .adm-kind { right: 6px }
+.adm-mtools { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 6px }
+.adm-mtools button { padding: 5px 8px; border: 1px solid rgba(43,20,61,.25); font-size: 12px; background: #fff }
+.adm-mtools button:disabled { opacity: .3 }
+.adm-mtools .adm-x { margin-left: auto; color: #B3261E }
+.adm-uploads { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px }
+.adm-uploads li { display: grid; grid-template-columns: minmax(0,1fr) 160px 140px; gap: 12px; align-items: center; font-size: 13px }
+.adm-uploads li > span:first-child { overflow: hidden; text-overflow: ellipsis; white-space: nowrap }
+.adm-bar { height: 6px; background: rgba(43,20,61,.12) } .adm-bar i { display: block; height: 100%; background: var(--purple); transition: width .2s }
+.adm-help { margin: 0; font-size: 13px; line-height: 1.6; color: #6c6472 }
+@media (max-width: 760px) {
+  .adm-body { grid-template-columns: 1fr }
+  .adm-list { position: static; max-height: none; border-right: 0; border-bottom: 1px solid rgba(43,20,61,.15) }
+  .adm-uploads li { grid-template-columns: 1fr }
+}

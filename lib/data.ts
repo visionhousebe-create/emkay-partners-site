@@ -64,23 +64,10 @@ export const GROUP = [
 
 export type MediaType = 'image' | 'video';
 
-/** Un fichier, ou plusieurs formats du même média (ex. ['/media/vision-house/client-01.webm', '/media/vision-house/client-01.mp4']). */
+/** Un fichier, ou plusieurs formats du même média (ex. ['/media/clip.webm', '/media/clip.mp4']). */
 export type MediaSrc = string | string[];
-export const hasMedia = (m: MediaSrc) => (Array.isArray(m) ? m.some(Boolean) : !!m);
 
-// Galerie Vision House — 3 à 30 projets (ajouter / retirer des lignes suffit).
-// Déposer les fichiers dans public/media/vision-house/ puis renseigner :
-//   mediaSrc : '/media/vision-house/client-01.mp4'  (ou ['…/client-01.webm', '…/client-01.mp4'], ou une image .jpg/.webp)
-//   poster   : '/media/vision-house/client-01-poster.jpg'  (image affichée avant la lecture — recommandé pour les vidéos)
-//   ratio    : '16/9' | '4/5' | '9/16' | '1/1' — proportion de la carte
-//   url      : lien vers l'étude de cas (laisser '' s'il n'y en a pas)
-// Les vidéos ne se chargent qu'à l'approche de l'écran (preload="metadata", muettes, en boucle).
-export const VH_PROJECTS: { name: string; year: string; services: string[]; ratio: string; rot: number; mediaType: MediaType; mediaSrc: MediaSrc; poster: string; url: string }[] = [
-  { name: 'CLIENT 01', year: '2026', services: ['STRATÉGIE', 'CONTENU', 'VIDÉO'], ratio: '16/9', rot: -1, mediaType: 'video', mediaSrc: '', poster: '', url: '' },
-  { name: 'CLIENT 02', year: '2026', services: ['BRANDING', 'POSITIONNEMENT'], ratio: '4/5', rot: 1, mediaType: 'image', mediaSrc: '', poster: '', url: '' },
-  { name: 'CLIENT 03', year: '2025', services: ['RÉSEAUX SOCIAUX', 'CONTENU'], ratio: '9/16', rot: -0.5, mediaType: 'video', mediaSrc: '', poster: '', url: '' },
-  { name: 'CLIENT 04', year: '2025', services: ['VIDÉO', 'PRODUCTION'], ratio: '16/9', rot: 0.8, mediaType: 'video', mediaSrc: '', poster: '', url: '' },
-];
+// Projets Vision House : voir lib/projects.ts (édités dans /admin, stockés dans Vercel Blob).
 
 export type Orientation = 'vertical' | 'portrait' | 'square' | 'landscape' | 'wide';
 export const RATIO: Record<Orientation, string> = { vertical: '9/16', portrait: '4/5', square: '1/1', landscape: '16/9', wide: '21/9' };

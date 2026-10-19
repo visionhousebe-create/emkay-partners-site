@@ -44,15 +44,27 @@ Voir `.env.example`. Les Previews Vercel sont automatiquement en `noindex`.
 - Données envoyées (POST JSON, `Accept: application/json`) : `_subject` (objet de l'e-mail Formspree), `kind`, `type_demande`, `nom`, `email`, `message`, champs optionnels, `receivedAt`, et `text` (résumé lisible, utilisé par Slack).
 - En cas d'échec du webhook, le visiteur voit « Votre message n’a pas pu partir. Merci de réessayer… » — jamais d'erreur technique.
 
-## Médias Vision House et vidéos
+## Projets Vision House — administration `/admin`
 
-Déposer les fichiers dans `public/media/vision-house/` (voir le README du dossier), puis renseigner `VH_PROJECTS` dans `lib/data.ts` :
+Les projets (textes, photos, vidéos) se gèrent sur **`https://www.emkaypartners.com/admin`**, sans toucher au code :
 
-```ts
-{ name: 'CLIENT 01', …, mediaType: 'video', mediaSrc: ['/media/vision-house/client-01.webm', '/media/vision-house/client-01.mp4'], poster: '/media/vision-house/client-01.jpg' }
-```
+- ajouter / supprimer / réordonner / masquer un projet ;
+- champs : client, secteur, lieu, année, réalisation / résultat, services, description, format de la carte ;
+- photos (JPG, PNG, WebP, AVIF) et vidéos (MP4, WebM, MOV, jusqu'à 1 Go) envoyées directement du navigateur vers Vercel Blob ; le premier média est la couverture ; image d'aperçu possible pour chaque vidéo ;
+- **Publier sur le site** : le site est mis à jour immédiatement (aucun redéploiement). Les médias retirés sont supprimés du stockage ; les 20 dernières versions du contenu sont conservées.
 
-Les vidéos (`.mp4`, `.webm`) ne se chargent qu'à l'approche de l'écran, puis en `preload="metadata"`, muettes, en boucle, `playsInline` ; aucune lecture automatique avec `prefers-reduced-motion`. Pour des fichiers de plusieurs dizaines de Mo, préférer un hébergement vidéo (Vercel Blob, Mux, Cloudflare Stream) et mettre l'URL complète dans `mediaSrc`.
+Sur le site, un clic sur un projet ouvre sa fiche (galerie, vidéo avec le son, description).
+
+Configuration Vercel requise :
+
+| Élément | Où |
+| --- | --- |
+| **Blob Store** (accès public) relié au projet → crée `BLOB_READ_WRITE_TOKEN` | Vercel → Storage → Create → Blob |
+| **`ADMIN_PASSWORD`** (12 caractères ou plus) | Vercel → Settings → Environment Variables (Production + Preview) |
+
+Puis redéployer. Sans Blob, le site affiche les projets de départ définis dans `lib/projects.ts`.
+
+Code : `lib/projects.ts` (modèle + projets de départ), `lib/projectStore.ts` (Blob), `lib/adminAuth.ts` (session), `app/admin`, `app/api/admin/*`, `components/admin/*`, `components/ProjectModal.tsx`.
 
 ## Liens à compléter (`LINKS` dans `lib/data.ts`)
 
@@ -64,7 +76,6 @@ Tant qu'une URL vaut `''`, le lien s'affiche à l'identique mais n'est pas cliqu
 | `instagram` | Footer — Instagram |
 | `nextBavare` | Section Bavare — « Voir le prochain Bavare » |
 | `vmAddresses` | Section Viens Manger — « Découvrir les adresses » |
-| `VH_PROJECTS[].url` | Cartes Vision House (études de cas, facultatif) |
 
 ## Informations légales à compléter
 

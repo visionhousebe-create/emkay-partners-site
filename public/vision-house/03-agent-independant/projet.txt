@@ -4,6 +4,6 @@ lieu: Bruxelles
 annee:
 realisation: Inconnu → expert reconnu dans son secteur
 services: Vidéo
-format: paysage
+format: vertical
 visible: oui
 ---

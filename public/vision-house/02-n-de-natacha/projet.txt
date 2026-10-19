@@ -4,6 +4,6 @@ lieu: Belgique
 annee:
 realisation: Aftermovie · campagne ads promotionnelle
 services: Vidéo, Aftermovie, Publicité
-format: paysage
+format: vertical
 visible: oui
 ---

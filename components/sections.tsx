@@ -131,7 +131,7 @@ function BrandSelector({ ui }: { ui: UI }) {
           </div>
           {wide && (
             <div style={{ position: 'sticky', top: 110 }}>
-              <div className="sel-panel">
+              <div className="sel-panel" style={{ background: a ? (a.plate === 'transparent' ? a.bg : a.plate) : undefined, transition: 'background-color .8s' }}>
                 <div className="sel-default" style={{ clipPath: a ? 'inset(0 0 100% 0)' : 'inset(0 0 0 0)' }}>
                   <span className="lbl" style={{ color: '#AAA6AD' }}>EMKAY PARTNERS</span>
                   <span className="serif" style={{ fontSize: 'clamp(30px,3vw,52px)', lineHeight: 1 }}>Cinq marques.<br /><em>Une même maison.</em></span>
@@ -218,7 +218,7 @@ function VisionHouse({ ui, projects }: { ui: UI; projects: Project[] }) {
           <div data-xg="" className="vh-xg" style={{ opacity: wide ? 0 : 1 }} />
           <div data-xt="" style={{ position: 'absolute', inset: 0, color: '#F5F1E9', opacity: wide ? 0 : 1, pointerEvents: 'none' }}>
             <div className="lbl" style={{ position: 'absolute', left: '5vw', right: '5vw', top: 88, display: 'flex', justifyContent: 'space-between', gap: 24 }}><span>02 / 05</span><span>ÉVÉNEMENTS &amp; EXPÉRIENCES</span></div>
-            <div className="xw" style={{ position: 'absolute', left: '5vw', right: '5vw', bottom: 'clamp(28px,5vh,56px)', fontWeight: 900, fontSize: 'clamp(56px,14vw,280px)', lineHeight: 0.8, letterSpacing: '-.06em' }}>OVERTON</div>
+            <div className="xw ov-gold" style={{ position: 'absolute', left: '5vw', right: '5vw', bottom: 'clamp(28px,5vh,56px)', fontWeight: 900, fontSize: 'clamp(56px,14vw,280px)', lineHeight: 0.8, letterSpacing: '-.06em' }}>OVERTON</div>
           </div>
         </div>
       </div>
@@ -233,24 +233,24 @@ function VisionHouse({ ui, projects }: { ui: UI; projects: Project[] }) {
 // ——— 05 Overton ———
 function Overton({ ui }: { ui: UI }) {
   return (
-    <section id="overton-suite" data-screen-label="05 Overton" data-sc="enter" data-brand="1" data-cursor="VOIR" data-hd="#F5F1E9" style={{ position: 'relative', zIndex: 1, background: '#090909', color: '#F5F1E9', scrollMarginTop: 0 }}>
+    <section id="overton-suite" data-screen-label="05 Overton" data-sc="enter" data-brand="1" data-cursor="VOIR" data-hd="#E9D29C" style={{ position: 'relative', zIndex: 1, background: '#0B0A08', color: '#F5F1E9', scrollMarginTop: 0 }}>
       <div className="nx-grid">
         <div>
           <BrandMark brand={B[1]} src={B[1].logoT} size="clamp(32px,3vw,44px)" style={{ display: 'block', width: 200, maxWidth: '100%', height: 'auto', marginBottom: 40 }} />
-          <h3 data-r="0.35" className="nx-h3">Des événements conçus pour <span className="serif-i" style={{ letterSpacing: '-.01em' }}>provoquer quelque chose.</span></h3>
+          <h3 data-r="0.35" className="nx-h3">Des événements conçus pour <span className="serif-i ov-gold" style={{ letterSpacing: '-.01em' }}>provoquer quelque chose.</span></h3>
           <p className="nx-p">Overton ne gère pas seulement une logistique. Elle transforme un événement en expérience — un moment dont on parle encore le lendemain.</p>
-          <button type="button" onClick={() => ui.openForm('project')} data-cursor="OUVRIR" className="btn-reset cta-line" style={{ marginTop: 36, borderBottom: '1px solid #F5F1E9' }}>PARLER DE MON ÉVÉNEMENT ↗</button>
+          <button type="button" onClick={() => ui.openForm('project')} data-cursor="OUVRIR" className="btn-reset cta-line" style={{ marginTop: 36, color: '#E9D29C', borderBottom: '1px solid #C9A35E' }}>PARLER DE MON ÉVÉNEMENT ↗</button>
         </div>
         <div style={{ display: 'flex', flexDirection: 'column' }}>
           <div data-r="0.45" className="nx-row">
             <span className="nx-row-k">A</span>
             <div><div className="nx-row-t">Imaginés par Overton</div><div className="nx-row-d">Nos propres formats, pensés, produits et portés par la marque.</div></div>
           </div>
-          <div data-r="0.5" className="nx-row" style={{ borderBottom: '1px solid rgba(245,241,233,.2)' }}>
+          <div data-r="0.5" className="nx-row" style={{ borderBottom: '1px solid rgba(201,163,94,.3)' }}>
             <span className="nx-row-k">B</span>
             <div><div className="nx-row-t">Créés pour vous</div><div className="nx-row-d">Des événements sur mesure pour des entreprises, organisations et marques.</div></div>
           </div>
-          <p className="serif" style={{ margin: '36px 0 0', fontSize: 'clamp(24px,2.2vw,34px)', lineHeight: 1.3, textWrap: 'pretty' }}>Inaugurations · Événements corporate · Networking · Activations · Expériences professionnelles · Événements sur mesure</p>
+          <p className="serif" style={{ margin: '36px 0 0', fontSize: 'clamp(24px,2.2vw,34px)', lineHeight: 1.3, color: '#E9D29C', textWrap: 'pretty' }}>Inaugurations · Événements corporate · Networking · Activations · Expériences professionnelles · Événements sur mesure</p>
         </div>
       </div>
       <div className="nx-line" />
@@ -261,7 +261,7 @@ function Overton({ ui }: { ui: UI }) {
 // ——— 06 Orizon Connect ———
 function OrizonConnect({ ui }: { ui: UI }) {
   return (
-    <section id="orizon-connect" data-screen-label="06 Orizon Connect" data-sc="sticky" data-canvas="net" data-brand="2" data-cursor="CONNECTER" data-hd="#090909" data-hd-end="#E3122B" style={{ height: '260vh', position: 'relative' }}>
+    <section id="orizon-connect" data-screen-label="06 Orizon Connect" data-sc="sticky" data-canvas="net" data-brand="2" data-cursor="CONNECTER" data-hd="#3A1450" data-hd-end="#E3122B" style={{ height: '260vh', position: 'relative' }}>
       <div className="nxc-in">
         <div className="nxc-pink" />
         <canvas ref={ui.netRef} style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', pointerEvents: 'none' }} />
@@ -270,19 +270,19 @@ function OrizonConnect({ ui }: { ui: UI }) {
             <BrandMark brand={B[2]} src={B[2].logoT} size="clamp(32px,3vw,44px)" style={{ display: 'block', width: 'clamp(170px,15vw,230px)', height: 'auto', objectFit: 'contain' }} />
             <div className="lbl" style={{ display: 'flex', gap: 24 }}><span>03 / 05</span><span>RENCONTRES PROFESSIONNELLES</span></div>
           </div>
-          <h3 data-r="0.06" className="nxc-h3">Les bonnes rencontres <span className="serif-i" style={{ letterSpacing: '-.02em' }}>changent parfois la suite.</span></h3>
+          <h3 data-r="0.06" className="nxc-h3">Les bonnes rencontres <span className="serif-i oz-sun" style={{ letterSpacing: '-.02em' }}>changent parfois la suite.</span></h3>
           <div className="nxc-bottom">
             <div data-r="0.2">
-              <div className="lbl" style={{ color: '#5b5660', marginBottom: 18 }}>RAPPROCHER</div>
+              <div className="lbl" style={{ color: '#A1286A', marginBottom: 18 }}>RAPPROCHER</div>
               <div className="nxc-chain">
                 {['Entrepreneurs', 'Dirigeants', 'Entreprises', 'Professionnels', 'Partenaires', 'Opportunités'].map((w, i) => (
-                  <span key={w} style={{ display: 'contents' }}>{i > 0 && <span style={{ color: '#8E8893' }}>↔</span>}<span>{w}</span></span>
+                  <span key={w} style={{ display: 'contents' }}>{i > 0 && <span style={{ color: '#E2463A' }}>↔</span>}<span>{w}</span></span>
                 ))}
               </div>
             </div>
             <div data-r="0.3">
-              <p style={{ margin: 0, fontSize: 17, lineHeight: 1.6, color: '#3a3540', textWrap: 'pretty' }}>Pas un club de plus. Orizon Connect s&apos;intéresse à la qualité des connexions : mises en relation, cercles professionnels et opportunités de collaboration.</p>
-              <button type="button" onClick={() => ui.openForm('talk')} data-cursor="OUVRIR" className="btn-reset cta-line" style={{ marginTop: 28, borderBottom: '1px solid #090909' }}>DÉCOUVRIR LES CONNEXIONS ↗</button>
+              <p style={{ margin: 0, fontSize: 17, lineHeight: 1.6, color: '#4A2A55', textWrap: 'pretty' }}>Pas un club de plus. Orizon Connect s&apos;intéresse à la qualité des connexions : mises en relation, cercles professionnels et opportunités de collaboration.</p>
+              <button type="button" onClick={() => ui.openForm('talk')} data-cursor="OUVRIR" className="btn-reset cta-line" style={{ marginTop: 28, borderBottom: '1px solid #E2463A' }}>DÉCOUVRIR LES CONNEXIONS ↗</button>
             </div>
           </div>
         </div>
@@ -564,7 +564,7 @@ function InRealLife({ ui }: { ui: UI }) {
 function Orientation({ ui }: { ui: UI }) {
   const { wide } = ui;
   const [act, setAct] = useState(0);
-  const panelBg = (id: string, bg: string) => (id === 'overton' ? '#16302B' : bg);
+  const panelBg = (id: string, bg: string) => (id === 'overton' ? '#1A1610' : bg);
   const k = Math.max(0, act), ao = ORIENT[k], ab = B[ao.b];
   return (
     <section id="orientation" data-screen-label="14 Votre besoin, notre marque" data-sc="enter" data-hd="#080808" className="or">

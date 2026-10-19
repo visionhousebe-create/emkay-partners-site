@@ -1,7 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import { useEffect, useRef, useState, type CSSProperties } from 'react';
+import { useEffect, useId, useRef, useState, type CSSProperties } from 'react';
 import { LOGO_SIZE, type Brand, type MediaType } from '@/lib/data';
 
 /** Logo officiel — fichier fourni, proportions d'origine (jamais redessiné). */
@@ -13,7 +13,7 @@ export function Logo({ src, alt, style, className, priority }: { src: string; al
 /**
  * Logo d'une marque ; tant que son fichier officiel n'est pas fourni (src vide), affiche un logotype
  * provisoire composé avec les polices du site (styles .bw-* dans globals.css) :
- * Overton → capitales serif espacées, dégradé or champagne ; Orizon Connect → dégradé coucher de soleil.
+ * Overton → symbole « fenêtre » + capitales serif espacées, or champagne ; Orizon Connect → dégradé coucher de soleil.
  * `onDark` : variante pour fond sombre (EMKAY Room).
  */
 export function BrandMark({ brand, src, size, style, onDark }: { brand: Brand; src: string; size: string; style?: CSSProperties; onDark?: boolean }) {
@@ -23,8 +23,11 @@ export function BrandMark({ brand, src, size, style, onDark }: { brand: Brand; s
   if (brand.id === 'overton') {
     return (
       <span className={cls} role="img" aria-label={brand.name} style={box}>
-        <span className="bw-ov-name" aria-hidden="true">OVERTON</span>
-        <span className="bw-ov-rule" aria-hidden="true" />
+        <OvertonSymbol />
+        <span className="bw-ov-txt" aria-hidden="true">
+          <span className="bw-ov-name">OVERTON</span>
+          <span className="bw-ov-rule" />
+        </span>
       </span>
     );
   }
@@ -37,6 +40,32 @@ export function BrandMark({ brand, src, size, style, onDark }: { brand: Brand; s
     );
   }
   return <span className={cls} role="img" aria-label={brand.name} style={box}>{brand.name}</span>;
+}
+
+/**
+ * Symbole Overton — la « fenêtre d'Overton » : un cadre de fenêtre posé sur l'éventail des idées
+ * (lignes horizontales). Ce qui est dans la fenêtre est éclairé ; le reste s'efface.
+ * Le cadre est légèrement décentré : la fenêtre se déplace, comme l'opinion.
+ */
+function OvertonSymbol() {
+  const id = useId().replace(/:/g, '');
+  return (
+    <svg className="bw-ov-sym" viewBox="0 0 56 48" aria-hidden="true" focusable="false">
+      <defs>
+        <linearGradient id={`${id}g`} gradientUnits="userSpaceOnUse" x1="20" y1="3" x2="40" y2="45">
+          <stop offset="0" stopColor="#C9A35E" /><stop offset=".45" stopColor="#F3DFAE" /><stop offset=".55" stopColor="#FFF3D1" /><stop offset="1" stopColor="#B8893F" />
+        </linearGradient>
+        <linearGradient id={`${id}f`} gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="56" y2="0">
+          <stop offset="0" stopColor="#C9A35E" stopOpacity="0" /><stop offset=".34" stopColor="#E2C07A" stopOpacity=".9" /><stop offset=".66" stopColor="#E2C07A" stopOpacity=".9" /><stop offset="1" stopColor="#C9A35E" stopOpacity="0" />
+        </linearGradient>
+      </defs>
+      {/* l'éventail des idées : une ligne qui traverse la fenêtre et s'efface aux extrêmes */}
+      <line x1="0" x2="56" y1="27" y2="27" stroke={`url(#${id}f)`} strokeWidth="1.3" />
+      {/* la fenêtre, légèrement décentrée */}
+      <rect x="21" y="3" width="18" height="42" fill="none" stroke={`url(#${id}g)`} strokeWidth="1.8" />
+      <line x1="30" x2="30" y1="3" y2="45" stroke={`url(#${id}g)`} strokeWidth=".9" opacity=".7" />
+    </svg>
+  );
 }
 
 const VIDEO_RE = /\.(mp4|webm|mov)(\?|#|$)/i;

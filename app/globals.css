@@ -127,10 +127,9 @@ input, textarea { font: inherit; color: inherit }
 .vh-in { position: sticky; top: 0; overflow: hidden; background: #0C0340; color: var(--cream) }
 .vh-intro { inset: 0; display: flex; flex-direction: column; justify-content: center; gap: clamp(18px,3vh,32px); pointer-events: none }
 .vh-h2 { margin: 0; font-weight: 900; font-stretch: 125%; font-size: clamp(48px,8vw,156px); letter-spacing: -.05em; line-height: .86 }
-.vh-track { position: relative; display: flex; flex-direction: column; align-items: center; gap: 7vh; padding: 0 6vw 10vh }
+.vh-track { position: relative; display: flex; flex-direction: column; align-items: center; gap: 28px; padding: 0 5vw 10vh }
 .vh-rail { position: absolute; top: 0; bottom: 0; left: 0; flex-direction: row; align-items: center; gap: clamp(28px,3.4vw,64px); padding: 64px 0 0; width: max-content; will-change: transform; transform: translate3d(100vw,0,0) }
-.vh-card { position: relative; flex: none; max-width: 100%; cursor: pointer; display: flex; flex-direction: column; gap: 14px; background: #0C0340; box-shadow: 0 30px 70px rgba(4,0,26,.45); transform-origin: 50% 60%; will-change: transform, opacity }
-.vh-meta { display: grid; grid-template-columns: auto minmax(0,1fr) auto; align-items: baseline; gap: 6px 20px; color: var(--cream) }
+.vh-card { position: relative; flex: none; max-width: 100%; cursor: pointer; display: flex; flex-direction: column; background: #0C0340; box-shadow: 0 30px 70px rgba(4,0,26,.45); transform-origin: 50% 60%; will-change: transform, opacity }
 .vh-xf { left: 0; top: 0; width: 100%; z-index: 4; overflow: hidden; background: #160B52; pointer-events: none }
 .vh-xg { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(9,9,9,.35) 0%, rgba(9,9,9,0) 40%, rgba(9,9,9,.8) 100%); pointer-events: none }
 
@@ -144,7 +143,7 @@ input, textarea { font: inherit; color: inherit }
 .nx-row-d { margin-top: 8px; font-size: 16px; color: var(--grey); line-height: 1.5 }
 .nx-line { height: 1px; background: rgba(245,241,233,.6); transform-origin: 0 50%; transform: scaleX(clamp(0, calc(var(--p,0) * 1.2 - 0.2), 1)) }
 
-/* ——— 06 Horizon Connect ——— */
+/* ——— 06 Orizon Connect ——— */
 .nxc-in { position: sticky; top: 0; min-height: 100vh; overflow: hidden; background: #E9E6E0; color: #090909; display: flex; flex-direction: column; padding: 88px 5vw 6vh }
 .nxc-pink { position: absolute; inset: 0; background: #FF9EC4; opacity: clamp(0, calc((var(--p,0) - 0.76) * 5), 1); pointer-events: none }
 .nxc-content { position: relative; flex: 1; display: flex; flex-direction: column; opacity: clamp(0, calc((0.96 - var(--p,0)) * 6), 1) }
@@ -304,8 +303,8 @@ input, textarea { font: inherit; color: inherit }
 .room-item .brand-word, .sel-layer .brand-word { text-align: center }
 
 /* ——— Logotypes provisoires (en attendant les logos officiels) ——— */
-.brand-word.bw-overton, .brand-word.bw-horizon-connect { display: inline-flex; flex-direction: column; line-height: 1 }
-.room-item .brand-word.bw-overton, .room-item .brand-word.bw-horizon-connect, .sel-layer .brand-word.bw-overton, .sel-layer .brand-word.bw-horizon-connect { align-items: center }
+.brand-word.bw-overton, .brand-word.bw-orizon-connect { display: inline-flex; flex-direction: column; line-height: 1 }
+.room-item .brand-word.bw-overton, .room-item .brand-word.bw-orizon-connect, .sel-layer .brand-word.bw-overton, .sel-layer .brand-word.bw-orizon-connect { align-items: center }
 
 /* Overton — luxe : capitales serif très espacées, or champagne */
 .bw-ov-name {
@@ -315,9 +314,9 @@ input, textarea { font: inherit; color: inherit }
 }
 .bw-ov-rule { display: block; align-self: stretch; height: 1px; margin-top: .3em; background: linear-gradient(90deg, rgba(210,174,104,0), #D2AE68 20%, #F3DFAE 50%, #D2AE68 80%, rgba(210,174,104,0)) }
 
-/* Horizon Connect — coucher de soleil */
-.bw-horizon-connect { --sunset: linear-gradient(90deg, #4A1A6B 0%, #A1286A 32%, #E2463A 64%, #F59A33 100%) }
-.bw-horizon-connect.on-dark { --sunset: linear-gradient(90deg, #FF5C8A 0%, #FF7448 50%, #FFC85C 100%) }
+/* Orizon Connect — coucher de soleil */
+.bw-orizon-connect { --sunset: linear-gradient(90deg, #4A1A6B 0%, #A1286A 32%, #E2463A 64%, #F59A33 100%) }
+.bw-orizon-connect.on-dark { --sunset: linear-gradient(90deg, #FF5C8A 0%, #FF7448 50%, #FFC85C 100%) }
 .bw-hz-top { display: inline-flex; align-items: flex-end; gap: .22em }
 .bw-hz-name, .bw-hz-sub { background: var(--sunset); -webkit-background-clip: text; background-clip: text; color: transparent }
 .bw-hz-name { font-weight: 800; font-stretch: 125%; letter-spacing: -.02em; line-height: .9 }
@@ -325,13 +324,23 @@ input, textarea { font: inherit; color: inherit }
 .room-item .bw-hz-sub, .sel-layer .bw-hz-sub { padding-left: 0 }
 .bw-hz-sun { position: relative; flex: none; width: .74em; height: .37em; margin-bottom: .08em; border-radius: .37em .37em 0 0; background: linear-gradient(180deg, #F7B044 0%, #EE5A36 60%, #B0276A 100%) }
 .bw-hz-sun::after { content: ''; position: absolute; left: -.12em; right: -.12em; bottom: -.08em; height: .06em; min-height: 1px; background: currentColor; opacity: .5 }
-.bw-horizon-connect.on-dark .bw-hz-sun { background: linear-gradient(180deg, #FFD36B 0%, #FF7448 60%, #FF4F86 100%) }
+.bw-orizon-connect.on-dark .bw-hz-sun { background: linear-gradient(180deg, #FFD36B 0%, #FF7448 60%, #FF4F86 100%) }
 .bw-overton.on-dark .bw-ov-name { background-image: linear-gradient(100deg, #C9A35E 0%, #F3DFAE 38%, #FFF6DC 50%, #E2C07A 64%, #B8893F 100%) }
 
 /* ——— Vision House : cartes projets ——— */
-.vh-meta { width: 100%; text-align: left; cursor: pointer }
-.vh-meta:hover .xw { text-decoration: underline; text-underline-offset: 4px; text-decoration-thickness: 1px }
-.vh-badge { position: absolute; left: 12px; top: 12px; z-index: 2; padding: 6px 9px; background: rgba(12,3,64,.82); color: var(--cream); font-size: 10px; font-weight: 700; letter-spacing: .2em; pointer-events: none }
+.vh-media { position: relative; width: 100%; overflow: hidden; background: #160B52; container-type: inline-size }
+.vh-media::after { content: ''; position: absolute; inset: 0; z-index: 1; pointer-events: none; background: linear-gradient(180deg, rgba(12,3,64,.45) 0%, rgba(12,3,64,0) 22%, rgba(12,3,64,0) 38%, rgba(12,3,64,.88) 64%, rgba(12,3,64,.97) 100%) }
+.vh-top { position: absolute; left: 0; right: 0; top: 0; z-index: 2; display: flex; justify-content: space-between; align-items: flex-start; gap: 8px; padding: 14px; pointer-events: none }
+.vh-badge { padding: 6px 9px; background: rgba(12,3,64,.82); color: var(--cream); font-size: 10px; font-weight: 700; letter-spacing: .2em; line-height: 1.2 }
+.vh-num { font-size: 12px; font-weight: 700; letter-spacing: .22em; color: var(--cream); opacity: .85 }
+.vh-meta { position: absolute; left: 0; right: 0; bottom: 0; z-index: 2; display: flex; flex-direction: column; gap: 6px; padding: clamp(16px, 7cqi, 26px); text-align: left; color: var(--cream); pointer-events: none; overflow-wrap: break-word; hyphens: auto }
+.vh-client { font-weight: 800; font-stretch: 112%; font-size: clamp(18px, 9cqi, 30px); line-height: 1.02; letter-spacing: -.02em }
+.vh-sub { font-size: 11px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: #CFCBEA }
+.vh-title { font-size: clamp(15px, 6.4cqi, 21px); line-height: 1.2; color: #B9C4FF; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden }
+.vh-foot { display: flex; justify-content: space-between; gap: 12px; margin-top: 8px; padding-top: 10px; border-top: 1px solid rgba(245,241,233,.22); font-size: 11px; font-weight: 700; letter-spacing: .18em; color: #A9A3D6 }
+.vh-card:hover .vh-client { text-decoration: underline; text-underline-offset: 5px; text-decoration-thickness: 1px }
+.vh-card:hover .vh-foot span:last-child, .vh-meta:focus-visible .vh-foot span:last-child { color: var(--cream) }
+.vh-meta:focus-visible { outline: 2px solid #B9C4FF; outline-offset: -4px; pointer-events: none }
 
 /* ——— Fiche projet ——— */
 .pm { position: fixed; inset: 0; z-index: 96; background: #0C0340; color: var(--cream); display: flex; flex-direction: column; overflow: auto; animation: pm-in .45s cubic-bezier(.2,.7,.2,1) }

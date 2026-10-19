@@ -13,7 +13,7 @@ export function Logo({ src, alt, style, className, priority }: { src: string; al
 /**
  * Logo d'une marque ; tant que son fichier officiel n'est pas fourni (src vide), affiche un logotype
  * provisoire composé avec les polices du site (styles .bw-* dans globals.css) :
- * Overton → capitales serif espacées, dégradé or champagne ; Horizon Connect → dégradé coucher de soleil.
+ * Overton → capitales serif espacées, dégradé or champagne ; Orizon Connect → dégradé coucher de soleil.
  * `onDark` : variante pour fond sombre (EMKAY Room).
  */
 export function BrandMark({ brand, src, size, style, onDark }: { brand: Brand; src: string; size: string; style?: CSSProperties; onDark?: boolean }) {
@@ -28,10 +28,10 @@ export function BrandMark({ brand, src, size, style, onDark }: { brand: Brand; s
       </span>
     );
   }
-  if (brand.id === 'horizon-connect') {
+  if (brand.id === 'orizon-connect') {
     return (
       <span className={cls} role="img" aria-label={brand.name} style={box}>
-        <span className="bw-hz-top" aria-hidden="true"><span className="bw-hz-sun" /><span className="bw-hz-name">HORIZON</span></span>
+        <span className="bw-hz-top" aria-hidden="true"><span className="bw-hz-sun" /><span className="bw-hz-name">ORIZON</span></span>
         <span className="bw-hz-sub" aria-hidden="true">CONNECT</span>
       </span>
     );

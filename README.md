@@ -44,27 +44,18 @@ Voir `.env.example`. Les Previews Vercel sont automatiquement en `noindex`.
 - Données envoyées (POST JSON, `Accept: application/json`) : `_subject` (objet de l'e-mail Formspree), `kind`, `type_demande`, `nom`, `email`, `message`, champs optionnels, `receivedAt`, et `text` (résumé lisible, utilisé par Slack).
 - En cas d'échec du webhook, le visiteur voit « Votre message n’a pas pu partir. Merci de réessayer… » — jamais d'erreur technique.
 
-## Projets Vision House — administration `/admin`
+## Projets Vision House — gérés dans GitHub
 
-Les projets (textes, photos, vidéos) se gèrent sur **`https://www.emkaypartners.com/admin`**, sans toucher au code :
+Un dossier par projet dans **`public/vision-house/`** (`01-micf`, `02-n-de-natacha`…) :
 
-- ajouter / supprimer / réordonner / masquer un projet ;
-- champs : client, secteur, lieu, année, réalisation / résultat, services, description, format de la carte ;
-- photos (JPG, PNG, WebP, AVIF) et vidéos (MP4, WebM, MOV, jusqu'à 1 Go) envoyées directement du navigateur vers Vercel Blob ; le premier média est la couverture ; image d'aperçu possible pour chaque vidéo ;
-- **Publier sur le site** : le site est mis à jour immédiatement (aucun redéploiement). Les médias retirés sont supprimés du stockage ; les 20 dernières versions du contenu sont conservées.
+- `projet.txt` : client, secteur, lieu, année, réalisation, services, format, visible, liens `video:` YouTube / Vimeo, puis la description après `---` ;
+- photos (.jpg .png .webp .avif) et vidéos (.mp4 .webm) déposées telles quelles ; ordre alphabétique ; `couverture.*` force la couverture ; une image du même nom qu'une vidéo devient son aperçu.
 
-Sur le site, un clic sur un projet ouvre sa fiche (galerie, vidéo avec le son, description).
+Mode d'emploi pas à pas (édition sur github.com, sans outil) : **`public/vision-house/LISEZ-MOI.md`**.
+Chaque commit déclenche un redéploiement Vercel (~1 min). Fichiers de plus de 25 Mo : passer par YouTube / Vimeo (limite d'envoi GitHub).
 
-Configuration Vercel requise :
-
-| Élément | Où |
-| --- | --- |
-| **Blob Store** (accès public) relié au projet → crée `BLOB_READ_WRITE_TOKEN` | Vercel → Storage → Create → Blob |
-| **`ADMIN_PASSWORD`** (12 caractères ou plus) | Vercel → Settings → Environment Variables (Production + Preview) |
-
-Puis redéployer. Sans Blob, le site affiche les projets de départ définis dans `lib/projects.ts`.
-
-Code : `lib/projects.ts` (modèle + projets de départ), `lib/projectStore.ts` (Blob), `lib/adminAuth.ts` (session), `app/admin`, `app/api/admin/*`, `components/admin/*`, `components/ProjectModal.tsx`.
+Sur le site, un clic sur un projet ouvre sa fiche (galerie, vidéo avec le son, lecteur YouTube / Vimeo, description).
+Code : `lib/projectFiles.ts` (lecture des dossiers), `lib/projects.ts` (modèle), `components/ProjectModal.tsx`.
 
 ## Liens à compléter (`LINKS` dans `lib/data.ts`)
 

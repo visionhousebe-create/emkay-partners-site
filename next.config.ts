@@ -11,11 +11,7 @@ const nextConfig: NextConfig = {
   poweredByHeader: false,
   // Le dossier project/ contient le prototype Claude Design d'origine (référence uniquement).
   outputFileTracingExcludes: { '*': ['project/**', 'chats/**'] },
-  images: {
-    formats: ['image/avif', 'image/webp'],
-    // Photos des projets Vision House envoyées depuis /admin (Vercel Blob, accès public).
-    remotePatterns: [{ protocol: 'https', hostname: '*.public.blob.vercel-storage.com' }],
-  },
+  images: { formats: ['image/avif', 'image/webp'] },
   async headers() {
     return [
       { source: '/:path*', headers: securityHeaders },

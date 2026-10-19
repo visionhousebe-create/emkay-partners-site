@@ -4,7 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useState, type RefObject } from 'react';
 import { BRANDS, DOORS, GROUP, IRL, LINKS, ORIENT, RATIO, ROOM, SECTION_MEDIA, type FormKind } from '@/lib/data';
-import type { Project } from '@/lib/projects';
+import { coverOf, type Project } from '@/lib/projects';
 import ProjectModal from './ProjectModal';
 import { BrandMark, Logo, Media } from './media';
 
@@ -159,13 +159,13 @@ function BrandSelector({ ui }: { ui: UI }) {
 }
 
 // ——— 04 Vision House (pile de projets → morph vers Overton) ———
-// Projets édités dans /admin (Vercel Blob). Clic sur une carte → fiche complète du projet.
+// Projets lus dans public/vision-house/ (GitHub). Clic sur une carte → fiche complète du projet.
 const ROT = [-1, 1, -0.5, 0.8, -0.7, 0.6];
 
 function VisionHouse({ ui, projects }: { ui: UI; projects: Project[] }) {
   const { wide } = ui;
   const [open, setOpen] = useState<number | null>(null);
-  const lastCover = projects[projects.length - 1]?.media[0];
+  const lastCover = projects.length ? coverOf(projects[projects.length - 1]) : undefined;
   return (
     <section id="vision-house" data-screen-label="04 Vision House" data-sc="sticky" data-vhs="" data-brand="0" data-hd="#F5F1E9" style={{ position: 'relative', background: '#0C0340' }}>
       <div className="vh-in" style={{ height: wide ? '100vh' : 'auto' }}>
@@ -182,7 +182,7 @@ function VisionHouse({ ui, projects }: { ui: UI; projects: Project[] }) {
         <div data-track="" className="vh-track" style={{ position: wide ? 'absolute' : 'relative', padding: wide ? 0 : '0 6vw 10vh' }}>
           {projects.map((pj, i) => {
             const [rw, rh] = pj.format.split('/').map(Number), R = rw / rh, rot = ROT[i % ROT.length];
-            const cover = pj.media[0];
+            const cover = coverOf(pj);
             const photos = pj.media.filter((m) => m.type === 'image').length, videos = pj.media.length - photos;
             const badge = [videos ? (videos > 1 ? `${videos} VIDÉOS` : 'VIDÉO') : '', photos ? `${photos} PHOTO${photos > 1 ? 'S' : ''}` : ''].filter(Boolean).join(' · ');
             const sub = [pj.sector, pj.location].filter(Boolean).join(' · ');
@@ -193,7 +193,7 @@ function VisionHouse({ ui, projects }: { ui: UI; projects: Project[] }) {
                 marginTop: wide || i === 0 ? 0 : -30, transform: wide ? 'translate(-50%, 100vh)' : `rotate(${rot}deg)`, opacity: wide ? 0 : 1, cursor: 'pointer',
               }}>
                 <div data-vhmedia="" style={{ position: 'relative', width: '100%', aspectRatio: pj.format, overflow: 'hidden', background: '#160B52' }}>
-                  <Media src={cover?.url || ''} type={cover?.type} poster={cover?.poster} autoplay="hover" placeholder="Médias à venir" alt={`${pj.client} — ${pj.title}`} sizes="72vw" />
+                  <Media src={cover?.url || ''} type={cover?.type === 'video' ? 'video' : cover ? 'image' : ''} poster={cover?.poster} autoplay="hover" placeholder="Médias à venir" alt={`${pj.client} — ${pj.title}`} sizes="72vw" />
                   {badge && <span className="vh-badge">{badge}</span>}
                 </div>
                 <button type="button" className="btn-reset vh-meta" aria-label={`Voir le projet ${pj.client}`}>
@@ -211,7 +211,7 @@ function VisionHouse({ ui, projects }: { ui: UI; projects: Project[] }) {
         </div>
         <div data-xf="" className="vh-xf" style={{ position: wide ? 'absolute' : 'relative', height: wide ? '100%' : '100svh', opacity: wide ? 0 : 1 }}>
           <div data-xa="" data-empty={lastCover ? undefined : ''} style={{ position: 'absolute', inset: 0, opacity: wide && lastCover ? 1 : 0 }}>
-            {lastCover && <Media src={lastCover.url} type={lastCover.type} poster={lastCover.poster} placeholder="" autoplay="visible" />}
+            {lastCover && <Media src={lastCover.url} type={lastCover.type === 'video' ? 'video' : 'image'} poster={lastCover.poster} placeholder="" autoplay="visible" />}
           </div>
           <div data-xb="" style={{ position: 'absolute', inset: 0, opacity: wide ? 0 : 1 }}>
             <Image src={SECTION_MEDIA.overton} alt="Événement Overton" fill sizes="100vw" style={{ objectFit: 'cover' }} />

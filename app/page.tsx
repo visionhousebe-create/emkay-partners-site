@@ -1,10 +1,8 @@
 import EmkaySite from '@/components/EmkaySite';
-import { getSiteProjects } from '@/lib/projectStore';
+import { readProjectsFromFiles } from '@/lib/projectFiles';
 
-// Page statique, régénérée à chaque publication depuis /admin (et au plus tard toutes les heures).
-export const revalidate = 3600;
-
-export default async function Page() {
-  const projects = (await getSiteProjects()).filter((p) => p.published);
-  return <EmkaySite projects={projects} />;
+// Les projets Vision House sont lus dans public/vision-house/ au moment du build :
+// chaque modification poussée sur GitHub redéploie le site automatiquement (Vercel).
+export default function Page() {
+  return <EmkaySite projects={readProjectsFromFiles()} />;
 }

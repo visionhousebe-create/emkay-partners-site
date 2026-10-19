@@ -67,7 +67,7 @@ export type MediaType = 'image' | 'video';
 /** Un fichier, ou plusieurs formats du même média (ex. ['/media/clip.webm', '/media/clip.mp4']). */
 export type MediaSrc = string | string[];
 
-// Projets Vision House : voir lib/projects.ts (édités dans /admin, stockés dans Vercel Blob).
+// Projets Vision House : dossiers public/vision-house/ (voir public/vision-house/LISEZ-MOI.md).
 
 export type Orientation = 'vertical' | 'portrait' | 'square' | 'landscape' | 'wide';
 export const RATIO: Record<Orientation, string> = { vertical: '9/16', portrait: '4/5', square: '1/1', landscape: '16/9', wide: '21/9' };

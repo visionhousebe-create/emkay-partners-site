@@ -1,0 +1,9 @@
+client: N de Natacha
+secteur: Salon de coiffure
+lieu: Belgique
+annee:
+realisation: Aftermovie · campagne ads promotionnelle
+services: Vidéo, Aftermovie, Publicité
+format: paysage
+visible: oui
+---

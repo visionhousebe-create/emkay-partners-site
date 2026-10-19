@@ -1,0 +1,9 @@
+client: MICF
+secteur: Soirée d'inauguration
+lieu:
+annee:
+realisation: Projet photo
+services: Photographie
+format: paysage
+visible: oui
+---

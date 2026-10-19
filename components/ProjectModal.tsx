@@ -60,7 +60,7 @@ export default function ProjectModal({ projects, index, onClose, onNavigate, onC
             ) : m.type === 'video' ? (
               <video key={m.url} className="pm-media" src={m.url} poster={m.poster} controls playsInline preload="metadata" autoPlay={!reduced} muted={!reduced} loop />
             ) : (
-              <Image key={m.url} src={m.url} alt={m.alt || `${p.client} — ${p.title || 'projet'} (${mi + 1}/${count})`} fill sizes="(max-width: 900px) 100vw, 66vw" style={{ objectFit: 'contain' }} />
+              <Image key={m.url} src={m.url} alt={m.alt || `${p.client} — ${p.title || 'projet'} (${mi + 1}/${count})`} fill sizes="(max-width: 900px) 100vw, 66vw" quality={90} style={{ objectFit: 'contain' }} />
             )
           ) : (
             <div className="pm-empty">MÉDIAS À VENIR</div>

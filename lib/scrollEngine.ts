@@ -411,12 +411,12 @@ export class ScrollEngine {
     for (let i = 0; i < P.length; i++) for (let j = i + 1; j < P.length; j++) {
       const dx = P[i][0] - P[j][0], dy = P[i][1] - P[j][1], d = Math.sqrt(dx * dx + dy * dy);
       if (d < th) {
-        x.strokeStyle = `rgba(43,20,61,${((1 - d / th) * 0.32 * (1 - t)).toFixed(3)})`;
+        x.strokeStyle = `rgba(74,26,107,${((1 - d / th) * 0.3 * (1 - t)).toFixed(3)})`;
         x.beginPath(); x.moveTo(P[i][0], P[i][1]); x.lineTo(P[j][0], P[j][1]); x.stroke();
       }
     }
     const L1 = (a: number, b: number) => Math.round(a + (b - a) * t);
-    x.fillStyle = `rgba(${L1(9, 227)},${L1(9, 18)},${L1(9, 43)},${(0.4 + 0.55 * t).toFixed(2)})`;
+    x.fillStyle = `rgba(${L1(161, 227)},${L1(40, 18)},${L1(106, 43)},${(0.4 + 0.55 * t).toFixed(2)})`;
     const rad = 1.4 + t * 5;
     P.forEach(([a, b]) => { x.beginPath(); x.arc(a, b, rad, 0, 6.283); x.fill(); });
     const k = Math.min(1, p / 0.7), e = k < 0.5 ? 2 * k * k : 1 - Math.pow(-2 * k + 2, 2) / 2;
@@ -424,10 +424,10 @@ export class ScrollEngine {
     const A = [L(0.04, 0.68) * w, L(0.06, 0.5) * h], B = [L(0.96, 0.82) * w, L(0.9, 0.5) * h];
     x.globalAlpha = 1 - t;
     x.setLineDash([4, 6]);
-    x.strokeStyle = `rgba(43,20,61,${(0.25 + e * 0.6).toFixed(2)})`;
+    x.strokeStyle = `rgba(74,26,107,${(0.25 + e * 0.6).toFixed(2)})`;
     x.beginPath(); x.moveTo(A[0], A[1]); x.lineTo(B[0], B[1]); x.stroke(); x.setLineDash([]);
-    if (e > 0.97) { x.strokeStyle = 'rgba(155,107,255,.7)'; x.beginPath(); x.arc((A[0] + B[0]) / 2, h * 0.5, 34 + Math.sin(p * 40) * 4, 0, 6.283); x.stroke(); }
-    ([[A, '#9B6BFF'], [B, '#2B143D']] as [number[], string][]).forEach(([q, col]) => {
+    if (e > 0.97) { x.strokeStyle = 'rgba(245,154,51,.85)'; x.beginPath(); x.arc((A[0] + B[0]) / 2, h * 0.5, 34 + Math.sin(p * 40) * 4, 0, 6.283); x.stroke(); }
+    ([[A, '#E2463A'], [B, '#4A1A6B']] as [number[], string][]).forEach(([q, col]) => {
       x.fillStyle = col; x.shadowColor = col; x.shadowBlur = 16;
       x.beginPath(); x.arc(q[0], q[1], 6, 0, 6.283); x.fill(); x.shadowBlur = 0;
     });

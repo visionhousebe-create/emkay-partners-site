@@ -209,7 +209,7 @@ export default function EmkaySite({ projects }: { projects: Project[] }) {
       <header className="hd" style={{ color: hd, opacity: header ? 1 : 0, pointerEvents: header ? 'auto' : 'none' }}>
         <a href="#top" aria-label="EMKAY Partners — accueil" className="hd-logo">
           {wide ? (
-            <Logo src="/logos/emkay.png" alt="EMKAY Partners" priority style={{ display: 'block', height: 30, width: 'auto', filter: ['#F5F1E9', '#E6EBF2', '#F2E7D3'].includes(hd) ? 'none' : 'brightness(0)', transition: 'filter .6s ease' }} />
+            <Logo src="/logos/emkay.png" alt="EMKAY Partners" priority style={{ display: 'block', height: 30, width: 'auto', filter: isLightColor(hd) ? 'none' : 'brightness(0)', transition: 'filter .6s ease' }} />
           ) : (
             <span className="hd-logo-txt">EMKAY PARTNERS</span>
           )}
@@ -367,4 +367,12 @@ export default function EmkaySite({ projects }: { projects: Project[] }) {
       )}
     </div>
   );
+}
+
+/** Couleur de texte du header claire (→ logo EMKAY blanc) ou foncée (→ logo noir). */
+function isLightColor(hex: string) {
+  const m = /^#?([0-9a-f]{6})$/i.exec(hex.trim());
+  if (!m) return true;
+  const n = parseInt(m[1], 16), r = n >> 16, g = (n >> 8) & 255, b = n & 255;
+  return 0.299 * r + 0.587 * g + 0.114 * b > 150;
 }

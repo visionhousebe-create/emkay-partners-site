@@ -30,8 +30,8 @@ export type Brand = {
 export const BRANDS: Brand[] = [
   { id: 'vision-house', num: '01', name: 'VISION HOUSE', cat: 'Marketing & communication', tags: 'STRATÉGIE / CONTENU / POSITIONNEMENT', desc: 'Stratégie, contenu et visibilité pour faire de la communication un véritable levier de développement.', cta: 'DÉCOUVRIR VISION HOUSE ↗', bg: '#0C0340', fg: '#F5F1E9', dot: '#0C0340', cursor: 'VOIR', logo: '/logos/visionhouse.png', logoT: '/logos/visionhouse-white.png', lw: '100%', lr: '0', plate: '#0C0340' },
   // Overton et Orizon Connect : logos officiels à fournir → déposer les fichiers dans public/logos/, renseigner logo / logoT (et logoRoom pour fond violet) et LOGO_SIZE.
-  { id: 'overton', num: '02', name: 'OVERTON', cat: 'Événements & expériences', tags: 'ÉVÉNEMENTS / EXPÉRIENCES', desc: 'Des événements imaginés par Overton ou créés sur mesure pour les entreprises et les marques.', cta: 'DÉCOUVRIR OVERTON ↗', bg: '#43746A', fg: '#F5F1E9', dot: '#43746A', cursor: 'VOIR', logo: '', logoT: '', lw: '90%', lr: '0', plate: '#090909' },
-  { id: 'orizon-connect', num: '03', name: 'ORIZON CONNECT', cat: 'Rencontres professionnelles', tags: 'RENCONTRES / BUSINESS / CONNEXIONS', desc: 'Rapprocher entrepreneurs, dirigeants, entreprises et partenaires — la qualité des connexions avant tout.', cta: 'DÉCOUVRIR ORIZON CONNECT ↗', bg: '#E9E6E0', fg: '#090909', dot: '#9B6BFF', cursor: 'CONNECTER', logo: '', logoT: '', lw: '86%', lr: '0', plate: '#E9E6E0' },
+  { id: 'overton', num: '02', name: 'OVERTON', cat: 'Événements & expériences', tags: 'ÉVÉNEMENTS / EXPÉRIENCES', desc: 'Des événements imaginés par Overton ou créés sur mesure pour les entreprises et les marques.', cta: 'DÉCOUVRIR OVERTON ↗', bg: '#0B0A08', fg: '#E9D29C', dot: '#C9A35E', cursor: 'VOIR', logo: '', logoT: '', lw: '90%', lr: '0', plate: '#0B0A08' },
+  { id: 'orizon-connect', num: '03', name: 'ORIZON CONNECT', cat: 'Rencontres professionnelles', tags: 'RENCONTRES / BUSINESS / CONNEXIONS', desc: 'Rapprocher entrepreneurs, dirigeants, entreprises et partenaires — la qualité des connexions avant tout.', cta: 'DÉCOUVRIR ORIZON CONNECT ↗', bg: '#FBF1E7', fg: '#3A1450', dot: '#E2463A', cursor: 'CONNECTER', logo: '', logoT: '', lw: '86%', lr: '0', plate: '#FBF1E7' },
   { id: 'bavare', num: '04', name: 'BAVARE', cat: 'Événements sociaux', tags: 'SORTIR / LIEUX / RENCONTRES', desc: "Des occasions simples de sortir, discuter et rencontrer — dans des lieux qu'on ne connaissait pas encore.", cta: 'VOIR LE PROCHAIN BAVARE ↗', bg: '#FF9EC4', fg: '#E3122B', dot: '#FF9EC4', cursor: 'SORTIR', logo: '/logos/bavard.png', logoT: '/logos/bavard.png', lw: '80%', lr: '0', plate: '#FF9EC4' },
   { id: 'viens-manger', num: '05', name: 'VIENS MANGER', cat: 'Food & découvertes', tags: 'RESTAURANTS / LIEUX / DÉCOUVERTE', desc: 'Restaurants, lieux, concepts culinaires et expériences qui valent le détour.', cta: 'DÉCOUVRIR VIENS MANGER ↗', bg: '#4A0B16', fg: '#F2E7D3', dot: '#C23A4E', cursor: 'GOÛTER', logo: '/logos/viensmanger.png', logoT: '/logos/viensmanger.png', lw: '74%', lr: '50%', plate: 'transparent' },
 ];
@@ -48,8 +48,8 @@ export const LOGO_SIZE: Record<string, [number, number]> = {
 // Accès rapide + menu « Nos marques » du header.
 export const QUICK = [
   { b: 0, purpose: 'Communication, stratégie & contenu', short: 'Communication, stratégie, contenu', qBg: '#0C0340', qFg: '#F5F1E9' },
-  { b: 1, purpose: 'Événements & expériences', short: 'Événements & expériences', qBg: '#43746A', qFg: '#F5F1E9' },
-  { b: 2, purpose: 'Networking & connexions professionnelles', short: 'Networking & connexions', qBg: '#E9E6E0', qFg: '#090909' },
+  { b: 1, purpose: 'Événements & expériences', short: 'Événements & expériences', qBg: '#0B0A08', qFg: '#E9D29C' },
+  { b: 2, purpose: 'Networking & connexions professionnelles', short: 'Networking & connexions', qBg: '#FBF1E7', qFg: '#3A1450' },
   { b: 3, purpose: 'Sorties, rencontres & lieux', short: 'Sorties & rencontres', qBg: '#FF9EC4', qFg: '#E3122B' },
   { b: 4, purpose: 'Food & découvertes', short: 'Food & découvertes', qBg: '#4A0B16', qFg: '#F2E7D3' },
 ];

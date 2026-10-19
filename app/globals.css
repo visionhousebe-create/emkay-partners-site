@@ -137,14 +137,14 @@ input, textarea { font: inherit; color: inherit }
 .nx-grid { max-width: 1440px; margin: 0 auto; padding: clamp(80px,12vh,140px) 5vw; display: grid; grid-template-columns: repeat(auto-fit,minmax(min(100%,340px),1fr)); gap: clamp(40px,6vw,96px) }
 .nx-h3 { margin: 0; font-weight: 600; font-size: clamp(36px,4vw,66px); line-height: 1; letter-spacing: -.035em; text-wrap: pretty }
 .nx-p { margin: 32px 0 0; max-width: 480px; font-size: 17px; line-height: 1.6; color: var(--grey); text-wrap: pretty }
-.nx-row { border-top: 1px solid rgba(245,241,233,.2); padding: 28px 0; display: grid; grid-template-columns: 56px 1fr; gap: 16px }
-.nx-row-k { font-size: 11px; font-weight: 600; letter-spacing: .2em; color: var(--grey); padding-top: 8px }
+.nx-row { border-top: 1px solid rgba(201,163,94,.3); padding: 28px 0; display: grid; grid-template-columns: 56px 1fr; gap: 16px }
+.nx-row-k { font-size: 11px; font-weight: 600; letter-spacing: .2em; color: #C9A35E; padding-top: 8px }
 .nx-row-t { font-size: 24px; font-weight: 600; letter-spacing: -.02em }
 .nx-row-d { margin-top: 8px; font-size: 16px; color: var(--grey); line-height: 1.5 }
-.nx-line { height: 1px; background: rgba(245,241,233,.6); transform-origin: 0 50%; transform: scaleX(clamp(0, calc(var(--p,0) * 1.2 - 0.2), 1)) }
+.nx-line { height: 1px; background: linear-gradient(90deg, #B8893F, #F3DFAE 50%, #B8893F); transform-origin: 0 50%; transform: scaleX(clamp(0, calc(var(--p,0) * 1.2 - 0.2), 1)) }
 
 /* ——— 06 Orizon Connect ——— */
-.nxc-in { position: sticky; top: 0; min-height: 100vh; overflow: hidden; background: #E9E6E0; color: #090909; display: flex; flex-direction: column; padding: 88px 5vw 6vh }
+.nxc-in { position: sticky; top: 0; min-height: 100vh; overflow: hidden; background: radial-gradient(120% 55% at 50% 118%, rgba(245,154,51,.26) 0%, rgba(226,70,58,.1) 45%, rgba(251,241,231,0) 72%), #FBF1E7; color: #2A0F3A; display: flex; flex-direction: column; padding: 88px 5vw 6vh }
 .nxc-pink { position: absolute; inset: 0; background: #FF9EC4; opacity: clamp(0, calc((var(--p,0) - 0.76) * 5), 1); pointer-events: none }
 .nxc-content { position: relative; flex: 1; display: flex; flex-direction: column; opacity: clamp(0, calc((0.96 - var(--p,0)) * 6), 1) }
 .nxc-h3 { margin: clamp(40px,9vh,110px) 0 0; max-width: 1200px; font-weight: 700; font-size: clamp(42px,6.6vw,124px); line-height: .92; letter-spacing: -.05em; text-wrap: pretty }
@@ -303,8 +303,13 @@ input, textarea { font: inherit; color: inherit }
 .room-item .brand-word, .sel-layer .brand-word { text-align: center }
 
 /* ——— Logotypes provisoires (en attendant les logos officiels) ——— */
-.brand-word.bw-overton, .brand-word.bw-orizon-connect { display: inline-flex; flex-direction: column; line-height: 1 }
-.room-item .brand-word.bw-overton, .room-item .brand-word.bw-orizon-connect, .sel-layer .brand-word.bw-overton, .sel-layer .brand-word.bw-orizon-connect { align-items: center }
+.brand-word.bw-orizon-connect { display: inline-flex; flex-direction: column; line-height: 1 }
+.brand-word.bw-overton { display: inline-flex; flex-direction: row; align-items: center; gap: .5em; line-height: 1 }
+.bw-ov-sym { flex: none; width: 1.9em; height: auto; overflow: visible }
+.bw-ov-txt { display: inline-flex; flex-direction: column }
+.sel-layer { container-type: inline-size }
+.sel-layer .brand-word.bw-overton { font-size: min(60px, 10.5cqi) !important }
+.room-item .brand-word.bw-orizon-connect, .sel-layer .brand-word.bw-orizon-connect, .room-item .bw-ov-txt, .sel-layer .bw-ov-txt { align-items: center }
 
 /* Overton — luxe : capitales serif très espacées, or champagne */
 .bw-ov-name {
@@ -326,6 +331,10 @@ input, textarea { font: inherit; color: inherit }
 .bw-hz-sun::after { content: ''; position: absolute; left: -.12em; right: -.12em; bottom: -.08em; height: .06em; min-height: 1px; background: currentColor; opacity: .5 }
 .bw-orizon-connect.on-dark .bw-hz-sun { background: linear-gradient(180deg, #FFD36B 0%, #FF7448 60%, #FF4F86 100%) }
 .bw-overton.on-dark .bw-ov-name { background-image: linear-gradient(100deg, #C9A35E 0%, #F3DFAE 38%, #FFF6DC 50%, #E2C07A 64%, #B8893F 100%) }
+
+/* Couleurs de marque appliquées au texte */
+.ov-gold { background: linear-gradient(100deg, #C9A35E 0%, #F3DFAE 38%, #FFF6DC 50%, #E2C07A 64%, #B8893F 100%); -webkit-background-clip: text; background-clip: text; color: transparent }
+.oz-sun { background: linear-gradient(90deg, #4A1A6B 0%, #A1286A 32%, #E2463A 64%, #F59A33 100%); -webkit-background-clip: text; background-clip: text; color: transparent; padding-right: .08em; -webkit-box-decoration-break: clone; box-decoration-break: clone }
 
 /* ——— Vision House : cartes projets ——— */
 .vh-media { position: relative; width: 100%; overflow: hidden; background: #160B52; container-type: inline-size }

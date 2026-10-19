@@ -326,3 +326,43 @@ input, textarea { font: inherit; color: inherit }
 .bw-hz-sun::after { content: ''; position: absolute; left: -.12em; right: -.12em; bottom: -.08em; height: .06em; min-height: 1px; background: currentColor; opacity: .5 }
 .bw-horizon-connect.on-dark .bw-hz-sun { background: linear-gradient(180deg, #FFD36B 0%, #FF7448 60%, #FF4F86 100%) }
 .bw-overton.on-dark .bw-ov-name { background-image: linear-gradient(100deg, #C9A35E 0%, #F3DFAE 38%, #FFF6DC 50%, #E2C07A 64%, #B8893F 100%) }
+
+/* ——— Vision House : cartes projets ——— */
+.vh-meta { width: 100%; text-align: left; cursor: pointer }
+.vh-meta:hover .xw { text-decoration: underline; text-underline-offset: 4px; text-decoration-thickness: 1px }
+.vh-badge { position: absolute; left: 12px; top: 12px; z-index: 2; padding: 6px 9px; background: rgba(12,3,64,.82); color: var(--cream); font-size: 10px; font-weight: 700; letter-spacing: .2em; pointer-events: none }
+
+/* ——— Fiche projet ——— */
+.pm { position: fixed; inset: 0; z-index: 96; background: #0C0340; color: var(--cream); display: flex; flex-direction: column; overflow: auto; animation: pm-in .45s cubic-bezier(.2,.7,.2,1) }
+@keyframes pm-in { from { opacity: 0; transform: translateY(18px) } to { opacity: 1; transform: none } }
+@media (prefers-reduced-motion: reduce) { .pm { animation: none } }
+.pm-top { flex: none; display: flex; justify-content: space-between; align-items: center; gap: 20px; padding: 20px 4vw; font-size: 11px; font-weight: 600; letter-spacing: .22em; color: #A9A3D6; border-bottom: 1px solid rgba(245,241,233,.12) }
+.pm-close { padding: 10px 0; color: var(--cream); font-size: 11px; font-weight: 700; letter-spacing: .22em; border-bottom: 1px solid currentColor }
+.pm-body { flex: 1; min-height: 0; display: grid; grid-template-columns: minmax(0,2fr) minmax(280px,1fr); gap: clamp(20px,3vw,48px); padding: clamp(16px,3vh,32px) 4vw }
+.pm-stage { position: relative; min-height: 50vh; background: #080131; display: flex; align-items: center; justify-content: center; overflow: hidden }
+.pm-media { width: 100%; height: 100%; max-height: 78vh; object-fit: contain; display: block; background: #000 }
+.pm-embed { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; background: #000 }
+.pm-empty { font-size: 11px; font-weight: 700; letter-spacing: .24em; color: #A9A3D6 }
+.pm-nav { position: absolute; top: 50%; transform: translateY(-50%); width: 46px; height: 46px; display: flex; align-items: center; justify-content: center; background: rgba(12,3,64,.75); color: var(--cream); font-size: 18px; transition: background .3s }
+.pm-nav:hover { background: rgba(12,3,64,.95) }
+.pm-prev { left: 12px } .pm-next { right: 12px }
+.pm-count { position: absolute; right: 14px; bottom: 12px; padding: 5px 8px; background: rgba(12,3,64,.8); font-size: 10px; font-weight: 700; letter-spacing: .2em }
+.pm-info { display: flex; flex-direction: column; gap: 14px; align-self: start }
+.pm-client { margin: 0; font-weight: 900; font-stretch: 125%; font-size: clamp(30px,3.4vw,56px); line-height: .92; letter-spacing: -.045em }
+.pm-meta { margin: 0; font-size: 12px; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: #CFCBEA }
+.pm-title { margin: 6px 0 0; font-size: clamp(22px,2vw,32px); line-height: 1.15; color: #B9C4FF }
+.pm-desc { margin: 4px 0 0; font-size: 16px; line-height: 1.6; color: #CFCBEA; white-space: pre-line }
+.pm-tags { list-style: none; margin: 6px 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px }
+.pm-tags li { padding: 6px 10px; border: 1px solid rgba(185,196,255,.35); font-size: 10px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase }
+.pm-cta { margin-top: 18px; display: flex; flex-direction: column; align-items: flex-start; gap: 18px }
+.pm-nextp { font-size: 11px; font-weight: 700; letter-spacing: .18em; color: #A9A3D6; transition: color .3s }
+.pm-nextp:hover { color: var(--cream) }
+.pm-thumbs { flex: none; display: flex; gap: 8px; padding: 0 4vw 24px; overflow-x: auto }
+.pm-thumb { position: relative; flex: none; width: 96px; aspect-ratio: 1; background: #160B52; opacity: .55; outline-offset: 2px; transition: opacity .3s }
+.pm-thumb.on, .pm-thumb:hover { opacity: 1 }
+.pm-thumb.on { box-shadow: 0 0 0 2px #B9C4FF }
+.pm-vid { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: 20px; color: #B9C4FF }
+@media (max-width: 900px) {
+  .pm-body { grid-template-columns: 1fr }
+  .pm-stage { min-height: 0; aspect-ratio: 4/5; max-height: 70vh }
+}

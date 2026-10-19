@@ -44,15 +44,18 @@ Voir `.env.example`. Les Previews Vercel sont automatiquement en `noindex`.
 - Données envoyées (POST JSON, `Accept: application/json`) : `_subject` (objet de l'e-mail Formspree), `kind`, `type_demande`, `nom`, `email`, `message`, champs optionnels, `receivedAt`, et `text` (résumé lisible, utilisé par Slack).
 - En cas d'échec du webhook, le visiteur voit « Votre message n’a pas pu partir. Merci de réessayer… » — jamais d'erreur technique.
 
-## Médias Vision House et vidéos
+## Projets Vision House — gérés dans GitHub
 
-Déposer les fichiers dans `public/media/vision-house/` (voir le README du dossier), puis renseigner `VH_PROJECTS` dans `lib/data.ts` :
+Un dossier par projet dans **`public/vision-house/`** (`01-micf`, `02-n-de-natacha`…) :
 
-```ts
-{ name: 'CLIENT 01', …, mediaType: 'video', mediaSrc: ['/media/vision-house/client-01.webm', '/media/vision-house/client-01.mp4'], poster: '/media/vision-house/client-01.jpg' }
-```
+- `projet.txt` : client, secteur, lieu, année, réalisation, services, format, visible, liens `video:` YouTube / Vimeo, puis la description après `---` ;
+- photos (.jpg .png .webp .avif) et vidéos (.mp4 .webm) déposées telles quelles ; ordre alphabétique ; `couverture.*` force la couverture ; une image du même nom qu'une vidéo devient son aperçu.
 
-Les vidéos (`.mp4`, `.webm`) ne se chargent qu'à l'approche de l'écran, puis en `preload="metadata"`, muettes, en boucle, `playsInline` ; aucune lecture automatique avec `prefers-reduced-motion`. Pour des fichiers de plusieurs dizaines de Mo, préférer un hébergement vidéo (Vercel Blob, Mux, Cloudflare Stream) et mettre l'URL complète dans `mediaSrc`.
+Mode d'emploi pas à pas (édition sur github.com, sans outil) : **`public/vision-house/LISEZ-MOI.md`**.
+Chaque commit déclenche un redéploiement Vercel (~1 min). Fichiers de plus de 25 Mo : passer par YouTube / Vimeo (limite d'envoi GitHub).
+
+Sur le site, un clic sur un projet ouvre sa fiche (galerie, vidéo avec le son, lecteur YouTube / Vimeo, description).
+Code : `lib/projectFiles.ts` (lecture des dossiers), `lib/projects.ts` (modèle), `components/ProjectModal.tsx`.
 
 ## Liens à compléter (`LINKS` dans `lib/data.ts`)
 
@@ -64,7 +67,6 @@ Tant qu'une URL vaut `''`, le lien s'affiche à l'identique mais n'est pas cliqu
 | `instagram` | Footer — Instagram |
 | `nextBavare` | Section Bavare — « Voir le prochain Bavare » |
 | `vmAddresses` | Section Viens Manger — « Découvrir les adresses » |
-| `VH_PROJECTS[].url` | Cartes Vision House (études de cas, facultatif) |
 
 ## Informations légales à compléter
 

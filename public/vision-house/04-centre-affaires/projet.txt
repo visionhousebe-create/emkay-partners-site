@@ -1,0 +1,9 @@
+client: Centre d'affaires
+secteur:
+lieu: Belgique
+annee:
+realisation: En cours · audience en construction
+services: Vidéo, Format vertical
+format: vertical
+visible: oui
+---

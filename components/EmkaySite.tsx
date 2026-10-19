@@ -5,11 +5,12 @@ import { ALIAS, ARRIVE, BRANDS, FORMS, QUICK, SETTINGS, type FormKind } from '@/
 import { ScrollEngine, type EngineState } from '@/lib/scrollEngine';
 import { Logo } from './media';
 import { Sections, type UI } from './sections';
+import type { Project } from '@/lib/projects';
 
 const B = BRANDS;
 const AUTO: Record<string, string> = { nom: 'name', email: 'email', telephone: 'tel', entreprise: 'organization', organisation: 'organization' };
 
-export default function EmkaySite() {
+export default function EmkaySite({ projects }: { projects: Project[] }) {
   const rootRef = useRef<HTMLDivElement>(null);
   const veilRef = useRef<HTMLDivElement>(null);
   const curRef = useRef<HTMLDivElement>(null);
@@ -315,7 +316,7 @@ export default function EmkaySite() {
         </div>
       )}
 
-      <Sections ui={ui} />
+      <Sections ui={ui} projects={projects} />
 
       {/* ——— Formulaire ——— */}
       {form && (

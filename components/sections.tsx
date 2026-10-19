@@ -3,15 +3,12 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { useState, type RefObject } from 'react';
-import { BRANDS, DOORS, GROUP, IRL, LINKS, hasMedia, ORIENT, RATIO, ROOM, SECTION_MEDIA, VH_PROJECTS, type FormKind } from '@/lib/data';
+import { BRANDS, DOORS, GROUP, IRL, LINKS, ORIENT, RATIO, ROOM, SECTION_MEDIA, type FormKind } from '@/lib/data';
+import { coverOf, type Project } from '@/lib/projects';
+import ProjectModal from './ProjectModal';
 import { BrandMark, Logo, Media } from './media';
 
 const B = BRANDS;
-
-/** Lien si une URL est renseignée, sinon simple bloc. */
-function MetaTag({ href, ...rest }: React.ComponentProps<'a'>) {
-  return href ? <a href={href} {...rest} /> : <div {...(rest as React.ComponentProps<'div'>)} />;
-}
 
 /** Lien externe ; tant que l'URL n'est pas renseignée dans LINKS, rendu à l'identique mais non cliquable. */
 function Ext({ href, children, ...rest }: React.ComponentProps<'a'>) {
@@ -30,12 +27,12 @@ export type UI = {
   setRoomHover: (i: number) => void;
 };
 
-export function Sections({ ui }: { ui: UI }) {
+export function Sections({ ui, projects }: { ui: UI; projects: Project[] }) {
   return (
     <>
       <Portal ui={ui} />
       <BrandSelector ui={ui} />
-      <VisionHouse ui={ui} />
+      <VisionHouse ui={ui} projects={projects} />
       <Overton ui={ui} />
       <HorizonConnect ui={ui} />
       <Bavare />
@@ -162,9 +159,13 @@ function BrandSelector({ ui }: { ui: UI }) {
 }
 
 // ——— 04 Vision House (pile de projets → morph vers Overton) ———
-function VisionHouse({ ui }: { ui: UI }) {
+// Projets lus dans public/vision-house/ (GitHub). Clic sur une carte → fiche complète du projet.
+const ROT = [-1, 1, -0.5, 0.8, -0.7, 0.6];
+
+function VisionHouse({ ui, projects }: { ui: UI; projects: Project[] }) {
   const { wide } = ui;
-  const last = VH_PROJECTS[VH_PROJECTS.length - 1];
+  const [open, setOpen] = useState<number | null>(null);
+  const lastCover = projects.length ? coverOf(projects[projects.length - 1]) : undefined;
   return (
     <section id="vision-house" data-screen-label="04 Vision House" data-sc="sticky" data-vhs="" data-brand="0" data-hd="#F5F1E9" style={{ position: 'relative', background: '#0C0340' }}>
       <div className="vh-in" style={{ height: wide ? '100vh' : 'auto' }}>
@@ -179,32 +180,38 @@ function VisionHouse({ ui }: { ui: UI }) {
           </div>
         </div>
         <div data-track="" className="vh-track" style={{ position: wide ? 'absolute' : 'relative', padding: wide ? 0 : '0 6vw 10vh' }}>
-          {VH_PROJECTS.map((pj, i) => {
-            const [rw, rh] = pj.ratio.split('/').map(Number), R = rw / rh;
+          {projects.map((pj, i) => {
+            const [rw, rh] = pj.format.split('/').map(Number), R = rw / rh, rot = ROT[i % ROT.length];
+            const cover = coverOf(pj);
+            const photos = pj.media.filter((m) => m.type === 'image').length, videos = pj.media.length - photos;
+            const badge = [videos ? (videos > 1 ? `${videos} VIDÉOS` : 'VIDÉO') : '', photos ? `${photos} PHOTO${photos > 1 ? 'S' : ''}` : ''].filter(Boolean).join(' · ');
+            const sub = [pj.sector, pj.location].filter(Boolean).join(' · ');
             return (
-              <div key={pj.name + i} data-card={i} data-rot={pj.rot} className="vh-card" style={{
+              <div key={pj.id} data-card={i} data-rot={rot} data-cursor="OUVRIR" className="vh-card" onClick={() => setOpen(i)} style={{
                 position: wide ? 'absolute' : 'relative', left: wide ? '50%' : 'auto', top: wide ? '12vh' : 'auto', zIndex: 10 + i,
                 width: wide ? `min(72vw, calc((70vh - 70px) * ${R.toFixed(4)}))` : R < 1 ? '78%' : '100%',
-                marginTop: wide || i === 0 ? 0 : -30, transform: wide ? 'translate(-50%, 100vh)' : `rotate(${pj.rot}deg)`, opacity: wide ? 0 : 1,
+                marginTop: wide || i === 0 ? 0 : -30, transform: wide ? 'translate(-50%, 100vh)' : `rotate(${rot}deg)`, opacity: wide ? 0 : 1, cursor: 'pointer',
               }}>
-                <div data-vhmedia="" style={{ position: 'relative', width: '100%', aspectRatio: pj.ratio, overflow: 'hidden', background: '#160B52' }}>
-                  <Media src={pj.mediaSrc} type={pj.mediaType} poster={pj.poster} autoplay="hover" placeholder={pj.name + ' — ' + (pj.mediaType === 'video' ? 'vidéo MP4' : 'image')} sizes="72vw" />
+                <div data-vhmedia="" style={{ position: 'relative', width: '100%', aspectRatio: pj.format, overflow: 'hidden', background: '#160B52' }}>
+                  <Media src={cover?.url || ''} type={cover?.type === 'video' ? 'video' : cover ? 'image' : ''} poster={cover?.poster} autoplay="hover" placeholder="Médias à venir" alt={`${pj.client} — ${pj.title}`} sizes="72vw" />
+                  {badge && <span className="vh-badge">{badge}</span>}
                 </div>
-                <MetaTag href={pj.url || undefined} className="vh-meta">
+                <button type="button" className="btn-reset vh-meta" aria-label={`Voir le projet ${pj.client}`}>
                   <span style={{ fontSize: 10, fontWeight: 700, letterSpacing: '.22em', color: '#A9A3D6' }}>{String(i + 1).padStart(2, '0')} / CLIENT</span>
                   <span style={{ display: 'flex', flexDirection: 'column', gap: 4, minWidth: 0 }}>
-                    <span className="xw" style={{ fontWeight: 800, fontSize: 'clamp(15px,1.3vw,20px)', letterSpacing: '-.01em' }}>{pj.name}</span>
-                    <span style={{ fontSize: 12, fontWeight: 500, letterSpacing: '.06em', color: '#CFCBEA' }}>{pj.services.map((x) => x.charAt(0) + x.slice(1).toLowerCase()).join(' · ')}</span>
+                    <span className="xw" style={{ fontWeight: 800, fontSize: 'clamp(15px,1.3vw,20px)', letterSpacing: '-.01em' }}>{pj.client}</span>
+                    {sub && <span style={{ fontSize: 12, fontWeight: 500, letterSpacing: '.06em', color: '#CFCBEA' }}>{sub}</span>}
+                    {pj.title && <span className="serif-i" style={{ fontSize: 'clamp(15px,1.2vw,18px)', lineHeight: 1.25, color: '#B9C4FF' }}>{pj.title}</span>}
                   </span>
-                  <span style={{ fontSize: 12, fontWeight: 600, letterSpacing: '.16em', color: '#A9A3D6' }}>{pj.year}</span>
-                </MetaTag>
+                  <span style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: 6, fontSize: 12, fontWeight: 600, letterSpacing: '.16em', color: '#A9A3D6', whiteSpace: 'nowrap' }}>{pj.year}<span aria-hidden="true">VOIR ↗</span></span>
+                </button>
               </div>
             );
           })}
         </div>
         <div data-xf="" className="vh-xf" style={{ position: wide ? 'absolute' : 'relative', height: wide ? '100%' : '100svh', opacity: wide ? 0 : 1 }}>
-          <div data-xa="" data-empty={hasMedia(last.mediaSrc) ? undefined : ''} style={{ position: 'absolute', inset: 0, opacity: wide && hasMedia(last.mediaSrc) ? 1 : 0 }}>
-            {hasMedia(last.mediaSrc) && <Media src={last.mediaSrc} type={last.mediaType} poster={last.poster} placeholder={last.name} autoplay="visible" />}
+          <div data-xa="" data-empty={lastCover ? undefined : ''} style={{ position: 'absolute', inset: 0, opacity: wide && lastCover ? 1 : 0 }}>
+            {lastCover && <Media src={lastCover.url} type={lastCover.type === 'video' ? 'video' : 'image'} poster={lastCover.poster} placeholder="" autoplay="visible" />}
           </div>
           <div data-xb="" style={{ position: 'absolute', inset: 0, opacity: wide ? 0 : 1 }}>
             <Image src={SECTION_MEDIA.overton} alt="Événement Overton" fill sizes="100vw" style={{ objectFit: 'cover' }} />
@@ -217,6 +224,9 @@ function VisionHouse({ ui }: { ui: UI }) {
         </div>
       </div>
       <span id="overton" aria-hidden="true" style={{ position: 'absolute', left: 0, bottom: '100vh', width: 1, height: 1, pointerEvents: 'none' }} />
+      {open !== null && projects[open] && (
+        <ProjectModal projects={projects} index={open} onClose={() => setOpen(null)} onNavigate={setOpen} onContact={() => { setOpen(null); ui.openForm('project'); }} />
+      )}
     </section>
   );
 }

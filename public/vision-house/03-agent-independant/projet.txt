@@ -1,0 +1,9 @@
+client: Agent indépendant
+secteur:
+lieu: Bruxelles
+annee:
+realisation: Inconnu → expert reconnu dans son secteur
+services: Vidéo
+format: vertical
+visible: oui
+---

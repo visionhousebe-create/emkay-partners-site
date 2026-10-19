@@ -11,7 +11,8 @@ const nextConfig: NextConfig = {
   poweredByHeader: false,
   // Le dossier project/ contient le prototype Claude Design d'origine (référence uniquement).
   outputFileTracingExcludes: { '*': ['project/**', 'chats/**'] },
-  images: { formats: ['image/avif', 'image/webp'] },
+  // Qualité 90 pour les photos (75 par défaut) — Next 16 exige la liste des qualités autorisées.
+  images: { formats: ['image/avif', 'image/webp'], qualities: [75, 90] },
   async headers() {
     return [
       { source: '/:path*', headers: securityHeaders },

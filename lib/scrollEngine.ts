@@ -129,7 +129,7 @@ export class ScrollEngine {
     brands: El[]; hds: El[];
   } | null = null;
 
-  invalidate() { this.cache = null; }
+  invalidate() { this.cache = null; this.railGeo = new WeakMap(); }
 
   private collect() {
     const root = this.root;
@@ -177,8 +177,8 @@ export class ScrollEngine {
       const vis = r.bottom > 0 && r.top < vh;
       if (pq) { const on = v < 0.1; pq.style.pointerEvents = on ? 'auto' : 'none'; pq.tabIndex = on ? 0 : -1; }
       if (el.hasAttribute('data-vhs')) {
-        if (wide) { const first = el._k === undefined, k = this.vhStack(el, v); el._k = k; if (vis || first) this.vhMorph(el, k); }
-        else { el._k = 0; this.vhStackReset(el); this.vhMorph(el, null); }
+        if (wide) { const first = el._k === undefined, k = this.vhRail(el, v); el._k = k; if (vis || first) this.vhMorph(el, k); }
+        else { el._k = 0; this.vhRailReset(el); this.vhMorph(el, null); }
       }
       for (const c of reveals) this.reveal(c, v >= parseFloat(c.dataset.r || '0'));
       if (el.dataset.steps) {
@@ -233,29 +233,49 @@ export class ScrollEngine {
     }
   }
 
-  // ——— Vision House : pile de projets puis morph vers Overton ———
-  vhStack(el: El, p: number) {
+  // ——— Vision House : rail horizontal de projets puis morph vers Overton ———
+  // Toutes les cartes ont la même hauteur ; le rail défile de droite à gauche, la carte au centre est mise en avant.
+  private railGeo = new WeakMap<HTMLElement, { vw: number; vh: number; start: number; end: number; centers: number[] }>();
+
+  private railGeometry(el: El, cards: HTMLElement[]) {
+    const g = this.railGeo.get(el);
+    if (g && g.vw === innerWidth && g.vh === innerHeight) return g;
+    const vw = innerWidth, first = cards[0], last = cards[cards.length - 1];
+    const centers = cards.map((c) => c.offsetLeft + c.offsetWidth / 2);
+    const geo = {
+      vw, vh: innerHeight, centers,
+      start: vw * 0.74 - (first ? first.offsetLeft : 0), // première carte déjà visible à droite, à côté du titre
+      end: last ? vw / 2 - (last.offsetLeft + last.offsetWidth / 2) : 0, // dernière carte centrée
+    };
+    this.railGeo.set(el, geo);
+    return geo;
+  }
+
+  vhRail(el: El, p: number) {
     const cards = [...el.querySelectorAll<HTMLElement>('[data-card]')], n = cards.length || 1;
     const T = 0.2 + n * 0.5 + 0.6, pi = 0.2 / T, u = 0.5 / T, pE = pi + n * u;
     const ui = el.querySelector<HTMLElement>('[data-vhui]');
     const io = cl((p - pi * 0.4) / (u * 0.7));
     if (ui) { ui.style.opacity = (1 - io).toFixed(3); ui.style.transform = this.reduced ? '' : `translateY(${(-io * 6).toFixed(2)}vh)`; }
-    const e = cards.map((_, i) => E3(cl((p - (pi * 0.5 + i * u)) / (u * 0.8))));
-    cards.forEach((c, i) => {
-      let d = 0;
-      for (let j = i + 1; j < n; j++) d += e[j];
-      const rot = +(c.dataset.rot || 0);
-      const rr = i === n - 1 ? rot * (1 - cl((p - (pE - u * 0.25)) / (u * 0.25))) : rot;
-      const y = (1 - e[i]) * 92 - d * 2.6;
-      c.style.transform = `translate(-50%, ${y.toFixed(2)}vh) scale(${(1 - Math.min(d, 3) * 0.045).toFixed(4)}) rotate(${rr.toFixed(2)}deg)`;
-      c.style.opacity = (e[i] <= 0 ? 0 : Math.max(0, Math.min(1, e[i] * 3)) * (d > 2 ? Math.max(0, 1 - (d - 2) * 1.2) : 1)).toFixed(3);
-      c.style.filter = d > 0.05 ? `brightness(${(1 - Math.min(d, 3) * 0.14).toFixed(3)})` : '';
-    });
+    const track = el.querySelector<HTMLElement>('[data-track]');
+    if (track && cards.length) {
+      const g = this.railGeometry(el, cards);
+      const r = E3(cl((p - pi * 0.15) / (pE - u * 0.35 - pi * 0.15)));
+      const x = g.start + (g.end - g.start) * r;
+      track.style.transform = `translate3d(${x.toFixed(1)}px,0,0)`;
+      cards.forEach((c, i) => {
+        const d = Math.min(1, Math.abs(x + g.centers[i] - g.vw / 2) / (g.vw * 0.62));
+        c.style.transform = this.reduced ? '' : `scale(${(1 - d * 0.1).toFixed(4)})`;
+        c.style.opacity = (1 - d * 0.5).toFixed(3);
+        c.style.filter = d > 0.04 ? `brightness(${(1 - d * 0.35).toFixed(3)})` : '';
+      });
+    }
     return cl((p - pE) / (1 - pE));
   }
 
-  vhStackReset(el: El) {
-    el.querySelectorAll<HTMLElement>('[data-card]').forEach((c) => { c.style.transform = `rotate(${+(c.dataset.rot || 0)}deg)`; c.style.opacity = '1'; c.style.filter = ''; });
+  vhRailReset(el: El) {
+    el.querySelectorAll<HTMLElement>('[data-card]').forEach((c) => { c.style.transform = ''; c.style.opacity = '1'; c.style.filter = ''; });
+    const track = el.querySelector<HTMLElement>('[data-track]'); if (track) track.style.transform = '';
     const ui = el.querySelector<HTMLElement>('[data-vhui]');
     if (ui) { ui.style.opacity = '1'; ui.style.transform = ''; }
   }

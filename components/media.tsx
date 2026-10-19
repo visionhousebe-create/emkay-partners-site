@@ -94,9 +94,9 @@ function LazyVideo({ srcs, poster, autoplay }: { srcs: string[]; poster?: string
 }
 
 /** Photo ou vidéo plein cadre (object-fit: cover). Sans source : emplacement vide. */
-export function Media({ src, type, poster, placeholder, alt, autoplay = 'visible', sizes = '100vw' }: { src: string | string[]; type?: MediaType | ''; poster?: string; placeholder: string; alt?: string; autoplay?: 'visible' | 'hover'; sizes?: string }) {
+export function Media({ src, type, poster, placeholder, alt, autoplay = 'visible', sizes = '100vw', quality = 90 }: { src: string | string[]; type?: MediaType | ''; poster?: string; placeholder: string; alt?: string; autoplay?: 'visible' | 'hover'; sizes?: string; quality?: number }) {
   const srcs = (Array.isArray(src) ? src : [src]).filter(Boolean);
   if (!srcs.length) return <div className="media-empty"><b>{placeholder.toUpperCase()}</b></div>;
   if (srcs.some((s) => isVideo(s, type))) return <LazyVideo srcs={srcs} poster={poster} autoplay={autoplay} />;
-  return <Image src={srcs[0]} alt={alt || placeholder} fill sizes={sizes} style={{ objectFit: 'cover' }} />;
+  return <Image src={srcs[0]} alt={alt || placeholder} fill sizes={sizes} quality={quality} style={{ objectFit: 'cover' }} />;
 }

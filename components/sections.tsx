@@ -158,9 +158,10 @@ function BrandSelector({ ui }: { ui: UI }) {
   );
 }
 
-// ——— 04 Vision House (pile de projets → morph vers Overton) ———
+// ——— 04 Vision House (rail horizontal de projets → morph vers Overton) ———
 // Projets lus dans public/vision-house/ (GitHub). Clic sur une carte → fiche complète du projet.
-const ROT = [-1, 1, -0.5, 0.8, -0.7, 0.6];
+// Hauteur commune des médias sur ordinateur : toutes les cartes sont alignées, seule la largeur suit le format.
+const VH_CARD_H = 'min(58vh, 560px)';
 
 function VisionHouse({ ui, projects }: { ui: UI; projects: Project[] }) {
   const { wide } = ui;
@@ -179,21 +180,19 @@ function VisionHouse({ ui, projects }: { ui: UI; projects: Project[] }) {
             <span className="lbl" style={{ letterSpacing: '.24em', color: '#A9A3D6' }}>FAITES DÉFILER ↓</span>
           </div>
         </div>
-        <div data-track="" className="vh-track" style={{ position: wide ? 'absolute' : 'relative', padding: wide ? 0 : '0 6vw 10vh' }}>
+        <div data-track="" className={`vh-track${wide ? ' vh-rail' : ''}`}>
           {projects.map((pj, i) => {
-            const [rw, rh] = pj.format.split('/').map(Number), R = rw / rh, rot = ROT[i % ROT.length];
+            const [rw, rh] = pj.format.split('/').map(Number), R = rw / rh;
             const cover = coverOf(pj);
             const photos = pj.media.filter((m) => m.type === 'image').length, videos = pj.media.length - photos;
             const badge = [videos ? (videos > 1 ? `${videos} VIDÉOS` : 'VIDÉO') : '', photos ? `${photos} PHOTO${photos > 1 ? 'S' : ''}` : ''].filter(Boolean).join(' · ');
             const sub = [pj.sector, pj.location].filter(Boolean).join(' · ');
             return (
-              <div key={pj.id} data-card={i} data-rot={rot} data-cursor="OUVRIR" className="vh-card" onClick={() => setOpen(i)} style={{
-                position: wide ? 'absolute' : 'relative', left: wide ? '50%' : 'auto', top: wide ? '12vh' : 'auto', zIndex: 10 + i,
-                width: wide ? `min(72vw, calc((70vh - 70px) * ${R.toFixed(4)}))` : R < 1 ? '78%' : '100%',
-                marginTop: wide || i === 0 ? 0 : -30, transform: wide ? 'translate(-50%, 100vh)' : `rotate(${rot}deg)`, opacity: wide ? 0 : 1, cursor: 'pointer',
+              <div key={pj.id} data-card={i} data-cursor="OUVRIR" className="vh-card" onClick={() => setOpen(i)} style={{
+                width: wide ? `min(calc(${VH_CARD_H} * ${R.toFixed(4)}), 46vw)` : R < 1 ? 'min(78%, 420px)' : '100%',
               }}>
-                <div data-vhmedia="" style={{ position: 'relative', width: '100%', aspectRatio: pj.format, overflow: 'hidden', background: '#160B52' }}>
-                  <Media src={cover?.url || ''} type={cover?.type === 'video' ? 'video' : cover ? 'image' : ''} poster={cover?.poster} autoplay="hover" placeholder="Médias à venir" alt={`${pj.client} — ${pj.title}`} sizes="72vw" />
+                <div data-vhmedia="" style={{ position: 'relative', width: '100%', ...(wide ? { height: VH_CARD_H } : { aspectRatio: pj.format }), overflow: 'hidden', background: '#160B52' }}>
+                  <Media src={cover?.url || ''} type={cover?.type === 'video' ? 'video' : cover ? 'image' : ''} poster={cover?.poster} autoplay="hover" placeholder="Médias à venir" alt={`${pj.client} — ${pj.title}`} sizes={wide ? (R < 1 ? '30vw' : '46vw') : '100vw'} quality={90} />
                   {badge && <span className="vh-badge">{badge}</span>}
                 </div>
                 <button type="button" className="btn-reset vh-meta" aria-label={`Voir le projet ${pj.client}`}>
@@ -214,7 +213,7 @@ function VisionHouse({ ui, projects }: { ui: UI; projects: Project[] }) {
             {lastCover && <Media src={lastCover.url} type={lastCover.type === 'video' ? 'video' : 'image'} poster={lastCover.poster} placeholder="" autoplay="visible" />}
           </div>
           <div data-xb="" style={{ position: 'absolute', inset: 0, opacity: wide ? 0 : 1 }}>
-            <Image src={SECTION_MEDIA.overton} alt="Événement Overton" fill sizes="100vw" style={{ objectFit: 'cover' }} />
+            <Image src={SECTION_MEDIA.overton} alt="Événement Overton" fill sizes="100vw" quality={90} style={{ objectFit: 'cover' }} />
           </div>
           <div data-xg="" className="vh-xg" style={{ opacity: wide ? 0 : 1 }} />
           <div data-xt="" style={{ position: 'absolute', inset: 0, color: '#F5F1E9', opacity: wide ? 0 : 1, pointerEvents: 'none' }}>
@@ -321,7 +320,7 @@ function Bavare() {
             <div data-r="0.04" data-fx="pop" className="bv-square" />
             <div data-r="0.3" data-fx="pop" className="bv-polaroid">
               <div style={{ position: 'relative', width: '100%', height: '100%' }}>
-                <Image src={SECTION_MEDIA.bavare} alt="Soirée Bavare" fill sizes="190px" style={{ objectFit: 'cover' }} />
+                <Image src={SECTION_MEDIA.bavare} alt="Soirée Bavare" fill sizes="190px" quality={90} style={{ objectFit: 'cover' }} />
               </div>
             </div>
             {STICKERS.map((s) => (
@@ -366,7 +365,7 @@ function ViensManger() {
               </div>
             </div>
             <div data-r="0.42" data-fx="mask" className="vm-photo">
-              <Image src={SECTION_MEDIA.viensManger} alt="Viens Manger — plat / lieu" fill sizes="440px" style={{ objectFit: 'cover' }} />
+              <Image src={SECTION_MEDIA.viensManger} alt="Viens Manger — plat / lieu" fill sizes="440px" quality={90} style={{ objectFit: 'cover' }} />
               <div className="vm-tag">L&apos;ADRESSE DU MOIS</div>
             </div>
           </div>

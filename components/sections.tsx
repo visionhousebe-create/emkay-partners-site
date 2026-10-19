@@ -34,7 +34,7 @@ export function Sections({ ui, projects }: { ui: UI; projects: Project[] }) {
       <BrandSelector ui={ui} />
       <VisionHouse ui={ui} projects={projects} />
       <Overton ui={ui} />
-      <HorizonConnect ui={ui} />
+      <OrizonConnect ui={ui} />
       <Bavare />
       <ViensManger />
       <EmkayRoom ui={ui} />
@@ -65,7 +65,7 @@ function Portal({ ui }: { ui: UI }) {
             <span data-r="0.5" className="serif-i portal-h1-2">Des univers bien à eux.</span>
           </h1>
           <div data-r="0.62" className="portal-list">
-            <span>01 VISION HOUSE</span><span>02 OVERTON</span><span>03 HORIZON CONNECT</span><span>04 BAVARE</span><span>05 VIENS MANGER</span>
+            <span>01 VISION HOUSE</span><span>02 OVERTON</span><span>03 ORIZON CONNECT</span><span>04 BAVARE</span><span>05 VIENS MANGER</span>
           </div>
         </div>
         <div className="door door-l"><div className="door-word">EMKAY</div></div>
@@ -161,7 +161,7 @@ function BrandSelector({ ui }: { ui: UI }) {
 // ——— 04 Vision House (rail horizontal de projets → morph vers Overton) ———
 // Projets lus dans public/vision-house/ (GitHub). Clic sur une carte → fiche complète du projet.
 // Hauteur commune des médias sur ordinateur : toutes les cartes sont alignées, seule la largeur suit le format.
-const VH_CARD_H = 'min(58vh, 560px)';
+const VH_CARD_H = 'min(68vh, 640px)';
 
 function VisionHouse({ ui, projects }: { ui: UI; projects: Project[] }) {
   const { wide } = ui;
@@ -189,21 +189,21 @@ function VisionHouse({ ui, projects }: { ui: UI; projects: Project[] }) {
             const sub = [pj.sector, pj.location].filter(Boolean).join(' · ');
             return (
               <div key={pj.id} data-card={i} data-cursor="OUVRIR" className="vh-card" onClick={() => setOpen(i)} style={{
-                width: wide ? `min(calc(${VH_CARD_H} * ${R.toFixed(4)}), 46vw)` : R < 1 ? 'min(78%, 420px)' : '100%',
+                width: wide ? `min(calc(${VH_CARD_H} * ${R.toFixed(4)}), 52vw)` : R < 1 ? 'min(100%, 400px)' : '100%',
               }}>
-                <div data-vhmedia="" style={{ position: 'relative', width: '100%', ...(wide ? { height: VH_CARD_H } : { aspectRatio: pj.format }), overflow: 'hidden', background: '#160B52' }}>
+                <div data-vhmedia="" className="vh-media" style={wide ? { height: VH_CARD_H } : { aspectRatio: pj.format, minHeight: R > 1 ? 360 : undefined }}>
                   <Media src={cover?.url || ''} type={cover?.type === 'video' ? 'video' : cover ? 'image' : ''} poster={cover?.poster} autoplay="hover" placeholder="Médias à venir" alt={`${pj.client} — ${pj.title}`} sizes={wide ? (R < 1 ? '30vw' : '46vw') : '100vw'} quality={90} />
-                  {badge && <span className="vh-badge">{badge}</span>}
+                  <div className="vh-top">
+                    {badge ? <span className="vh-badge">{badge}</span> : <span />}
+                    <span className="vh-num">{String(i + 1).padStart(2, '0')}</span>
+                  </div>
+                  <button type="button" className="btn-reset vh-meta" aria-label={`Voir le projet ${pj.client}`}>
+                    <span className="vh-client xw">{pj.client}</span>
+                    {sub && <span className="vh-sub">{sub}</span>}
+                    {pj.title && <span className="vh-title serif-i">{pj.title}</span>}
+                    <span className="vh-foot"><span>{pj.year}</span><span aria-hidden="true">VOIR ↗</span></span>
+                  </button>
                 </div>
-                <button type="button" className="btn-reset vh-meta" aria-label={`Voir le projet ${pj.client}`}>
-                  <span style={{ fontSize: 10, fontWeight: 700, letterSpacing: '.22em', color: '#A9A3D6' }}>{String(i + 1).padStart(2, '0')} / CLIENT</span>
-                  <span style={{ display: 'flex', flexDirection: 'column', gap: 4, minWidth: 0 }}>
-                    <span className="xw" style={{ fontWeight: 800, fontSize: 'clamp(15px,1.3vw,20px)', letterSpacing: '-.01em' }}>{pj.client}</span>
-                    {sub && <span style={{ fontSize: 12, fontWeight: 500, letterSpacing: '.06em', color: '#CFCBEA' }}>{sub}</span>}
-                    {pj.title && <span className="serif-i" style={{ fontSize: 'clamp(15px,1.2vw,18px)', lineHeight: 1.25, color: '#B9C4FF' }}>{pj.title}</span>}
-                  </span>
-                  <span style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: 6, fontSize: 12, fontWeight: 600, letterSpacing: '.16em', color: '#A9A3D6', whiteSpace: 'nowrap' }}>{pj.year}<span aria-hidden="true">VOIR ↗</span></span>
-                </button>
               </div>
             );
           })}
@@ -258,10 +258,10 @@ function Overton({ ui }: { ui: UI }) {
   );
 }
 
-// ——— 06 Horizon Connect ———
-function HorizonConnect({ ui }: { ui: UI }) {
+// ——— 06 Orizon Connect ———
+function OrizonConnect({ ui }: { ui: UI }) {
   return (
-    <section id="horizon-connect" data-screen-label="06 Horizon Connect" data-sc="sticky" data-canvas="net" data-brand="2" data-cursor="CONNECTER" data-hd="#090909" data-hd-end="#E3122B" style={{ height: '260vh', position: 'relative' }}>
+    <section id="orizon-connect" data-screen-label="06 Orizon Connect" data-sc="sticky" data-canvas="net" data-brand="2" data-cursor="CONNECTER" data-hd="#090909" data-hd-end="#E3122B" style={{ height: '260vh', position: 'relative' }}>
       <div className="nxc-in">
         <div className="nxc-pink" />
         <canvas ref={ui.netRef} style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', pointerEvents: 'none' }} />
@@ -281,7 +281,7 @@ function HorizonConnect({ ui }: { ui: UI }) {
               </div>
             </div>
             <div data-r="0.3">
-              <p style={{ margin: 0, fontSize: 17, lineHeight: 1.6, color: '#3a3540', textWrap: 'pretty' }}>Pas un club de plus. Horizon Connect s&apos;intéresse à la qualité des connexions : mises en relation, cercles professionnels et opportunités de collaboration.</p>
+              <p style={{ margin: 0, fontSize: 17, lineHeight: 1.6, color: '#3a3540', textWrap: 'pretty' }}>Pas un club de plus. Orizon Connect s&apos;intéresse à la qualité des connexions : mises en relation, cercles professionnels et opportunités de collaboration.</p>
               <button type="button" onClick={() => ui.openForm('talk')} data-cursor="OUVRIR" className="btn-reset cta-line" style={{ marginTop: 28, borderBottom: '1px solid #090909' }}>DÉCOUVRIR LES CONNEXIONS ↗</button>
             </div>
           </div>
@@ -416,7 +416,7 @@ function EmkayRoom({ ui }: { ui: UI }) {
 }
 
 // ——— 10 Différentes identités ———
-const IDS = [['VISION HOUSE', 'fait connaître.'], ['OVERTON', 'fait vivre.'], ['HORIZON CONNECT', 'fait rencontrer.'], ['BAVARE', 'fait sortir.'], ['VIENS MANGER', 'fait découvrir.']];
+const IDS = [['VISION HOUSE', 'fait connaître.'], ['OVERTON', 'fait vivre.'], ['ORIZON CONNECT', 'fait rencontrer.'], ['BAVARE', 'fait sortir.'], ['VIENS MANGER', 'fait découvrir.']];
 
 function Identites() {
   return (
@@ -715,7 +715,7 @@ function Footer() {
           <span className="ft-h">NOS MARQUES</span>
           <a href="#vision-house" data-cursor="ALLER" className="ft-a">Vision House →</a>
           <a href="#overton" data-cursor="ALLER" className="ft-a">Overton →</a>
-          <a href="#horizon-connect" data-cursor="ALLER" className="ft-a">Horizon Connect →</a>
+          <a href="#orizon-connect" data-cursor="ALLER" className="ft-a">Orizon Connect →</a>
           <a href="#bavare" data-cursor="ALLER" className="ft-a">Bavare →</a>
           <a href="#viens-manger" data-cursor="ALLER" className="ft-a">Viens Manger →</a>
         </div>

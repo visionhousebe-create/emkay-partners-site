@@ -6,7 +6,7 @@ export function Todo({ children }: { children: React.ReactNode }) {
   return <mark className="lg-todo">[À COMPLÉTER : {children}]</mark>;
 }
 
-export function LegalPage({ label, title, updated, children }: { label: string; title: React.ReactNode; updated: React.ReactNode; children: React.ReactNode }) {
+export function LegalPage({ label, title, children }: { label: string; title: React.ReactNode; children: React.ReactNode }) {
   return (
     <div className="lg">
       <header className="lg-hd">
@@ -18,7 +18,6 @@ export function LegalPage({ label, title, updated, children }: { label: string; 
       <section className="lg-hero">
         <span className="lbl" style={{ color: '#C9C2CF', letterSpacing: '.24em' }}>{label}</span>
         <h1 className="serif lg-h1">{title}</h1>
-        <span className="lbl" style={{ color: '#AAA6AD' }}>DERNIÈRE MISE À JOUR : {updated}</span>
       </section>
       <main className="lg-body">{children}</main>
       <footer className="lg-ft">

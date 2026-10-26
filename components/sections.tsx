@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { useState, type RefObject } from 'react';
+import { useEffect, useRef, useState, type RefObject } from 'react';
 import { BRANDS, DOORS, GROUP, IRL, LINKS, ORIENT, RATIO, ROOM, SECTION_MEDIA, type FormKind } from '@/lib/data';
 import { coverOf, type Project } from '@/lib/projects';
 import ProjectModal from './ProjectModal';
@@ -600,32 +600,48 @@ function Chiffres() {
 }
 
 // ——— 13 In Real Life ———
+// Galerie horizontale : la section reste fixée à l'écran et les photos défilent de droite à gauche
+// au rythme du scroll (ordinateur et téléphone). La hauteur de la section = 1 écran + la longueur de la galerie.
 function InRealLife({ ui }: { ui: UI }) {
-  const { wide, fine } = ui;
+  const { fine, wide } = ui;
   const [hover, setHover] = useState(-1);
+  const [shift, setShift] = useState(0);
+  const trackRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    const t = trackRef.current; if (!t) return;
+    const measure = () => setShift(Math.max(0, Math.round(t.scrollWidth - innerWidth)));
+    measure();
+    const ro = new ResizeObserver(measure); ro.observe(t);
+    addEventListener('resize', measure);
+    return () => { ro.disconnect(); removeEventListener('resize', measure); };
+  }, []);
+  const H = wide ? 'min(60vh, 620px)' : '52svh';
   return (
-    <section id="projets" data-screen-label="13 In Real Life" data-hd="#F5F1E9" className="irl">
-      <div data-sc="enter" className="irl-head">
-        <h2 data-r="0.1" className="irl-h2">IN REAL<br />LIFE</h2>
-        <p data-r="0.3" className="serif-i" style={{ margin: 0, maxWidth: 360, fontSize: 'clamp(22px,2.2vw,34px)', lineHeight: 1.15, color: '#C9C2CF' }}>Parce que nos projets ne restent pas dans des présentations.</p>
-      </div>
-      <div className="irl-grid">
-        {IRL.map((m, i) => {
-          const on = hover === i || !fine;
-          const vertical = m.orientation === 'vertical';
-          return (
-            <figure key={m.ph} data-sc="enter" data-cursor="OUVRIR" onMouseEnter={() => setHover(i)} onMouseLeave={() => setHover(-1)} className="irl-fig"
-              style={{ margin: wide ? m.m : vertical ? '0 auto' : 0, flex: wide ? m.basis : vertical ? '0 1 72%' : '1 1 100%', minWidth: `min(100%,${wide ? m.min : '100%'})` }}>
-              <div style={{ position: 'relative', aspectRatio: RATIO[m.orientation] || '4/5', overflow: 'hidden', transform: `translateX(calc(var(--y,0) * ${m.px}px))` }}>
-                <Media src={m.src} type={m.type} poster={m.poster} placeholder={m.ph} alt={`${m.brand} · ${m.project}`} sizes={m.orientation === 'wide' ? '100vw' : '(max-width: 900px) 100vw, 56vw'} autoplay="visible" />
-                <div className="irl-ov" style={{ opacity: on ? 1 : 0, transform: `translateY(${on ? '0px' : '12px'})` }}>
-                  <span><span style={{ color: '#AAA6AD' }}>MARQUE </span>{m.brand}</span><span><span style={{ color: '#AAA6AD' }}>PROJET </span>{m.project}</span><span><span style={{ color: '#AAA6AD' }}>ANNÉE </span>{m.year}</span>
+    <section id="projets" data-screen-label="13 In Real Life" data-sc="sticky" data-hd="#F5F1E9" className="irl" style={{ height: `calc(100svh + ${shift}px)`, ['--irl-shift' as string]: `${shift}px` } as React.CSSProperties}>
+      <div className="irl-in">
+        <div ref={trackRef} className="irl-track">
+          <div className="irl-intro">
+            <h2 data-r="0.0" className="irl-h2">IN REAL<br />LIFE</h2>
+            <p data-r="0.0" className="serif-i" style={{ margin: 0, maxWidth: 380, fontSize: 'clamp(22px,2.2vw,34px)', lineHeight: 1.15, color: '#C9C2CF' }}>Parce que nos projets ne restent pas dans des présentations.</p>
+            <span className="lbl" style={{ letterSpacing: '.24em', color: '#AAA6AD' }}>FAITES DÉFILER →</span>
+          </div>
+          {IRL.map((m, i) => {
+            const on = hover === i || !fine;
+            const [rw, rh] = (RATIO[m.orientation] || '4/5').split('/').map(Number);
+            return (
+              <figure key={m.ph} data-cursor="OUVRIR" onMouseEnter={() => setHover(i)} onMouseLeave={() => setHover(-1)} className="irl-fig">
+                <div className="irl-media" style={{ height: H, width: `min(calc(${H} * ${(rw / rh).toFixed(4)}), ${wide ? '70vw' : '86vw'})` }}>
+                  <Media src={m.src} type={m.type} poster={m.poster} placeholder={m.ph} alt={`${m.brand} · ${m.project}`} sizes={wide ? '(max-width: 1600px) 60vw, 1000px' : '90vw'} quality={90} autoplay="visible" />
+                  <div className="irl-ov" style={{ opacity: on ? 1 : 0, transform: `translateY(${on ? '0px' : '12px'})` }}>
+                    <span><span style={{ color: '#AAA6AD' }}>MARQUE </span>{m.brand}</span><span><span style={{ color: '#AAA6AD' }}>PROJET </span>{m.project}</span><span><span style={{ color: '#AAA6AD' }}>ANNÉE </span>{m.year}</span>
+                  </div>
                 </div>
-              </div>
-              <figcaption style={{ fontSize: 11, letterSpacing: '.22em', lineHeight: 1.6 }}><b>{String(i + 1).padStart(2, '0')} · {m.brand}</b><br /><span style={{ color: '#AAA6AD' }}>{m.project}</span></figcaption>
-            </figure>
-          );
-        })}
+                <figcaption style={{ fontSize: 11, letterSpacing: '.22em', lineHeight: 1.6 }}><b>{String(i + 1).padStart(2, '0')} · {m.brand}</b><br /><span style={{ color: '#AAA6AD' }}>{m.project}</span></figcaption>
+              </figure>
+            );
+          })}
+        </div>
+        <div className="irl-bar" aria-hidden="true"><span /></div>
       </div>
     </section>
   );

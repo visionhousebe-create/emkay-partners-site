@@ -238,12 +238,12 @@ function Overton({ ui }: { ui: UI }) {
         <div>
           <BrandMark brand={B[1]} src={B[1].logoT} size="clamp(32px,3vw,44px)" style={{ display: 'block', width: 200, maxWidth: '100%', height: 'auto', marginBottom: 40 }} />
           <h3 data-r="0.35" className="nx-h3">Petit format ou grande production. <span className="serif-i ov-gold" style={{ letterSpacing: '-.01em' }}>La même exigence.</span></h3>
-          <p className="nx-p">Que votre budget soit de 3 000 € ou d’un million, Overton imagine, produit et orchestre votre événement de A à Z : concept, lieu, scénographie, prestataires, logistique et accueil de vos invités. Un seul interlocuteur, une équipe qui s’adapte à votre ambition, et un moment dont on parle encore le lendemain.</p>
+          <p className="nx-p">De l’afterwork intime à la grande production, Overton imagine, produit et orchestre votre événement de A à Z, avec la même exigence. Un seul interlocuteur, une équipe qui prend tout en main, et un moment dont vos invités parleront encore le lendemain.</p>
           <button type="button" onClick={() => ui.openForm('project')} data-cursor="OUVRIR" className="btn-reset cta-line" style={{ marginTop: 36, color: '#E9D29C', borderBottom: '1px solid #C9A35E' }}>PARLER DE MON ÉVÉNEMENT ↗︎</button>
         </div>
         <div style={{ display: 'flex', flexDirection: 'column' }}>
           {[
-            ['A', 'Formats intimes', 'Afterworks, dîners, lancements, soirées clients. Un format maîtrisé, soigné dans chaque détail, même avec un budget serré.'],
+            ['A', 'Formats intimes', 'Afterworks, dîners, lancements, soirées clients. Un format maîtrisé, soigné dans chaque détail.'],
             ['B', 'Événements d’entreprise', 'Inaugurations, séminaires, conférences, soirées d’entreprise. Une organisation complète, du premier brief au dernier invité.'],
             ['C', 'Grandes productions', 'Galas, salons, activations de marque, événements d’envergure. Production, scénographie et coordination de toutes les équipes.'],
           ].map(([k, t, d], i, all) => (

@@ -135,7 +135,7 @@ export const DOORS: { k: FormKind; num: string; title: string; desc: string; sub
 ];
 
 // Liens à compléter : laisser '' tant que l'URL réelle n'est pas connue (le lien est alors masqué ou désactivé).
-export const LINKS = { linkedin: '', instagram: '', nextBavare: '', vmAddresses: '', mentions: '/mentions-legales', privacy: '/politique-de-confidentialite' };
+export const LINKS = { linkedin: 'https://www.linkedin.com/company/emkay-partners-com/', instagram: '', nextBavare: '', vmAddresses: '', mentions: '/mentions-legales', privacy: '/politique-de-confidentialite' };
 
 // Hash aliases (anciennes adresses) + positions d'arrivée dans les sections sticky.
 // Anciennes adresses (dont #nexplore et #nexplore-connect avant le changement de nom) → nouvelles sections.

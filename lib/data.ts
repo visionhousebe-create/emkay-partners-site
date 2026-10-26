@@ -75,22 +75,22 @@ export const RATIO: Record<Orientation, string> = { vertical: '9/16', portrait: 
 // In Real Life — photo ou vidéo (type: 'video' ou extension .mp4/.webm/.mov).
 // basis / min / m / px : placement libre dans la galerie (desktop) et parallaxe horizontale.
 export const IRL: { brand: string; project: string; year: string; orientation: Orientation; type?: MediaType; src: MediaSrc; poster?: string; basis: string; min: string; m: string; px: number; ph: string }[] = [
-  { brand: 'OVERTON', project: 'INAUGURATION', year: '2026', orientation: 'landscape', src: '/media/irl-1.webp', basis: '0 1 56%', min: '300px', m: '0', px: -40, ph: 'Overton · inauguration (photo ou MP4)' },
-  { brand: 'BAVARE', project: 'SOIRÉE SOCIALE', year: '2026', orientation: 'portrait', src: '/media/irl-2.webp', basis: '0 1 30%', min: '260px', m: '14vh 0 0', px: 50, ph: 'Bavare · soirée' },
-  { brand: 'VISION HOUSE', project: 'TOURNAGE', year: '2026', orientation: 'square', src: '/media/irl-3.webp', basis: '0 1 20%', min: '220px', m: '0 0 0 8vw', px: 30, ph: 'Coulisses · tournage' },
-  { brand: 'VIENS MANGER', project: 'EXPÉRIENCE FOOD', year: '2025', orientation: 'portrait', src: '/media/irl-4.webp', basis: '0 1 32%', min: '260px', m: '-6vh 0 0', px: -60, ph: 'Viens Manger · restaurant' },
-  { brand: 'ORIZON CONNECT', project: 'RENCONTRES', year: '2025', orientation: 'landscape', src: '/media/irl-5.webp', basis: '0 1 34%', min: '260px', m: '20vh 0 0', px: 40, ph: 'Rencontres · participants' },
-  { brand: 'BAVARE', project: 'ON SORT', year: '2025', orientation: 'wide', src: '/media/irl-6.webp', basis: '1 1 100%', min: '100%', m: '0 -5vw', px: -30, ph: 'Plein écran · photo ou vidéo' },
-  { brand: 'VISION HOUSE', project: 'PRODUCTION', year: '2025', orientation: 'vertical', src: '/media/irl-7.webp', basis: '0 1 22%', min: '220px', m: '0', px: -30, ph: 'Vidéo verticale 9:16 · production' },
-  { brand: 'VIENS MANGER', project: "L'ADRESSE", year: '2025', orientation: 'landscape', src: '/media/irl-8.webp', basis: '0 1 44%', min: '280px', m: '12vh 0 0', px: 50, ph: 'Lieu · restaurant' },
-  { brand: 'OVERTON', project: 'ACTIVATION', year: '2024', orientation: 'square', src: '/media/irl-9.webp', basis: '0 1 18%', min: '200px', m: '-4vh 0 0', px: -50, ph: 'Équipes · activation' },
+  { brand: 'OVERTON', project: 'INAUGURATION', year: '2026', orientation: 'portrait', src: '/media/irl-1-hd.webp', basis: '0 1 56%', min: '300px', m: '0', px: -40, ph: 'Overton · inauguration (photo ou MP4)' },
+  { brand: 'BAVARE', project: 'SOIRÉE SOCIALE', year: '2026', orientation: 'portrait', src: '/media/irl-2-hd.webp', basis: '0 1 30%', min: '260px', m: '14vh 0 0', px: 50, ph: 'Bavare · soirée' },
+  { brand: 'VISION HOUSE', project: 'TOURNAGE', year: '2026', orientation: 'portrait', src: '/media/irl-3-hd.webp', basis: '0 1 20%', min: '220px', m: '0 0 0 8vw', px: 30, ph: 'Coulisses · tournage' },
+  { brand: 'VIENS MANGER', project: 'EXPÉRIENCE FOOD', year: '2025', orientation: 'portrait', src: '/media/irl-4-hd.webp', basis: '0 1 32%', min: '260px', m: '-6vh 0 0', px: -60, ph: 'Viens Manger · restaurant' },
+  { brand: 'ORIZON CONNECT', project: 'RENCONTRES', year: '2025', orientation: 'portrait', src: '/media/irl-5-hd.webp', basis: '0 1 34%', min: '260px', m: '20vh 0 0', px: 40, ph: 'Rencontres · participants' },
+  { brand: 'BAVARE', project: 'ON SORT', year: '2025', orientation: 'wide', src: '/media/irl-6-hd.webp', basis: '1 1 100%', min: '100%', m: '0 -5vw', px: -30, ph: 'Plein écran · photo ou vidéo' },
+  { brand: 'VISION HOUSE', project: 'PRODUCTION', year: '2025', orientation: 'vertical', src: '/media/irl-7-hd.webp', basis: '0 1 22%', min: '220px', m: '0', px: -30, ph: 'Vidéo verticale 9:16 · production' },
+  { brand: 'VIENS MANGER', project: "L'ADRESSE", year: '2025', orientation: 'landscape', src: '/media/irl-8-hd.webp', basis: '0 1 44%', min: '280px', m: '12vh 0 0', px: 50, ph: 'Lieu · restaurant' },
+  { brand: 'OVERTON', project: 'ACTIVATION', year: '2024', orientation: 'portrait', src: '/media/irl-9-hd.webp', basis: '0 1 18%', min: '200px', m: '-4vh 0 0', px: -50, ph: 'Équipes · activation' },
 ];
 
 // Photos de section (remplaçables).
 export const SECTION_MEDIA = {
-  overton: '/media/img-nx.webp',
-  bavare: '/media/img-bavard.webp',
-  viensManger: '/media/img-vm.webp',
+  overton: '/media/img-nx-hd.webp',
+  bavare: '/media/img-bavard-hd.webp',
+  viensManger: '/media/img-vm-hd.webp',
 };
 
 export const ORIENT = [

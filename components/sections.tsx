@@ -633,10 +633,10 @@ function InRealLife({ ui }: { ui: UI }) {
                 <div className="irl-media" style={{ height: H, width: `min(calc(${H} * ${(rw / rh).toFixed(4)}), ${wide ? '70vw' : '86vw'})` }}>
                   <Media src={m.src} type={m.type} poster={m.poster} placeholder={m.ph} alt={`${m.brand} · ${m.project}`} sizes={wide ? '(max-width: 1600px) 60vw, 1000px' : '90vw'} quality={90} autoplay="visible" />
                   <div className="irl-ov" style={{ opacity: on ? 1 : 0, transform: `translateY(${on ? '0px' : '12px'})` }}>
-                    <span><span style={{ color: '#AAA6AD' }}>MARQUE </span>{m.brand}</span><span><span style={{ color: '#AAA6AD' }}>PROJET </span>{m.project}</span><span><span style={{ color: '#AAA6AD' }}>ANNÉE </span>{m.year}</span>
+                    <span><span style={{ color: '#AAA6AD' }}>MARQUE </span>{m.brand}</span><span><span style={{ color: '#AAA6AD' }}>PROJET </span>{m.project}</span>{m.place && <span><span style={{ color: '#AAA6AD' }}>LIEU </span>{m.place}</span>}<span><span style={{ color: '#AAA6AD' }}>ANNÉE </span>{m.year}</span>
                   </div>
                 </div>
-                <figcaption style={{ fontSize: 11, letterSpacing: '.22em', lineHeight: 1.6 }}><b>{String(i + 1).padStart(2, '0')} · {m.brand}</b><br /><span style={{ color: '#AAA6AD' }}>{m.project}</span></figcaption>
+                <figcaption style={{ fontSize: 11, letterSpacing: '.22em', lineHeight: 1.6 }}><b>{String(i + 1).padStart(2, '0')} · {m.brand}</b><br /><span style={{ color: '#AAA6AD' }}>{m.project}{m.place ? ` · ${m.place}` : ''}</span></figcaption>
               </figure>
             );
           })}

@@ -35,17 +35,17 @@ export function Sections({ ui, projects }: { ui: UI; projects: Project[] }) {
       <VisionHouse ui={ui} projects={projects} />
       <Overton ui={ui} />
       <OrizonConnect ui={ui} />
-      <Bavare />
-      <ViensManger />
+      <Bavare ui={ui} />
+      <ViensManger ui={ui} />
       <EmkayRoom ui={ui} />
-      <Identites />
+      <Identites ui={ui} />
       <Collaborations ui={ui} />
       <Chiffres />
       <InRealLife ui={ui} />
       <Orientation ui={ui} />
       <Portes />
       <APropos />
-      <Manifeste />
+      <Manifeste ui={ui} />
       <Contact ui={ui} />
       <Footer />
     </>
@@ -71,7 +71,7 @@ function Portal({ ui }: { ui: UI }) {
         <div className="door door-l"><div className="door-word">EMKAY</div></div>
         <div className="door door-r"><div className="door-word">EMKAY</div></div>
         <div className="portal-front">
-          <div className="portal-top"><span>BRUXELLES / BELGIQUE</span><span>50.85° N — 4.35° E</span></div>
+          <div className="portal-top"><span>BRUXELLES / BELGIQUE</span><span>50.85° N · 4.35° E</span></div>
           <div className="portal-logo">
             <Logo src="/logos/emkay.png" alt="EMKAY Partners" priority style={{ display: 'block', width: 'clamp(240px,30vw,440px)', maxWidth: '100%', height: 'auto', objectFit: 'contain' }} />
           </div>
@@ -79,7 +79,7 @@ function Portal({ ui }: { ui: UI }) {
             <span style={{ fontSize: 'clamp(12px,1vw,14px)', fontWeight: 700, letterSpacing: '.3em' }}>FAITES DÉFILER POUR DÉCOUVRIR</span>
             <span style={{ fontSize: 22, lineHeight: 1 }}>↓</span>
             <span className="cue-line"><span style={{ animation: ui.reduced ? 'none' : undefined }} /></span>
-            <button type="button" data-portal-qa="" onClick={ui.openQa} data-cursor="OUVRIR" className="btn-reset portal-qa">JE SAIS CE QUE JE CHERCHE ↗</button>
+            <button type="button" data-portal-qa="" onClick={ui.openQa} data-cursor="OUVRIR" className="btn-reset portal-qa">JE SAIS CE QUE JE CHERCHE ↗︎</button>
           </div>
         </div>
       </div>
@@ -172,11 +172,11 @@ function VisionHouse({ ui, projects }: { ui: UI; projects: Project[] }) {
       <div className="vh-in" style={{ height: wide ? '100vh' : 'auto' }}>
         <div data-vhui="" className="vh-intro" style={{ position: wide ? 'absolute' : 'relative', padding: wide ? '0 8vw' : '14vh 6vw 8vh' }}>
           <Logo src="/logos/visionhouse-white.png" alt="Vision House" style={{ display: 'block', height: 'clamp(18px,1.8vw,26px)', width: 'auto', alignSelf: 'flex-start', objectFit: 'contain' }} />
-          <span className="lbl" style={{ letterSpacing: '.24em', color: '#A9A3D6' }}>01 / 05 — VISION HOUSE</span>
+          <span className="lbl" style={{ letterSpacing: '.24em', color: '#A9A3D6' }}>01 / 05 · VISION HOUSE</span>
           <h2 className="vh-h2">La stratégie<br /><span className="serif-i" style={{ color: '#B9C4FF' }}>prend forme.</span></h2>
           <p style={{ margin: 0, maxWidth: 420, fontSize: 17, lineHeight: 1.5, color: '#CFCBEA' }}>Quelques projets accompagnés par Vision House.</p>
           <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '14px 32px' }}>
-            <button type="button" onClick={() => ui.openForm('project')} data-cursor="OUVRIR" className="btn-reset cta-line" style={{ pointerEvents: 'auto', fontSize: 12, paddingBottom: 7, borderBottom: '1px solid #B9C4FF' }}>PARLER DE MA COMMUNICATION ↗</button>
+            <button type="button" onClick={() => ui.openForm('project')} data-cursor="OUVRIR" className="btn-reset cta-line" style={{ pointerEvents: 'auto', fontSize: 12, paddingBottom: 7, borderBottom: '1px solid #B9C4FF' }}>PARLER DE MA COMMUNICATION ↗︎</button>
             <span className="lbl" style={{ letterSpacing: '.24em', color: '#A9A3D6' }}>FAITES DÉFILER ↓</span>
           </div>
         </div>
@@ -192,7 +192,7 @@ function VisionHouse({ ui, projects }: { ui: UI; projects: Project[] }) {
                 width: wide ? `min(calc(${VH_CARD_H} * ${R.toFixed(4)}), 52vw)` : R < 1 ? 'min(100%, 400px)' : '100%',
               }}>
                 <div data-vhmedia="" className="vh-media" style={wide ? { height: VH_CARD_H } : { aspectRatio: pj.format, minHeight: R > 1 ? 360 : undefined }}>
-                  <Media src={cover?.url || ''} type={cover?.type === 'video' ? 'video' : cover ? 'image' : ''} poster={cover?.poster} autoplay="hover" placeholder="Médias à venir" alt={`${pj.client} — ${pj.title}`} sizes={wide ? (R < 1 ? '30vw' : '46vw') : '100vw'} quality={90} />
+                  <Media src={cover?.url || ''} type={cover?.type === 'video' ? 'video' : cover ? 'image' : ''} poster={cover?.poster} autoplay="hover" placeholder="Médias à venir" alt={`${pj.client} · ${pj.title}`} sizes={wide ? (R < 1 ? '30vw' : '46vw') : '100vw'} quality={90} />
                   <div className="vh-top">
                     {badge ? <span className="vh-badge">{badge}</span> : <span />}
                     <span className="vh-num">{String(i + 1).padStart(2, '0')}</span>
@@ -201,7 +201,7 @@ function VisionHouse({ ui, projects }: { ui: UI; projects: Project[] }) {
                     <span className="vh-client xw">{pj.client}</span>
                     {sub && <span className="vh-sub">{sub}</span>}
                     {pj.title && <span className="vh-title serif-i">{pj.title}</span>}
-                    <span className="vh-foot"><span>{pj.year}</span><span aria-hidden="true">VOIR ↗</span></span>
+                    <span className="vh-foot"><span>{pj.year}</span><span aria-hidden="true">VOIR ↗︎</span></span>
                   </button>
                 </div>
               </div>
@@ -217,8 +217,8 @@ function VisionHouse({ ui, projects }: { ui: UI; projects: Project[] }) {
           </div>
           <div data-xg="" className="vh-xg" style={{ opacity: wide ? 0 : 1 }} />
           <div data-xt="" style={{ position: 'absolute', inset: 0, color: '#F5F1E9', opacity: wide ? 0 : 1, pointerEvents: 'none' }}>
-            <div className="lbl" style={{ position: 'absolute', left: '5vw', right: '5vw', top: 88, display: 'flex', justifyContent: 'space-between', gap: 24 }}><span>02 / 05</span><span>ÉVÉNEMENTS &amp; EXPÉRIENCES</span></div>
-            <div className="xw ov-gold" style={{ position: 'absolute', left: '5vw', right: '5vw', bottom: 'clamp(28px,5vh,56px)', fontWeight: 900, fontSize: 'clamp(56px,14vw,280px)', lineHeight: 0.8, letterSpacing: '-.06em' }}>OVERTON</div>
+            <div className="lbl" style={{ position: 'absolute', left: '5vw', right: '5vw', top: wide ? 88 : 'auto', bottom: wide ? 'auto' : 'calc(clamp(28px,5vh,56px) + 16vw)', display: 'flex', justifyContent: 'space-between', gap: 24 }}><span>02 / 05</span><span>ÉVÉNEMENTS &amp; EXPÉRIENCES</span></div>
+            <div className="xw ov-gold" style={{ position: 'absolute', left: '5vw', right: '5vw', bottom: 'clamp(28px,5vh,56px)', fontWeight: 900, fontSize: wide ? 'clamp(56px,14vw,280px)' : '15vw', lineHeight: 0.8, letterSpacing: '-.06em' }}>OVERTON</div>
           </div>
         </div>
       </div>
@@ -238,8 +238,8 @@ function Overton({ ui }: { ui: UI }) {
         <div>
           <BrandMark brand={B[1]} src={B[1].logoT} size="clamp(32px,3vw,44px)" style={{ display: 'block', width: 200, maxWidth: '100%', height: 'auto', marginBottom: 40 }} />
           <h3 data-r="0.35" className="nx-h3">Des événements conçus pour <span className="serif-i ov-gold" style={{ letterSpacing: '-.01em' }}>provoquer quelque chose.</span></h3>
-          <p className="nx-p">Overton ne gère pas seulement une logistique. Elle transforme un événement en expérience — un moment dont on parle encore le lendemain.</p>
-          <button type="button" onClick={() => ui.openForm('project')} data-cursor="OUVRIR" className="btn-reset cta-line" style={{ marginTop: 36, color: '#E9D29C', borderBottom: '1px solid #C9A35E' }}>PARLER DE MON ÉVÉNEMENT ↗</button>
+          <p className="nx-p">Overton ne gère pas seulement une logistique. Elle transforme un événement en expérience : un moment dont on parle encore le lendemain.</p>
+          <button type="button" onClick={() => ui.openForm('project')} data-cursor="OUVRIR" className="btn-reset cta-line" style={{ marginTop: 36, color: '#E9D29C', borderBottom: '1px solid #C9A35E' }}>PARLER DE MON ÉVÉNEMENT ↗︎</button>
         </div>
         <div style={{ display: 'flex', flexDirection: 'column' }}>
           <div data-r="0.45" className="nx-row">
@@ -260,8 +260,9 @@ function Overton({ ui }: { ui: UI }) {
 
 // ——— 06 Orizon Connect ———
 function OrizonConnect({ ui }: { ui: UI }) {
+  const flat = !ui.wide; // téléphone : section normale, sans transition plein écran
   return (
-    <section id="orizon-connect" data-screen-label="06 Orizon Connect" data-sc="sticky" data-canvas="net" data-brand="2" data-cursor="CONNECTER" data-hd="#3A1450" data-hd-end="#E3122B" style={{ height: '260vh', position: 'relative' }}>
+    <section id="orizon-connect" data-screen-label="06 Orizon Connect" data-sc={flat ? 'enter' : 'sticky'} data-canvas="net" data-brand="2" data-cursor="CONNECTER" data-hd="#3A1450" data-hd-end={flat ? undefined : '#E3122B'} className={flat ? 'flat' : undefined} style={{ height: flat ? 'auto' : '260vh', position: 'relative' }}>
       <div className="nxc-in">
         <div className="nxc-pink" />
         <canvas ref={ui.netRef} style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', pointerEvents: 'none' }} />
@@ -276,13 +277,13 @@ function OrizonConnect({ ui }: { ui: UI }) {
               <div className="lbl" style={{ color: '#A1286A', marginBottom: 18 }}>RAPPROCHER</div>
               <div className="nxc-chain">
                 {['Entrepreneurs', 'Dirigeants', 'Entreprises', 'Professionnels', 'Partenaires', 'Opportunités'].map((w, i) => (
-                  <span key={w} style={{ display: 'contents' }}>{i > 0 && <span style={{ color: '#E2463A' }}>↔</span>}<span>{w}</span></span>
+                  <span key={w} style={{ display: 'contents' }}>{i > 0 && <span style={{ color: '#E2463A' }}>↔︎</span>}<span>{w}</span></span>
                 ))}
               </div>
             </div>
             <div data-r="0.3">
               <p style={{ margin: 0, fontSize: 17, lineHeight: 1.6, color: '#4A2A55', textWrap: 'pretty' }}>Pas un club de plus. Orizon Connect s&apos;intéresse à la qualité des connexions : mises en relation, cercles professionnels et opportunités de collaboration.</p>
-              <button type="button" onClick={() => ui.openForm('talk')} data-cursor="OUVRIR" className="btn-reset cta-line" style={{ marginTop: 28, borderBottom: '1px solid #E2463A' }}>DÉCOUVRIR LES CONNEXIONS ↗</button>
+              <button type="button" onClick={() => ui.openForm('talk')} data-cursor="OUVRIR" className="btn-reset cta-line" style={{ marginTop: 28, borderBottom: '1px solid #E2463A' }}>DÉCOUVRIR LES CONNEXIONS ↗︎</button>
             </div>
           </div>
         </div>
@@ -301,16 +302,17 @@ const STICKERS: { w: string; r: string; top: string; left: string; rot: number; 
   { w: 'PARTAGER', r: '0.53', top: '66%', left: '50%', rot: -10, bg: '#E3122B', fg: '#F5F1E9', shadow: true },
 ];
 
-function Bavare() {
+function Bavare({ ui }: { ui: UI }) {
+  const flat = !ui.wide;
   return (
-    <section id="bavare" data-screen-label="07 Bavare" data-sc="sticky" data-brand="3" data-cursor="SORTIR" data-hd="#E3122B" data-hd-end="#F2E7D3" style={{ height: '260vh', position: 'relative' }}>
+    <section id="bavare" data-screen-label="07 Bavare" data-sc={flat ? 'enter' : 'sticky'} data-brand="3" data-cursor="SORTIR" data-hd="#E3122B" data-hd-end={flat ? undefined : '#F2E7D3'} className={flat ? 'flat' : undefined} style={{ height: flat ? 'auto' : '260vh', position: 'relative' }}>
       <div className="bv-in">
         <div className="bv-marquee">
           <div style={{ transform: 'translateX(calc(-10vw - var(--p,0) * 40vw))' }}>BAVARE BAVARE BAVARE BAVARE</div>
           <div style={{ transform: 'translateX(calc(-60vw + var(--p,0) * 40vw))' }}>ON SORT ? ON SORT ? ON SORT ?</div>
           <div style={{ transform: 'translateX(calc(-20vw - var(--p,0) * 30vw))' }}>BAVARE BAVARE BAVARE BAVARE</div>
         </div>
-        <div className="bv-top"><span>04 / 05 — BAVARE</span><span>ÉVÉNEMENTS SOCIAUX — BRUXELLES</span></div>
+        <div className="bv-top"><span>04 / 05 · BAVARE</span><span>ÉVÉNEMENTS SOCIAUX · BRUXELLES</span></div>
         <div className="bv-main">
           <div className="bv-left">
             <h2 data-r="0.06" className="bv-h2 serif-i">Et si on<br />sortait ?</h2>
@@ -332,7 +334,7 @@ function Bavare() {
         </div>
         <div className="bv-bottom">
           <span className="bv-sign"><Logo src="/logos/bavard.png" alt="Bavare" style={{ display: 'block', height: 22, width: 'auto', objectFit: 'contain' }} />DES SORTIES QUI CRÉENT DES RENCONTRES.</span>
-          <Ext href={LINKS.nextBavare} data-cursor="VOIR" data-r="0.4" className="bv-cta">VOIR LE PROCHAIN BAVARE ↗</Ext>
+          <Ext href={LINKS.nextBavare} data-cursor="VOIR" data-r="0.4" className="bv-cta">VOIR LE PROCHAIN BAVARE ↗︎</Ext>
         </div>
         <div className="bv-wipe" />
       </div>
@@ -341,18 +343,19 @@ function Bavare() {
 }
 
 // ——— 08 Viens Manger ———
-function ViensManger() {
+function ViensManger({ ui }: { ui: UI }) {
+  const flat = !ui.wide;
   return (
-    <section id="viens-manger" data-screen-label="08 Viens Manger" data-sc="sticky" data-brand="4" data-cursor="GOÛTER" data-hd="#F2E7D3" data-hd-end="#4A0B16" data-hd-at="0.2" style={{ height: '260vh', position: 'relative' }}>
+    <section id="viens-manger" data-screen-label="08 Viens Manger" data-sc={flat ? 'enter' : 'sticky'} data-brand="4" data-cursor="GOÛTER" data-hd={flat ? '#4A0B16' : '#F2E7D3'} data-hd-end={flat ? undefined : '#4A0B16'} data-hd-at="0.2" className={flat ? 'flat' : undefined} style={{ height: flat ? 'auto' : '260vh', position: 'relative' }}>
       <div className="vm-in">
         <div className="vm-intro">
           <span>05 / 05</span><span className="serif-i" style={{ fontSize: 'clamp(40px,5vw,80px)', letterSpacing: 0 }}>À table.</span>
         </div>
         <div className="vm-card">
           <div data-r="0.32" className="vm-head">
-            <span>05 / 05 — VIENS MANGER</span>
+            <span>05 / 05 · VIENS MANGER</span>
             <Logo src="/logos/viensmanger.png" alt="Viens Manger" style={{ display: 'block', width: 72, height: 72, borderRadius: '50%', objectFit: 'contain' }} />
-            <span>BRUXELLES — FOOD &amp; DÉCOUVERTES</span>
+            <span>BRUXELLES · FOOD &amp; DÉCOUVERTES</span>
           </div>
           <div style={{ flex: 1, display: 'flex', flexWrap: 'wrap', gap: '4vw', alignItems: 'stretch' }}>
             <div style={{ flex: '1 1 440px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', gap: '3vh' }}>
@@ -365,12 +368,12 @@ function ViensManger() {
               </div>
             </div>
             <div data-r="0.42" data-fx="mask" className="vm-photo">
-              <Image src={SECTION_MEDIA.viensManger} alt="Viens Manger — plat / lieu" fill sizes="440px" quality={90} style={{ objectFit: 'cover' }} />
+              <Image src={SECTION_MEDIA.viensManger} alt="Viens Manger · plat / lieu" fill sizes="440px" quality={90} style={{ objectFit: 'cover' }} />
               <div className="vm-tag">L&apos;ADRESSE DU MOIS</div>
             </div>
           </div>
           <div data-r="0.56" style={{ display: 'flex', justifyContent: 'flex-end', paddingTop: 12, borderTop: '1px solid #4A0B16' }}>
-            <Ext href={LINKS.vmAddresses} className="cta-line" style={{ fontWeight: 700, paddingBottom: 6, borderBottom: '2px solid #A3161F', color: '#A3161F' }}>DÉCOUVRIR LES ADRESSES ↗</Ext>
+            <Ext href={LINKS.vmAddresses} className="cta-line" style={{ fontWeight: 700, paddingBottom: 6, borderBottom: '2px solid #A3161F', color: '#A3161F' }}>DÉCOUVRIR LES ADRESSES ↗︎</Ext>
           </div>
         </div>
       </div>
@@ -380,6 +383,7 @@ function ViensManger() {
 
 // ——— 09 EMKAY Room ———
 function EmkayRoom({ ui }: { ui: UI }) {
+  if (!ui.wide) return <EmkayRoomMobile />;
   return (
     <section id="groupe" data-screen-label="09 EMKAY Room" data-sc="sticky" data-hd="#F5F1E9" style={{ height: '220vh', position: 'relative' }}>
       <div className="room-in">
@@ -415,12 +419,38 @@ function EmkayRoom({ ui }: { ui: UI }) {
   );
 }
 
+/** EMKAY Room sur téléphone : pas d'orbite — le logo EMKAY puis les cinq marques en grille, toujours lisibles. */
+function EmkayRoomMobile() {
+  return (
+    <section id="groupe" data-screen-label="09 EMKAY Room" data-sc="enter" data-hd="#F5F1E9" className="room-m">
+      <div data-r="0.04" className="serif" style={{ fontSize: 30, lineHeight: 1.05 }}>Différentes identités.<br /><em style={{ color: '#C9C2CF' }}>Un même point de départ.</em></div>
+      <span className="lbl" style={{ letterSpacing: '.22em', color: '#AAA6AD' }}>EMKAY ROOM</span>
+      <div data-r="0.1" className="room-m-core"><Logo src="/logos/emkay.png" alt="EMKAY Partners" style={{ display: 'block', width: '100%', height: 'auto', objectFit: 'contain' }} /></div>
+      <div className="room-m-grid">
+        {ROOM.map((r, i) => {
+          const b = B[r.b];
+          return (
+            <a key={b.id} href={'#' + b.id} data-r={(0.14 + i * 0.04).toFixed(2)} className="room-m-tile" aria-label={'Découvrir ' + b.name}>
+              <span className="room-m-logo" style={{ background: b.id === 'bavare' ? '#FF9EC4' : undefined, borderRadius: b.id === 'bavare' ? 999 : b.id === 'viens-manger' ? '50%' : 0, padding: b.id === 'bavare' ? '8px 14px' : 0 }}>
+                <BrandMark brand={b} src={b.logoRoom || b.logoT} onDark size="20px" style={{ display: 'block', maxWidth: '100%', maxHeight: b.id === 'viens-manger' ? 64 : 34, width: 'auto', height: 'auto', objectFit: 'contain', borderRadius: r.r === '50%' ? '50%' : 0 }} />
+              </span>
+              <span className="serif-i" style={{ fontSize: 16, lineHeight: 1.2, color: '#D9D3DE' }}>{r.role}</span>
+              <span style={{ fontSize: 10, fontWeight: 700, letterSpacing: '.22em', color: '#C9A8E8' }}>DÉCOUVRIR →</span>
+            </a>
+          );
+        })}
+      </div>
+      <p data-r="0.3" style={{ margin: 0, fontSize: 15, lineHeight: 1.55, color: '#D9D3DE' }}>EMKAY Partners développe, structure et accompagne la croissance de ses différentes marques.</p>
+    </section>
+  );
+}
+
 // ——— 10 Différentes identités ———
 const IDS = [['VISION HOUSE', 'fait connaître.'], ['OVERTON', 'fait vivre.'], ['ORIZON CONNECT', 'fait rencontrer.'], ['BAVARE', 'fait sortir.'], ['VIENS MANGER', 'fait découvrir.']];
 
-function Identites() {
+function Identites({ ui }: { ui: UI }) {
   return (
-    <section id="identites" data-screen-label="10 Différentes identités" data-sc="sticky" data-steps="6" data-stack="" data-hd="#2B143D" style={{ height: '560vh', position: 'relative' }}>
+    <section id="identites" data-screen-label="10 Différentes identités" data-sc="sticky" data-steps="6" data-stack="" data-hd="#2B143D" style={{ height: ui.wide ? '560vh' : '380vh', position: 'relative' }}>
       <div className="ids-in">
         <h2 className="ids-h2">Différentes identités.<br /><span className="serif-i" style={{ letterSpacing: '-.02em', color: '#2B143D' }}>Une même façon de faire.</span></h2>
         <div style={{ display: 'flex', flexDirection: 'column', borderTop: '1px solid rgba(8,8,8,.18)' }}>
@@ -439,6 +469,7 @@ function Identites() {
 // ——— 11 Le Groupe — quand nos marques se rencontrent ———
 function Collaborations({ ui }: { ui: UI }) {
   const { wide } = ui;
+  if (!wide) return <CollaborationsMobile />;
   return (
     <section id="collaborations" data-screen-label="11 Le Groupe" data-sc="sticky" data-group="" data-hd="#F5F1E9" style={{ height: '380vh', position: 'relative' }}>
       <div className="grp-in">
@@ -447,7 +478,7 @@ function Collaborations({ ui }: { ui: UI }) {
             <div className="lbl" style={{ letterSpacing: '.24em', color: '#AAA6AD' }}>LE GROUPE</div>
             <h2 className="serif" style={{ margin: '14px 0 0', fontWeight: 400, fontSize: 'clamp(34px,4.4vw,80px)', lineHeight: 0.95, letterSpacing: '-.02em' }}>Quand nos marques<br /><em>se rencontrent.</em></h2>
           </div>
-          <span data-gstep="" className="lbl tnum" style={{ color: '#AAA6AD' }}>01 — INTRODUCTION</span>
+          <span data-gstep="" className="lbl tnum" style={{ color: '#AAA6AD' }}>01 · INTRODUCTION</span>
         </div>
         <div data-stage="" className="grp-stage">
           <svg data-links="" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', overflow: 'visible', pointerEvents: 'none' }}>
@@ -501,6 +532,46 @@ function Collaborations({ ui }: { ui: UI }) {
   );
 }
 
+/** Le Groupe sur téléphone : les deux scénarios en cartes empilées, chaque marque visible avec son rôle. */
+function CollaborationsMobile() {
+  const scenarios = [
+    { n: '01', t: 'INAUGURATION', d: 'Une inauguration pensée comme un outil de visibilité, de rencontre et d’expérience.', k: 'r1' as const },
+    { n: '02', t: 'ÉVÉNEMENT D’ENTREPRISE', d: 'Soirée · anniversaire · conférence · réception · networking · événement client.', k: 'r2' as const },
+  ];
+  return (
+    <section id="collaborations" data-screen-label="11 Le Groupe" data-sc="enter" data-hd="#F5F1E9" className="grp-m">
+      <div className="lbl" style={{ letterSpacing: '.24em', color: '#AAA6AD' }}>LE GROUPE</div>
+      <h2 className="serif" style={{ margin: 0, fontWeight: 400, fontSize: 36, lineHeight: 0.98, letterSpacing: '-.02em' }}>Quand nos marques<br /><em>se rencontrent.</em></h2>
+      <p data-r="0.05" className="serif" style={{ margin: 0, fontSize: 22, lineHeight: 1.18 }}>Nos marques peuvent agir indépendamment. <em style={{ color: '#C9C2CF' }}>Sur certains projets, leurs expertises se complètent.</em></p>
+      {scenarios.map((sc, si) => (
+        <div key={sc.n} data-r={(0.1 + si * 0.1).toFixed(2)} className="grp-m-scn">
+          <span className="lbl" style={{ letterSpacing: '.24em', color: '#AAA6AD' }}>SCÉNARIO {sc.n}</span>
+          <span className="grp-m-t">{sc.t}</span>
+          <p className="serif-i" style={{ margin: 0, fontSize: 17, lineHeight: 1.25, color: '#D9D3DE' }}>{sc.d}</p>
+          <ul className="grp-m-list">
+            {GROUP.map((g) => {
+              const b = B[g.brand];
+              return (
+                <li key={b.id}>
+                  <span style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+                    <span style={{ flex: 'none', width: 10, height: 10, background: b.dot, boxShadow: '0 0 0 1px rgba(245,241,233,.35)' }} />
+                    <span className="xw" style={{ fontWeight: 800, fontSize: 13, letterSpacing: '.06em' }}>{b.name}</span>
+                  </span>
+                  <span className="serif-i" style={{ fontSize: 17, lineHeight: 1.2, color: '#D9D3DE' }}>{g[sc.k]}</span>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+      ))}
+      <h3 data-r="0.3" className="grp-big" style={{ fontWeight: 800, fontSize: 34, letterSpacing: '-.045em', lineHeight: 0.95 }}>Un projet.<br /><span className="serif-i" style={{ letterSpacing: '-.02em', color: '#C9A8E8' }}>Les bonnes expertises autour.</span></h3>
+      <p data-r="0.34" className="serif" style={{ margin: 0, fontSize: 22, lineHeight: 1.18 }}>Selon le besoin, une marque peut intervenir seule ou plusieurs marques peuvent unir leurs forces.</p>
+      <p data-r="0.38" style={{ margin: 0, fontSize: 15, lineHeight: 1.55, color: '#D9D3DE' }}>EMKAY Partners permet simplement de réunir ces compétences sous un même groupe.</p>
+      <div data-r="0.42" className="grp-big" style={{ fontWeight: 900, fontSize: 32, letterSpacing: '-.05em', lineHeight: 0.92 }}>LE BON PROJET.<br />LES BONNES MARQUES.<br /><span style={{ color: '#C9A8E8' }}>AU BON MOMENT.</span></div>
+    </section>
+  );
+}
+
 // ——— 12 Chiffres ———
 const STATS = [{ n: 3000, l: 'PARTICIPANTS', r: '0.2' }, { n: 20, l: 'ÉVÉNEMENTS', r: '0.28' }, { n: 25, l: 'SOCIÉTÉS ACCOMPAGNÉES', r: '0.36' }];
 
@@ -513,7 +584,7 @@ function Chiffres() {
             <div className="lbl" style={{ letterSpacing: '.24em' }}>EMKAY EN QUELQUES CHIFFRES</div>
             <h2 className="serif" style={{ margin: '18px 0 0', fontWeight: 400, fontSize: 'clamp(36px,4.6vw,84px)', lineHeight: 0.95, letterSpacing: '-.02em' }}>Ce que cela<br /><em>représente déjà.</em></h2>
           </div>
-          <span className="lbl" style={{ color: '#6c6472' }}>DEPUIS NOS DÉBUTS — BRUXELLES</span>
+          <span className="lbl" style={{ color: '#6c6472' }}>DEPUIS NOS DÉBUTS · BRUXELLES</span>
         </div>
         <div className="num-grid">
           {STATS.map((s) => (
@@ -546,12 +617,12 @@ function InRealLife({ ui }: { ui: UI }) {
             <figure key={m.ph} data-sc="enter" data-cursor="OUVRIR" onMouseEnter={() => setHover(i)} onMouseLeave={() => setHover(-1)} className="irl-fig"
               style={{ margin: wide ? m.m : vertical ? '0 auto' : 0, flex: wide ? m.basis : vertical ? '0 1 72%' : '1 1 100%', minWidth: `min(100%,${wide ? m.min : '100%'})` }}>
               <div style={{ position: 'relative', aspectRatio: RATIO[m.orientation] || '4/5', overflow: 'hidden', transform: `translateX(calc(var(--y,0) * ${m.px}px))` }}>
-                <Media src={m.src} type={m.type} poster={m.poster} placeholder={m.ph} alt={`${m.brand} — ${m.project}`} sizes={m.orientation === 'wide' ? '100vw' : '(max-width: 900px) 100vw, 56vw'} autoplay="visible" />
+                <Media src={m.src} type={m.type} poster={m.poster} placeholder={m.ph} alt={`${m.brand} · ${m.project}`} sizes={m.orientation === 'wide' ? '100vw' : '(max-width: 900px) 100vw, 56vw'} autoplay="visible" />
                 <div className="irl-ov" style={{ opacity: on ? 1 : 0, transform: `translateY(${on ? '0px' : '12px'})` }}>
                   <span><span style={{ color: '#AAA6AD' }}>MARQUE </span>{m.brand}</span><span><span style={{ color: '#AAA6AD' }}>PROJET </span>{m.project}</span><span><span style={{ color: '#AAA6AD' }}>ANNÉE </span>{m.year}</span>
                 </div>
               </div>
-              <figcaption style={{ fontSize: 11, letterSpacing: '.22em', lineHeight: 1.6 }}><b>{String(i + 1).padStart(2, '0')} — {m.brand}</b><br /><span style={{ color: '#AAA6AD' }}>{m.project}</span></figcaption>
+              <figcaption style={{ fontSize: 11, letterSpacing: '.22em', lineHeight: 1.6 }}><b>{String(i + 1).padStart(2, '0')} · {m.brand}</b><br /><span style={{ color: '#AAA6AD' }}>{m.project}</span></figcaption>
             </figure>
           );
         })}
@@ -646,9 +717,9 @@ function APropos() {
 }
 
 // ——— 16 Manifeste ———
-function Manifeste() {
+function Manifeste({ ui }: { ui: UI }) {
   return (
-    <section id="manifeste" data-screen-label="16 Manifeste" data-sc="sticky" data-steps="5" data-seq="" data-bgs="#080808,#0D0A11,#140C1C,#1D0F2A,#2B143D" data-hd="#F5F1E9" style={{ height: '520vh', position: 'relative', zIndex: 3 }}>
+    <section id="manifeste" data-screen-label="16 Manifeste" data-sc="sticky" data-steps="5" data-seq="" data-bgs="#080808,#0D0A11,#140C1C,#1D0F2A,#2B143D" data-hd="#F5F1E9" style={{ height: ui.wide ? '520vh' : '330vh', position: 'relative', zIndex: 3 }}>
       <div className="mf-in">
         <div data-i="0" className="mf-line serif">Une idée est facile.</div>
         <div data-i="1" className="mf-line serif">La lancer est plus difficile.</div>
@@ -688,7 +759,7 @@ function Contact({ ui }: { ui: UI }) {
               <span className={d.fx === 'soft' ? 'serif-i' : undefined} style={{ marginTop: 12, maxWidth: 420, fontSize: 14, lineHeight: 1.5, opacity: d.fx === 'soft' ? (on || touch ? 1 : 0) : 0.72, transition: 'opacity .5s ease' }}>{d.sub}</span>
               <span className="ct-cta">
                 <span style={{ transform: `translateX(${on ? '4px' : '0px'})`, transition: 'transform .6s cubic-bezier(.2,.7,.2,1)' }}>{d.cta}</span>
-                <span style={{ transform: `translateX(${on ? '10px' : '0px'})`, transition: 'transform .6s cubic-bezier(.2,.7,.2,1)' }}>↗</span>
+                <span style={{ transform: `translateX(${on ? '10px' : '0px'})`, transition: 'transform .6s cubic-bezier(.2,.7,.2,1)' }}>↗︎</span>
               </span>
             </button>
           );
@@ -696,7 +767,7 @@ function Contact({ ui }: { ui: UI }) {
       </div>
       <div data-r="0.45" style={{ marginTop: '8vh', display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', alignItems: 'center', gap: 24 }}>
         <span style={{ fontSize: 11, letterSpacing: '.24em', color: '#C9C2CF' }}>BRUXELLES, BELGIQUE.</span>
-        <button type="button" onClick={() => ui.openForm('write')} data-cursor="OUVRIR" className="btn-reset btn-light">NOUS ÉCRIRE ↗</button>
+        <button type="button" onClick={() => ui.openForm('write')} data-cursor="OUVRIR" className="btn-reset btn-light">NOUS ÉCRIRE ↗︎</button>
       </div>
     </section>
   );
@@ -708,7 +779,7 @@ function Footer() {
     <footer data-screen-label="18 Footer" data-hd="#F5F1E9" className="ft">
       <div style={{ display: 'flex', flexDirection: 'column', gap: 18 }}>
         <Logo src="/logos/emkay.png" alt="EMKAY Partners" style={{ display: 'block', width: 'min(70vw,520px)', height: 'auto', objectFit: 'contain' }} />
-        <span className="lbl" style={{ fontSize: 12, color: '#D9D3DE' }}>BRUXELLES — BELGIQUE</span>
+        <span className="lbl" style={{ fontSize: 12, color: '#D9D3DE' }}>BRUXELLES · BELGIQUE</span>
       </div>
       <div className="ft-cols">
         <div className="ft-col">
@@ -721,8 +792,8 @@ function Footer() {
         </div>
         <div className="ft-col">
           <span className="ft-h">SUIVRE</span>
-          <Ext href={LINKS.linkedin} className="ft-a">LinkedIn ↗</Ext>
-          <Ext href={LINKS.instagram} className="ft-a">Instagram ↗</Ext>
+          <Ext href={LINKS.linkedin} className="ft-a">LinkedIn ↗︎</Ext>
+          <Ext href={LINKS.instagram} className="ft-a">Instagram ↗︎</Ext>
           <a href="#contact" data-cursor="ALLER" className="ft-a">Contact →</a>
         </div>
         <div className="ft-col">

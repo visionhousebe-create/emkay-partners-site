@@ -54,7 +54,7 @@ export async function POST(req: Request) {
 
   const label = KINDS[kind];
   const payload = {
-    _subject: `EMKAY Partners — ${label} — ${f.nom}`, // objet de l'e-mail Formspree
+    _subject: `EMKAY Partners | ${label} | ${f.nom}`, // objet de l'e-mail Formspree
     source: 'emkaypartners-site',
     kind,
     type_demande: label,
@@ -62,7 +62,7 @@ export async function POST(req: Request) {
     receivedAt: new Date().toISOString(),
     // Lisible tel quel dans Slack / e-mail.
     text: [
-      `Nouveau message (${label}) — ${f.nom} <${f.email}>`,
+      `Nouveau message (${label}) : ${f.nom} <${f.email}>`,
       f.organisation || f.entreprise ? `Structure : ${f.organisation || f.entreprise}` : '',
       f.telephone ? `Tél. : ${f.telephone}` : '',
       f.type ? `Type : ${f.type}` : '',

@@ -202,13 +202,13 @@ export class ScrollEngine {
         this.show(c, v >= a && v < b);
       }
       if (counts.length && v > 0.35 && !el._counted) { el._counted = true; counts.forEach((c) => this.countUp(c)); }
-      if (el.dataset.canvas && vis) this.drawNet(v);
+      if (el.dataset.canvas && vis) this.drawNet(wide ? v : Math.min(v, 0.7)); // téléphone : pas de transition rose finale
       if (el.hasAttribute('data-group')) {
         this.gEl = el; this.gVis = vis; this.gT = v;
         if (vis && (this.reduced || !this.loopId)) { this.gP = v; this.groupFrame(el, v); }
       }
       if (el.id === 'groupe') {
-        this.orbit = el.querySelector<El>('[data-orbit]'); this.orbitVisible = vis; this.roomP = v;
+        this.orbit = wide ? el.querySelector<El>('[data-orbit]') : null; this.orbitVisible = vis; this.roomP = v;
         if (vis && (this.reduced || !this.loopId)) this.orbitFrame(0);
       }
     });
@@ -354,7 +354,7 @@ export class ScrollEngine {
     const links = el._links || (el._links = [...el.querySelectorAll<SVGPathElement>('[data-link]')]);
     const X = wide ? W * 0.3 : W * 0.6, Y = H * 0.45;
     const step = el.querySelector<HTMLElement>('[data-gstep]');
-    if (step) step.textContent = p < 0.18 ? '01 — INTRODUCTION' : p < 0.455 ? '02 — INAUGURATION' : p < 0.7 ? '03 — ÉVÉNEMENT D’ENTREPRISE' : '04 — CONCLUSION';
+    if (step) step.textContent = p < 0.18 ? '01 · INTRODUCTION' : p < 0.455 ? '02 · INAUGURATION' : p < 0.7 ? '03 · ÉVÉNEMENT D’ENTREPRISE' : '04 · CONCLUSION';
     el.querySelectorAll<El>('[data-show]').forEach((c) => { const [a, b] = (c.dataset.show || '').split(',').map(Number); this.show(c, p >= a && p < b); });
     const sr = stage.getBoundingClientRect();
     const center = el.querySelector<HTMLElement>('[data-center]');

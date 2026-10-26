@@ -48,7 +48,7 @@ export default function ProjectModal({ projects, index, onClose, onNavigate, onC
   return (
     <div data-trap="" role="dialog" aria-modal="true" aria-label={`Projet ${p.client}`} className="pm">
       <div className="pm-top">
-        <span>VISION HOUSE — PROJET {String(index + 1).padStart(2, '0')} / {String(projects.length).padStart(2, '0')}</span>
+        <span>VISION HOUSE · PROJET {String(index + 1).padStart(2, '0')} / {String(projects.length).padStart(2, '0')}</span>
         <button ref={closeRef} type="button" onClick={onClose} className="btn-reset pm-close" aria-label="Fermer le projet">FERMER ✕</button>
       </div>
 
@@ -56,11 +56,11 @@ export default function ProjectModal({ projects, index, onClose, onNavigate, onC
         <div className="pm-stage">
           {m ? (
             m.type === 'embed' ? (
-              <iframe key={m.url} className="pm-embed" src={m.url} title={`Vidéo — ${p.client}`} allow="autoplay; fullscreen; picture-in-picture; encrypted-media" allowFullScreen loading="lazy" referrerPolicy="strict-origin-when-cross-origin" />
+              <iframe key={m.url} className="pm-embed" src={m.url} title={`Vidéo · ${p.client}`} allow="autoplay; fullscreen; picture-in-picture; encrypted-media" allowFullScreen loading="lazy" referrerPolicy="strict-origin-when-cross-origin" />
             ) : m.type === 'video' ? (
               <video key={m.url} className="pm-media" src={m.url} poster={m.poster} controls playsInline preload="metadata" autoPlay={!reduced} muted={!reduced} loop />
             ) : (
-              <Image key={m.url} src={m.url} alt={m.alt || `${p.client} — ${p.title || 'projet'} (${mi + 1}/${count})`} fill sizes="(max-width: 900px) 100vw, 66vw" quality={90} style={{ objectFit: 'contain' }} />
+              <Image key={m.url} src={m.url} alt={m.alt || `${p.client} · ${p.title || 'projet'} (${mi + 1}/${count})`} fill sizes="(max-width: 900px) 100vw, 66vw" quality={90} style={{ objectFit: 'contain' }} />
             )
           ) : (
             <div className="pm-empty">MÉDIAS À VENIR</div>
@@ -82,7 +82,7 @@ export default function ProjectModal({ projects, index, onClose, onNavigate, onC
           {p.description && <p className="pm-desc">{p.description}</p>}
           {p.services.length > 0 && <ul className="pm-tags">{p.services.map((s) => <li key={s}>{s}</li>)}</ul>}
           <div className="pm-cta">
-            <button type="button" className="btn-reset cta-line" style={{ borderBottom: '1px solid #B9C4FF' }} onClick={onContact}>PARLER DE MA COMMUNICATION ↗</button>
+            <button type="button" className="btn-reset cta-line" style={{ borderBottom: '1px solid #B9C4FF' }} onClick={onContact}>PARLER DE MA COMMUNICATION ↗︎</button>
             {projects.length > 1 && <button type="button" className="btn-reset pm-nextp" onClick={() => onNavigate(next)}>PROJET SUIVANT : {projects[next].client} →</button>}
           </div>
         </aside>
@@ -93,7 +93,7 @@ export default function ProjectModal({ projects, index, onClose, onNavigate, onC
           {p.media.map((x, j) => (
             <button key={x.url} type="button" role="tab" aria-selected={j === mi} aria-label={`Média ${j + 1}`} className={`btn-reset pm-thumb${j === mi ? ' on' : ''}`} onClick={() => setMi(j)}>
               {x.type !== 'image'
-                ? (x.poster ? <Image src={x.poster} alt="" fill sizes="96px" style={{ objectFit: 'cover' }} /> : <span className="pm-vid">▶</span>)
+                ? (x.poster ? <Image src={x.poster} alt="" fill sizes="96px" style={{ objectFit: 'cover' }} /> : <span className="pm-vid">▶︎</span>)
                 : <Image src={x.url} alt="" fill sizes="96px" style={{ objectFit: 'cover' }} />}
             </button>
           ))}

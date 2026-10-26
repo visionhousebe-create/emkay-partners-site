@@ -305,7 +305,7 @@ input, textarea { font: inherit; color: inherit }
 /* ——— Logotypes provisoires (en attendant les logos officiels) ——— */
 .brand-word.bw-orizon-connect { display: inline-flex; flex-direction: column; line-height: 1 }
 .brand-word.bw-overton { display: inline-flex; flex-direction: row; align-items: center; gap: .5em; line-height: 1 }
-.bw-ov-sym { flex: none; width: 1.9em; height: auto; overflow: visible }
+.bw-ov-sym { flex: none; width: 1.7em; height: auto; overflow: visible }
 .bw-ov-txt { display: inline-flex; flex-direction: column }
 .sel-layer { container-type: inline-size }
 .sel-layer .brand-word.bw-overton { font-size: min(60px, 10.5cqi) !important }
@@ -385,3 +385,40 @@ input, textarea { font: inherit; color: inherit }
   .pm-body { grid-template-columns: 1fr }
   .pm-stage { min-height: 0; aspect-ratio: 4/5; max-height: 70vh }
 }
+
+/* ——— Téléphone (< 900 px) : sections « à plat », sans animation plein écran ——— */
+.flat .nxc-in, .flat .bv-in, .flat .vm-in { position: relative; min-height: 0 }
+.flat .nxc-pink, .flat .bv-wipe, .flat .vm-intro { display: none }
+.flat .nxc-content { opacity: 1 }
+.flat .nxc-in { padding: 96px 6vw 9vh }
+.flat .nxc-h3 { margin-top: 36px; font-size: clamp(40px, 11vw, 64px) }
+.flat .nxc-bottom { padding-top: 40px }
+.flat .bv-in { padding: 96px 6vw 9vh }
+.flat .bv-main { padding: 28px 0 }
+.flat .bv-stage { min-height: 300px }
+.flat .vm-card { clip-path: none; min-height: 0; padding: 96px 6vw 9vh; gap: 20px }
+.flat .vm-h2 { font-size: clamp(64px, 18vw, 110px) }
+.flat .vm-photo { width: 100%; min-width: 0; max-width: 420px }
+
+.room-m { background: var(--purple); color: var(--cream); padding: 96px 6vw 10vh; display: flex; flex-direction: column; gap: 22px }
+.room-m-core { width: min(62%, 260px); margin: 18px auto 8px }
+.room-m-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px }
+.room-m-tile { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; min-height: 168px; padding: 20px 12px; text-align: center; color: var(--cream); background: rgba(245,241,233,.05); border: 1px solid rgba(245,241,233,.14) }
+.room-m-tile:last-child:nth-child(odd) { grid-column: 1 / -1 }
+.room-m-logo { display: flex; align-items: center; justify-content: center; min-height: 64px; max-width: 100% }
+.room-m .brand-word { text-align: center }
+.room-m .brand-word.bw-orizon-connect, .room-m .bw-ov-txt { align-items: center }
+.room-m .bw-hz-sub { padding-left: 0 }
+
+.grp-m { background: var(--black); color: var(--cream); padding: 96px 6vw 12vh; display: flex; flex-direction: column; gap: 26px }
+.grp-m-scn { display: flex; flex-direction: column; gap: 12px; padding: 22px 18px; border: 1px solid rgba(245,241,233,.16); background: #100E13 }
+.grp-m-t { font-weight: 900; font-stretch: 125%; font-size: 26px; letter-spacing: -.045em; line-height: .95 }
+.grp-m-list { list-style: none; margin: 8px 0 0; padding: 0; display: flex; flex-direction: column }
+.grp-m-list li { display: flex; flex-direction: column; gap: 6px; padding: 14px 0; border-top: 1px solid rgba(245,241,233,.12) }
+
+@media (max-width: 900px) {
+  .hd { padding: 16px 5vw; -webkit-backdrop-filter: blur(14px) saturate(1.2); backdrop-filter: blur(14px) saturate(1.2); transition: opacity .5s, color .6s ease, background-color .6s ease }
+  .portal { height: 230vh }
+}
+.room-m .brand-word.bw-overton { flex-direction: column; gap: .35em; font-size: 18px !important }
+.room-m .bw-overton .bw-ov-sym { width: 2.2em }

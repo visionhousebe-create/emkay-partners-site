@@ -43,27 +43,25 @@ export function BrandMark({ brand, src, size, style, onDark }: { brand: Brand; s
 }
 
 /**
- * Symbole Overton — la « fenêtre d'Overton » : un cadre de fenêtre posé sur l'éventail des idées
- * (lignes horizontales). Ce qui est dans la fenêtre est éclairé ; le reste s'efface.
- * Le cadre est légèrement décentré : la fenêtre se déplace, comme l'opinion.
+ * Symbole Overton — la « fenêtre d'Overton » en sceau rond :
+ * l'anneau représente l'opinion publique ; à l'intérieur, une fenêtre en arche, légèrement décentrée
+ * (la fenêtre se déplace) ; la ligne qui la traverse est l'éventail des idées, qui s'efface aux extrêmes.
  */
 function OvertonSymbol() {
   const id = useId().replace(/:/g, '');
   return (
-    <svg className="bw-ov-sym" viewBox="0 0 56 48" aria-hidden="true" focusable="false">
+    <svg className="bw-ov-sym" viewBox="0 0 48 48" aria-hidden="true" focusable="false">
       <defs>
-        <linearGradient id={`${id}g`} gradientUnits="userSpaceOnUse" x1="20" y1="3" x2="40" y2="45">
-          <stop offset="0" stopColor="#C9A35E" /><stop offset=".45" stopColor="#F3DFAE" /><stop offset=".55" stopColor="#FFF3D1" /><stop offset="1" stopColor="#B8893F" />
+        <linearGradient id={`${id}g`} gradientUnits="userSpaceOnUse" x1="6" y1="4" x2="42" y2="44">
+          <stop offset="0" stopColor="#B8893F" /><stop offset=".45" stopColor="#F3DFAE" /><stop offset=".55" stopColor="#FFF3D1" /><stop offset="1" stopColor="#C9A35E" />
         </linearGradient>
-        <linearGradient id={`${id}f`} gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="56" y2="0">
-          <stop offset="0" stopColor="#C9A35E" stopOpacity="0" /><stop offset=".34" stopColor="#E2C07A" stopOpacity=".9" /><stop offset=".66" stopColor="#E2C07A" stopOpacity=".9" /><stop offset="1" stopColor="#C9A35E" stopOpacity="0" />
+        <linearGradient id={`${id}f`} gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="48" y2="0">
+          <stop offset="0" stopColor="#C9A35E" stopOpacity="0" /><stop offset=".3" stopColor="#E2C07A" stopOpacity=".85" /><stop offset=".7" stopColor="#E2C07A" stopOpacity=".85" /><stop offset="1" stopColor="#C9A35E" stopOpacity="0" />
         </linearGradient>
       </defs>
-      {/* l'éventail des idées : une ligne qui traverse la fenêtre et s'efface aux extrêmes */}
-      <line x1="0" x2="56" y1="27" y2="27" stroke={`url(#${id}f)`} strokeWidth="1.3" />
-      {/* la fenêtre, légèrement décentrée */}
-      <rect x="21" y="3" width="18" height="42" fill="none" stroke={`url(#${id}g)`} strokeWidth="1.8" />
-      <line x1="30" x2="30" y1="3" y2="45" stroke={`url(#${id}g)`} strokeWidth=".9" opacity=".7" />
+      <circle cx="24" cy="24" r="19" fill="none" stroke={`url(#${id}g)`} strokeWidth="1.6" />
+      <path d="M21 37 V17 a6.5 6.5 0 0 1 13 0 V37 Z" fill="none" stroke={`url(#${id}g)`} strokeWidth="1.4" />
+      <line x1="0" x2="48" y1="27" y2="27" stroke={`url(#${id}f)`} strokeWidth="1" />
     </svg>
   );
 }

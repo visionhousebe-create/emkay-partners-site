@@ -202,13 +202,13 @@ export class ScrollEngine {
         this.show(c, v >= a && v < b);
       }
       if (counts.length && v > 0.35 && !el._counted) { el._counted = true; counts.forEach((c) => this.countUp(c)); }
-      if (el.dataset.canvas && vis) this.drawNet(v);
+      if (el.dataset.canvas && vis) this.drawNet(wide ? v : Math.min(v, 0.7)); // téléphone : pas de transition rose finale
       if (el.hasAttribute('data-group')) {
         this.gEl = el; this.gVis = vis; this.gT = v;
         if (vis && (this.reduced || !this.loopId)) { this.gP = v; this.groupFrame(el, v); }
       }
       if (el.id === 'groupe') {
-        this.orbit = el.querySelector<El>('[data-orbit]'); this.orbitVisible = vis; this.roomP = v;
+        this.orbit = wide ? el.querySelector<El>('[data-orbit]') : null; this.orbitVisible = vis; this.roomP = v;
         if (vis && (this.reduced || !this.loopId)) this.orbitFrame(0);
       }
     });

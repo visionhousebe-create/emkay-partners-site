@@ -48,7 +48,7 @@ export default function EmkaySite({ projects }: { projects: Project[] }) {
     const eng = engine.current;
     if (!el) return false;
     eng?.update();
-    const top = el.getBoundingClientRect().top + scrollY, f = ARRIVE[id];
+    const top = el.getBoundingClientRect().top + scrollY, f = live.current.wide ? ARRIVE[id] : undefined; // téléphone : sections à plat, on arrive en haut
     const y = Math.max(0, f != null ? top + f * Math.max(0, el.offsetHeight - innerHeight) : top);
     try { history.replaceState(null, '', id === 'top' ? location.pathname + location.search : '#' + id); } catch { /* noop */ }
     const L = live.current;
@@ -206,7 +206,7 @@ export default function EmkaySite({ projects }: { projects: Project[] }) {
   return (
     <div ref={rootRef} className="emk-root">
       {/* ——— Header ——— */}
-      <header className="hd" style={{ color: hd, opacity: header ? 1 : 0, pointerEvents: header ? 'auto' : 'none' }}>
+      <header className="hd" style={{ color: hd, opacity: header ? 1 : 0, pointerEvents: header ? 'auto' : 'none', background: wide ? undefined : isLightColor(hd) ? 'rgba(14,9,20,.72)' : 'rgba(251,246,240,.8)' }}>
         <a href="#top" aria-label="EMKAY Partners — accueil" className="hd-logo">
           {wide ? (
             <Logo src="/logos/emkay.png" alt="EMKAY Partners" priority style={{ display: 'block', height: 30, width: 'auto', filter: isLightColor(hd) ? 'none' : 'brightness(0)', transition: 'filter .6s ease' }} />

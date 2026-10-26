@@ -21,6 +21,8 @@ input, textarea { font: inherit; color: inherit }
 :focus-visible { outline: 2px solid #C9A8E8; outline-offset: 4px }
 
 @keyframes emk-drop { 0% { transform: translateY(-100%) } 55% { transform: translateY(0) } 100% { transform: translateY(100%) } }
+/* flèches ↗ ↔ : toujours en texte, jamais en emoji (iPhone) */
+html { font-variant-emoji: text }
 @media (pointer: fine) { body.emk-cursor, body.emk-cursor a, body.emk-cursor button { cursor: none } }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto } .cue-line > span { animation: none !important } }
 
@@ -305,7 +307,7 @@ input, textarea { font: inherit; color: inherit }
 /* ——— Logotypes provisoires (en attendant les logos officiels) ——— */
 .brand-word.bw-orizon-connect { display: inline-flex; flex-direction: column; line-height: 1 }
 .brand-word.bw-overton { display: inline-flex; flex-direction: row; align-items: center; gap: .5em; line-height: 1 }
-.bw-ov-sym { flex: none; width: 1.7em; height: auto; overflow: visible }
+.bw-ov-sym { flex: none; width: 1.9em; height: auto; overflow: visible }
 .bw-ov-txt { display: inline-flex; flex-direction: column }
 .sel-layer { container-type: inline-size }
 .sel-layer .brand-word.bw-overton { font-size: min(60px, 10.5cqi) !important }
@@ -417,8 +419,16 @@ input, textarea { font: inherit; color: inherit }
 .grp-m-list li { display: flex; flex-direction: column; gap: 6px; padding: 14px 0; border-top: 1px solid rgba(245,241,233,.12) }
 
 @media (max-width: 900px) {
+  /* Ouverture sur téléphone : hauteur visible réelle (barre Safari), logo centré sur le grand EMKAY, textes plus compacts */
+  .portal-in { height: 100svh }
+  .portal-logo { padding: 0 8vw }
+  .door-word { font-size: 21vw }
+  .portal-cue { bottom: calc(28px + env(safe-area-inset-bottom)); gap: 10px; font-size: 10px }
+  .portal-cue > span:first-child { font-size: 10px !important; letter-spacing: .18em !important }
+  .cue-line { height: 36px }
+  .portal-qa { margin-top: 2px }
   .hd { padding: 16px 5vw; -webkit-backdrop-filter: blur(14px) saturate(1.2); backdrop-filter: blur(14px) saturate(1.2); transition: opacity .5s, color .6s ease, background-color .6s ease }
   .portal { height: 230vh }
 }
 .room-m .brand-word.bw-overton { flex-direction: column; gap: .35em; font-size: 18px !important }
-.room-m .bw-overton .bw-ov-sym { width: 2.2em }
+.room-m .bw-overton .bw-ov-sym { width: 2.4em }

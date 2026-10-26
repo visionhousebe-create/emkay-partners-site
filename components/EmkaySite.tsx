@@ -207,7 +207,7 @@ export default function EmkaySite({ projects }: { projects: Project[] }) {
     <div ref={rootRef} className="emk-root">
       {/* ——— Header ——— */}
       <header className="hd" style={{ color: hd, opacity: header ? 1 : 0, pointerEvents: header ? 'auto' : 'none', background: wide ? undefined : isLightColor(hd) ? 'rgba(14,9,20,.72)' : 'rgba(251,246,240,.8)' }}>
-        <a href="#top" aria-label="EMKAY Partners — accueil" className="hd-logo">
+        <a href="#top" aria-label="EMKAY Partners, accueil" className="hd-logo">
           {wide ? (
             <Logo src="/logos/emkay.png" alt="EMKAY Partners" priority style={{ display: 'block', height: 30, width: 'auto', filter: isLightColor(hd) ? 'none' : 'brightness(0)', transition: 'filter .6s ease' }} />
           ) : (
@@ -294,7 +294,7 @@ export default function EmkaySite({ projects }: { projects: Project[] }) {
       )}
 
       {wide && fine && (
-        <button type="button" onClick={openQa} data-cursor="OUVRIR" aria-label="Accès rapide aux marques et au contact" className="btn-reset qa-fab" style={{ opacity: qaBtnOn ? 1 : 0, pointerEvents: qaBtnOn ? 'auto' : 'none' }}>ACCÈS RAPIDE ↗</button>
+        <button type="button" onClick={openQa} data-cursor="OUVRIR" aria-label="Accès rapide aux marques et au contact" className="btn-reset qa-fab" style={{ opacity: qaBtnOn ? 1 : 0, pointerEvents: qaBtnOn ? 'auto' : 'none' }}>ACCÈS RAPIDE ↗︎</button>
       )}
 
       <div ref={veilRef} aria-hidden="true" className="veil" />
@@ -347,7 +347,7 @@ export default function EmkaySite({ projects }: { projects: Project[] }) {
                   ))}
                   <div className="form-actions">
                     <span role="status" aria-live="polite">{sendError || 'BRUXELLES, BELGIQUE.'}</span>
-                    <button type="submit" disabled={sending} className="btn-reset btn-light">{sending ? 'ENVOI…' : 'ENVOYER ↗'}</button>
+                    <button type="submit" disabled={sending} className="btn-reset btn-light">{sending ? 'ENVOI…' : 'ENVOYER ↗︎'}</button>
                   </div>
                 </form>
               </>

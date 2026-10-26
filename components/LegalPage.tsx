@@ -10,7 +10,7 @@ export function LegalPage({ label, title, updated, children }: { label: string; 
   return (
     <div className="lg">
       <header className="lg-hd">
-        <Link href="/" aria-label="EMKAY Partners — accueil" className="lg-logo">
+        <Link href="/" aria-label="EMKAY Partners, accueil" className="lg-logo">
           <Logo src="/logos/emkay.png" alt="EMKAY Partners" priority style={{ display: 'block', height: 30, width: 'auto' }} />
         </Link>
         <Link href="/" className="lg-back">← RETOUR À L’ACCUEIL</Link>
@@ -27,7 +27,7 @@ export function LegalPage({ label, title, updated, children }: { label: string; 
           <Link href="/politique-de-confidentialite">Politique de confidentialité</Link>
           <Link href="/#contact">Contact</Link>
         </nav>
-        <Link href="/" className="btn-light" style={{ display: 'inline-block' }}>RETOUR À L’ACCUEIL ↗</Link>
+        <Link href="/" className="btn-light" style={{ display: 'inline-block' }}>RETOUR À L’ACCUEIL ↗︎</Link>
         <span style={{ fontSize: 11, letterSpacing: '.2em', color: '#C9C2CF' }}>© {new Date().getFullYear()} EMKAY PARTNERS</span>
       </footer>
     </div>

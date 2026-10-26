@@ -354,7 +354,7 @@ export class ScrollEngine {
     const links = el._links || (el._links = [...el.querySelectorAll<SVGPathElement>('[data-link]')]);
     const X = wide ? W * 0.3 : W * 0.6, Y = H * 0.45;
     const step = el.querySelector<HTMLElement>('[data-gstep]');
-    if (step) step.textContent = p < 0.18 ? '01 — INTRODUCTION' : p < 0.455 ? '02 — INAUGURATION' : p < 0.7 ? '03 — ÉVÉNEMENT D’ENTREPRISE' : '04 — CONCLUSION';
+    if (step) step.textContent = p < 0.18 ? '01 · INTRODUCTION' : p < 0.455 ? '02 · INAUGURATION' : p < 0.7 ? '03 · ÉVÉNEMENT D’ENTREPRISE' : '04 · CONCLUSION';
     el.querySelectorAll<El>('[data-show]').forEach((c) => { const [a, b] = (c.dataset.show || '').split(',').map(Number); this.show(c, p >= a && p < b); });
     const sr = stage.getBoundingClientRect();
     const center = el.querySelector<HTMLElement>('[data-center]');

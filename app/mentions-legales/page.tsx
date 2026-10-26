@@ -26,14 +26,14 @@ export default function MentionsLegales() {
 
       <h2>Hébergement</h2>
       <dl className="lg-dl">
-        <dt>Hébergeur</dt><dd>Vercel Inc., 440 N Barranca Ave #4133, Covina, CA 91723, États-Unis — <a href="https://vercel.com" target="_blank" rel="noopener noreferrer">vercel.com</a></dd>
+        <dt>Hébergeur</dt><dd>Vercel Inc., 440 N Barranca Ave #4133, Covina, CA 91723, États-Unis, <a href="https://vercel.com" target="_blank" rel="noopener noreferrer">vercel.com</a></dd>
       </dl>
 
       <h2>Objet du site</h2>
       <p>Ce site présente EMKAY Partners ainsi que les marques développées et exploitées par EMKAY Partners, dans les domaines de la communication, de l’événementiel, des rencontres professionnelles, des sorties et des découvertes culinaires. Il permet de prendre contact avec EMKAY Partners et ses marques.</p>
 
       <h2>Propriété intellectuelle</h2>
-      <p>L’ensemble des éléments de ce site — textes, logos, marques, photographies, vidéos, éléments graphiques et code — est la propriété d’EMKAY Partners ou des marques développées et exploitées par EMKAY Partners, ou fait l’objet d’une autorisation d’utilisation. Toute reproduction, représentation, modification ou exploitation, totale ou partielle, sans autorisation écrite préalable est interdite.</p>
+      <p>L’ensemble des éléments de ce site (textes, logos, marques, photographies, vidéos, éléments graphiques et code) est la propriété d’EMKAY Partners ou des marques développées et exploitées par EMKAY Partners, ou fait l’objet d’une autorisation d’utilisation. Toute reproduction, représentation, modification ou exploitation, totale ou partielle, sans autorisation écrite préalable est interdite.</p>
       <p>Les photographies et contenus présentant des projets réalisés pour des tiers restent, le cas échéant, la propriété de leurs auteurs ou de leurs clients respectifs.</p>
 
       <h2>Responsabilité</h2>

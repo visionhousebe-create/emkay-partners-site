@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 export default function Confidentialite() {
   return (
     <LegalPage label="DONNÉES PERSONNELLES" title={<>Politique de <em>confidentialité.</em></>} updated="15 OCTOBRE 2026">
-      <p>EMKAY Partners attache de l’importance à la protection de vos données personnelles. Cette politique explique quelles données sont collectées via ce site, pourquoi, et quels sont vos droits, conformément au Règlement général sur la protection des données (RGPD — règlement (UE) 2016/679) et à la législation belge.</p>
+      <p>EMKAY Partners attache de l’importance à la protection de vos données personnelles. Cette politique explique quelles données sont collectées via ce site, pourquoi, et quels sont vos droits, conformément au Règlement général sur la protection des données (RGPD, règlement (UE) 2016/679) et à la législation belge.</p>
 
       <h2>Responsable du traitement</h2>
       <dl className="lg-dl">
@@ -33,8 +33,8 @@ export default function Confidentialite() {
 
       <h2>Finalités et bases légales</h2>
       <ul>
-        <li><strong>Répondre à votre demande</strong> et assurer le suivi d’un éventuel projet, d’une collaboration ou d’un échange — base légale : mesures précontractuelles prises à votre demande et intérêt légitime d’EMKAY Partners à répondre aux personnes qui la contactent.</li>
-        <li><strong>Sécurité et bon fonctionnement du site</strong> (journaux techniques, protection contre les envois automatisés) — base légale : intérêt légitime.</li>
+        <li><strong>Répondre à votre demande</strong> et assurer le suivi d’un éventuel projet, d’une collaboration ou d’un échange. Base légale : mesures précontractuelles prises à votre demande et intérêt légitime d’EMKAY Partners à répondre aux personnes qui la contactent.</li>
+        <li><strong>Sécurité et bon fonctionnement du site</strong> (journaux techniques, protection contre les envois automatisés). Base légale : intérêt légitime.</li>
       </ul>
       <p>Vos données ne sont jamais vendues ni utilisées à des fins de prospection sans votre accord.</p>
 
@@ -54,7 +54,7 @@ export default function Confidentialite() {
 
       <h2>Vos droits</h2>
       <p>Vous disposez d’un droit d’accès, de rectification, d’effacement, de limitation, d’opposition et de portabilité de vos données. Pour les exercer, écrivez à <a href="mailto:hello@visionhouse.be">hello@visionhouse.be</a> en précisant votre demande. Une réponse vous sera apportée dans un délai d’un mois.</p>
-      <p>Vous pouvez également introduire une réclamation auprès de l’Autorité de protection des données (APD), rue de la Presse 35, 1000 Bruxelles — <a href="https://www.autoriteprotectiondonnees.be" target="_blank" rel="noopener noreferrer">www.autoriteprotectiondonnees.be</a>.</p>
+      <p>Vous pouvez également introduire une réclamation auprès de l’Autorité de protection des données (APD), rue de la Presse 35, 1000 Bruxelles, <a href="https://www.autoriteprotectiondonnees.be" target="_blank" rel="noopener noreferrer">www.autoriteprotectiondonnees.be</a>.</p>
 
       <h2>Modifications</h2>
       <p>Cette politique peut évoluer, notamment en cas de changement de nom d’une marque, de prestataire ou de fonctionnalité du site. La date de dernière mise à jour figure en haut de cette page.</p>

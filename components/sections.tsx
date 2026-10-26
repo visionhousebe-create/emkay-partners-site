@@ -284,7 +284,7 @@ function OrizonConnect({ ui }: { ui: UI }) {
               </div>
             </div>
             <div data-r="0.3">
-              <p style={{ margin: 0, fontSize: 17, lineHeight: 1.6, color: '#4A2A55', textWrap: 'pretty' }}>Au quotidien, Orizon Connect rapproche les entrepreneurs, dirigeants et partenaires qui ont tout intérêt à se connaître. Nous provoquons les bonnes rencontres, réunissons des dirigeants en petit comité et transformons ces échanges en clients, en partenariats et en projets communs.</p>
+              <p style={{ margin: 0, fontSize: 17, lineHeight: 1.6, color: '#4A2A55', textWrap: 'pretty' }}>Au quotidien, Orizon Connect rapproche les entrepreneurs, dirigeants et partenaires qui ont tout intérêt à se connaître. Nous provoquons les bonnes rencontres, lors de nos événements comme tout au long de l&apos;année, et les transformons en clients, en partenariats et en projets communs.</p>
               <button type="button" onClick={() => ui.openForm('talk')} data-cursor="OUVRIR" className="btn-reset cta-line" style={{ marginTop: 28, borderBottom: '1px solid #E2463A' }}>DÉCOUVRIR LES CONNEXIONS ↗︎</button>
             </div>
           </div>

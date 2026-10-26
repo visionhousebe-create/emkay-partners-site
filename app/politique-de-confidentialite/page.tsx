@@ -22,7 +22,7 @@ export default function Confidentialite() {
         <dt>Numéro d’entreprise (BCE)</dt><dd>1024.829.348</dd>
         <dt>Contact vie privée</dt><dd><Mail /></dd>
       </dl>
-      <p>Ce traitement couvre EMKAY Partners et les marques qu’elle développe et exploite, présentées sur ce site : Vision House, Overton, Orizon Connect, Bavare et Viens Manger. EMKAY Partners n’a pas désigné de délégué à la protection des données, cette désignation n’étant pas obligatoire pour ses activités ; toute question peut être adressée à <Mail />.</p>
+      <p>Ce traitement couvre EMKAY Partners et les marques qu’elle développe et exploite, présentées sur ce site : Vision House, Overton, Orizon Connect, Bavare et Viens Manger. Pour toute question relative à vos données, écrivez à <Mail />.</p>
 
       <h2>2. Données collectées</h2>
       <p><strong>Lorsque vous remplissez un formulaire de contact</strong>, nous collectons uniquement les informations que vous choisissez de nous transmettre :</p>

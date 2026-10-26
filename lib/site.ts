@@ -16,3 +16,6 @@ export const INDEXABLE = vercelEnv ? vercelEnv === 'production' : process.env.NO
 export const SITE_NAME = 'EMKAY Partners';
 export const SITE_TITLE = 'EMKAY Partners | Marques, événements & expériences';
 export const SITE_DESCRIPTION = 'EMKAY Partners développe des marques dans la communication, l’événementiel, les rencontres et les expériences depuis Bruxelles.';
+
+/** Adresse de contact officielle (mentions légales, confidentialité). */
+export const CONTACT_EMAIL = 'office@emkaypartners.com';

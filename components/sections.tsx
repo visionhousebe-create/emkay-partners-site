@@ -237,22 +237,22 @@ function Overton({ ui }: { ui: UI }) {
       <div className="nx-grid">
         <div>
           <BrandMark brand={B[1]} src={B[1].logoT} size="clamp(32px,3vw,44px)" style={{ display: 'block', width: 200, maxWidth: '100%', height: 'auto', marginBottom: 40 }} />
-          <h3 data-r="0.35" className="nx-h3">Petit format ou grande production. <span className="serif-i ov-gold" style={{ letterSpacing: '-.01em' }}>La même exigence.</span></h3>
-          <p className="nx-p">Que votre budget soit de 3 000 € ou d’un million, Overton imagine, produit et orchestre votre événement de A à Z : concept, lieu, scénographie, prestataires, logistique et accueil de vos invités. Un seul interlocuteur, une équipe qui s’adapte à votre ambition, et un moment dont on parle encore le lendemain.</p>
+          <h3 data-r="0.35" className="nx-h3">Votre événement, <span className="serif-i ov-gold" style={{ letterSpacing: '-.01em' }}>entre de bonnes mains.</span></h3>
+          <p className="nx-p">De l’afterwork intime à la grande production, Overton imagine, produit et orchestre votre événement de A à Z, avec la même exigence. Un interlocuteur unique, du premier appel au dernier invité : vous recevez, nous nous occupons du reste.</p>
           <button type="button" onClick={() => ui.openForm('project')} data-cursor="OUVRIR" className="btn-reset cta-line" style={{ marginTop: 36, color: '#E9D29C', borderBottom: '1px solid #C9A35E' }}>PARLER DE MON ÉVÉNEMENT ↗︎</button>
         </div>
         <div style={{ display: 'flex', flexDirection: 'column' }}>
           {[
-            ['A', 'Formats intimes', 'Afterworks, dîners, lancements, soirées clients. Un format maîtrisé, soigné dans chaque détail, même avec un budget serré.'],
-            ['B', 'Événements d’entreprise', 'Inaugurations, séminaires, conférences, soirées d’entreprise. Une organisation complète, du premier brief au dernier invité.'],
-            ['C', 'Grandes productions', 'Galas, salons, activations de marque, événements d’envergure. Production, scénographie et coordination de toutes les équipes.'],
+            ['A', 'Formats intimes', 'Afterworks, dîners, lancements, soirées clients. Chaque détail compte, et chaque invité le ressent.'],
+            ['B', 'Événements d’entreprise', 'Inaugurations, séminaires, conférences, soirées d’équipe. Une organisation sans faille, à l’image de votre entreprise.'],
+            ['C', 'Grandes productions', 'Galas, salons, activations de marque. Production, scénographie et coordination à grande échelle, pilotées par une seule équipe.'],
           ].map(([k, t, d], i, all) => (
             <div key={k} data-r={(0.45 + i * 0.05).toFixed(2)} className="nx-row" style={i === all.length - 1 ? { borderBottom: '1px solid rgba(201,163,94,.3)' } : undefined}>
               <span className="nx-row-k">{k}</span>
               <div><div className="nx-row-t">{t}</div><div className="nx-row-d">{d}</div></div>
             </div>
           ))}
-          <p className="serif" style={{ margin: '36px 0 0', fontSize: 'clamp(24px,2.2vw,34px)', lineHeight: 1.3, color: '#E9D29C', textWrap: 'pretty' }}>Nos propres formats signés Overton, ou un événement entièrement sur mesure pour votre entreprise, votre organisation ou votre marque.</p>
+          <p className="serif" style={{ margin: '36px 0 0', fontSize: 'clamp(24px,2.2vw,34px)', lineHeight: 1.3, color: '#E9D29C', textWrap: 'pretty' }}>Des formats signés Overton, ou un événement pensé entièrement autour de vous.</p>
         </div>
       </div>
       <div className="nx-line" />

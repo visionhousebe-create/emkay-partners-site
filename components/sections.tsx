@@ -237,20 +237,22 @@ function Overton({ ui }: { ui: UI }) {
       <div className="nx-grid">
         <div>
           <BrandMark brand={B[1]} src={B[1].logoT} size="clamp(32px,3vw,44px)" style={{ display: 'block', width: 200, maxWidth: '100%', height: 'auto', marginBottom: 40 }} />
-          <h3 data-r="0.35" className="nx-h3">Des événements conçus pour <span className="serif-i ov-gold" style={{ letterSpacing: '-.01em' }}>provoquer quelque chose.</span></h3>
-          <p className="nx-p">Overton ne gère pas seulement une logistique. Elle transforme un événement en expérience : un moment dont on parle encore le lendemain.</p>
+          <h3 data-r="0.35" className="nx-h3">Petit format ou grande production. <span className="serif-i ov-gold" style={{ letterSpacing: '-.01em' }}>La même exigence.</span></h3>
+          <p className="nx-p">Que votre budget soit de 3 000 € ou d’un million, Overton imagine, produit et orchestre votre événement de A à Z : concept, lieu, scénographie, prestataires, logistique et accueil de vos invités. Un seul interlocuteur, une équipe qui s’adapte à votre ambition, et un moment dont on parle encore le lendemain.</p>
           <button type="button" onClick={() => ui.openForm('project')} data-cursor="OUVRIR" className="btn-reset cta-line" style={{ marginTop: 36, color: '#E9D29C', borderBottom: '1px solid #C9A35E' }}>PARLER DE MON ÉVÉNEMENT ↗︎</button>
         </div>
         <div style={{ display: 'flex', flexDirection: 'column' }}>
-          <div data-r="0.45" className="nx-row">
-            <span className="nx-row-k">A</span>
-            <div><div className="nx-row-t">Imaginés par Overton</div><div className="nx-row-d">Nos propres formats, pensés, produits et portés par la marque.</div></div>
-          </div>
-          <div data-r="0.5" className="nx-row" style={{ borderBottom: '1px solid rgba(201,163,94,.3)' }}>
-            <span className="nx-row-k">B</span>
-            <div><div className="nx-row-t">Créés pour vous</div><div className="nx-row-d">Des événements sur mesure pour des entreprises, organisations et marques.</div></div>
-          </div>
-          <p className="serif" style={{ margin: '36px 0 0', fontSize: 'clamp(24px,2.2vw,34px)', lineHeight: 1.3, color: '#E9D29C', textWrap: 'pretty' }}>Inaugurations · Événements corporate · Networking · Activations · Expériences professionnelles · Événements sur mesure</p>
+          {[
+            ['A', 'Formats intimes', 'Afterworks, dîners, lancements, soirées clients. Un format maîtrisé, soigné dans chaque détail, même avec un budget serré.'],
+            ['B', 'Événements d’entreprise', 'Inaugurations, séminaires, conférences, soirées d’entreprise. Une organisation complète, du premier brief au dernier invité.'],
+            ['C', 'Grandes productions', 'Galas, salons, activations de marque, événements d’envergure. Production, scénographie et coordination de toutes les équipes.'],
+          ].map(([k, t, d], i, all) => (
+            <div key={k} data-r={(0.45 + i * 0.05).toFixed(2)} className="nx-row" style={i === all.length - 1 ? { borderBottom: '1px solid rgba(201,163,94,.3)' } : undefined}>
+              <span className="nx-row-k">{k}</span>
+              <div><div className="nx-row-t">{t}</div><div className="nx-row-d">{d}</div></div>
+            </div>
+          ))}
+          <p className="serif" style={{ margin: '36px 0 0', fontSize: 'clamp(24px,2.2vw,34px)', lineHeight: 1.3, color: '#E9D29C', textWrap: 'pretty' }}>Nos propres formats signés Overton, ou un événement entièrement sur mesure pour votre entreprise, votre organisation ou votre marque.</p>
         </div>
       </div>
       <div className="nx-line" />
@@ -282,7 +284,7 @@ function OrizonConnect({ ui }: { ui: UI }) {
               </div>
             </div>
             <div data-r="0.3">
-              <p style={{ margin: 0, fontSize: 17, lineHeight: 1.6, color: '#4A2A55', textWrap: 'pretty' }}>Pas un club de plus. Orizon Connect s&apos;intéresse à la qualité des connexions : mises en relation, cercles professionnels et opportunités de collaboration.</p>
+              <p style={{ margin: 0, fontSize: 17, lineHeight: 1.6, color: '#4A2A55', textWrap: 'pretty' }}>Pas un club de plus où l&apos;on collectionne les cartes de visite. Orizon Connect vous présente les bonnes personnes : des mises en relation ciblées selon votre activité et vos objectifs, des cercles professionnels en petit comité entre dirigeants, et des rencontres pensées pour déboucher sur de vraies collaborations (clients, partenaires, projets communs).</p>
               <button type="button" onClick={() => ui.openForm('talk')} data-cursor="OUVRIR" className="btn-reset cta-line" style={{ marginTop: 28, borderBottom: '1px solid #E2463A' }}>DÉCOUVRIR LES CONNEXIONS ↗︎</button>
             </div>
           </div>

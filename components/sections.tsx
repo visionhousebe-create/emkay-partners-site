@@ -360,7 +360,7 @@ function ViensManger({ ui }: { ui: UI }) {
             <span>BRUXELLES · FOOD &amp; DÉCOUVERTES</span>
           </div>
           <div style={{ flex: 1, display: 'flex', flexWrap: 'wrap', gap: '4vw', alignItems: 'stretch' }}>
-            <div style={{ flex: '1 1 440px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', gap: '3vh' }}>
+            <div className="vm-col" style={{ flex: '1 1 440px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', gap: '3vh' }}>
               <h2 data-r="0.38" className="vm-h2 serif">On mange <em>où ?</em></h2>
               <p data-r="0.46" className="serif-i" style={{ margin: 0, maxWidth: 480, fontSize: 'clamp(22px,2vw,30px)', lineHeight: 1.2 }}>Viens Manger fait découvrir des restaurants, des lieux, des concepts culinaires et des expériences qui valent le détour.</p>
               <div data-r="0.52" className="vm-menu">

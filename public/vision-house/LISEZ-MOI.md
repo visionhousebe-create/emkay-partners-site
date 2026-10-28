@@ -37,6 +37,7 @@ Elle s'affiche dans la fiche du projet.
 | `format` | Forme de la carte : `paysage`, `portrait`, `carre` ou `vertical` |
 | `visible` | `non` pour masquer le projet sans le supprimer |
 | `video` | Lien YouTube ou Vimeo (une ligne par vidéo) — pour les vidéos lourdes |
+| `lien` | Lien vers une galerie photo ou une page externe (https://…), affiché en bouton « VOIR LA GALERIE COMPLÈTE » dans la fiche du projet |
 | après `---` | Description libre |
 
 ## Ajouter des photos ou des vidéos

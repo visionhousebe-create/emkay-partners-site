@@ -94,6 +94,9 @@ export function readProjectsFromFiles(): Project[] {
       else console.warn(`[vision-house] ${dir} : lien vidéo non reconnu « ${v} »`);
     }
 
+    const linkRaw = (f.lien || f.galerie || f.link || '').trim();
+    const link = /^https:\/\/\S+$/i.test(linkRaw) ? linkRaw : undefined;
+    if (linkRaw && !link) console.warn(`[vision-house] ${dir} : lien non reconnu « ${linkRaw} » (doit commencer par https://)`);
     const client = f.client || f.marque || dir.replace(/^\d+[-_ ]*/, '').replace(/[-_]+/g, ' ');
     return [{
       id: dir.replace(/[^a-z0-9-]/gi, '-').toLowerCase(),
@@ -106,6 +109,7 @@ export function readProjectsFromFiles(): Project[] {
       services: (f.services || '').split(/[,·]/).map((s) => s.trim()).filter(Boolean),
       format: FORMATS[key(f.format || '')] || FORMATS[(f.format || '').trim()] || '16/9',
       media,
+      ...(link ? { link } : {}),
       published: true,
     }];
   });

@@ -81,6 +81,7 @@ export default function ProjectModal({ projects, index, onClose, onNavigate, onC
           {p.title && <p className="pm-title serif-i">{p.title}</p>}
           {p.description && <p className="pm-desc">{p.description}</p>}
           {p.services.length > 0 && <ul className="pm-tags">{p.services.map((s) => <li key={s}>{s}</li>)}</ul>}
+          {p.link && <a href={p.link} target="_blank" rel="noopener noreferrer" className="pm-link">VOIR LA GALERIE COMPLÈTE ↗︎</a>}
           <div className="pm-cta">
             <button type="button" className="btn-reset cta-line" style={{ borderBottom: '1px solid #B9C4FF' }} onClick={onContact}>PARLER DE MA COMMUNICATION ↗︎</button>
             {projects.length > 1 && <button type="button" className="btn-reset pm-nextp" onClick={() => onNavigate(next)}>PROJET SUIVANT : {projects[next].client} →</button>}

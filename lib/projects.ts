@@ -24,6 +24,8 @@ export type Project = {
   format: ProjectFormat;
   /** Ordre d'affichage dans la fiche ; la couverture est en premier. */
   media: ProjectMedia[];
+  /** Lien externe facultatif (galerie photo, article…) — ex. une galerie Pixieset. */
+  link?: string;
   published: boolean;
 };
 

@@ -174,9 +174,10 @@ html { font-variant-emoji: text }
 /* ——— 08 Viens Manger ——— */
 .vm-in { position: sticky; top: 0; min-height: 100vh; overflow: hidden; background: #4A0B16; color: #F2E7D3 }
 .vm-intro { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px; font-size: 11px; letter-spacing: .3em; opacity: clamp(0, calc(1 - var(--p,0) * 4), 1) }
-.vm-card { position: relative; min-height: 100vh; background: #F2E7D3; color: #4A0B16; clip-path: inset(calc((1 - min(var(--p,0) * 2.6, 1)) * 46%) calc((1 - min(var(--p,0) * 2.6, 1)) * 40%)); display: flex; flex-direction: column; padding: 88px 5vw 5vh; gap: 2vh }
+.vm-card { position: relative; min-height: 100vh; background: #F2E7D3; color: #4A0B16; clip-path: inset(calc((1 - min(var(--p,0) * 2.6, 1)) * 46%) calc((1 - min(var(--p,0) * 2.6, 1)) * 40%)); display: flex; flex-direction: column; padding: 88px 5vw calc(5vh + 64px); gap: 2vh }
 .vm-head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 14px 20px; padding-bottom: 14px; border-bottom: 2px solid #4A0B16; font-size: 11px; letter-spacing: .22em; font-weight: 700 }
-.vm-h2 { margin: 0; font-size: clamp(72px,12.5vw,230px); line-height: .84; letter-spacing: -.03em; color: #A3161F }
+.vm-col { container-type: inline-size }
+.vm-h2 { margin: 0; font-size: min(210px, 20.5cqi); white-space: nowrap; line-height: .84; letter-spacing: -.03em; color: #A3161F }
 .vm-menu { display: flex; flex-direction: column; gap: 10px; max-width: 460px; font-size: 12px; letter-spacing: .22em; font-weight: 700 }
 .vm-photo { flex: 0 1 auto; width: min(84vw,34vw,440px); min-width: 240px; aspect-ratio: 4/5; position: relative; margin: 0 auto }
 .vm-tag { position: absolute; left: -14px; top: 24px; background: #A3161F; color: #F2E7D3; font-size: 11px; letter-spacing: .22em; font-weight: 700; padding: 8px 12px; transform: rotate(-4deg) }
@@ -344,6 +345,8 @@ html { font-variant-emoji: text }
 .oz-sun { background: linear-gradient(90deg, #4A1A6B 0%, #A1286A 32%, #E2463A 64%, #F59A33 100%); -webkit-background-clip: text; background-clip: text; color: transparent; padding-right: .08em; -webkit-box-decoration-break: clone; box-decoration-break: clone }
 
 /* ——— Vision House : cartes projets ——— */
+.pm-link { align-self: flex-start; display: inline-flex; margin-top: 4px; padding: 12px 18px; background: #F5F1E9; color: #0C0340; font-size: 11px; font-weight: 800; letter-spacing: .2em; transition: background-color .3s }
+.pm-link:hover { background: #B9C4FF; color: #0C0340 }
 .vh-media { position: relative; width: 100%; overflow: hidden; background: #160B52; container-type: inline-size }
 .vh-media::after { content: ''; position: absolute; inset: 0; z-index: 1; pointer-events: none; background: linear-gradient(180deg, rgba(12,3,64,.45) 0%, rgba(12,3,64,0) 22%, rgba(12,3,64,0) 38%, rgba(12,3,64,.88) 64%, rgba(12,3,64,.97) 100%) }
 .vh-top { position: absolute; left: 0; right: 0; top: 0; z-index: 2; display: flex; justify-content: space-between; align-items: flex-start; gap: 8px; padding: 14px; pointer-events: none }

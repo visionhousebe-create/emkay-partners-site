@@ -237,8 +237,8 @@ function Overton({ ui }: { ui: UI }) {
       <div className="nx-grid">
         <div>
           <BrandMark brand={B[1]} src={B[1].logoT} size="clamp(32px,3vw,44px)" style={{ display: 'block', width: 200, maxWidth: '100%', height: 'auto', marginBottom: 40 }} />
-          <h3 data-r="0.35" className="nx-h3">Votre événement, entre de bonnes mains.</h3>
-          <p className="nx-p">De l’afterwork intime à la grande production, Overton imagine, produit et orchestre votre événement de A à Z, avec la même exigence. Un interlocuteur unique, du premier appel au dernier invité : vous recevez, nous nous occupons du reste.</p>
+          <h3 data-r="0.35" className="nx-h3">Overton donne vie aux événements des entreprises, marques et organisations.</h3>
+          <p className="nx-p">De l’afterwork intimiste à la grande production, une seule agence pour tout imaginer, produire et orchestrer de A à Z.</p>
           <button type="button" onClick={() => ui.openForm('project')} data-cursor="OUVRIR" className="btn-reset cta-line" style={{ marginTop: 36, color: '#E9D29C', borderBottom: '1px solid #C9A35E' }}>PARLER DE MON ÉVÉNEMENT ↗︎</button>
         </div>
         <div style={{ display: 'flex', flexDirection: 'column' }}>

@@ -218,7 +218,7 @@ function VisionHouse({ ui, projects }: { ui: UI; projects: Project[] }) {
           <div data-xg="" className="vh-xg" style={{ opacity: wide ? 0 : 1 }} />
           <div data-xt="" style={{ position: 'absolute', inset: 0, color: '#F5F1E9', opacity: wide ? 0 : 1, pointerEvents: 'none' }}>
             <div className="lbl" style={{ position: 'absolute', left: '5vw', right: '5vw', top: wide ? 88 : 'auto', bottom: wide ? 'auto' : 'calc(clamp(28px,5vh,56px) + 16vw)', display: 'flex', justifyContent: 'space-between', gap: 24 }}><span>02 / 05</span><span>ÉVÉNEMENTS &amp; EXPÉRIENCES</span></div>
-            <div className="xw ov-gold" style={{ position: 'absolute', left: '5vw', right: '5vw', bottom: 'clamp(28px,5vh,56px)', fontWeight: 900, fontSize: wide ? 'clamp(56px,14vw,280px)' : '15vw', lineHeight: 0.8, letterSpacing: '-.06em' }}>OVERTON</div>
+            <div className="xw ov-gold ov-title" style={{ position: 'absolute', left: '5vw', right: '5vw', bottom: 'clamp(28px,5vh,56px)', fontWeight: 400, fontSize: wide ? 'clamp(56px,14vw,280px)' : '15vw', lineHeight: 0.8, letterSpacing: '-.06em' }}>OVERTON</div>
           </div>
         </div>
       </div>
@@ -233,26 +233,26 @@ function VisionHouse({ ui, projects }: { ui: UI; projects: Project[] }) {
 // ——— 05 Overton ———
 function Overton({ ui }: { ui: UI }) {
   return (
-    <section id="overton-suite" data-screen-label="05 Overton" data-sc="enter" data-brand="1" data-cursor="VOIR" data-hd="#E9D29C" style={{ position: 'relative', zIndex: 1, background: '#0B0A08', color: '#F5F1E9', scrollMarginTop: 0 }}>
+    <section id="overton-suite" data-screen-label="05 Overton" data-sc="enter" data-brand="1" data-cursor="VOIR" data-hd="#E9D29C" className="ov" style={{ position: 'relative', zIndex: 1, background: '#0B0A08', color: '#F5F1E9', scrollMarginTop: 0 }}>
       <div className="nx-grid">
         <div>
           <BrandMark brand={B[1]} src={B[1].logoT} size="clamp(32px,3vw,44px)" style={{ display: 'block', width: 200, maxWidth: '100%', height: 'auto', marginBottom: 40 }} />
-          <h3 data-r="0.35" className="nx-h3">Votre événement, <span className="serif-i ov-gold" style={{ letterSpacing: '-.01em' }}>entre de bonnes mains.</span></h3>
+          <h3 data-r="0.35" className="nx-h3">Votre événement, entre de bonnes mains.</h3>
           <p className="nx-p">De l’afterwork intime à la grande production, Overton imagine, produit et orchestre votre événement de A à Z, avec la même exigence. Un interlocuteur unique, du premier appel au dernier invité : vous recevez, nous nous occupons du reste.</p>
           <button type="button" onClick={() => ui.openForm('project')} data-cursor="OUVRIR" className="btn-reset cta-line" style={{ marginTop: 36, color: '#E9D29C', borderBottom: '1px solid #C9A35E' }}>PARLER DE MON ÉVÉNEMENT ↗︎</button>
         </div>
         <div style={{ display: 'flex', flexDirection: 'column' }}>
           {[
-            ['A', 'Formats intimes', 'Afterworks, dîners, lancements, soirées clients. Chaque détail compte, et chaque invité le ressent.'],
-            ['B', 'Événements d’entreprise', 'Inaugurations, séminaires, conférences, soirées d’équipe. Une organisation sans faille, à l’image de votre entreprise.'],
-            ['C', 'Grandes productions', 'Galas, salons, activations de marque. Production, scénographie et coordination à grande échelle, pilotées par une seule équipe.'],
+            ['1', 'Formats intimes', 'Afterworks, dîners, lancements, soirées clients. Chaque détail compte, et chaque invité le ressent.'],
+            ['2', 'Événements d’entreprise', 'Inaugurations, séminaires, conférences, soirées d’équipe. Une organisation sans faille, à l’image de votre entreprise.'],
+            ['3', 'Grandes productions', 'Galas, salons, activations de marque. Production, scénographie et coordination à grande échelle, pilotées par une seule équipe.'],
           ].map(([k, t, d], i, all) => (
             <div key={k} data-r={(0.45 + i * 0.05).toFixed(2)} className="nx-row" style={i === all.length - 1 ? { borderBottom: '1px solid rgba(201,163,94,.3)' } : undefined}>
               <span className="nx-row-k">{k}</span>
               <div><div className="nx-row-t">{t}</div><div className="nx-row-d">{d}</div></div>
             </div>
           ))}
-          <p className="serif" style={{ margin: '36px 0 0', fontSize: 'clamp(24px,2.2vw,34px)', lineHeight: 1.3, color: '#E9D29C', textWrap: 'pretty' }}>Des formats signés Overton, ou un événement pensé entièrement autour de vous.</p>
+          <p className="ov-close" style={{ margin: '36px 0 0', color: '#E9D29C', textWrap: 'pretty' }}>Des formats signés Overton, ou un événement pensé entièrement autour de vous.</p>
         </div>
       </div>
       <div className="nx-line" />
@@ -284,7 +284,7 @@ function OrizonConnect({ ui }: { ui: UI }) {
               </div>
             </div>
             <div data-r="0.3">
-              <p style={{ margin: 0, fontSize: 17, lineHeight: 1.6, color: '#4A2A55', textWrap: 'pretty' }}>Au quotidien, Orizon Connect rapproche les entrepreneurs, dirigeants et partenaires qui ont tout intérêt à se connaître. Nous provoquons les bonnes rencontres, lors de nos événements comme tout au long de l&apos;année, et les transformons en clients, en partenariats et en projets communs.</p>
+              <p style={{ margin: 0, fontSize: 17, lineHeight: 1.6, color: '#4A2A55', textWrap: 'pretty' }}><em>Orizon Connect</em> rapproche entrepreneurs, dirigeants et partenaires qui ont tout intérêt à se connaître. Provoquer les bonnes rencontres lors d&apos;événements et les transformer en opportunités d&apos;affaires. <em>Telle est notre ligne d&apos;horizon.</em></p>
               <button type="button" onClick={() => ui.openForm('talk')} data-cursor="OUVRIR" className="btn-reset cta-line" style={{ marginTop: 28, borderBottom: '1px solid #E2463A' }}>DÉCOUVRIR LES CONNEXIONS ↗︎</button>
             </div>
           </div>

@@ -3,7 +3,7 @@ import { Archivo, Instrument_Serif } from 'next/font/google';
 import { INDEXABLE, SITE_DESCRIPTION, SITE_NAME, SITE_TITLE, SITE_URL } from '@/lib/site';
 import './globals.css';
 
-const archivo = Archivo({ subsets: ['latin'], axes: ['wdth'], variable: '--font-archivo', display: 'swap' });
+const archivo = Archivo({ subsets: ['latin'], axes: ['wdth'], style: ['normal', 'italic'], variable: '--font-archivo', display: 'swap' });
 const serif = Instrument_Serif({ subsets: ['latin'], weight: '400', style: ['normal', 'italic'], variable: '--font-serif', display: 'swap' });
 
 export const metadata: Metadata = {
@@ -22,6 +22,11 @@ export const viewport: Viewport = { themeColor: '#2B143D', width: 'device-width'
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="fr" className={`${archivo.variable} ${serif.variable}`}>
+      <head>
+        {/* Adobe Fonts (kit « EMKAY Partners · Overton ») : IvyPresto Display + Freight Text, utilisés par la section Overton */}
+        <link rel="preconnect" href="https://use.typekit.net" crossOrigin="" />
+        <link rel="stylesheet" href="https://use.typekit.net/kcg0gzh.css" />
+      </head>
       <body>{children}</body>
     </html>
   );

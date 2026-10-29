@@ -218,7 +218,7 @@ function VisionHouse({ ui, projects }: { ui: UI; projects: Project[] }) {
           <div data-xg="" className="vh-xg" style={{ opacity: wide ? 0 : 1 }} />
           <div data-xt="" style={{ position: 'absolute', inset: 0, color: '#F5F1E9', opacity: wide ? 0 : 1, pointerEvents: 'none' }}>
             <div className="lbl" style={{ position: 'absolute', left: '5vw', right: '5vw', top: wide ? 88 : 'auto', bottom: wide ? 'auto' : 'calc(clamp(28px,5vh,56px) + 16vw)', display: 'flex', justifyContent: 'space-between', gap: 24 }}><span>02 / 05</span><span>ÉVÉNEMENTS &amp; EXPÉRIENCES</span></div>
-            <div className="xw ov-gold ov-title" style={{ position: 'absolute', left: '5vw', right: '5vw', bottom: 'clamp(28px,5vh,56px)', fontWeight: 400, fontSize: wide ? 'clamp(56px,14vw,280px)' : '15vw', lineHeight: 0.8, letterSpacing: '-.06em' }}>OVERTON</div>
+            <div className="xw ov-gold" style={{ position: 'absolute', left: '5vw', right: '5vw', bottom: 'clamp(28px,5vh,56px)', fontWeight: 900, fontSize: wide ? 'clamp(56px,14vw,280px)' : '15vw', lineHeight: 0.8, letterSpacing: '-.06em' }}>OVERTON</div>
           </div>
         </div>
       </div>
@@ -237,7 +237,7 @@ function Overton({ ui }: { ui: UI }) {
       <div className="nx-grid">
         <div>
           <BrandMark brand={B[1]} src={B[1].logoT} size="clamp(32px,3vw,44px)" style={{ display: 'block', width: 200, maxWidth: '100%', height: 'auto', marginBottom: 40 }} />
-          <h3 data-r="0.35" className="nx-h3">Overton donne vie aux événements des entreprises, marques et organisations.</h3>
+          <h3 data-r="0.35" className="nx-h3">Overton donne vie aux événements <span className="serif-i ov-gold" style={{ letterSpacing: '-.01em' }}>des entreprises, marques et organisations.</span></h3>
           <p className="nx-p">De l’afterwork intimiste à la grande production, une seule agence pour tout imaginer, produire et orchestrer de A à Z.</p>
           <button type="button" onClick={() => ui.openForm('project')} data-cursor="OUVRIR" className="btn-reset cta-line" style={{ marginTop: 36, color: '#E9D29C', borderBottom: '1px solid #C9A35E' }}>PARLER DE MON ÉVÉNEMENT ↗︎</button>
         </div>
@@ -252,7 +252,7 @@ function Overton({ ui }: { ui: UI }) {
               <div><div className="nx-row-t">{t}</div><div className="nx-row-d">{d}</div></div>
             </div>
           ))}
-          <p className="ov-close" style={{ margin: '36px 0 0', color: '#E9D29C', textWrap: 'pretty' }}>Des formats signés Overton, ou un événement pensé entièrement autour de vous.</p>
+          <p className="serif" style={{ margin: '36px 0 0', fontSize: 'clamp(24px,2.2vw,34px)', lineHeight: 1.3, color: '#E9D29C', textWrap: 'pretty' }}>Des formats signés Overton, ou un événement pensé entièrement autour de vous.</p>
         </div>
       </div>
       <div className="nx-line" />
@@ -318,7 +318,7 @@ function Bavare({ ui }: { ui: UI }) {
         <div className="bv-main">
           <div className="bv-left">
             <h2 data-r="0.06" className="bv-h2 serif-i">Et si on<br />sortait ?</h2>
-            <p data-r="0.22" className="bv-p">Bavare crée des moments pour sortir, se rencontrer, découvrir des lieux et vivre Bruxelles autrement.</p>
+            <p data-r="0.22" className="bv-p">Bavare crée des occasions pour sortir, découvrir de nouveaux lieux, mais surtout faire des rencontres pour vivre autrement.</p>
           </div>
           <div className="bv-stage">
             <div data-r="0.04" data-fx="pop" className="bv-square" />

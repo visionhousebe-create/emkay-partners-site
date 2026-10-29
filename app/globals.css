@@ -154,7 +154,7 @@ html { font-variant-emoji: text }
 .nxc-chain { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 14px; font-size: clamp(19px,1.7vw,26px); letter-spacing: -.01em }
 
 /* ——— 07 Bavare ——— */
-.bv-in { position: sticky; top: 0; min-height: 100vh; overflow: hidden; background: #FF9EC4; color: #E3122B; display: flex; flex-direction: column; padding: 88px 5vw 6vh }
+.bv-in { position: sticky; top: 0; min-height: 100vh; overflow: hidden; background: #FF9EC4; color: #E3122B; display: flex; flex-direction: column; padding: 88px 5vw calc(6vh + 56px) }
 .bv-marquee { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: center; pointer-events: none; font-weight: 900; font-stretch: 62%; font-size: 19vw; line-height: .82; letter-spacing: -.02em; color: #FF86B6; white-space: nowrap }
 .bv-top { position: relative; display: flex; flex-wrap: wrap; gap: 8px 20px; justify-content: space-between; font-size: 11px; letter-spacing: .22em; font-weight: 700; color: #7A0616 }
 .bv-main { position: relative; flex: 1; display: flex; flex-wrap: wrap; align-items: center; gap: 5vw; padding: 5vh 0 }
@@ -441,13 +441,3 @@ html { font-variant-emoji: text }
 .room-m .brand-word.bw-overton { flex-direction: column; gap: .35em; font-size: 18px !important }
 .room-m .bw-overton .bw-ov-sym { width: 2.4em }
 
-/* ——— Overton : typographie Adobe Fonts (IvyPresto Display pour les titres, Freight Text pour le texte) ———
-   Une seule police et un seul style par titre ; repli sur le serif du site si le kit ne charge pas. */
-:root { --ov-title: "ivypresto-display", var(--font-serif), Georgia, serif; --ov-text: "freight-text-pro", Georgia, serif }
-.ov .nx-h3, .ov .nx-row-t, .ov .nx-row-k, .ov-close, .ov-title { font-family: var(--ov-title); font-stretch: normal; font-style: normal }
-.ov .nx-h3 { font-weight: 400; font-size: clamp(36px, 3.6vw, 60px); line-height: 1.02; letter-spacing: -.01em; color: #F5F1E9 }
-.ov .nx-row-t { font-weight: 400; font-size: clamp(26px, 2.2vw, 32px); letter-spacing: 0 }
-.ov .nx-row-k { font-weight: 400; font-size: 22px; letter-spacing: 0; color: #C9A35E; padding-top: 2px }
-.ov .nx-p, .ov .nx-row-d { font-family: var(--ov-text); font-weight: 400; font-size: 19px; line-height: 1.55; letter-spacing: 0 }
-.ov-close { font-weight: 300; font-size: clamp(26px, 2.4vw, 36px); line-height: 1.25 }
-.ov-title { font-weight: 400 !important; letter-spacing: .01em !important }

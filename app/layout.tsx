@@ -22,11 +22,6 @@ export const viewport: Viewport = { themeColor: '#2B143D', width: 'device-width'
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="fr" className={`${archivo.variable} ${serif.variable}`}>
-      <head>
-        {/* Adobe Fonts (kit « EMKAY Partners · Overton ») : IvyPresto Display + Freight Text, utilisés par la section Overton */}
-        <link rel="preconnect" href="https://use.typekit.net" crossOrigin="" />
-        <link rel="stylesheet" href="https://use.typekit.net/kcg0gzh.css" />
-      </head>
       <body>{children}</body>
     </html>
   );

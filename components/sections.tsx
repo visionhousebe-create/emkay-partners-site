@@ -575,7 +575,7 @@ function CollaborationsMobile() {
 }
 
 // ——— 12 Chiffres ———
-const STATS = [{ n: 3000, l: 'PARTICIPANTS', r: '0.2' }, { n: 20, l: 'ÉVÉNEMENTS', r: '0.28' }, { n: 35, l: 'ENTREPRISES ACCOMPAGNÉES', r: '0.36' }];
+const STATS = [{ n: 3000, l: 'PARTICIPANTS', r: '0.2' }, { n: 20, l: 'ÉVÉNEMENTS', r: '0.28' }, { n: 35, l: 'SOCIÉTÉS ACCOMPAGNÉES', r: '0.36' }];
 
 function Chiffres() {
   return (

@@ -6,7 +6,7 @@ import { HTML_LANG, LOCALES, LOCALE_LABEL, LOCALE_NAME, PATHS, type Locale, type
  * Sélecteur de langue FR · EN · NL. Chaque langue a sa propre adresse (/, /en, /nl…) :
  * on change donc de page. Sur l'accueil, `keepHash` conserve la section en cours (#overton…).
  */
-export default function LangSwitch({ locale, page, keepHash, className, style }: { locale: Locale; page: PageKey; keepHash?: boolean; className?: string; style?: React.CSSProperties }) {
+export default function LangSwitch({ locale, page, keepHash, className, style, full }: { locale: Locale; page: PageKey; keepHash?: boolean; className?: string; style?: React.CSSProperties; full?: boolean }) {
   return (
     <nav aria-label="Langue · Language · Taal" className={`lang${className ? ' ' + className : ''}`} style={style}>
       {LOCALES.map((l) => {
@@ -22,7 +22,7 @@ export default function LangSwitch({ locale, page, keepHash, className, style }:
             className={l === locale ? 'on' : undefined}
             onClick={keepHash ? (e) => { if (location.hash) e.currentTarget.href = href + location.hash; } : undefined}
           >
-            {LOCALE_LABEL[l]}
+            {full ? LOCALE_NAME[l] : LOCALE_LABEL[l]}
           </a>
         );
       })}

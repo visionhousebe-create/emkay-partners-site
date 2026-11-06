@@ -6,4 +6,10 @@ realisation: En cours · audience en construction
 services: Vidéo, Format vertical
 format: vertical
 visible: oui
+lieu_en: Belgium
+lieu_nl: België
+realisation_en: In progress · audience being built
+realisation_nl: Lopend · publiek in opbouw
+services_en: Video, Vertical format
+services_nl: Video, Verticaal formaat
 ---

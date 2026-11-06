@@ -7,4 +7,10 @@ services: Photographie
 format: paysage
 visible: oui
 lien: https://emkaypartners.pixieset.com/lasoireedinaugurationdumic/
+secteur_en: Opening night
+secteur_nl: Openingsavond
+realisation_en: Photo project
+realisation_nl: Fotoproject
+services_en: Photography
+services_nl: Fotografie
 ---

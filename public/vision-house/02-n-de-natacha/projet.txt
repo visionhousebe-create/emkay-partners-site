@@ -6,4 +6,12 @@ realisation: Aftermovie · campagne ads promotionnelle
 services: Vidéo, Aftermovie, Publicité
 format: vertical
 visible: oui
+secteur_en: Hair salon
+secteur_nl: Kapsalon
+lieu_en: Belgium
+lieu_nl: België
+realisation_en: Aftermovie · promotional ad campaign
+realisation_nl: Aftermovie · promotionele advertentiecampagne
+services_en: Video, Aftermovie, Advertising
+services_nl: Video, Aftermovie, Advertenties
 ---

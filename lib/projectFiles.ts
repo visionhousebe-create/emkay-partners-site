@@ -10,6 +10,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import type { Project, ProjectFormat, ProjectMedia } from './projects';
+import type { Locale } from './i18n/config';
 
 const ROOT = path.join(process.cwd(), 'public', 'vision-house');
 const IMAGE = /\.(jpe?g|png|webp|avif)$/i;
@@ -45,23 +46,34 @@ export function parseVideoLink(raw: string): ProjectMedia | null {
   return null;
 }
 
-/** Analyse projet.txt : lignes « clé: valeur », puis --- et la description. */
-function parseText(txt: string) {
-  const [head, ...rest] = txt.replace(/^﻿/, '').split(/^\s*-{3,}\s*$/m);
+/**
+ * Analyse projet.txt : lignes « clé: valeur », puis --- et la description.
+ * Traductions facultatives : « secteur_en: … », « realisation_nl: … » (même chose pour lieu et services),
+ * et une description par langue après « --- en » ou « --- nl ». Sans traduction, le texte français s'affiche.
+ */
+function parseText(txt: string, locale: Locale) {
+  const lines = txt.replace(/^\uFEFF/, '').split(/\r?\n/);
   const fields: Record<string, string> = {};
   const videos: string[] = [];
-  for (const line of head.split(/\r?\n/)) {
+  const blocks: { lang: string; text: string[] }[] = [];
+  let inHead = true;
+  for (const line of lines) {
+    const sep = line.match(/^\s*-{3,}\s*([a-z]{2})?\s*$/i);
+    if (sep) { inHead = false; blocks.push({ lang: (sep[1] || '').toLowerCase(), text: [] }); continue; }
+    if (!inHead) { blocks[blocks.length - 1].text.push(line); continue; }
     const m = line.match(/^\s*([^:#]+?)\s*:\s*(.*)$/);
     if (!m) continue;
     const k = key(m[1]), v = m[2].trim();
     if (k === 'video' || k === 'lienvideo') { if (v) videos.push(v); }
     else fields[k] = v;
   }
-  // Plusieurs lignes --- (ex. modèle déjà terminé par ---) : on garde simplement les blocs de texte non vides.
-  return { fields, videos, description: rest.map((b) => b.trim()).filter(Boolean).join('\n\n') };
+  // Plusieurs lignes --- (ex. modèle déjà terminé par ---) : on garde les blocs de texte non vides de la langue demandée.
+  const pick = (lang: string) => blocks.filter((b) => b.lang === lang).map((b) => b.text.join('\n').trim()).filter(Boolean).join('\n\n');
+  const description = (locale !== 'fr' && pick(locale)) || pick('') || pick('fr');
+  return { fields, videos, description };
 }
 
-export function readProjectsFromFiles(): Project[] {
+export function readProjectsFromFiles(locale: Locale = 'fr'): Project[] {
   let dirs: string[];
   try {
     dirs = fs.readdirSync(ROOT, { withFileTypes: true }).filter((d) => d.isDirectory() && !d.name.startsWith('.')).map((d) => d.name).sort((a, b) => a.localeCompare(b, 'fr', { numeric: true }));
@@ -76,7 +88,9 @@ export function readProjectsFromFiles(): Project[] {
       console.warn(`[vision-house] ${dir} : pas de projet.txt, dossier ignoré`);
       return [];
     }
-    const { fields: f, videos, description } = parseText(fs.readFileSync(path.join(abs, txtFile), 'utf8'));
+    const { fields: f, videos, description } = parseText(fs.readFileSync(path.join(abs, txtFile), 'utf8'), locale);
+    /** Valeur traduite (« secteur_en ») si elle existe, sinon la valeur française. */
+    const tr = (...keys: string[]) => { for (const k of keys) { const v = (locale !== 'fr' && f[k + locale]) || f[k]; if (v) return v; } return ''; };
     if (/^(non|no|false|0)$/i.test(f.visible || '')) return [];
 
     const videoBases = new Set(files.filter((x) => VIDEO.test(x)).map(base));
@@ -101,12 +115,12 @@ export function readProjectsFromFiles(): Project[] {
     return [{
       id: dir.replace(/[^a-z0-9-]/gi, '-').toLowerCase(),
       client,
-      sector: f.secteur || '',
-      location: f.lieu || f.ville || '',
-      title: f.realisation || f.resultat || f.titre || '',
+      sector: tr('secteur'),
+      location: tr('lieu', 'ville'),
+      title: tr('realisation', 'resultat', 'titre'),
       description,
       year: f.annee || '',
-      services: (f.services || '').split(/[,·]/).map((s) => s.trim()).filter(Boolean),
+      services: tr('services').split(/[,·]/).map((s) => s.trim()).filter(Boolean),
       format: FORMATS[key(f.format || '')] || FORMATS[(f.format || '').trim()] || '16/9',
       media,
       ...(link ? { link } : {}),

@@ -53,16 +53,18 @@ export async function POST(req: Request) {
   if (missing.length) return fail(422, 'invalid', missing);
 
   const label = KINDS[kind];
+  const lang = ({ fr: 'FR', en: 'EN', nl: 'NL' } as Record<string, string>)[String(body.lang || 'fr')] || 'FR'; // langue du site utilisée par le visiteur
   const payload = {
     _subject: `EMKAY Partners | ${label} | ${f.nom}`, // objet de l'e-mail Formspree
     source: 'emkaypartners-site',
     kind,
     type_demande: label,
+    langue: lang,
     ...f,
     receivedAt: new Date().toISOString(),
     // Lisible tel quel dans Slack / e-mail.
     text: [
-      `Nouveau message (${label}) : ${f.nom} <${f.email}>`,
+      `Nouveau message (${label}, site ${lang}) : ${f.nom} <${f.email}>`,
       f.organisation || f.entreprise ? `Structure : ${f.organisation || f.entreprise}` : '',
       f.telephone ? `Tél. : ${f.telephone}` : '',
       f.type ? `Type : ${f.type}` : '',

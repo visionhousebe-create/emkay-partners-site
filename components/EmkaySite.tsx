@@ -2,6 +2,9 @@
 
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { ALIAS, ARRIVE, BRANDS, FORMS, QUICK, SETTINGS, type FormKind } from '@/lib/data';
+import type { Locale } from '@/lib/i18n/config';
+import { I18nProvider, useI18n } from './i18n';
+import LangSwitch from './LangSwitch';
 import { ScrollEngine, type EngineState } from '@/lib/scrollEngine';
 import { Logo } from './media';
 import { Sections, type UI } from './sections';
@@ -10,7 +13,13 @@ import type { Project } from '@/lib/projects';
 const B = BRANDS;
 const AUTO: Record<string, string> = { nom: 'name', email: 'email', telephone: 'tel', entreprise: 'organization', organisation: 'organization' };
 
-export default function EmkaySite({ projects }: { projects: Project[] }) {
+/** Site complet dans une langue donnée (fr par défaut, en, nl). */
+export default function EmkaySite({ projects, locale = 'fr' }: { projects: Project[]; locale?: Locale }) {
+  return <I18nProvider locale={locale}><Site projects={projects} /></I18nProvider>;
+}
+
+function Site({ projects }: { projects: Project[] }) {
+  const { t, locale } = useI18n();
   const rootRef = useRef<HTMLDivElement>(null);
   const veilRef = useRef<HTMLDivElement>(null);
   const curRef = useRef<HTMLDivElement>(null);
@@ -189,11 +198,11 @@ export default function EmkaySite({ projects }: { projects: Project[] }) {
     setSending(true); setSendError('');
     try {
       const data = Object.fromEntries(new FormData(e.currentTarget).entries());
-      const res = await fetch('/api/contact', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ ...data, kind: choice, _t: Date.now() - formAt.current }) });
+      const res = await fetch('/api/contact', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ ...data, kind: choice, lang: locale, _t: Date.now() - formAt.current }) });
       if (res.ok) setSent(true);
-      else setSendError(res.status === 422 || res.status === 400 ? 'MERCI DE VÉRIFIER VOTRE NOM, VOTRE E-MAIL ET VOTRE MESSAGE.' : 'VOTRE MESSAGE N’A PAS PU PARTIR. MERCI DE RÉESSAYER DANS UN INSTANT.');
+      else setSendError(res.status === 422 || res.status === 400 ? t.form.errCheck : t.form.errSend);
     } catch {
-      setSendError('VOTRE MESSAGE N’A PAS PU PARTIR. MERCI DE RÉESSAYER DANS UN INSTANT.');
+      setSendError(t.form.errSend);
     } finally {
       setSending(false);
     }
@@ -201,39 +210,39 @@ export default function EmkaySite({ projects }: { projects: Project[] }) {
 
   const qaBtnOn = header && !qa && !choice && !mega;
   const indicatorOn = brand >= 0 && wide;
-  const form = choice ? FORMS[choice] : null;
+  const form = choice ? { ...t.form.kinds[choice], fields: FORMS[choice] } : null;
 
   return (
     <div ref={rootRef} className="emk-root">
       {/* ——— Header ——— */}
       <header className="hd" style={{ color: hd, opacity: header ? 1 : 0, pointerEvents: header ? 'auto' : 'none', background: wide ? undefined : isLightColor(hd) ? 'rgba(14,9,20,.72)' : 'rgba(251,246,240,.8)' }}>
-        <a href="#top" aria-label="EMKAY Partners, accueil" className="hd-logo">
+        <a href="#top" aria-label={t.header.home} className="hd-logo">
           {wide ? (
             <Logo src="/logos/emkay.png" alt="EMKAY Partners" priority style={{ display: 'block', height: 30, width: 'auto', filter: isLightColor(hd) ? 'none' : 'brightness(0)', transition: 'filter .6s ease' }} />
           ) : (
             <span className="hd-logo-txt">EMKAY PARTNERS</span>
           )}
         </a>
-        <a href={'#' + (brand >= 0 ? B[brand].id : 'top')} aria-label="Section en cours" aria-hidden={!indicatorOn} tabIndex={indicatorOn ? undefined : -1} className="hd-ind" style={{ opacity: indicatorOn ? 1 : 0, pointerEvents: indicatorOn ? 'auto' : 'none', visibility: wide ? 'visible' : 'hidden', minWidth: 0, overflow: 'hidden' }}>
+        <a href={'#' + (brand >= 0 ? B[brand].id : 'top')} aria-label={t.header.current} aria-hidden={!indicatorOn} tabIndex={indicatorOn ? undefined : -1} className="hd-ind" style={{ opacity: indicatorOn ? 1 : 0, pointerEvents: indicatorOn ? 'auto' : 'none', visibility: wide ? 'visible' : 'hidden', minWidth: 0, overflow: 'hidden' }}>
           <span style={{ opacity: 0.5 }}>/</span><span style={{ fontWeight: 700 }}>{brand >= 0 ? B[brand].name : ''}</span><span style={{ opacity: 0.6 }}>{brand >= 0 ? '0' + (brand + 1) : '00'} / 05</span>
         </a>
         {wide ? (
-          <nav aria-label="Navigation principale" className="hd-nav">
-            <a href="#groupe" data-cursor="ALLER" className="hd-link">LE GROUPE</a>
+          <nav aria-label={t.header.nav} className="hd-nav">
+            <a href="#groupe" data-cursor={t.cursor.go} className="hd-link">{t.header.group}</a>
             <div onMouseEnter={() => { if (fine && !mega) openMega(); else if (fine) { clearTimeout(timers.current.tm); setMegaIn(true); } }} onMouseLeave={() => { if (fine) closeMega(); }} style={{ position: 'relative' }}>
-              <button type="button" onClick={() => (mega && megaIn ? closeMega() : openMega())} aria-expanded={mega} aria-haspopup="true" data-cursor="OUVRIR" className="btn-reset hd-link hd-mega-btn">
-                NOS MARQUES<span style={{ display: 'inline-block', transition: 'transform .4s', transform: `rotate(${megaIn ? '180deg' : '0deg'})` }}>↓</span>
+              <button type="button" onClick={() => (mega && megaIn ? closeMega() : openMega())} aria-expanded={mega} aria-haspopup="true" data-cursor={t.cursor.open} className="btn-reset hd-link hd-mega-btn">
+                {t.header.brands}<span style={{ display: 'inline-block', transition: 'transform .4s', transform: `rotate(${megaIn ? '180deg' : '0deg'})` }}>↓</span>
               </button>
               {mega && (
                 <div role="menu" className="mega-wrap">
                   <div className="mega" style={{ opacity: megaIn ? 1 : 0, transform: `translateY(${megaIn ? '0px' : '-8px'})`, clipPath: megaIn ? 'inset(0 0 0 0)' : 'inset(0 0 100% 0)' }}>
-                    <div className="mega-head"><span>MARQUE</span><span>POUR QUOI ?</span><span /></div>
+                    <div className="mega-head"><span>{t.header.megaBrand}</span><span>{t.header.megaFor}</span><span /></div>
                     {QUICK.map((q, i) => {
                       const b = B[q.b], on = megaHover === i;
                       return (
-                        <a key={b.id} href={'#' + b.id} role="menuitem" data-cursor="ALLER" onMouseEnter={() => setMegaHover(i)} onFocus={() => setMegaHover(i)} className="mega-row" style={{ background: on ? q.qBg : 'rgba(43,20,61,0)', color: on ? q.qFg : '#F5F1E9' }}>
+                        <a key={b.id} href={'#' + b.id} role="menuitem" data-cursor={t.cursor.go} onMouseEnter={() => setMegaHover(i)} onFocus={() => setMegaHover(i)} className="mega-row" style={{ background: on ? q.qBg : 'rgba(43,20,61,0)', color: on ? q.qFg : '#F5F1E9' }}>
                           <span className="mega-name">{b.name}</span>
-                          <span className="mega-short">{q.short}</span>
+                          <span className="mega-short">{t.quick[i].short}</span>
                           <span className="mega-arrow" style={{ transform: `translateX(${on ? '6px' : '0px'})` }}>→</span>
                         </a>
                       );
@@ -242,41 +251,48 @@ export default function EmkaySite({ projects }: { projects: Project[] }) {
                 </div>
               )}
             </div>
-            <a href="#projets" data-cursor="ALLER" className="hd-link">NOS PROJETS</a>
-            <a href="#a-propos" data-cursor="ALLER" className="hd-link">À PROPOS</a>
-            <a href="#contact" data-cursor="ALLER" className="hd-link">CONTACT</a>
+            <a href="#projets" data-cursor={t.cursor.go} className="hd-link">{t.header.projects}</a>
+            <a href="#a-propos" data-cursor={t.cursor.go} className="hd-link">{t.header.about}</a>
+            <a href="#contact" data-cursor={t.cursor.go} className="hd-link">{t.header.contact}</a>
+            <LangSwitch locale={locale} page="home" keepHash className="hd-lang" />
           </nav>
         ) : (
-          <button type="button" onClick={openQa} aria-label="Ouvrir le menu" className="btn-reset hd-menu">MENU</button>
+          <span style={{ display: 'flex', alignItems: 'center', gap: 14, marginLeft: 'auto' }}>
+            <LangSwitch locale={locale} page="home" keepHash className="hd-lang" />
+            <button type="button" onClick={openQa} aria-label={t.header.openMenu} className="btn-reset hd-menu">{t.header.menu}</button>
+          </span>
         )}
       </header>
 
       {/* ——— Accès rapide ——— */}
       {qa && (
-        <div data-trap="" role="dialog" aria-modal="true" aria-label="Accès rapide" className="qa" style={{ opacity: qaIn ? 1 : 0, clipPath: qaIn || reduced ? 'inset(0 0 0 0)' : 'inset(0 0 100% 0)' }}>
+        <div data-trap="" role="dialog" aria-modal="true" aria-label={t.qa.label} className="qa" style={{ opacity: qaIn ? 1 : 0, clipPath: qaIn || reduced ? 'inset(0 0 0 0)' : 'inset(0 0 100% 0)' }}>
           <div className="qa-in">
             <div className="qa-top">
               <Logo src="/logos/emkay.png" alt="EMKAY Partners" style={{ display: 'block', height: 28, width: 'auto', objectFit: 'contain' }} />
-              <button type="button" onClick={closeQa} aria-label="Fermer l’accès rapide" className="btn-reset qa-close">FERMER ✕</button>
+              <span style={{ display: 'flex', alignItems: 'center', gap: 22 }}>
+                <LangSwitch locale={locale} page="home" keepHash className="qa-lang" />
+                <button type="button" onClick={closeQa} aria-label={t.qa.close} className="btn-reset qa-close">{t.common.close}</button>
+              </span>
             </div>
             <div className="qa-title">
-              <h2 className="serif" style={{ opacity: qaIn ? 1 : 0, transform: `translateY(${qaIn ? '0px' : '24px'})` }}>Où voulez-vous <em>aller ?</em></h2>
-              <p style={{ opacity: qaIn ? 1 : 0 }}>Accédez directement à la marque ou à l’information qui vous intéresse.</p>
+              <h2 className="serif" style={{ opacity: qaIn ? 1 : 0, transform: `translateY(${qaIn ? '0px' : '24px'})` }}>{t.qa.titleA} <em>{t.qa.titleB}</em></h2>
+              <p style={{ opacity: qaIn ? 1 : 0 }}>{t.qa.intro}</p>
             </div>
-            <nav aria-label="Nos marques" onMouseLeave={() => setQaHover(-1)} className="qa-list">
+            <nav aria-label={t.qa.listLabel} onMouseLeave={() => setQaHover(-1)} className="qa-list">
               {QUICK.map((q, i) => {
                 const b = B[q.b], on = qaHover === i;
                 const delay = (0.12 + i * 0.06).toFixed(2) + 's';
                 return (
-                  <a key={b.id} href={'#' + b.id} data-cursor="ALLER" onMouseEnter={() => setQaHover(i)} onFocus={() => setQaHover(i)} className="qa-row"
+                  <a key={b.id} href={'#' + b.id} data-cursor={t.cursor.go} onMouseEnter={() => setQaHover(i)} onFocus={() => setQaHover(i)} className="qa-row"
                     style={{ background: on ? q.qBg : 'rgba(43,20,61,0)', color: on ? q.qFg : '#F5F1E9', opacity: qaIn ? 1 : 0, transform: `translateY(${qaIn || reduced ? '0px' : '28px'})`, transition: `background-color .6s ease, color .5s ease, opacity .6s ease ${delay}, transform .8s cubic-bezier(.2,.7,.2,1) ${delay}` }}>
                     <span className="qa-num">{b.num}</span>
                     <span className="qa-mid">
                       <span className="qa-name">{b.name}</span>
-                      <span className="qa-purpose serif">{q.purpose}</span>
+                      <span className="qa-purpose serif">{t.quick[i].purpose}</span>
                     </span>
                     <span className="qa-go">
-                      {wide && <span>ALLER À {b.name}</span>}
+                      {wide && <span>{t.qa.goTo} {b.name}</span>}
                       <span style={{ fontSize: 18, transition: 'transform .5s cubic-bezier(.2,.7,.2,1)', transform: `translateX(${on ? '8px' : '0px'})` }}>→</span>
                     </span>
                   </a>
@@ -284,17 +300,17 @@ export default function EmkaySite({ projects }: { projects: Project[] }) {
               })}
             </nav>
             <div className="qa-links" style={{ opacity: qaIn ? 1 : 0 }}>
-              <a href="#projets" data-cursor="ALLER">VOIR NOS PROJETS →</a>
-              <a href="#a-propos" data-cursor="ALLER">COMPRENDRE EMKAY PARTNERS →</a>
-              <a href="#contact" data-cursor="ALLER">NOUS CONTACTER →</a>
+              <a href="#projets" data-cursor={t.cursor.go}>{t.qa.projects}</a>
+              <a href="#a-propos" data-cursor={t.cursor.go}>{t.qa.about}</a>
+              <a href="#contact" data-cursor={t.cursor.go}>{t.qa.contact}</a>
             </div>
-            <div className="qa-foot">BRUXELLES, BELGIQUE.</div>
+            <div className="qa-foot">{t.common.brusselsBelgium}</div>
           </div>
         </div>
       )}
 
       {wide && fine && (
-        <button type="button" onClick={openQa} data-cursor="OUVRIR" aria-label="Accès rapide aux marques et au contact" className="btn-reset qa-fab" style={{ opacity: qaBtnOn ? 1 : 0, pointerEvents: qaBtnOn ? 'auto' : 'none' }}>ACCÈS RAPIDE ↗︎</button>
+        <button type="button" onClick={openQa} data-cursor={t.cursor.open} aria-label={t.qa.fabLabel} className="btn-reset qa-fab" style={{ opacity: qaBtnOn ? 1 : 0, pointerEvents: qaBtnOn ? 'auto' : 'none' }}>{t.qa.fab}</button>
       )}
 
       <div ref={veilRef} aria-hidden="true" className="veil" />
@@ -320,10 +336,10 @@ export default function EmkaySite({ projects }: { projects: Project[] }) {
 
       {/* ——— Formulaire ——— */}
       {form && (
-        <div data-trap="" role="dialog" aria-modal="true" aria-label="Formulaire de contact" className="form-dlg">
+        <div data-trap="" role="dialog" aria-modal="true" aria-label={t.form.dialog} className="form-dlg">
           <div className="form-top">
-            <span>CONTACT</span>
-            <button type="button" onClick={() => setChoice(null)} className="btn-reset form-close">FERMER ✕</button>
+            <span>{t.form.top}</span>
+            <button type="button" onClick={() => setChoice(null)} className="btn-reset form-close">{t.common.close}</button>
           </div>
           <div className="form-body">
             <h3 className="serif form-title">{form.title}</h3>
@@ -332,27 +348,27 @@ export default function EmkaySite({ projects }: { projects: Project[] }) {
                 <p className="form-intro">{form.intro}</p>
                 <form onSubmit={submit} className="form-grid">
                   {/* Champ piège anti-spam : invisible pour les visiteurs, rempli par les robots. */}
-                  <label className="hp" aria-hidden="true">Site web<input name="site_web" type="text" tabIndex={-1} autoComplete="off" /></label>
+                  <label className="hp" aria-hidden="true">{t.form.website}<input name="site_web" type="text" tabIndex={-1} autoComplete="off" /></label>
                   {form.fields.map((f) => (
                     <label key={choice + f.name} className="form-field" style={{ gridColumn: f.kind === 'area' ? '1/-1' : 'auto' }}>
-                      <span>{f.label}</span>
+                      <span>{t.form.labels[f.label]}</span>
                       {f.kind === 'text' && <input name={f.name} type={f.type} required={f.req} autoComplete={AUTO[f.name]} className="input" />}
                       {f.kind === 'select' && (
                         <select name={f.name} required={f.req} className="input" style={{ cursor: 'pointer', color: '#F5F1E9' }}>
-                          {f.options!.map((t, i) => <option key={t} value={i === 0 ? '' : t} style={{ color: '#080808' }}>{t}</option>)}
+                          {t.form[f.options!].map((o, i) => <option key={o} value={i === 0 ? '' : o} style={{ color: '#080808' }}>{o}</option>)}
                         </select>
                       )}
                       {f.kind === 'area' && <textarea name={f.name} rows={4} required={f.req} className="input" style={{ lineHeight: 1.4, whiteSpace: 'pre-wrap' }} />}
                     </label>
                   ))}
                   <div className="form-actions">
-                    <span role="status" aria-live="polite">{sendError || 'BRUXELLES, BELGIQUE.'}</span>
-                    <button type="submit" disabled={sending} className="btn-reset btn-light">{sending ? 'ENVOI…' : 'ENVOYER ↗︎'}</button>
+                    <span role="status" aria-live="polite">{sendError || t.common.brusselsBelgium}</span>
+                    <button type="submit" disabled={sending} className="btn-reset btn-light">{sending ? t.form.sending : t.form.send}</button>
                   </div>
                 </form>
               </>
             ) : (
-              <p className="form-thanks">Merci, votre message a bien été pris en compte. On revient vers vous très vite.</p>
+              <p className="form-thanks">{t.form.thanks}</p>
             )}
           </div>
         </div>

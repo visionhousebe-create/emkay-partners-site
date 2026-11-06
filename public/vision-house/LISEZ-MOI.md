@@ -40,6 +40,21 @@ Elle s'affiche dans la fiche du projet.
 | `lien` | Lien vers une galerie photo ou une page externe (https://…), affiché en bouton « VOIR LA GALERIE COMPLÈTE » dans la fiche du projet |
 | après `---` | Description libre |
 
+## Traductions (anglais et néerlandais)
+
+Le site existe en français (par défaut), en anglais (`/en`) et en néerlandais (`/nl`).
+Pour traduire un texte, ajoutez la même clé suivie de `_en` ou `_nl` :
+
+```
+secteur_en: Hair salon
+secteur_nl: Kapsalon
+realisation_en: Aftermovie · promotional ad campaign
+realisation_nl: Aftermovie · promotionele advertentiecampagne
+```
+
+Cela marche pour `secteur`, `lieu`, `realisation` et `services`. Pour la description, ajoutez un bloc après `--- en` ou `--- nl`.
+Sans traduction, c'est le texte français qui s'affiche dans les trois langues. Le nom du client ne se traduit pas.
+
 ## Ajouter des photos ou des vidéos
 
 1. Ouvrez le dossier du projet.

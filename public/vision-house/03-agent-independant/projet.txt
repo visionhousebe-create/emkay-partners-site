@@ -6,4 +6,10 @@ realisation: Inconnu → expert reconnu dans son secteur
 services: Vidéo
 format: vertical
 visible: oui
+lieu_en: Brussels
+lieu_nl: Brussel
+realisation_en: Unknown → recognised expert in his field
+realisation_nl: Onbekend → erkende expert in zijn sector
+services_en: Video
+services_nl: Video
 ---

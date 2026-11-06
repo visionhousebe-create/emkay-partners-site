@@ -1,18 +1,15 @@
 import type { Metadata } from 'next';
 import { LegalPage } from '@/components/LegalPage';
 import { CONTACT_EMAIL } from '@/lib/site';
+import { legalMetadata } from '@/lib/meta';
 
-export const metadata: Metadata = {
-  title: 'Mentions légales',
-  description: 'Mentions légales du site EMKAY Partners : éditeur, hébergement, propriété intellectuelle, responsabilité et droit applicable.',
-  alternates: { canonical: '/mentions-legales' },
-};
+export const metadata: Metadata = legalMetadata('fr', 'legal');
 
 const Mail = () => <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>;
 
 export default function MentionsLegales() {
   return (
-    <LegalPage label="INFORMATIONS LÉGALES" title={<>Mentions <em>légales.</em></>}>
+    <LegalPage locale="fr" page="legal">
       <p>Les présentes mentions légales sont publiées conformément au Code de droit économique belge (notamment ses articles III.25 et XII.6) et au Code des sociétés et des associations (article 2:20). En naviguant sur ce site, vous en acceptez les conditions.</p>
 
       <h2>1. Éditeur du site</h2>

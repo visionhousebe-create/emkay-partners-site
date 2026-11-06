@@ -9,6 +9,8 @@ const securityHeaders = [
 
 const nextConfig: NextConfig = {
   poweredByHeader: false,
+  // Une mise en page racine par langue (fr, en, nl) : page 404 globale (app/global-not-found.tsx).
+  experimental: { globalNotFound: true },
   // Le dossier project/ contient le prototype Claude Design d'origine (référence uniquement).
   outputFileTracingExcludes: { '*': ['project/**', 'chats/**'] },
   // Qualité 90 pour les photos (75 par défaut) — Next 16 exige la liste des qualités autorisées.

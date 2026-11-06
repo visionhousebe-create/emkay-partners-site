@@ -1,18 +1,15 @@
 import type { Metadata } from 'next';
 import { LegalPage } from '@/components/LegalPage';
 import { CONTACT_EMAIL } from '@/lib/site';
+import { legalMetadata } from '@/lib/meta';
 
-export const metadata: Metadata = {
-  title: 'Politique de confidentialité',
-  description: 'Politique de confidentialité d’EMKAY Partners : données collectées, finalités, destinataires, durée de conservation, cookies et droits (RGPD).',
-  alternates: { canonical: '/politique-de-confidentialite' },
-};
+export const metadata: Metadata = legalMetadata('fr', 'privacy');
 
 const Mail = () => <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>;
 
 export default function Confidentialite() {
   return (
-    <LegalPage label="DONNÉES PERSONNELLES" title={<>Politique de <em>confidentialité.</em></>}>
+    <LegalPage locale="fr" page="privacy">
       <p>EMKAY Partners attache de l’importance à la protection de vos données personnelles. Cette politique explique quelles données sont collectées via ce site, pourquoi, combien de temps elles sont conservées et quels sont vos droits, conformément au Règlement général sur la protection des données (RGPD, règlement (UE) 2016/679) et à la loi belge du 30 juillet 2018 relative à la protection des personnes physiques à l’égard des traitements de données à caractère personnel.</p>
 
       <h2>1. Responsable du traitement</h2>

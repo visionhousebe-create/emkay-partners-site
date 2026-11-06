@@ -79,6 +79,7 @@ function Portal({ ui }: { ui: UI }) {
           <div className="portal-top"><span>{t.portal.city}</span><span>50.85° N · 4.35° E</span></div>
           <div className="portal-logo">
             <Logo src="/logos/emkay.png" alt="EMKAY Partners" priority style={{ display: 'block', width: 'clamp(240px,30vw,440px)', maxWidth: '100%', height: 'auto', objectFit: 'contain' }} />
+            <LangSwitch locale={locale} page="home" full className="portal-lang" />
           </div>
           <div className="portal-cue">
             <span style={{ fontSize: 'clamp(12px,1vw,14px)', fontWeight: 700, letterSpacing: '.3em' }}>{t.portal.cue}</span>

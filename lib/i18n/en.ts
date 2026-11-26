@@ -223,7 +223,7 @@ export const en: Dict = {
   about: {
     h2a: 'The common thread',
     h2b: 'running through all these stories.',
-    p1: 'EMKAY Partners is an independent entrepreneurial group based in Brussels. We create, develop and grow brands in communication, events, business networking and experiences.',
+    p1: 'EMKAY Partners is an independent house based in Brussels. We create, develop and grow brands in communication, events, business networking and experiences.',
     p2: 'Each project has its own identity. EMKAY gives it the framework and resources it needs to grow.',
   },
   manifesto: {

@@ -224,7 +224,7 @@ export const fr = {
   about: {
     h2a: 'Le point commun',
     h2b: 'entre toutes ces histoires.',
-    p1: 'EMKAY Partners est un groupe entrepreneurial indépendant basé à Bruxelles. Nous créons, développons et faisons grandir des marques dans la communication, les événements, les rencontres et les expériences.',
+    p1: 'EMKAY Partners est une maison indépendante basée à Bruxelles. Nous créons, développons et faisons grandir des marques dans la communication, les événements, les rencontres et les expériences.',
     p2: 'Chaque projet possède sa propre identité. EMKAY lui donne le cadre et les ressources nécessaires pour grandir.',
   },
   manifesto: {

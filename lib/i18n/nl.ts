@@ -223,7 +223,7 @@ export const nl: Dict = {
   about: {
     h2a: 'De rode draad',
     h2b: 'door al deze verhalen.',
-    p1: 'EMKAY Partners is een onafhankelijke ondernemersgroep uit Brussel. Wij creëren, ontwikkelen en laten merken groeien in communicatie, evenementen, zakelijke ontmoetingen en belevingen.',
+    p1: 'EMKAY Partners is een onafhankelijk huis uit Brussel. Wij creëren, ontwikkelen en laten merken groeien in communicatie, evenementen, zakelijke ontmoetingen en belevingen.',
     p2: 'Elk project heeft een eigen identiteit. EMKAY geeft het het kader en de middelen die het nodig heeft om te groeien.',
   },
   manifesto: {
